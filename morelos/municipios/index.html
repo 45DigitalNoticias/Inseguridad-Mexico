@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radiografía municipal · selecciona un municipio · 45 Digital Noticias</title>
+<meta name="description" content="Radiografía interactiva de los 36 municipios de Morelos. Selecciona un municipio para ver todos sus delitos del catálogo SESNSP.">
+<meta property="og:title" content="Radiografía municipal · Inseguridad Morelos">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../_partials/section-page.css">
+<script src="../morelos.geojson.js"></script>
+<script src="../municipios_delitos.js"></script>
+<style>
+  main{flex:1;padding:50px 24px 80px;}
+  .wrap{max-width:1240px;margin:0 auto;}
+
+  .hero{text-align:center;margin-bottom:36px;}
+  .hero .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;
+    color:#ec4899;text-transform:uppercase;font-weight:700;margin-bottom:14px;
+  }
+  .hero h1{
+    font-family:'Fraunces',serif;font-size:56px;font-weight:700;
+    color:#e6edf3;line-height:1.05;letter-spacing:-1.5px;
+    margin:0 auto 18px;max-width:880px;
+  }
+  .hero h1 em{color:#ec4899;font-style:italic;font-weight:600;}
+  .hero p.lead{
+    text-align:center;max-width:680px;margin:0 auto 28px;
+    font-size:17px;line-height:1.65;color:#c9d1d9;
+  }
+  .hero p.lead strong{color:#e6edf3;}
+
+  .selector-wrap{
+    max-width:640px;margin:0 auto;
+    background:linear-gradient(135deg,rgba(236,72,153,0.10),rgba(13,17,23,0.6));
+    border:1px solid rgba(236,72,153,0.35);border-radius:14px;
+    padding:18px 20px;display:flex;align-items:center;gap:14px;
+  }
+  .selector-wrap .lbl{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;
+    color:#ec4899;text-transform:uppercase;font-weight:700;flex-shrink:0;
+  }
+  .selector-wrap select{
+    flex:1;padding:12px 14px;border-radius:8px;
+    font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
+    color:#e6edf3;background:#0d1117;
+    border:1px solid rgba(236,72,153,0.45);cursor:pointer;
+  }
+  .selector-wrap select:focus{
+    outline:none;border-color:#ec4899;
+    box-shadow:0 0 0 3px rgba(236,72,153,0.15);
+  }
+  .selector-wrap select option{background:#0d1117;color:#e6edf3;}
+  .selector-wrap select optgroup{
+    color:#ec4899;font-weight:700;font-style:normal;
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:1px;text-transform:uppercase;
+  }
+
+  .empty-banner{
+    text-align:center;margin:40px auto 30px;max-width:520px;
+    padding:24px 26px;background:rgba(13,17,23,0.5);
+    border:1px dashed rgba(236,72,153,0.4);border-radius:14px;
+  }
+  .empty-banner .icon{font-size:34px;margin-bottom:10px;}
+  .empty-banner h3{
+    font-family:'Fraunces',serif;font-size:22px;color:#e6edf3;
+    margin:0 0 8px;font-weight:600;
+  }
+  .empty-banner p{font-size:13.5px;color:#8b949e;line-height:1.55;margin:0;}
+  body.has-selection .empty-banner{display:none;}
+
+  .grid{
+    display:grid;grid-template-columns:1.3fr 1fr;gap:22px;margin-top:32px;
+  }
+  @media (max-width:920px){.grid{grid-template-columns:1fr;}}
+
+  .panel{
+    background:rgba(13,17,23,0.7);
+    border:1px solid rgba(48,54,61,0.7);
+    border-radius:14px;padding:22px 24px;
+  }
+  .panel h3.p-title{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;
+    color:#8b949e;text-transform:uppercase;font-weight:700;
+    margin:0 0 16px;display:flex;justify-content:space-between;
+    align-items:baseline;gap:12px;
+  }
+  .panel h3.p-title em{color:#ec4899;font-style:normal;font-weight:700;}
+  .panel h3.p-title .scope{
+    color:#c9d1d9;font-weight:700;font-family:'Inter',sans-serif;
+    text-transform:none;letter-spacing:0;font-size:14px;
+  }
+  body:not(.has-selection) .panel h3.p-title .scope{color:#6b7480;}
+
+  .map-panel{position:relative;min-height:420px;}
+  .map-panel svg{width:100%;height:auto;display:block;max-height:520px;}
+  .map-panel svg .muni{
+    fill:#1a1f26;stroke:#2d333b;stroke-width:0.0008;
+    transition:fill 0.18s,opacity 0.18s;cursor:pointer;
+  }
+  .map-panel svg .muni:hover{fill:#30363d;}
+  .map-panel svg .muni.selected{
+    fill:#ec4899 !important;stroke:#ec4899;stroke-width:0.0015;
+  }
+  body.has-selection .map-panel svg .muni:not(.selected){opacity:0.22;}
+  .map-legend{
+    margin-top:10px;text-align:center;
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;
+    color:#6b7480;text-transform:uppercase;
+  }
+
+  .kpi-stack{display:flex;flex-direction:column;gap:14px;}
+  .kpi{
+    background:rgba(13,17,23,0.7);
+    border:1px solid rgba(48,54,61,0.6);
+    border-radius:11px;padding:18px 20px;
+    display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;
+  }
+  .kpi-icon{
+    width:40px;height:40px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;font-size:18px;
+  }
+  .kpi.total .kpi-icon{background:rgba(251,191,36,0.14);color:#fbbf24;}
+  .kpi.hd .kpi-icon   {background:rgba(248,81,73,0.14);color:#f85149;}
+  .kpi.ext .kpi-icon  {background:rgba(34,211,238,0.14);color:#22d3ee;}
+  .kpi.vf .kpi-icon   {background:rgba(167,139,250,0.14);color:#a78bfa;}
+  .kpi.rank .kpi-icon {background:rgba(236,72,153,0.14);color:#ec4899;}
+  .kpi-body .label{
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;
+    color:#8b949e;text-transform:uppercase;font-weight:700;
+  }
+  .kpi-body .num{
+    font-family:'Fraunces',serif;font-size:30px;font-weight:800;
+    color:#e6edf3;line-height:1;letter-spacing:-1px;margin-top:4px;
+  }
+  body:not(.has-selection) .kpi-body .num{color:#3a4047;}
+  body:not(.has-selection) .kpi-body .num::before{content:"—";}
+  body.has-selection .kpi-body .num::before{content:"";}
+  .kpi-body .sub{font-size:12px;color:#8b949e;margin-top:4px;line-height:1.3;}
+
+  .delitos-panel{margin-top:22px;}
+  table.delitos-tbl{
+    width:100%;border-collapse:collapse;
+    font-family:'Inter',sans-serif;font-size:13.5px;
+  }
+  table.delitos-tbl th{
+    text-align:left;padding:12px 14px;
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    letter-spacing:1.4px;color:#6e7681;
+    text-transform:uppercase;font-weight:700;
+    border-bottom:1px solid rgba(48,54,61,0.7);
+  }
+  table.delitos-tbl th.num{text-align:right;}
+  table.delitos-tbl td{
+    padding:11px 14px;border-bottom:1px solid rgba(48,54,61,0.32);color:#c9d1d9;
+  }
+  table.delitos-tbl td.num{text-align:right;font-variant-numeric:tabular-nums;}
+  table.delitos-tbl tr.muni-leader td.delito{color:#fbbf24;font-weight:700;}
+  table.delitos-tbl tr.muni-leader td.delito::before{content:"★ ";color:#fbbf24;}
+  table.delitos-tbl .pct-bar{
+    display:inline-block;height:6px;border-radius:3px;
+    background:linear-gradient(90deg,#ec4899,#fbbf24);
+    vertical-align:middle;margin-right:8px;min-width:6px;
+  }
+  table.delitos-tbl .rank-pill{
+    display:inline-block;padding:2px 7px;border-radius:4px;
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    background:rgba(139,148,158,0.15);color:#8b949e;font-weight:700;
+    letter-spacing:0.5px;
+  }
+  table.delitos-tbl .rank-pill.r1{background:rgba(248,81,73,0.18);color:#f85149;}
+  table.delitos-tbl .rank-pill.r2-3{background:rgba(251,191,36,0.15);color:#fbbf24;}
+  body:not(.has-selection) .delitos-empty{
+    padding:50px 24px;text-align:center;color:#6b7480;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;
+    text-transform:uppercase;
+  }
+  body.has-selection .delitos-empty{display:none;}
+  body:not(.has-selection) table.delitos-tbl{display:none;}
+
+  .analisis-cta{
+    margin-top:32px;padding:24px 28px;
+    background:linear-gradient(135deg,rgba(236,72,153,0.10),rgba(13,17,23,0.6));
+    border:1px solid rgba(236,72,153,0.30);border-radius:14px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:24px;flex-wrap:wrap;
+  }
+  body:not(.has-selection) .analisis-cta{display:none;}
+  .analisis-cta .ac-body{flex:1;min-width:280px;}
+  .analisis-cta .ac-tag{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;
+    color:#ec4899;text-transform:uppercase;font-weight:700;margin-bottom:6px;
+  }
+  .analisis-cta h4{
+    font-family:'Fraunces',serif;font-size:20px;color:#e6edf3;
+    margin:0;line-height:1.3;font-weight:600;
+  }
+  .analisis-cta h4 em{color:#ec4899;font-style:italic;}
+  .analisis-cta a{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 22px;border-radius:10px;
+    background:#ec4899;color:#fff;text-decoration:none;
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:1.5px;
+    text-transform:uppercase;font-weight:700;transition:background 0.15s;
+  }
+  .analisis-cta a:hover{background:#fff;color:#ec4899;}
+
+  .meta-footer{
+    margin-top:42px;padding:22px 26px;
+    background:rgba(13,17,23,0.4);border:1px solid rgba(48,54,61,0.45);
+    border-radius:10px;
+    font-family:'Inter',sans-serif;font-size:12.5px;line-height:1.7;color:#8b949e;
+    text-align:center;
+  }
+  .meta-footer strong{color:#c9d1d9;}
+  .meta-footer code{
+    background:rgba(255,255,255,0.05);padding:1px 6px;border-radius:3px;
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#fbbf24;
+  }
+
+  @media (max-width:760px){
+    .hero h1{font-size:38px;}
+    .selector-wrap{flex-direction:column;align-items:stretch;}
+    .selector-wrap select{width:100%;}
+    .map-panel{min-height:auto;}
+    .analisis-cta{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+  <header class="page-topbar">
+    <div class="page-brand">
+      <div class="page-brand-block">45</div>
+      <div class="page-brand-text">
+        <span class="n">45 DIGITAL NOTICIAS</span>
+        <span class="s" style="color:#ec4899;">Radiografía municipal</span>
+      </div>
+    </div>
+    <a class="page-back-link" href="../index.html#sExec" style="color:#ec4899;border-color:rgba(236,72,153,0.35);">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M11 7H3M7 3L3 7l4 4"/></svg>
+      Volver al dashboard
+    </a>
+  </header>
+
+  <main>
+    <div class="wrap">
+
+      <section class="hero">
+        <div class="eyebrow">36 municipios · catálogo SESNSP · 2025</div>
+        <h1>Radiografía <em>municipal</em></h1>
+        <p class="lead">
+          Selecciona un municipio para ver <strong>todos sus delitos</strong> del catálogo SESNSP, su posición estatal y regional, y la radiografía editorial del proyecto.
+        </p>
+        <div class="selector-wrap">
+          <span class="lbl">Municipio →</span>
+          <select id="muniSelect" aria-label="Seleccionar municipio">
+            <option value="">— Elige un municipio —</option>
+          </select>
+        </div>
+      </section>
+
+      <div class="empty-banner">
+        <div class="icon">↓</div>
+        <h3>Estado inicial vacío por diseño</h3>
+        <p>El mapa y los paneles permanecen en blanco hasta que elijas un municipio. Una vez seleccionado, aparece el desglose completo de los delitos del catálogo SESNSP con volumen 2025, porcentaje del estatal y posición del municipio en cada delito.</p>
+      </div>
+
+      <div class="grid">
+        <div class="panel map-panel">
+          <h3 class="p-title">
+            <span>Mapa estatal · <em>36 municipios</em></span>
+            <span class="scope" id="mapScope">Selecciona uno</span>
+          </h3>
+          <svg id="mapSvg" preserveAspectRatio="xMidYMid meet"></svg>
+          <div class="map-legend" id="mapLegend">Toca un municipio o usa el selector ↑</div>
+        </div>
+
+        <div class="kpi-stack">
+          <div class="kpi total">
+            <div class="kpi-icon">●</div>
+            <div class="kpi-body">
+              <div class="label">Total carpetas 2025</div>
+              <div class="num" id="kpiTotal"></div>
+              <div class="sub" id="kpiTotalSub">— · % del estatal</div>
+            </div>
+          </div>
+          <div class="kpi hd">
+            <div class="kpi-icon">✕</div>
+            <div class="kpi-body">
+              <div class="label">Homicidio doloso 2025</div>
+              <div class="num" id="kpiHd"></div>
+              <div class="sub" id="kpiHdSub">— · % del estatal</div>
+            </div>
+          </div>
+          <div class="kpi ext">
+            <div class="kpi-icon">$</div>
+            <div class="kpi-body">
+              <div class="label">Extorsión 2025</div>
+              <div class="num" id="kpiExt"></div>
+              <div class="sub" id="kpiExtSub">— · % del estatal</div>
+            </div>
+          </div>
+          <div class="kpi vf">
+            <div class="kpi-icon">⌂</div>
+            <div class="kpi-body">
+              <div class="label">Violencia familiar 2025</div>
+              <div class="num" id="kpiVf"></div>
+              <div class="sub" id="kpiVfSub">— · % del estatal</div>
+            </div>
+          </div>
+          <div class="kpi rank">
+            <div class="kpi-icon">#</div>
+            <div class="kpi-body">
+              <div class="label">Posición ranking estatal</div>
+              <div class="num" id="kpiRank"></div>
+              <div class="sub" id="kpiRankSub">— de 36 · por total</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel delitos-panel">
+        <h3 class="p-title">
+          <span>Todos los delitos · <em>catálogo SESNSP</em></span>
+          <span class="scope" id="delitosScope">Selecciona un municipio</span>
+        </h3>
+        <div class="delitos-empty">↑ Elige un municipio para ver el desglose completo</div>
+        <table class="delitos-tbl" id="delitosTable">
+          <thead>
+            <tr>
+              <th style="width:55px;">#</th>
+              <th>Delito</th>
+              <th class="num">Carpetas 2025</th>
+              <th class="num">% del estatal</th>
+              <th class="num">Ranking estatal</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="analisis-cta">
+        <div class="ac-body">
+          <div class="ac-tag">Lectura editorial extendida</div>
+          <h4>Radiografía completa de <em id="analisisMuniName">—</em></h4>
+        </div>
+        <a id="analisisLink" href="cuernavaca.html" target="_blank" rel="noopener">
+          Ver radiografía completa ↗
+        </a>
+      </div>
+
+      <div class="meta-footer">
+        <strong>Fuentes y método.</strong> SESNSP RNID Municipal · corte marzo 2026 (cifras 2025). Catálogo del fuero común: homicidio, feminicidio, extorsión, robo, narcomenudeo, violencia familiar, abuso sexual, violación, amenazas, lesiones, daño a la propiedad y fraude. Trazabilidad en <code>cifras.csv</code> del repositorio.
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    45 Digital Noticias · Inseguridad Morelos · <a href="../index.html#sExec">Dashboard maestro</a> · <a href="../columnas/">Columnas</a> · <a href="../comunicados/">Comunicados auditados</a>
+  </footer>
+
+<script>
+(function() {
+  const REGIONES = {
+    'Noroeste': {color:'#58a6ff', munis:['Cuernavaca','Jiutepec','Temixco','Emiliano Zapata','Xochitepec','Huitzilac']},
+    'Norte':    {color:'#84cc16', munis:['Atlatlahucan','Tlayacapan','Tepoztlán','Tlalnepantla','Totolapan']},
+    'Noreste':  {color:'#14b8a6', munis:['Yecapixtla','Tetela del Volcán','Ocuituco','Temoac','Zacualpan de Amilpas','Hueyapan']},
+    'Centro':   {color:'#fbbf24', munis:['Cuautla','Ayala','Yautepec']},
+    'Oriente':  {color:'#a371f7', munis:['Tepalcingo','Jantetelco','Axochiapan','Jonacatepec de Leandro Valle']},
+    'Poniente': {color:'#ec4899', munis:['Mazatepec','Tetecala','Miacatlán','Amacuzac','Coatetelco','Coatlán del Río']},
+    'Sur':      {color:'#f85149', munis:['Jojutla','Puente de Ixtla','Tlaltizapán de Zapata','Zacatepec','Tlaquiltenango','Xoxocotla']},
+  };
+
+  function getRegionOfMuni(muni){
+    for (const reg of Object.keys(REGIONES)){
+      if (REGIONES[reg].munis.some(m => m === muni || m.startsWith(muni) || muni.startsWith(m))) return reg;
+    }
+    return null;
+  }
+  function normalizeName(n){
+    return (n||'').replace(/Ǭ/g,'á').replace(/��/g,'í');
+  }
+
+  function buildSelect(){
+    const sel = document.getElementById('muniSelect');
+    if (!sel) return;
+    const order = ['Noroeste','Centro','Norte','Noreste','Oriente','Poniente','Sur'];
+    order.forEach(reg => {
+      const info = REGIONES[reg];
+      const g = document.createElement('optgroup');
+      g.label = reg + ' (' + info.munis.length + ')';
+      info.munis.slice().sort((a,b)=>a.localeCompare(b,'es')).forEach(m => {
+        const opt = document.createElement('option');
+        opt.value = m;
+        opt.textContent = m;
+        g.appendChild(opt);
+      });
+      sel.appendChild(g);
+    });
+    sel.addEventListener('change', e => selectMuni(e.target.value || null));
+  }
+
+  function buildMap(){
+    const svg = document.getElementById('mapSvg');
+    if (!svg) return;
+    if (typeof MORELOS_GEOJSON === 'undefined' || !MORELOS_GEOJSON.features){
+      svg.outerHTML = '<div style="padding:40px;text-align:center;color:#6b7480;font-family:JetBrains Mono;font-size:11px;letter-spacing:2px;text-transform:uppercase;">Mapa no disponible</div>';
+      return;
+    }
+    let minX=Infinity, minY=Infinity, maxX=-Infinity, maxY=-Infinity;
+    const pathsHtml = [];
+    MORELOS_GEOJSON.features.forEach(feat => {
+      const name = feat.properties?.n || feat.properties?.NOMGEO || feat.properties?.nombre || feat.properties?.NAME || '';
+      if (!name) return; // proteccion: si no hay nombre, no creamos path
+      const geom = feat.geometry;
+      if (!geom) return;
+      let d = '';
+      const polys = geom.type === 'Polygon' ? [geom.coordinates] : geom.coordinates;
+      polys.forEach(poly => {
+        poly.forEach(ring => {
+          ring.forEach((coord, i) => {
+            const [x, y] = coord;
+            if (x < minX) minX = x; if (x > maxX) maxX = x;
+            if (y < minY) minY = y; if (y > maxY) maxY = y;
+            d += (i === 0 ? 'M' : 'L') + x.toFixed(5) + ' ' + (-y).toFixed(5);
+          });
+          d += 'Z';
+        });
+      });
+      pathsHtml.push('<path class="muni" data-muni="' + name + '" d="' + d + '"></path>');
+    });
+    const w = maxX - minX, h = maxY - minY;
+    svg.setAttribute('viewBox', minX.toFixed(5) + ' ' + (-maxY).toFixed(5) + ' ' + w.toFixed(5) + ' ' + h.toFixed(5));
+    svg.innerHTML = pathsHtml.join('');
+    svg.querySelectorAll('path.muni').forEach(p => {
+      p.addEventListener('click', () => {
+        const muni = p.getAttribute('data-muni');
+        const sel = document.getElementById('muniSelect');
+        if (sel) {
+          let value = muni;
+          if (!Array.from(sel.options).some(o => o.value === muni)) {
+            const found = Array.from(sel.options).find(o => o.value && (o.value.startsWith(muni) || muni.startsWith(o.value)));
+            if (found) value = found.value;
+          }
+          sel.value = value;
+        }
+        selectMuni(muni);
+      });
+    });
+  }
+
+  function findKeyForMuni(dataObj, muni){
+    if (dataObj[muni] != null) return muni;
+    for (const k of Object.keys(dataObj)){
+      if (k === muni) return k;
+      const kn = normalizeName(k);
+      if (kn === muni) return k;
+      const kl = k.toLowerCase();
+      const ml = muni.toLowerCase();
+      if (kl.startsWith(ml.split(' ')[0]) || ml.startsWith(kl.split(' ')[0])) return k;
+    }
+    return null;
+  }
+  function valueFor(delitoSlug, muni){
+    if (typeof EXEC_DELITOS_DATA === 'undefined') return null;
+    const d = EXEC_DELITOS_DATA.delitos[delitoSlug];
+    if (!d) return null;
+    const k = findKeyForMuni(d.data, muni);
+    return k ? d.data[k] : 0;
+  }
+  function rankOfMuniIn(delitoSlug, muni){
+    if (typeof EXEC_DELITOS_DATA === 'undefined') return null;
+    const d = EXEC_DELITOS_DATA.delitos[delitoSlug];
+    if (!d) return null;
+    const entries = Object.entries(d.data).filter(([_,v])=>typeof v==='number');
+    entries.sort((a,b)=>b[1]-a[1]);
+    const idx = entries.findIndex(([m]) => m === muni || normalizeName(m) === muni);
+    return idx >= 0 ? (idx + 1) : null;
+  }
+
+  function selectMuni(muni){
+    document.body.classList.toggle('has-selection', !!muni);
+
+    // v2.48: match estricto sin startsWith permisivo (causaba que todo el estado quedara rosa)
+    const stripSfx = s => (s||'').replace(/ de (Zapata|Leandro Valle|Amilpas|Morelos|Hidalgo)$/, '').replace(/ del (Volcán|Volcan|Río|Rio)$/, '').trim();
+    document.querySelectorAll('#mapSvg path.muni').forEach(p => {
+      const m = p.getAttribute('data-muni');
+      let isSelected = false;
+      if (muni && m) {
+        const mNorm  = normalizeName(m);
+        const muNorm = normalizeName(muni);
+        isSelected = (m === muni) || (mNorm === muni) || (mNorm === muNorm)
+                  || (stripSfx(mNorm) === stripSfx(muNorm));
+      }
+      p.classList.toggle('selected', !!isSelected);
+    });
+
+    if (!muni){
+      ['kpiTotal','kpiHd','kpiExt','kpiVf','kpiRank'].forEach(id => { const e=document.getElementById(id); if (e) e.textContent=''; });
+      ['kpiTotalSub','kpiHdSub','kpiExtSub','kpiVfSub','kpiRankSub'].forEach(id => { const e=document.getElementById(id); if (e) e.textContent='— · % del estatal'; });
+      document.getElementById('mapScope').textContent = 'Selecciona uno';
+      document.getElementById('delitosScope').textContent = 'Selecciona un municipio';
+      document.getElementById('analisisMuniName').textContent = '—';
+      const tbody = document.querySelector('#delitosTable tbody'); if (tbody) tbody.innerHTML = '';
+      return;
+    }
+
+    const region = getRegionOfMuni(muni);
+    const regionLabel = region ? ('Región ' + region) : '';
+
+    const fmt = n => (n != null ? n.toLocaleString('es-MX') : '—');
+    const pctOf = (val, tot) => tot > 0 ? (val/tot*100).toFixed(2) + '%' : '—';
+
+    const totalVal = valueFor('total', muni);
+    const totalEstatal = EXEC_DELITOS_DATA.delitos.total.total_estatal;
+    document.getElementById('kpiTotal').textContent = fmt(totalVal);
+    document.getElementById('kpiTotalSub').textContent = pctOf(totalVal, totalEstatal) + ' del estatal';
+
+    const hdVal = valueFor('homicidio', muni);
+    document.getElementById('kpiHd').textContent = fmt(hdVal);
+    document.getElementById('kpiHdSub').textContent = pctOf(hdVal, EXEC_DELITOS_DATA.delitos.homicidio.total_estatal) + ' del estatal';
+
+    const extVal = valueFor('extorsion', muni);
+    document.getElementById('kpiExt').textContent = fmt(extVal);
+    document.getElementById('kpiExtSub').textContent = pctOf(extVal, EXEC_DELITOS_DATA.delitos.extorsion.total_estatal) + ' del estatal';
+
+    const vfVal = valueFor('violencia_familiar', muni);
+    document.getElementById('kpiVf').textContent = fmt(vfVal);
+    document.getElementById('kpiVfSub').textContent = pctOf(vfVal, EXEC_DELITOS_DATA.delitos.violencia_familiar.total_estatal) + ' del estatal';
+
+    const rankTotal = rankOfMuniIn('total', muni);
+    document.getElementById('kpiRank').textContent = '#' + (rankTotal || '—');
+    document.getElementById('kpiRankSub').textContent = (rankTotal || '—') + ' de 36 · por total · ' + regionLabel;
+
+    document.getElementById('mapScope').textContent = muni + ' · ' + regionLabel;
+    document.getElementById('delitosScope').textContent = muni + ' · 2025';
+
+    const tbody = document.querySelector('#delitosTable tbody');
+    if (tbody){
+      tbody.innerHTML = '';
+      const delitos = Object.entries(EXEC_DELITOS_DATA.delitos)
+        .filter(([slug]) => slug !== 'total')
+        .map(([slug, d]) => {
+          const v = valueFor(slug, muni) || 0;
+          const pct = d.total_estatal > 0 ? (v / d.total_estatal * 100) : 0;
+          const rank = rankOfMuniIn(slug, muni);
+          return { slug, nombre: normalizeName(d.nombre), val: v, pct, rank, totEst: d.total_estatal };
+        })
+        .filter(d => d.val > 0)
+        .sort((a,b) => b.val - a.val);
+
+      const maxPct = Math.max(...delitos.map(d => d.pct), 1);
+      delitos.forEach((d, idx) => {
+        const isLeader = d.rank === 1;
+        const rankClass = d.rank === 1 ? 'r1' : (d.rank <= 3 ? 'r2-3' : '');
+        const barW = Math.max(8, Math.round(d.pct / maxPct * 80));
+        const tr = document.createElement('tr');
+        if (isLeader) tr.className = 'muni-leader';
+        tr.innerHTML =
+          '<td>' + String(idx+1).padStart(2,'0') + '</td>' +
+          '<td class="delito">' + d.nombre + '</td>' +
+          '<td class="num">' + d.val.toLocaleString('es-MX') + '</td>' +
+          '<td class="num"><span class="pct-bar" style="width:' + barW + 'px"></span>' + d.pct.toFixed(2) + '%</td>' +
+          '<td class="num"><span class="rank-pill ' + rankClass + '">#' + (d.rank || '—') + ' de 36</span></td>';
+        tbody.appendChild(tr);
+      });
+    }
+
+    document.getElementById('analisisMuniName').textContent = muni;
+    const slugMap = EXEC_DELITOS_DATA.slugs || {};
+    const slugKey = findKeyForMuni(slugMap, muni);
+    const slug = slugKey ? slugMap[slugKey] : muni.toLowerCase().replace(/ /g,'-');
+    document.getElementById('analisisLink').href = slug + '.html';
+  }
+
+  function init(){
+    buildSelect();
+    buildMap();
+    const params = new URLSearchParams(window.location.search);
+    const initial = params.get('muni');
+    if (initial){
+      const sel = document.getElementById('muniSelect');
+      const found = Array.from(sel.options).find(o => o.value && o.value.toLowerCase() === initial.toLowerCase());
+      if (found){
+        sel.value = found.value;
+        selectMuni(found.value);
+      }
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+</body>
+</html>

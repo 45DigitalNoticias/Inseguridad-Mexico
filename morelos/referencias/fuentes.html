@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fuentes y procedimiento · 45 Digital Noticias · Inseguridad Morelos</title>
+<meta name="description" content="Fuentes oficiales, cortes temporales, criterios comparativos, limitaciones y blindaje legal del proyecto Inseguridad Morelos.">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../_partials/section-page.css">
+<style>
+  main{flex:1;padding:50px 24px 80px;}
+  .article{max-width:1080px;margin:0 auto;}
+
+  .ref-head{border-bottom:1px solid rgba(48,54,61,0.5);padding-bottom:28px;margin-bottom:40px;}
+  .ref-head .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;
+    color:#3fb950;text-transform:uppercase;font-weight:700;margin-bottom:14px;
+  }
+  .ref-head h1{
+    font-family:'Fraunces',serif;font-size:48px;font-weight:700;
+    color:#e6edf3;line-height:1.05;letter-spacing:-1.2px;margin:0 0 16px;
+  }
+  .ref-head h1 em{color:#3fb950;font-style:italic;font-weight:600;}
+  .ref-head .deck{
+    font-family:'Inter',sans-serif;font-size:16px;line-height:1.65;color:#c9d1d9;
+    max-width:780px;
+  }
+  .ref-head .deck strong{color:#e6edf3;}
+
+  h2.sec{
+    font-family:'Fraunces',serif;font-size:28px;font-weight:700;
+    color:#e6edf3;margin:50px 0 12px;line-height:1.2;
+    border-left:3px solid #3fb950;padding-left:14px;
+  }
+  h2.sec em{color:#3fb950;font-style:italic;font-weight:600;}
+  h3.sub{
+    font-family:'Fraunces',serif;font-size:20px;font-weight:600;
+    color:#e6edf3;margin:28px 0 10px;
+  }
+  p,li{font-family:'Inter',sans-serif;font-size:14.5px;line-height:1.7;color:#c9d1d9;}
+  p strong, li strong{color:#e6edf3;}
+  p em, li em{color:#3fb950;font-style:italic;font-weight:600;}
+  ul.dense{margin:10px 0 18px;padding-left:22px;}
+  ul.dense li{margin-bottom:8px;}
+
+  table.fuentes{
+    width:100%;border-collapse:collapse;margin:18px 0 26px;
+    font-family:'Inter',sans-serif;font-size:13.5px;
+  }
+  table.fuentes th{
+    text-align:left;padding:12px 14px;
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:1.4px;
+    color:#6e7681;text-transform:uppercase;font-weight:700;
+    border-bottom:1px solid rgba(48,54,61,0.7);background:rgba(13,17,23,0.55);
+  }
+  table.fuentes td{
+    padding:14px;border-bottom:1px solid rgba(48,54,61,0.32);
+    color:#c9d1d9;vertical-align:top;
+  }
+  table.fuentes td.org{color:#8b949e;font-size:13px;}
+  table.fuentes td code{
+    background:rgba(255,255,255,0.05);padding:1px 6px;border-radius:3px;
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#fbbf24;
+  }
+  table.fuentes tr.new td{background:rgba(167,139,250,0.05);}
+  table.fuentes tr.new td:first-child::after{
+    content:" · NUEVA";font-family:'JetBrains Mono',monospace;font-size:9px;
+    color:#a78bfa;letter-spacing:1.5px;margin-left:6px;
+  }
+
+  .nota-method{
+    margin:24px 0;padding:18px 22px;
+    background:rgba(13,17,23,0.55);border-left:3px solid #fbbf24;
+    border-radius:7px;
+  }
+  .nota-method strong{color:#fbbf24;}
+
+  .blindaje{
+    margin:40px 0 0;padding:26px 30px;
+    background:linear-gradient(135deg,rgba(63,185,80,0.08),rgba(13,17,23,0.6));
+    border:1px solid rgba(63,185,80,0.30);border-radius:14px;
+  }
+  .blindaje h3{
+    font-family:'Fraunces',serif;font-size:22px;color:#e6edf3;
+    margin:0 0 14px;font-weight:700;
+  }
+  .blindaje .cite{
+    background:rgba(63,185,80,0.10);color:#3fb950;
+    padding:1px 6px;border-radius:3px;
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;
+    font-weight:700;
+  }
+
+  .footer-note{
+    margin:34px 0 0;padding:18px 22px;
+    background:rgba(13,17,23,0.4);border:1px solid rgba(48,54,61,0.45);
+    border-radius:9px;text-align:center;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;
+    color:#6b7480;text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+  <header class="page-topbar">
+    <div class="page-brand">
+      <div class="page-brand-block">45</div>
+      <div class="page-brand-text">
+        <span class="n">45 DIGITAL NOTICIAS</span>
+        <span class="s" style="color:#3fb950;">Fuentes y procedimiento</span>
+      </div>
+    </div>
+    <a class="page-back-link" href="../index.html" style="color:#3fb950;border-color:rgba(63,185,80,0.35);">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M11 7H3M7 3L3 7l4 4"/></svg>
+      Volver al inicio
+    </a>
+  </header>
+
+  <main>
+    <article class="article">
+
+      <header class="ref-head">
+        <div class="eyebrow">M · Referencia · Inseguridad Morelos</div>
+        <h1>Cómo se construye <em>este análisis</em></h1>
+        <p class="deck">
+          Todo lo que se muestra en este proyecto se basa en <strong>fuentes públicas oficiales y verificables</strong>. Este apartado documenta de dónde vienen los datos, cómo se procesan, con qué criterios se comparan y qué marco legal protege la difusión. Cualquier persona — ciudadano, autoridad, periodista, abogado — puede <strong>reproducir los números</strong>, verificarlos, o ejercer derecho de réplica.
+        </p>
+      </header>
+
+      <!-- ========= M.1 FUENTES DE DATOS ========= -->
+      <h2 class="sec">M.1 · <em>Fuentes de datos</em></h2>
+      <p>Diez fuentes oficiales y datasets derivados sostienen el análisis. Todas son de acceso público y trazables.</p>
+
+      <table class="fuentes">
+        <thead>
+          <tr>
+            <th>Dataset</th>
+            <th>Organismo</th>
+            <th>Formato · corte</th>
+            <th>Última descarga</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tabla Dinámica RNID Municipal · Delitos del Fuero Común</strong></td>
+            <td class="org">SESNSP (Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública)</td>
+            <td>XLSX · diciembre 2025 (pub. febrero 2026) <br>+ corte marzo 2026 (pub. abril 2026)</td>
+            <td>27-abr-2026</td>
+          </tr>
+          <tr>
+            <td><strong>RNID Estatal 2026 · Víctimas y Carpetas</strong></td>
+            <td class="org">SESNSP</td>
+            <td>XLSX · enero-abril 2026</td>
+            <td>27-abr-2026</td>
+          </tr>
+          <tr>
+            <td><strong>RNPDNO · padrón unitario</strong></td>
+            <td class="org">CNB (Comisión Nacional de Búsqueda) · vía repo público <code>lapanquecita/personas-desaparecidas</code></td>
+            <td>CSV · snapshot 1-dic-2025 · 133,566 registros activos</td>
+            <td>19-abr-2026</td>
+          </tr>
+          <tr class="new">
+            <td><strong>RNPDNO post-reforma · 15 tablas agregadas</strong></td>
+            <td class="org">CNB · dashboard oficial <code>versionpublicarnpdno.segob.gob.mx</code></td>
+            <td>CSV / XLS · corte 3-jun-2026 · 134,779 activos · 402,000 padrón histórico</td>
+            <td>3-jun-2026</td>
+          </tr>
+          <tr>
+            <td><strong>ENVIPE · Encuesta Nacional de Victimización y Percepción</strong></td>
+            <td class="org">INEGI</td>
+            <td>XLSX (cuadros I, III, IV, V, VI) · 15 ediciones · 2011-2025</td>
+            <td>22-abr-2026</td>
+          </tr>
+          <tr class="new">
+            <td><strong>ENSU · Encuesta Nacional de Seguridad Pública Urbana T1 2026</strong></td>
+            <td class="org">INEGI</td>
+            <td>PDF + tabulados · marzo 2026</td>
+            <td>jun-2026 (referencial)</td>
+          </tr>
+          <tr>
+            <td><strong>Proyecciones poblacionales</strong></td>
+            <td class="org">CONAPO</td>
+            <td>XLSX · proyecciones 2025 (base Censo INEGI 2020)</td>
+            <td>Referencial</td>
+          </tr>
+          <tr>
+            <td><strong>Geometría municipal Morelos</strong></td>
+            <td class="org">CONABIO</td>
+            <td>GeoJSON · 36 polígonos · ed. 2023 simplificada</td>
+            <td>19-abr-2026</td>
+          </tr>
+          <tr class="new">
+            <td><strong>Plan Estatal de Desarrollo Morelos 2025-2030</strong></td>
+            <td class="org">Gobierno del Estado de Morelos (admin Margarita González)</td>
+            <td>PDF · 7 regiones PED (Noroeste, Norte, Noreste, Centro, Oriente, Poniente, Sur)</td>
+            <td>2025</td>
+          </tr>
+          <tr class="new">
+            <td><strong>Cobertura prensa (mañaneras 12-may, 27-may, 27-mar 2026)</strong></td>
+            <td class="org">SinEmbargo, Proceso, CNN Español, Zona Docs, La Razón, El Heraldo, Tribuna, Excélsior, Pulso SLP</td>
+            <td>Notas verificadas con su URL primario y fecha de publicación</td>
+            <td>según evento</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="nota-method">
+        <strong>Regla editorial:</strong> toda cifra de un hallazgo clave cita su fuente oficial primaria. Los observatorios civiles (Data Cívica, Causa en Común, Intersecta, México Evalúa) se usan para <em>triangular</em>, no como fuente única. Las cifras de los comunicados auditados se descomponen contra su archivo fuente y se documentan en <code style="background:rgba(255,255,255,0.05);padding:1px 6px;border-radius:3px;color:#fbbf24;font-family:JetBrains Mono;font-size:12px;">cifras.csv</code> del repositorio.
+      </div>
+
+      <!-- ========= M.2 DATASETS DERIVADOS DEL PROYECTO ========= -->
+      <h2 class="sec">M.2 · Datasets <em>derivados del proyecto</em></h2>
+      <p>Procesos de ETL propios construyen series mensuales y agregados temáticos que alimentan los charts del proyecto. Cada uno se publica como JS plano en el repo.</p>
+
+      <table class="fuentes">
+        <thead>
+          <tr><th>Archivo</th><th>Construcción</th><th>Uso</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>series_municipales.js</code></td>
+            <td>ETL Python · 9 XLSX SESNSP 2016-2024 + RNID 2026 + Tabla Dinámica diciembre 2025. Validado: 2025 = 45,451 carpetas (coincide con cubo).</td>
+            <td>Series mensuales por municipio × 13 delitos × año (124 meses)</td>
+          </tr>
+          <tr>
+            <td><code>series_regionales.js</code></td>
+            <td>Agregación de <code>series_municipales</code> por las 7 regiones PED Morelos 2025-2030</td>
+            <td>Vista regional del dashboard maestro</td>
+          </tr>
+          <tr>
+            <td><code>series_estatales.js</code></td>
+            <td>Agregación estatal completa</td>
+            <td>Estado completo del dashboard maestro</td>
+          </tr>
+          <tr>
+            <td><code>municipios_delitos.js</code></td>
+            <td>Cubo 13 delitos × 36 municipios · cifras 2025</td>
+            <td>Radiografía municipal interactiva (selector → todos los delitos)</td>
+          </tr>
+          <tr>
+            <td><code>morelos.geojson.js</code></td>
+            <td>CONABIO 2023 simplificado para web</td>
+            <td>Mapas SVG del dashboard maestro y radiografía municipal</td>
+          </tr>
+          <tr>
+            <td><code>cifras.csv</code></td>
+            <td>Registro de auditoría: cada cifra publicada con su archivo fuente, método de cálculo, fecha de corte y estado de verificación</td>
+            <td>Trazabilidad pública · auditable por terceros</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ========= M.3 CORTES TEMPORALES ========= -->
+      <h2 class="sec">M.3 · Cortes <em>temporales y actualización</em></h2>
+      <p>Cada dataset tiene una fecha en la que se congeló el registro que aquí se usa. Las cifras pueden actualizarse en futuros cortes oficiales, lo que modificaría el análisis en sentido estricto. Cuando eso ocurra, se publica una versión numerada del proyecto.</p>
+      <ul class="dense">
+        <li><strong>SESNSP RNID Municipal · corte marzo 2026.</strong> Publicación oficial en abril 2026. Serie de 10 años (2016-2025) completa. Próxima actualización mensual.</li>
+        <li><strong>SESNSP RNID Estatal 2026.</strong> Cifras enero-abril 2026 (víctimas y carpetas) usadas para serie corriente y cálculos 6m simétricos.</li>
+        <li><strong>RNPDNO pre-reforma · corte 1-dic-2025.</strong> Snapshot del padrón unitario (133,566 activos) usado como base de comparación para la auditoría del 27-mar-2026. Hash conservado para integridad.</li>
+        <li><strong>RNPDNO post-reforma · corte 3-jun-2026.</strong> 15 tablas agregadas descargadas del dashboard oficial. Universo: 134,779 activos · 402,000 padrón histórico (incluye localizados con vida y sin vida).</li>
+        <li><strong>ENVIPE · ediciones 2011 a 2025 (15 años continuos).</strong> Encuesta anual levantada en marzo-abril y publicada en septiembre del mismo año. Edición 2020 con muestra reducida por COVID-19 — porcentajes válidos pero población base no comparable.</li>
+        <li><strong>ENSU T1 2026.</strong> Encuesta trimestral urbana del INEGI publicada en marzo 2026. Usada como complemento referencial; la métrica primaria estructural sigue siendo la ENVIPE anual.</li>
+        <li><strong>CONAPO 2025.</strong> Proyecciones basadas en el Censo 2020.</li>
+        <li><strong>CONABIO 2023.</strong> Los límites municipales son estables; Morelos tuvo alta de Coatetelco, Xoxocotla y Hueyapan como municipios nuevos en 2018-2020 — ya reflejado.</li>
+      </ul>
+
+      <!-- ========= M.4 CRITERIOS COMPARATIVOS ========= -->
+      <h2 class="sec">M.4 · Criterios <em>comparativos</em></h2>
+      <p>Las decisiones metodológicas no son neutrales. Aquí se explicitan para que el lector las evalúe.</p>
+
+      <h3 class="sub">¿Por qué tasas por 100,000 habitantes?</h3>
+      <p>Un municipio de 187,000 hab. (Cuautla) no puede compararse en volumen absoluto con uno de 9 millones (CDMX). La tasa normaliza por tamaño. Cuando el hallazgo es "Morelos #1 nacional", es por <em>tasa</em>, no por volumen.</p>
+
+      <h3 class="sub">¿Por qué <em>6 meses simétricos</em> en los comunicados auditados?</h3>
+      <p>Comparar un mes contra otro (nov-2024 vs may-2026) sin controlar estacionalidad permite manipular el periodo base. El método <strong>6m sim</strong> compara <em>noviembre-abril 2024-2025</em> contra <em>noviembre-abril 2025-2026</em>: mismas estaciones, misma duración. Es el cruce metodológicamente neutro. La diferencia entre la lectura oficial (−62.8% Morelos, mañanera Harfuch 27-may-2026) y la lectura 6m sim (−8.5%) es la elección del periodo.</p>
+
+      <h3 class="sub">¿Por qué cohorte por las <em>7 regiones PED Morelos</em>?</h3>
+      <p>El Plan Estatal de Desarrollo Morelos 2025-2030 divide al estado en siete regiones (Noroeste, Norte, Noreste, Centro, Oriente, Poniente, Sur). Es la unidad oficial de la administración estatal actual. Las agregaciones del dashboard siguen esa división para comparabilidad con políticas públicas locales.</p>
+
+      <h3 class="sub">¿Por qué cruzar incidencia oficial (SESNSP) vs percepción (ENVIPE)?</h3>
+      <p>La incidencia oficial mide <em>lo que se denunció</em>; la percepción mide <em>lo que se vive</em>. Ambas capturan dimensiones distintas y pueden moverse en direcciones opuestas. En Morelos 2024-2025 el homicidio oficial baja pero la percepción se mantiene en 90% (pico histórico). Ese desfase no indica error — indica que <strong>la narrativa oficial de mejora no coincide con la experiencia ciudadana</strong>.</p>
+
+      <h3 class="sub">¿Por qué cruzar delito visible (homicidio) × delito silencioso (desaparición)?</h3>
+      <p>El homicidio deja cuerpo (visible). La desaparición no (silenciosa). Cuando el primero baja y la segunda sube, suele ser <strong>reclasificación</strong>: el crimen no disminuyó, cambió de forma administrativa. Sin este cruce, los discursos de "se redujo la violencia" son incompletos. Es lo que la columna <em>La aritmética que reduce sin encontrar</em> documenta para Morelos a nivel nacional.</p>
+
+      <!-- ========= M.5 LIMITACIONES ========= -->
+      <h2 class="sec">M.5 · Limitaciones <em>conocidas</em></h2>
+      <p>Todo dato tiene sesgo. Aquí los que afectan este análisis:</p>
+      <ul class="dense">
+        <li><strong>SESNSP = denuncias, no delitos.</strong> Un delito no denunciado no existe estadísticamente. Cifra negra ENVIPE ≈93% nacional: solo el 7% de los delitos se denuncia.</li>
+        <li><strong>SESNSP no desagrega doloso vs culposo a nivel municipal hasta abr-2026.</strong> Para homicidio esto limita la detección de reclasificación entre esas dos categorías por muni.</li>
+        <li><strong>RNPDNO público pre-reforma = 11 de 476 variables.</strong> No incluye circunstancias, georreferencia fina, ni edad exacta en todos los casos. Para análisis forense profundo se requiere solicitud INAI a la CNB.</li>
+        <li><strong>40.5% de registros RNPDNO Morelos con municipio CONFIDENCIAL</strong> en el snapshot dic-2025 (835 de 2,063). Impide análisis municipal preciso para ese conjunto. <em>Post-reforma 27-mar-2026, la categoría ya no se expone en el agregado público</em> — ver columna "La aritmética que reduce sin encontrar".</li>
+        <li><strong>Etiquetado del nuevo dashboard RNPDNO post-reforma.</strong> Las tablas exportadas como "personas desaparecidas y no localizadas" por año, edad y nacionalidad incluyen también a las personas localizadas (402,000 vs 134,779 activos). Solo <code>activos_total_por_sexo.csv</code> y <code>activos_por_entidad.csv</code> traen estrictamente activos.</li>
+        <li><strong>Alza en denuncia ≠ alza en incidencia.</strong> Puede reflejar mayor reportabilidad. Por eso se triangula con ENVIPE y observatorios.</li>
+        <li><strong>Baja en denuncia ≠ mejora.</strong> En extorsión y secuestro puede indicar cooptación criminal (la víctima no denuncia por miedo).</li>
+        <li><strong>ENVIPE 2020 — muestra reducida por COVID-19.</strong> Los porcentajes publicados son válidos bajo el diseño muestral ajustado, pero la población base no es comparable con otras ediciones.</li>
+        <li><strong>Percepción ≠ victimización.</strong> El 90% de percepción de inseguridad en Morelos no significa que 90% haya sido víctima. Mide lo que la población <em>considera</em>, no lo que le <em>ocurrió</em>.</li>
+      </ul>
+
+      <!-- ========= M.6 ESTRUCTURA DEL PROYECTO ========= -->
+      <h2 class="sec">M.6 · <em>Estructura</em> del proyecto</h2>
+      <p>El proyecto se organiza en cuatro apartados que se complementan: el dashboard estatal con sus secciones, las páginas individuales por municipio, las columnas editoriales firmadas y los comunicados auditados.</p>
+      <ul class="dense">
+        <li><strong><a href="../index.html#sExec" style="color:#3fb950;">Dashboard maestro</a></strong> · panel ejecutivo con filtros Estado / 7 regiones PED / Municipio. KPIs, mapa coroplético, ranking, donut letal, serie temporal y bars divergentes — todo responde al alcance elegido.</li>
+        <li><strong><a href="../municipios/" style="color:#3fb950;">Radiografía municipal</a></strong> · vista interactiva con estado inicial vacío que se llena al seleccionar municipio. Muestra todos los delitos del catálogo SESNSP, posición ranking estatal y porcentajes del estatal.</li>
+        <li><strong><a href="../columnas/" style="color:#3fb950;">Columnas editoriales</a></strong> · prosa narrativa firmada que cubre los hallazgos del proyecto con marco teórico (Goodhart, Campbell, Tversky-Kahneman, Tufte, UNODC).</li>
+        <li><strong><a href="../comunicados/" style="color:#3fb950;">Comunicados auditados</a></strong> · anuncios oficiales (mañaneras, conferencias, reportes Segob) contrastados pinza por pinza contra los archivos públicos del propio Estado.</li>
+        <li><strong>Páginas individuales por municipio</strong> · 36 wrappers <code>municipios/&lt;slug&gt;.html</code> con embed-mode que cargan el dossier completo de cada municipio (9-18 secciones de análisis).</li>
+      </ul>
+
+      <!-- ========= M.7 BLINDAJE LEGAL ========= -->
+      <h2 class="sec">M.7 · <em>Marco jurídico</em> y blindaje editorial</h2>
+      <div class="blindaje">
+        <p>Este material se difunde en ejercicio de la <strong>libertad de expresión e información</strong> reconocidas por los <span class="cite">Artículos 6° y 7°</span> de la Constitución Política de los Estados Unidos Mexicanos y el <span class="cite">Artículo 13</span> de la Convención Americana sobre Derechos Humanos.</p>
+        <p><strong>Fuente de datos:</strong> cifras oficiales del SESNSP, RNPDNO (CNB), INEGI (ENVIPE, ENSU), CONAPO y CONABIO, todas públicamente consultables en los portales institucionales correspondientes.</p>
+        <p><strong>Naturaleza del análisis:</strong> las gráficas reproducen datos oficiales sin alteración; las interpretaciones e inferencias son análisis editorial de 45 Digital Noticias sobre hechos estadísticamente verificables y <strong>no constituyen imputación personal, denuncia penal ni señalamiento directo contra persona alguna</strong>.</p>
+        <p><strong>Presunción de inocencia.</strong> Toda persona aludida conserva íntegra su presunción de inocencia, reconocida por el <span class="cite">Artículo 20 apartado B fracción I</span> de la Constitución federal.</p>
+        <p><strong>Protección de datos personales.</strong> Ninguna víctima de desaparición es identificada por nombre. Cuando se señalan casos (por ejemplo, la niña de 13 años dentro del evento del 10-dic-2020 en Cuautla), se hace con la sola mención de edad y fecha para dimensionar el hecho, sin exponer identidad — de conformidad con la <span class="cite">Ley Federal de Protección de Datos Personales</span> y la <span class="cite">Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados</span>.</p>
+        <p><strong>Derecho de réplica.</strong> Cualquier persona o autoridad mencionada puede ejercerlo conforme a la <span class="cite">Ley Reglamentaria del artículo 6° constitucional</span>; el medio se compromete a publicarla en condiciones equivalentes y en plazos razonables.</p>
+        <p><strong>Licencia.</strong> El contenido puede reproducirse, citarse y difundirse libremente con atribución a <strong>45 Digital Noticias</strong>.</p>
+      </div>
+
+      <div class="footer-note">
+        Blindaje editorial y metodológico · 45 Digital Noticias · v2.50 (4-jun-2026) · revisable en cualquier actualización · cifras trazables en <code style="background:rgba(255,255,255,0.05);padding:1px 6px;border-radius:3px;color:#fbbf24;font-family:JetBrains Mono;font-size:12px;letter-spacing:0;text-transform:none;">cifras.csv</code>
+      </div>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    45 Digital Noticias · Inseguridad Morelos · <a href="../index.html">Inicio</a> · <a href="glosario.html">Glosario</a> · <a href="../index.html#sExec">Dashboard maestro</a>
+  </footer>
+</body>
+</html>

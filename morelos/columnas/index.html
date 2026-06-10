@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Columnas · Análisis editorial · 45 Digital Noticias · Inseguridad Morelos</title>
+<meta name="description" content="Columnas editoriales del proyecto Inseguridad Morelos. Auditorías metodológicas a anuncios oficiales de seguridad.">
+<meta property="og:title" content="Columnas · 45 Digital Noticias · Inseguridad Morelos">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:#06080c;color:#e6edf3;font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction:column;}
+
+  .topbar{
+    padding:16px 36px;display:flex;justify-content:space-between;align-items:center;
+    border-bottom:1px solid #1a1f26;background:#0a0d12;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand-block{
+    width:34px;height:34px;background:linear-gradient(140deg,#3b72d9,#1e40af 60%,#0f2a7a);
+    border-radius:7px;display:flex;align-items:center;justify-content:center;
+    font-family:'Arial Black',sans-serif;font-size:17px;font-weight:900;color:#fff;letter-spacing:-1px;
+  }
+  .brand-text{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-text .n{font-size:12.5px;font-weight:800;color:#e6edf3;letter-spacing:1.2px;}
+  .brand-text .s{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:2px;color:#8b949e;text-transform:uppercase;margin-top:3px;}
+  .back-link{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    color:#a78bfa;text-decoration:none;font-weight:700;
+    display:flex;align-items:center;gap:8px;
+    padding:7px 14px;border:1px solid rgba(167,139,250,0.35);border-radius:6px;
+    transition:all 0.15s;
+  }
+  .back-link:hover{background:#a78bfa;color:#0a0d12;}
+  .back-link svg{width:13px;height:13px;}
+
+  main{flex:1;padding:60px 24px 70px;}
+  .wrap{max-width:1080px;margin:0 auto;}
+  .page-eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;
+    color:#a78bfa;text-transform:uppercase;font-weight:700;
+    text-align:center;margin-bottom:14px;
+  }
+  h1{
+    font-family:'Fraunces',serif;font-size:56px;font-weight:700;
+    color:#e6edf3;text-align:center;line-height:1.05;letter-spacing:-1.5px;
+    margin:0 auto 24px;max-width:880px;
+  }
+  h1 em{color:#a78bfa;font-style:italic;font-weight:600;}
+  .page-lead{
+    text-align:center;max-width:760px;margin:0 auto 64px;
+    font-size:17px;line-height:1.7;color:#c9d1d9;
+  }
+  .page-lead strong{color:#e6edf3;}
+
+  /* === HERO COMUNICADO DESTACADO ARRIBA === */
+  .hero-eyebrow{
+    text-align:center;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;
+    color:#14b8a6;text-transform:uppercase;font-weight:700;
+    margin:0 0 14px;
+  }
+  .com-hero{
+    margin:0 0 24px;padding:36px 40px;
+    background:linear-gradient(135deg,rgba(20,184,166,0.10),rgba(13,17,23,0.7));
+    border:1px solid rgba(20,184,166,0.30);border-radius:18px;
+    display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;
+    text-decoration:none;color:inherit;
+    transition:border-color 0.18s,transform 0.18s;
+  }
+  .com-hero:hover{border-color:rgba(20,184,166,0.6);transform:translateY(-2px);}
+  .com-hero .ch-tag{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2.5px;
+    color:#14b8a6;text-transform:uppercase;font-weight:700;margin-bottom:12px;
+  }
+  .com-hero h2{
+    font-family:'Fraunces',serif;font-size:34px;font-weight:700;
+    color:#e6edf3;line-height:1.12;letter-spacing:-0.8px;margin:0 0 12px;
+  }
+  .com-hero h2 em{color:#14b8a6;font-style:italic;font-weight:600;}
+  .com-hero .ch-deck{
+    font-family:'Inter',sans-serif;font-size:14.5px;line-height:1.6;
+    color:#c9d1d9;margin:0;
+  }
+  .com-hero .ch-deck strong{color:#e6edf3;}
+  .com-hero .ch-deck em{color:#14b8a6;font-style:italic;font-weight:600;}
+  .com-hero .ch-cta{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:1.5px;
+    text-transform:uppercase;font-weight:700;color:#14b8a6;
+    padding:14px 22px;border:1px solid rgba(20,184,166,0.4);border-radius:10px;
+    white-space:nowrap;
+  }
+  .com-hero:hover .ch-cta{background:rgba(20,184,166,0.15);color:#fff;}
+
+  .com-second-row{
+    margin:0 0 50px;
+    display:flex;justify-content:center;gap:12px;flex-wrap:wrap;
+  }
+  .com-second-link{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:12px 18px;
+    background:rgba(13,17,23,0.55);border:1px solid rgba(48,54,61,0.6);
+    border-radius:10px;text-decoration:none;
+    font-family:'Inter',sans-serif;font-size:13.5px;color:#c9d1d9;
+    transition:all 0.15s;
+  }
+  .com-second-link:hover{border-color:rgba(248,81,73,0.5);color:#f85149;}
+  .com-second-link .lbl{
+    font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;
+    color:#8b949e;text-transform:uppercase;font-weight:700;margin-right:4px;
+  }
+  .com-second-link em{color:#f85149;font-style:italic;font-weight:600;}
+
+  .divider-bloque{
+    text-align:center;margin:40px 0 22px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;
+    color:#8b949e;text-transform:uppercase;font-weight:700;
+    display:flex;align-items:center;gap:18px;
+  }
+  .divider-bloque::before, .divider-bloque::after{
+    content:"";flex:1;height:1px;background:rgba(48,54,61,0.6);
+  }
+
+  .cols-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:60px;
+  }
+  .col-card{
+    background:linear-gradient(180deg,rgba(13,17,23,0.7),rgba(13,17,23,0.4));
+    border:1px solid #1a1f26;border-radius:16px;padding:32px 30px;
+    display:flex;flex-direction:column;
+    text-decoration:none;color:inherit;
+    transition:border-color 0.18s,transform 0.18s,background 0.18s;
+  }
+  .col-card:hover{
+    border-color:rgba(167,139,250,0.5);
+    transform:translateY(-2px);
+    background:linear-gradient(180deg,rgba(167,139,250,0.06),rgba(13,17,23,0.5));
+  }
+  .col-card.amarilla{border-top:3px solid #fbbf24;}
+  .col-card.amarilla:hover{border-color:rgba(251,191,36,0.5);background:linear-gradient(180deg,rgba(251,191,36,0.06),rgba(13,17,23,0.5));}
+  .col-card.morada{border-top:3px solid #a78bfa;}
+
+  .col-tag{
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;
+    text-transform:uppercase;font-weight:700;margin-bottom:14px;
+  }
+  .col-card.amarilla .col-tag{color:#fbbf24;}
+  .col-card.morada .col-tag{color:#a78bfa;}
+  .col-card .col-title{
+    font-family:'Fraunces',serif;font-size:30px;font-weight:700;
+    color:#e6edf3;line-height:1.15;letter-spacing:-0.8px;margin:0 0 14px;
+  }
+  .col-card .col-title em{font-style:italic;}
+  .col-card.amarilla .col-title em{color:#fbbf24;}
+  .col-card.morada .col-title em{color:#a78bfa;}
+  .col-card .col-deck{
+    font-family:'Inter',sans-serif;font-size:14.5px;line-height:1.65;
+    color:#c9d1d9;margin-bottom:20px;
+  }
+  .col-card .col-deck strong{color:#e6edf3;}
+  .col-card .col-meta{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.4px;
+    color:#8b949e;text-transform:uppercase;font-weight:600;
+    margin-top:auto;padding-top:18px;
+    border-top:1px solid rgba(48,54,61,0.5);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .col-card .col-cta{
+    display:inline-flex;align-items:center;gap:6px;
+    font-weight:700;
+  }
+  .col-card.amarilla .col-cta{color:#fbbf24;}
+  .col-card.morada .col-cta{color:#a78bfa;}
+  .col-card .col-cta svg{width:14px;height:14px;}
+
+  .col-bullets{
+    list-style:none;margin:18px 0 0;padding:0;
+    font-family:'Inter',sans-serif;font-size:13px;line-height:1.7;color:#8b949e;
+  }
+  .col-bullets li{
+    padding-left:18px;position:relative;
+  }
+  .col-bullets li::before{
+    content:"▸";position:absolute;left:0;color:#6b7280;
+  }
+  .col-bullets li strong{color:#c9d1d9;font-weight:600;}
+
+  .nota-final{
+    margin-top:50px;padding:24px 28px;
+    background:rgba(13,17,23,0.55);
+    border:1px solid rgba(48,54,61,0.5);
+    border-radius:12px;
+    font-family:'Inter',sans-serif;font-size:13px;line-height:1.65;color:#8b949e;
+    text-align:center;
+  }
+  .nota-final strong{color:#c9d1d9;}
+  .nota-final em{color:#a78bfa;font-style:normal;font-weight:600;}
+
+  footer{
+    margin-top:auto;text-align:center;padding:26px 24px;
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;
+    color:#6b7480;text-transform:uppercase;border-top:1px solid #1a1f26;
+  }
+  footer a{color:#a78bfa;text-decoration:none;font-weight:700;}
+  footer a:hover{color:#fff;}
+
+  @media (max-width:760px){
+    h1{font-size:36px;}
+    .cols-grid{grid-template-columns:1fr;}
+    .topbar{padding:14px 18px;}
+    main{padding:40px 18px 50px;}
+  }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-block">45</div>
+      <div class="brand-text">
+        <span class="n">45 DIGITAL NOTICIAS</span>
+        <span class="s">Columnas · Inseguridad Morelos</span>
+      </div>
+    </div>
+    <a class="back-link" href="../index.html#sExec">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M11 7H3M7 3L3 7l4 4"/></svg>
+      Volver al dashboard
+    </a>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="page-eyebrow">Auditoría editorial · 45 Digital Noticias</div>
+      <h1>Columnas <em>de Inseguridad Morelos</em></h1>
+      <p class="page-lead">
+        Auditorías metodológicas a las cifras públicas y a los anuncios oficiales. <strong>Cada columna usa los mismos archivos que la fuente oficial</strong> — SESNSP, INEGI, RNPDNO — y los lee con aritmética simple y marco teórico verificable.
+      </p>
+
+      <!-- ============================================================
+           COMUNICADO MÁS RECIENTE DESTACADO (la cifra detrás)
+           ============================================================ -->
+      <div class="hero-eyebrow">▸ Detrás de la última columna · Comunicado auditado</div>
+      <a class="com-hero" href="../comunicados/sheinbaum-rnpdno-27mar2026.html">
+        <div>
+          <div class="ch-tag">COMUNICADO AUDITADO · 27-MAR-2026</div>
+          <h2>Reactivación del <em>RNPDNO</em> y la promesa de reducción</h2>
+          <p class="ch-deck">
+            La ficha completa del anuncio presidencial detrás de la columna <em>"La aritmética que reduce sin encontrar"</em>. Pinza pre/post reforma, tabla de los 32 estados, indicadores duros, archivo fuente trazable y método.
+          </p>
+        </div>
+        <div class="ch-cta">Ver ficha completa ↗</div>
+      </a>
+
+      <div class="com-second-row">
+        <a class="com-second-link" href="../comunicados/harfuch-62-27may2026.html">
+          <span class="lbl">Otro comunicado</span>
+          Harfuch · <em>−62.8% Morelos</em> · 27-may ↗
+        </a>
+        <a class="com-second-link" href="../comunicados/">
+          <span class="lbl">Más</span>
+          Índice completo de comunicados ↗
+        </a>
+      </div>
+
+      <!-- ============================================================
+           COLUMNAS EDITORIALES
+           ============================================================ -->
+      <div class="divider-bloque">Las columnas editoriales · 2 publicadas</div>
+
+      <div class="cols-grid">
+
+        <!-- COLUMNA 1 · ÁNGULO CONVENIENTE -->
+        <a class="col-card amarilla" href="angulo_conveniente.html">
+          <div class="col-tag">COLUMNA · 27-MAY-2026</div>
+          <h2 class="col-title">El <em>Ángulo Conveniente</em></h2>
+          <p class="col-deck">
+            Anatomía del <strong>−62.8% en homicidios de Morelos</strong> anunciado por García Harfuch. Cinco pasos del titular, dos charts auditables y cinco autores del marco teórico (Goodhart, Campbell, Tversky-Kahneman, Tufte, UNODC).
+          </p>
+          <ul class="col-bullets">
+            <li><strong>Cinco decisiones</strong>, una sola cifra</li>
+            <li><strong>Diez delitos</strong> cruzados · 6 meses simétricos</li>
+            <li><strong>Marco teórico</strong> · 5 cards revisados por pares</li>
+            <li>Versión honesta del descenso: <strong>−8.5%</strong>, no −62.8%</li>
+          </ul>
+          <div class="col-meta">
+            <span>Mayo 2026</span>
+            <span class="col-cta">Leer columna
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h8M7 3l4 4-4 4"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- COLUMNA 2 · ARITMÉTICA QUE REDUCE -->
+        <a class="col-card morada" href="aritmetica.html">
+          <div class="col-tag">COLUMNA · 4-JUN-2026</div>
+          <h2 class="col-title">La <em>aritmética</em> que reduce sin encontrar</h2>
+          <p class="col-deck">
+            Auditoría <strong>pre / post reforma RNPDNO</strong> del 27-marzo-2026. Cotejo del padrón nacional dic-2025 vs jun-2026 con los archivos publicados por la propia Comisión Nacional de Búsqueda.
+          </p>
+          <ul class="col-bullets">
+            <li><strong>30 de 32 estados</strong> al alza · solo CDMX y Jalisco abajo</li>
+            <li><strong>2025 fue récord</strong> · 36,869 personas registradas</li>
+            <li><strong>83.1%</strong> de reportes los inicia un particular</li>
+            <li>Adolescentes mujeres: <strong>66.6%</strong> del padrón 10-19 años</li>
+          </ul>
+          <div class="col-meta">
+            <span>Junio 2026</span>
+            <span class="col-cta">Leer columna
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h8M7 3l4 4-4 4"/></svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="nota-final">
+        <strong>Las columnas no acusan, ceden elementos.</strong> Cada una usa los archivos del propio gobierno (SESNSP, INEGI, RNPDNO) y los lee con aritmética simple y marco teórico verificable. Toda cifra está registrada con su <em>línea de cálculo</em> y archivo fuente en <code>cifras.csv</code> del repositorio del proyecto.
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    45 Digital Noticias · Inseguridad Morelos · <a href="../index.html#sExec">Dashboard maestro</a>
+  </footer>
+</body>
+</html>

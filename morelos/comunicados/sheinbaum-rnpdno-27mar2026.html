@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reactivación RNPDNO · Sheinbaum 27-mar-2026 · Comunicado auditado · 45 Digital Noticias</title>
+<meta name="description" content="Anuncio presidencial 27-mar-2026 sobre reactivación del Registro Nacional de Personas Desaparecidas. Auditoría del padrón pre/post reforma.">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../_partials/section-page.css">
+<style>
+  main{flex:1;padding:50px 24px 70px;}
+  .article{max-width:1080px;margin:0 auto;}
+
+  /* === HEADER DEL COMUNICADO === */
+  .com-head{
+    border-bottom:1px solid rgba(48,54,61,0.5);
+    padding-bottom:32px;margin-bottom:48px;
+  }
+  .com-head .breadcrumb{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;
+    color:#8b949e;text-transform:uppercase;font-weight:700;margin-bottom:18px;
+  }
+  .com-head .breadcrumb a{color:#a78bfa;text-decoration:none;}
+  .com-head .breadcrumb a:hover{color:#fff;}
+  .com-head .com-title{
+    font-family:'Fraunces',serif;font-size:48px;font-weight:700;
+    color:#e6edf3;line-height:1.05;letter-spacing:-1.2px;
+    margin:0 0 22px;
+  }
+  .com-head .com-title em{color:#a78bfa;font-style:italic;font-weight:600;}
+  .com-head .com-attribute{
+    display:flex;gap:24px;flex-wrap:wrap;
+    font-family:'Inter',sans-serif;font-size:13.5px;color:#c9d1d9;
+    padding-top:8px;
+  }
+  .com-head .com-attribute > div{display:flex;flex-direction:column;gap:3px;}
+  .com-head .com-attribute .lbl{
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;
+    color:#8b949e;text-transform:uppercase;font-weight:700;
+  }
+  .com-head .com-attribute .val{color:#e6edf3;font-weight:600;}
+
+  /* === PINZA ANUNCIO vs AUDITADO === */
+  .pinza-grande{
+    display:grid;grid-template-columns:1fr auto 1fr;
+    gap:18px;align-items:stretch;margin:0 0 50px;
+  }
+  .pinza-card{
+    background:rgba(13,17,23,0.7);
+    border:1px solid rgba(48,54,61,0.7);
+    border-radius:14px;padding:30px 28px;
+  }
+  .pinza-card.anuncio{border-left:3px solid #6b7280;}
+  .pinza-card.auditado{border-left:3px solid #a78bfa;}
+  .pinza-card .tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2.5px;
+    color:#8b949e;text-transform:uppercase;font-weight:700;margin-bottom:14px;
+  }
+  .pinza-card.auditado .tag{color:#a78bfa;}
+  .pinza-card .cita{
+    font-family:'Fraunces',serif;font-size:22px;font-weight:600;
+    color:#e6edf3;line-height:1.3;margin:0 0 16px;
+    font-style:italic;
+  }
+  .pinza-card.anuncio .cita::before{content:"\201C";color:#6e7681;font-size:38px;line-height:0;}
+  .pinza-card.anuncio .cita::after{content:"\201D";color:#6e7681;font-size:38px;line-height:0;}
+  .pinza-card .cifra-big{
+    font-family:'Fraunces',serif;font-size:54px;font-weight:800;
+    color:#e6edf3;line-height:1;letter-spacing:-2px;margin:0 0 10px;
+  }
+  .pinza-card.auditado .cifra-big{color:#a78bfa;}
+  .pinza-card .sub{
+    font-family:'Inter',sans-serif;font-size:13.5px;line-height:1.55;
+    color:#c9d1d9;
+  }
+  .pinza-card .sub strong{color:#e6edf3;}
+  .pinza-card .src{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.5px;
+    color:#6e7681;margin-top:14px;padding-top:14px;
+    border-top:1px solid rgba(48,54,61,0.5);
+  }
+  .pinza-vs{
+    align-self:center;
+    font-family:'Fraunces',serif;font-size:22px;
+    color:#6e7681;font-style:italic;font-weight:600;
+  }
+
+  /* === BLOQUES DE DATOS === */
+  .bloque-head{margin:60px 0 22px;text-align:center;}
+  .bloque-piso{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;
+    color:#a78bfa;text-transform:uppercase;font-weight:700;margin-bottom:8px;
+  }
+  .bloque-head h2{
+    font-family:'Fraunces',serif;font-size:28px;font-weight:700;
+    color:#e6edf3;line-height:1.2;margin:0 0 8px;
+  }
+  .bloque-head h2 em{color:#a78bfa;font-style:italic;font-weight:600;}
+  .bloque-head p{
+    font-family:'Inter',sans-serif;color:#8b949e;font-size:14px;line-height:1.6;
+    max-width:760px;margin:0 auto;
+  }
+
+  /* TABLA estados */
+  .tabla-wrap{
+    background:rgba(13,17,23,0.55);
+    border:1px solid rgba(48,54,61,0.55);
+    border-radius:12px;padding:8px;
+    max-height:480px;overflow-y:auto;
+  }
+  table.tbl-estados{width:100%;border-collapse:collapse;font-family:'Inter',sans-serif;font-size:13.5px;}
+  table.tbl-estados th{
+    text-align:left;padding:12px 14px;
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    letter-spacing:1.4px;color:#6e7681;text-transform:uppercase;font-weight:700;
+    border-bottom:1px solid rgba(48,54,61,0.7);
+    background:rgba(13,17,23,0.95);position:sticky;top:0;
+  }
+  table.tbl-estados th.num{text-align:right;}
+  table.tbl-estados td{padding:10px 14px;border-bottom:1px solid rgba(48,54,61,0.32);color:#c9d1d9;}
+  table.tbl-estados td.num{text-align:right;font-variant-numeric:tabular-nums;}
+  table.tbl-estados tr.morelos td{background:rgba(251,191,36,0.10);color:#fbbf24;font-weight:700;}
+  table.tbl-estados tr.baja td.delta{color:#3fb950;font-weight:700;}
+  table.tbl-estados tr.alza-fuerte td.delta{color:#f85149;font-weight:700;}
+  .bar{display:inline-block;height:7px;border-radius:3px;background:#a78bfa;vertical-align:middle;margin-right:6px;}
+  .bar.dn{background:#3fb950;}
+
+  /* Indicadores 3 cards */
+  .grid3{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:14px;margin:20px 0;
+  }
+  .indi{
+    background:rgba(13,17,23,0.65);
+    border:1px solid rgba(48,54,61,0.6);border-radius:12px;
+    padding:24px 22px;text-align:center;
+  }
+  .indi.alarma{border-top:3px solid #f85149;}
+  .indi.alerta{border-top:3px solid #fbbf24;}
+  .indi.dato{border-top:3px solid #a78bfa;}
+  .indi .i-tag{
+    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;
+    text-transform:uppercase;font-weight:700;color:#8b949e;
+  }
+  .indi .i-num{
+    font-family:'Fraunces',serif;font-size:44px;font-weight:800;
+    line-height:1;letter-spacing:-1.3px;margin:8px 0 10px;color:#e6edf3;
+  }
+  .indi.alarma .i-num{color:#f85149;}
+  .indi.alerta .i-num{color:#fbbf24;}
+  .indi.dato .i-num{color:#a78bfa;}
+  .indi .i-glosa{
+    font-family:'Inter',sans-serif;font-size:13px;line-height:1.55;
+    color:#c9d1d9;margin-top:6px;
+  }
+  .indi .i-glosa strong{color:#e6edf3;}
+  .indi .i-glosa em{color:#a78bfa;font-style:normal;font-weight:600;}
+
+  /* COLUMNA LINK */
+  .columna-link{
+    margin:60px 0 0;padding:28px 32px;
+    background:linear-gradient(135deg,rgba(167,139,250,0.10),rgba(13,17,23,0.6));
+    border:1px solid rgba(167,139,250,0.30);
+    border-radius:14px;text-align:center;
+  }
+  .columna-link .tag{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2.5px;
+    color:#a78bfa;text-transform:uppercase;font-weight:700;margin-bottom:12px;
+  }
+  .columna-link h3{
+    font-family:'Fraunces',serif;font-size:22px;font-weight:700;
+    color:#e6edf3;line-height:1.3;margin:0 0 18px;
+  }
+  .columna-link a{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;
+    letter-spacing:1.5px;text-transform:uppercase;font-weight:700;
+    color:#a78bfa;padding:12px 22px;text-decoration:none;
+    border:1px solid rgba(167,139,250,0.4);border-radius:10px;
+    transition:all 0.18s;
+  }
+  .columna-link a:hover{background:rgba(167,139,250,0.15);color:#fff;}
+
+  /* MÉTODO */
+  .metodo{
+    margin-top:40px;padding:24px 28px;
+    background:rgba(13,17,23,0.55);
+    border:1px solid rgba(48,54,61,0.5);border-radius:10px;
+    font-family:'Inter',sans-serif;font-size:13px;line-height:1.7;color:#8b949e;
+  }
+  .metodo strong{color:#c9d1d9;font-weight:700;}
+  .metodo em{color:#a78bfa;font-style:italic;font-weight:600;}
+  .metodo code{
+    background:rgba(255,255,255,0.05);padding:1px 6px;border-radius:3px;
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#fbbf24;
+  }
+
+  @media (max-width:760px){
+    .com-head .com-title{font-size:32px;}
+    .pinza-grande{grid-template-columns:1fr;}
+    .pinza-vs{display:none;}
+    .grid3{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+  <header class="page-topbar">
+    <div class="page-brand">
+      <div class="page-brand-block">45</div>
+      <div class="page-brand-text">
+        <span class="n">45 DIGITAL NOTICIAS</span>
+        <span class="s">Comunicado auditado · Inseguridad Morelos</span>
+      </div>
+    </div>
+    <a class="page-back-link" href="index.html">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M11 7H3M7 3L3 7l4 4"/></svg>
+      Índice de comunicados
+    </a>
+  </header>
+
+  <main>
+    <article class="article">
+
+      <header class="com-head">
+        <div class="breadcrumb">
+          <a href="../index.html#sExec">Dashboard</a> · <a href="index.html">Comunicados auditados</a> · 27-MAR-2026
+        </div>
+        <h1 class="com-title">Reactivación del Registro Nacional de Personas Desaparecidas y la promesa de <em>reducción</em></h1>
+        <div class="com-attribute">
+          <div>
+            <span class="lbl">Fecha del anuncio</span>
+            <span class="val">27 de marzo de 2026</span>
+          </div>
+          <div>
+            <span class="lbl">Voceros</span>
+            <span class="val">Presidenta Claudia Sheinbaum · Sec. Rosa Icela Rodríguez (Segob)</span>
+          </div>
+          <div>
+            <span class="lbl">Sede</span>
+            <span class="val">Conferencia matutina · Palacio Nacional</span>
+          </div>
+          <div>
+            <span class="lbl">Categoría</span>
+            <span class="val">Coyuntura nacional · RNPDNO</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============================================================
+           PINZA · ANUNCIO vs AUDITADO
+           ============================================================ -->
+      <div class="pinza-grande">
+        <div class="pinza-card anuncio">
+          <div class="tag">Lo que se anunció</div>
+          <p class="cita">Presentamos la versión reactivada del Registro Nacional de Personas Desaparecidas. Es una herramienta más sólida y se ha logrado una reducción del problema.</p>
+          <div class="sub">Paráfrasis del anuncio presidencial. Reformas legales aprobadas en junio 2025 entraron en vigor el 26-mar-2026 con un nuevo Protocolo Homologado de Búsqueda.</div>
+          <div class="src">Conferencia matutina 27-mar-2026 · cobertura Proceso, CNN, La Razón, Zona Docs</div>
+        </div>
+        <div class="pinza-vs">vs</div>
+        <div class="pinza-card auditado">
+          <div class="tag">Lo que muestran los archivos</div>
+          <div class="cifra-big">+1,213</div>
+          <div class="sub">personas activas más en el padrón nacional, entre el corte 1-dic-2025 (133,566 activos) y el corte 3-jun-2026 (134,779 activos). <strong>Treinta de treinta y dos estados aumentaron</strong> sus registros. Solo dos bajaron: CDMX (−16.5%) y Jalisco (−7.2%).</div>
+          <div class="src">RNPDNO · 15 tablas oficiales descargadas del dashboard <code>versionpublicarnpdno.segob.gob.mx</code> · corte 3-jun-2026</div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           TABLA · 32 estados
+           ============================================================ -->
+      <div class="bloque-head">
+        <div class="bloque-piso">1 · LA GEOGRAFÍA DE LA CIFRA</div>
+        <h2>Treinta entidades arriba · <em>dos abajo</em></h2>
+        <p>Padrón activo (Desaparecidas + No Localizadas) por entidad, antes y después de la reactivación. La tabla está ordenada por padrón post-reforma. La fila de Morelos resaltada. CDMX (donde se pilotea la PUID) y Jalisco son las únicas con reducción significativa.</p>
+      </div>
+
+      <div class="tabla-wrap">
+        <table class="tbl-estados" id="tblEstados">
+          <thead>
+            <tr>
+              <th>Entidad</th>
+              <th class="num">Pre · dic-2025</th>
+              <th class="num">Post · jun-2026</th>
+              <th class="num">Δ abs</th>
+              <th class="num">Δ %</th>
+            </tr>
+          </thead>
+          <tbody><!-- inyectado por JS --></tbody>
+        </table>
+      </div>
+
+      <!-- ============================================================
+           TRES INDICADORES DUROS
+           ============================================================ -->
+      <div class="bloque-head">
+        <div class="bloque-piso">2 · TRES HALLAZGOS DEL PROPIO PADRÓN</div>
+        <h2>Lo que <em>la cifra anunciada</em> oculta</h2>
+        <p>Cifras tomadas literalmente del dashboard publicado por la administración federal el 3-jun-2026.</p>
+      </div>
+
+      <div class="grid3">
+        <div class="indi alarma">
+          <div class="i-tag">AÑO RÉCORD</div>
+          <div class="i-num">36,869</div>
+          <div class="i-glosa">Personas registradas con <strong>fecha de desaparición en 2025</strong>. Es el año con más casos en la historia documentada. La curva no se invirtió.</div>
+        </div>
+        <div class="indi alerta">
+          <div class="i-tag">QUIÉN INICIA EL REPORTE</div>
+          <div class="i-num">83.1%</div>
+          <div class="i-glosa">de los reportes <strong>los abre un particular</strong>, no una fiscalía. En Morelos sube a 84.3%. La obligación legal de oficio existe desde la LGMDFP-2017.</div>
+        </div>
+        <div class="indi dato">
+          <div class="i-tag">ADOLESCENTES MUJERES</div>
+          <div class="i-num">66.6%</div>
+          <div class="i-glosa">del padrón entre 10 y 19 años <strong>son mujeres</strong>: 84,464 frente a 42,331 hombres. A partir de los 20, la composición se invierte.</div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           MORELOS EN EL ESPEJO
+           ============================================================ -->
+      <div class="bloque-head">
+        <div class="bloque-piso">3 · MORELOS EN EL ESPEJO</div>
+        <h2>Crecimiento <em>casi triple del promedio nacional</em></h2>
+        <p>El padrón Morelos pasó de 2,063 a 2,116 activos. +53 personas, +2.6% — vs +0.91% del promedio nacional. Lugar 19 de 32 por padrón absoluto.</p>
+      </div>
+
+      <div class="grid3">
+        <div class="indi alarma">
+          <div class="i-tag">PADRÓN MORELOS</div>
+          <div class="i-num">+53</div>
+          <div class="i-glosa">personas en 6 meses (de 2,063 a <strong>2,116</strong>). +2.6% · casi <strong>triple</strong> del promedio nacional (+0.91%).</div>
+        </div>
+        <div class="indi alerta">
+          <div class="i-tag">CONFIDENCIALIDAD MORELOS</div>
+          <div class="i-num">835</div>
+          <div class="i-glosa">registros confidenciales <strong>en dic-2025 (40.5%)</strong> — categoría <em>borrada del agregado público</em> post-reforma. La opacidad creció, no bajó.</div>
+        </div>
+        <div class="indi dato">
+          <div class="i-tag">REPORTE POR PARTICULAR</div>
+          <div class="i-num">84.3%</div>
+          <div class="i-glosa">de las búsquedas vivas en Morelos <strong>las inicia un familiar</strong>. La fiscalía estatal abre el restante 15.7% — apenas 25 carpetas.</div>
+        </div>
+      </div>
+
+      <!-- ============================================================
+           LINK A COLUMNA EDITORIAL
+           ============================================================ -->
+      <div class="columna-link">
+        <div class="tag">Columna editorial · lectura extendida</div>
+        <h3>La lectura completa en prosa, con marco Goodhart-Campbell, vive en una columna firmada del proyecto.</h3>
+        <a href="../columnas/aritmetica.html">Leer "La aritmética que reduce sin encontrar" ↗</a>
+      </div>
+
+      <!-- ============================================================
+           MÉTODO
+           ============================================================ -->
+      <div class="metodo">
+        <strong>Fuentes y método.</strong>
+        <em>Pre-reforma:</em> <code>EXCEL - SEGURIDAD MORELOS/rnpdno_data.csv</code> · snapshot 1-dic-2025 · 133,566 registros activos individuales.
+        <em>Post-reforma:</em> <code>EXCEL - SEGURIDAD MORELOS/NUEVOS REPORTES DESAPARICIONES/</code> · 15 tablas agregadas oficiales · corte 3-jun-2026.
+        <em>Hito legal:</em> Protocolo Homologado de Búsqueda · entrada en vigor 26-mar-2026.
+        <em>PUID:</em> 5,898 personas localizadas oct-2025/may-2026 (Segob 19-may-2026 · Proceso).
+        <br><br>
+        <strong>Limitación clave.</strong> El padrón unitario (133K registros con campos individuales) <em>ya no se publica</em>. El nuevo dashboard solo entrega agregados.
+        <br><br>
+        <strong>Lo que esta ficha NO afirma.</strong> No afirma que la administración federal manipule deliberadamente cifras. La baja en CDMX es coherente con el despliegue piloto de la PUID; la de Jalisco con presión sostenida de colectivos. Sí afirma que <em>el agregado anunciado y el padrón publicado por el mismo gobierno</em> describen realidades distintas.
+        <br><br>
+        Renglones de auditoría en <code>cifras.csv</code>: <code>sNAC7b-001</code> a <code>sNAC7b-013</code>.
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    45 Digital Noticias · <a href="index.html">Índice de comunicados</a> · <a href="../columnas/aritmetica.html">Columna editorial</a> · <a href="../index.html#sExec">Dashboard maestro</a>
+  </footer>
+
+<script>
+(function() {
+  const ESTADOS = [
+    {n:'Estado de México',      pre:14579, post:14652},
+    {n:'Tamaulipas',            pre:13460, post:13817},
+    {n:'Jalisco',               pre:13766, post:12781},
+    {n:'Michoacán',             pre: 7234, post: 7848},
+    {n:'Nuevo León',            pre: 7116, post: 7491},
+    {n:'Sinaloa',               pre: 6736, post: 7266},
+    {n:'Veracruz',              pre: 6968, post: 7263},
+    {n:'Sonora',                pre: 5791, post: 6141},
+    {n:'Ciudad de México',      pre: 7242, post: 6046},
+    {n:'Guanajuato',            pre: 5383, post: 5672},
+    {n:'Baja California',       pre: 4660, post: 5197},
+    {n:'Guerrero',              pre: 4453, post: 4624},
+    {n:'Chihuahua',             pre: 4133, post: 4298},
+    {n:'Zacatecas',             pre: 3867, post: 4007},
+    {n:'Coahuila',              pre: 3655, post: 3692},
+    {n:'Puebla',                pre: 2861, post: 2908},
+    {n:'Nayarit',               pre: 1990, post: 2234},
+    {n:'Tabasco',               pre: 2058, post: 2193},
+    {n:'Morelos',               pre: 2063, post: 2116, highlight: true},
+    {n:'Chiapas',               pre: 1776, post: 2034},
+    {n:'Quintana Roo',          pre: 1698, post: 1889},
+    {n:'Hidalgo',               pre: 1656, post: 1734},
+    {n:'Colima',                pre: 1440, post: 1524},
+    {n:'San Luis Potosí',       pre: 1247, post: 1332},
+    {n:'Baja California Sur',   pre: 1067, post: 1175},
+    {n:'Durango',               pre: 1076, post: 1142},
+    {n:'Oaxaca',                pre:  755, post:  807},
+    {n:'Querétaro',             pre:  704, post:  789},
+    {n:'Aguascalientes',        pre:  501, post:  507},
+    {n:'Yucatán',               pre:  313, post:  340},
+    {n:'Tlaxcala',              pre:  206, post:  218},
+    {n:'Campeche',              pre:  148, post:  187},
+    {n:'Sin entidad / s.d.',    pre: 2964, post:  855}
+  ];
+  const tbody = document.querySelector('#tblEstados tbody');
+  if (!tbody) return;
+  const maxPost = Math.max(...ESTADOS.map(e => e.post));
+  ESTADOS.forEach(e => {
+    const delta = e.post - e.pre;
+    const pct = e.pre > 0 ? (delta * 100 / e.pre) : 0;
+    const tr = document.createElement('tr');
+    if (e.highlight) tr.classList.add('morelos');
+    if (delta < -300) tr.classList.add('baja');
+    else if (pct > 10) tr.classList.add('alza-fuerte');
+    const barW = Math.round(e.post / maxPost * 80);
+    const barClass = delta < 0 ? 'dn' : '';
+    const deltaStr = (delta > 0 ? '+' : '') + delta.toLocaleString('es-MX');
+    const pctStr = (pct > 0 ? '+' : '') + pct.toFixed(1) + '%';
+    tr.innerHTML =
+      '<td><span class="bar ' + barClass + '" style="width:' + barW + 'px"></span>' + e.n + '</td>' +
+      '<td class="num">' + e.pre.toLocaleString('es-MX') + '</td>' +
+      '<td class="num">' + e.post.toLocaleString('es-MX') + '</td>' +
+      '<td class="num delta">' + deltaStr + '</td>' +
+      '<td class="num delta">' + pctStr + '</td>';
+    tbody.appendChild(tr);
+  });
+})();
+</script>
+</body>
+</html>

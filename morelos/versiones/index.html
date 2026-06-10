@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://45digitalnoticias.github.io/Inseguridad-Morelos/">
+<title>Versiones · Inseguridad Morelos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0d1117;
+    color: #c9d1d9;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 60px 24px;
+  }
+  .container { max-width: 920px; margin: 0 auto; }
+
+  .brand-bar {
+    display: flex; align-items: center; gap: 14px;
+    padding: 12px 16px;
+    background: rgba(22, 27, 34, 0.7);
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    margin-bottom: 28px;
+  }
+  .brand-bar .logo {
+    width: 52px; height: 52px; flex-shrink: 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(15, 42, 122, 0.4);
+  }
+  .brand-bar .brand-text {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .brand-bar .brand-name {
+    color: #e6edf3; font-weight: 700; font-size: 15px;
+    letter-spacing: 0.2px;
+  }
+  .brand-bar .brand-tagline {
+    color: #8b949e; font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.4px;
+  }
+
+  .breadcrumb {
+    font-size: 13px;
+    color: #8b949e;
+    margin-bottom: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.4px;
+  }
+  .breadcrumb a {
+    color: #58a6ff;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(88,166,255,0.4);
+  }
+  .breadcrumb a:hover { border-bottom-style: solid; }
+
+  h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 800;
+    font-size: 44px;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    color: #e6edf3;
+    margin-bottom: 16px;
+  }
+  .subtitle {
+    color: #8b949e;
+    font-size: 17px;
+    line-height: 1.55;
+    max-width: 720px;
+    margin-bottom: 36px;
+    text-align: justify;
+  }
+
+  .why-box {
+    background: rgba(22,27,34,0.7);
+    border: 1px solid #30363d;
+    border-left: 4px solid #fbbf24;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 40px;
+    font-size: 14.5px;
+    line-height: 1.65;
+  }
+  .why-box .tag {
+    color: #fbbf24;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.6px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .why-box p { color: #c9d1d9; margin-bottom: 10px; text-align: justify; }
+  .why-box p:last-child { margin-bottom: 0; }
+  .why-box strong { color: #e6edf3; }
+
+  .versions-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 50px; }
+
+  .version-card {
+    background: rgba(22,27,34,0.55);
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 22px 24px;
+    transition: border-color 200ms, transform 200ms;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .version-card:hover {
+    border-color: #58a6ff;
+    transform: translateY(-1px);
+  }
+  .version-card.current {
+    border-color: rgba(63,185,80,0.55);
+    background: rgba(63,185,80,0.06);
+  }
+  .version-card.current:hover { border-color: #3fb950; }
+
+  .version-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .version-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 17px;
+    font-weight: 700;
+    color: #e6edf3;
+    letter-spacing: 0.5px;
+  }
+  .version-card.current .version-tag { color: #3fb950; }
+
+  .version-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    color: #8b949e;
+    letter-spacing: 0.6px;
+  }
+  .version-meta .pill {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 999px;
+    background: rgba(63,185,80,0.18);
+    border: 1px solid rgba(63,185,80,0.45);
+    color: #3fb950;
+    font-weight: 700;
+    margin-left: 8px;
+  }
+
+  .version-card .desc {
+    color: #c9d1d9;
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 12px;
+    text-align: justify;
+  }
+
+  .version-card .changes {
+    color: #8b949e;
+    font-size: 13px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .version-card .changes li {
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+  .version-card .changes li::before {
+    content: '+';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #3fb950;
+    font-weight: 700;
+  }
+
+  .version-card .open-link {
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #58a6ff;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.4px;
+  }
+  .version-card.current .open-link { color: #3fb950; }
+
+  .footer-note {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #30363d;
+    color: #6e7681;
+    font-size: 12.5px;
+    line-height: 1.65;
+    text-align: justify;
+  }
+  .footer-note a { color: #58a6ff; }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- SVG sprite con logo45 -->
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <symbol id="logo45" viewBox="0 0 320 320">
+        <defs>
+          <radialGradient id="bg45grad" cx="28%" cy="22%" r="100%">
+            <stop offset="0%" stop-color="#3b72d9"/>
+            <stop offset="60%" stop-color="#1e40af"/>
+            <stop offset="100%" stop-color="#0f2a7a"/>
+          </radialGradient>
+        </defs>
+        <rect width="320" height="320" fill="url(#bg45grad)" rx="26"/>
+        <g opacity="0.12" fill="#ffffff">
+          <circle cx="60" cy="280" r="5"/>
+          <circle cx="80" cy="275" r="3"/>
+          <circle cx="100" cy="283" r="4"/>
+          <circle cx="255" cy="285" r="3"/>
+          <circle cx="275" cy="278" r="5"/>
+        </g>
+        <text x="160" y="230" text-anchor="middle" font-family="'Arial Black','Segoe UI Black',sans-serif" font-size="230" font-weight="900" fill="#ffffff" letter-spacing="-4">45</text>
+        <rect x="190" y="70" width="112" height="36" rx="18" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
+        <text x="246" y="94" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="19" font-weight="800" fill="#ffffff" letter-spacing="1.5">DIGITAL</text>
+        <rect x="18" y="218" width="140" height="36" rx="18" fill="#facc15" stroke="#1e40af" stroke-width="2"/>
+        <text x="88" y="243" text-anchor="middle" font-family="'Segoe UI',Arial,sans-serif" font-size="19" font-weight="800" fill="#1e3a8a" letter-spacing="1.2">NOTICIAS</text>
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="brand-bar">
+    <svg class="logo"><use href="#logo45"/></svg>
+    <div class="brand-text">
+      <span class="brand-name">45 Digital Noticias</span>
+      <span class="brand-tagline">Inseguridad Morelos · Archivo histórico</span>
+    </div>
+  </div>
+
+  <div class="breadcrumb">
+    <a href="../">← Inseguridad Morelos</a>  /  Versiones
+  </div>
+
+  <h1>Versiones publicadas</h1>
+  <p class="subtitle">
+    Cada vez que el SESNSP publica un nuevo corte de incidencia delictiva,
+    actualizamos el dashboard. Las versiones anteriores se preservan tal como
+    fueron publicadas — sin modificación retroactiva — para que cualquier lector
+    pueda verificar qué decían y cuándo.
+  </p>
+
+  <div class="why-box">
+    <span class="tag">¿Por qué guardamos versiones anteriores?</span>
+    <p>Los datos de seguridad pública pueden cambiar entre cortes: el SESNSP a veces revisa cifras pasadas cuando llegan reportes tardíos. <strong>Para que ninguna afirmación de este dashboard pueda ser cuestionada como "cambio silencioso de cifras"</strong>, mantenemos públicas todas las versiones publicadas.</p>
+    <p>Si una nota periodística cita el dashboard hoy, esa cita seguirá siendo verificable mañana. Si SESNSP modifica retroactivamente alguna cifra, el archivo histórico documenta lo que decía la información oficial cuando publicamos. La trazabilidad es parte del producto.</p>
+  </div>
+
+  <div class="versions-list">
+
+    <a class="version-card current" href="../">
+      <div class="version-header">
+        <div class="version-tag">v2.5  ·  28 de abril de 2026  <span class="pill">VERSIÓN ACTUAL</span></div>
+        <div class="version-meta">CORTE SESNSP · MARZO 2026</div>
+      </div>
+      <p class="desc">
+        Versión vigente del dashboard. Integra la nueva sección <strong>sTep10 · Q1 2026 · La Respuesta</strong> dentro del bloque
+        de Tepoztlán: confrontación editorial documentada al pronunciamiento público del alcalde sobre la baja delictiva del
+        primer trimestre 2026. Verifica los 36 tipos de delito SESNSP, identifica 17 indicadores que subieron o aparecieron
+        donde no había, y documenta el patrón sospechoso de lesiones (dolosas −100% · culposas +188% en modalidad "no especificado").
+      </p>
+      <ul class="changes">
+        <li>Sección sTep10 con 5 charts: comparativa total Q1 25/26, lesiones doloso vs culposo, mensual, violencia sexual ×4.5, narcomenudeo decenal</li>
+        <li>Detalle revelador: las 23 lesiones culposas en modalidad "No especificado" · accidente de tránsito en cero</li>
+        <li>Botones de zoom in/out con scrollbars en modo expandido para todos los charts del dashboard</li>
+        <li>Documenta los 17 indicadores de Tepoztlán que subieron o aparecieron (violencia sexual emergente, allanamiento +250%, narco emergente)</li>
+      </ul>
+      <span class="open-link">→ Ir al dashboard actual</span>
+    </a>
+
+    <a class="version-card" href="v2.4-2026-04-28/">
+      <div class="version-header">
+        <div class="version-tag">v2.4  ·  28 de abril de 2026</div>
+        <div class="version-meta">CORTE SESNSP · MARZO 2026</div>
+      </div>
+      <p class="desc">
+        Versión que integró la sección Década Nacional con análisis cohorte Morelos vs los 32 estados.
+      </p>
+      <ul class="changes">
+        <li>Sección Década Nacional (sNAC1-sNAC5) con espiral SVG decenal Morelos vs nacional</li>
+        <li>Slope ladder de las 32 entidades · diverging bars · cohorte 5 estados pares · heatmap 32×11</li>
+        <li>Hallazgos: Morelos #1 en pendiente decenal · #1 en feminicidio · #3 en tasa de homicidio doloso</li>
+      </ul>
+      <span class="open-link">→ Abrir v2.4 (archivo histórico)</span>
+    </a>
+
+    <a class="version-card" href="v2.3-2026-04-28/">
+      <div class="version-header">
+        <div class="version-tag">v2.3  ·  28 de abril de 2026</div>
+        <div class="version-meta">CORTE SESNSP · MARZO 2026</div>
+      </div>
+      <p class="desc">
+        Versión que integró el corte SESNSP marzo 2026 con datos parciales del primer trimestre 2026 (enero, febrero y marzo).
+        Las cifras 2015-2025 publicadas en versiones anteriores se mantienen idénticas — esta versión agregó información sin
+        modificar la histórica.
+      </p>
+      <ul class="changes">
+        <li>Sección Q1 2026 con portada visual + 3 charts (Δ% por delito · histórico decenal · heatmap muni × delito)</li>
+        <li>4 hero cards con mini-comparativas Q1-25 vs Q1-26 + 4 hallazgos editoriales</li>
+        <li>Auditoría sistemática Q1 2025 vs Q1 2026 (16 hallazgos rojos · 6 reclasificaciones potenciales)</li>
+        <li>Headline editorial: Morelos no siguió la baja nacional del 41% en homicidio doloso</li>
+      </ul>
+      <span class="open-link">→ Abrir v2.3 (archivo histórico)</span>
+    </a>
+
+    <a class="version-card" href="v2.2-2026-04-25/">
+      <div class="version-header">
+        <div class="version-tag">v2.2  ·  25 de abril de 2026</div>
+        <div class="version-meta">CORTE SESNSP · DICIEMBRE 2025</div>
+      </div>
+      <p class="desc">
+        Dashboard con análisis decenal 2015-2025 de los 14 municipios de las Zonas Metropolitanas
+        de Cuernavaca y Cuautla. Incluye cruce homicidio × desaparición (RNPDNO al 1-dic-2025),
+        ENVIPE 2011-2025 sobre percepción, y resumen agregado por zonas.
+      </p>
+      <ul class="changes">
+        <li>Sección agregada ZM Cuautla (sZMC1-sZMC3) · 6 municipios como unidad analítica</li>
+        <li>Charts visuales en tarjetas ZM (divergent bar Cuernavaca · radar Cuautla)</li>
+        <li>Glosario completo · 60+ términos · método y fuentes documentados</li>
+        <li>Botón ⛶ para expandir charts · adaptación móvil con leyenda de rotación</li>
+      </ul>
+      <span class="open-link">→ Abrir v2.2 (archivo histórico)</span>
+    </a>
+
+  </div>
+
+  <div class="footer-note">
+    <strong>Política de versionado.</strong> Cada versión se snapshot al momento de su publicación con sus archivos de datos JS embebidos (self-contained).
+    Las versiones archivadas tienen <code>noindex</code> activo para no aparecer como resultado actual en buscadores, y un <code>canonical</code> apuntando al dashboard vigente.
+    El código fuente del proyecto está en <a href="https://github.com/45DigitalNoticias/Inseguridad-Morelos">GitHub</a>.
+  </div>
+</div>
+</body>
+</html>

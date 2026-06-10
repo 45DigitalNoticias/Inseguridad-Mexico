@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glosario · 45 Digital Noticias · Inseguridad Morelos</title>
+<meta name="description" content="Todos los términos técnicos que usa el proyecto Inseguridad Morelos: instituciones, conceptos delictivos, metodología, marco teórico editorial.">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../_partials/section-page.css">
+<style>
+  main{flex:1;padding:50px 24px 80px;}
+  .article{max-width:1080px;margin:0 auto;}
+
+  .ref-head{border-bottom:1px solid rgba(48,54,61,0.5);padding-bottom:28px;margin-bottom:40px;}
+  .ref-head .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;
+    color:#22d3ee;text-transform:uppercase;font-weight:700;margin-bottom:14px;
+  }
+  .ref-head h1{
+    font-family:'Fraunces',serif;font-size:48px;font-weight:700;
+    color:#e6edf3;line-height:1.05;letter-spacing:-1.2px;margin:0 0 16px;
+  }
+  .ref-head h1 em{color:#22d3ee;font-style:italic;font-weight:600;}
+  .ref-head .deck{
+    font-family:'Inter',sans-serif;font-size:16px;line-height:1.65;color:#c9d1d9;
+    max-width:780px;
+  }
+  .ref-head .deck strong{color:#e6edf3;}
+
+  /* Índice rápido arriba */
+  .toc{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:8px;margin:0 0 40px;padding:18px 22px;
+    background:rgba(13,17,23,0.6);border:1px solid rgba(48,54,61,0.5);
+    border-radius:11px;
+  }
+  .toc a{
+    display:block;padding:8px 10px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;
+    color:#8b949e;text-decoration:none;text-transform:uppercase;font-weight:600;
+    border:1px solid rgba(48,54,61,0.4);border-radius:6px;
+    transition:all 0.15s;text-align:center;
+  }
+  .toc a:hover{color:#22d3ee;border-color:rgba(34,211,238,0.4);background:rgba(34,211,238,0.04);}
+
+  h2.cat{
+    font-family:'Fraunces',serif;font-size:26px;font-weight:700;
+    color:#22d3ee;margin:50px 0 8px;line-height:1.2;
+    border-left:3px solid #22d3ee;padding-left:14px;font-style:italic;
+  }
+  .cat-desc{
+    color:#8b949e;font-size:13.5px;margin:0 0 18px;padding-left:17px;
+    line-height:1.5;
+  }
+
+  dl.glosario{margin:0;}
+  .glo-item{
+    margin:0 0 14px;padding:16px 18px;
+    background:rgba(13,17,23,0.55);
+    border:1px solid rgba(48,54,61,0.4);
+    border-radius:8px;
+  }
+  .glo-item dt{
+    font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:#e6edf3;
+    margin-bottom:6px;line-height:1.3;
+  }
+  .glo-item dt .acronym{
+    color:#8b949e;font-weight:500;font-style:italic;font-size:14px;
+  }
+  .glo-item dt .new{
+    display:inline-block;margin-left:8px;padding:2px 6px;border-radius:4px;
+    background:rgba(167,139,250,0.18);color:#a78bfa;
+    font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;
+    text-transform:uppercase;font-weight:700;vertical-align:middle;
+  }
+  .glo-item dd{
+    font-family:'Inter',sans-serif;font-size:14px;line-height:1.65;color:#c9d1d9;
+    margin:0;
+  }
+  .glo-item dd strong{color:#e6edf3;}
+  .glo-item dd em{color:#22d3ee;font-style:italic;font-weight:600;}
+  .glo-item dd code{
+    background:rgba(255,255,255,0.05);padding:1px 6px;border-radius:3px;
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:#fbbf24;
+  }
+  .glo-item dd a{color:#22d3ee;text-decoration:none;font-weight:600;}
+  .glo-item dd a:hover{color:#fff;text-decoration:underline;}
+
+  .footer-note{
+    margin:34px 0 0;padding:18px 22px;
+    background:rgba(13,17,23,0.4);border:1px solid rgba(48,54,61,0.45);
+    border-radius:9px;text-align:center;
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;
+    color:#6b7480;text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+  <header class="page-topbar">
+    <div class="page-brand">
+      <div class="page-brand-block">45</div>
+      <div class="page-brand-text">
+        <span class="n">45 DIGITAL NOTICIAS</span>
+        <span class="s" style="color:#22d3ee;">Glosario</span>
+      </div>
+    </div>
+    <a class="page-back-link" href="../index.html" style="color:#22d3ee;border-color:rgba(34,211,238,0.35);">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M11 7H3M7 3L3 7l4 4"/></svg>
+      Volver al inicio
+    </a>
+  </header>
+
+  <main>
+    <article class="article">
+
+      <header class="ref-head">
+        <div class="eyebrow">G · Referencia · Inseguridad Morelos</div>
+        <h1>Todos los términos <em>técnicos</em> que usa este proyecto</h1>
+        <p class="deck">
+          Si un concepto aparece en una gráfica, tarjeta o párrafo y no está claro, este es el lugar para consultarlo. Los términos están organizados por tema y enlazan, cuando aplica, con las páginas del proyecto donde el término se usa específicamente.
+        </p>
+      </header>
+
+      <nav class="toc">
+        <a href="#fuentes">Fuentes</a>
+        <a href="#delitos">Delitos</a>
+        <a href="#desaparicion">Desaparición</a>
+        <a href="#metodo">Método</a>
+        <a href="#regiones">Regiones PED</a>
+        <a href="#editorial">Marco editorial</a>
+        <a href="#proyecto">Proyecto</a>
+      </nav>
+
+      <!-- ===== FUENTES ===== -->
+      <span id="fuentes"></span>
+      <h2 class="cat">Fuentes <em>e instituciones</em></h2>
+      <p class="cat-desc">Las cinco fuentes oficiales y los conceptos institucionales que enmarcan el análisis.</p>
+      <dl class="glosario">
+        <div class="glo-item">
+          <dt>SESNSP <span class="acronym">(Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública)</span></dt>
+          <dd>Organismo federal que publica mensualmente la incidencia delictiva municipal con la <strong>RNID</strong> (Registro Nacional de Información Delictiva). Fuente primaria para los delitos del fuero común del proyecto. Titular: <strong>Mtra. Marcela Figueroa Franco</strong> desde octubre 2024.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>RNPDNO <span class="acronym">(Registro Nacional de Personas Desaparecidas y No Localizadas)</span></dt>
+          <dd>Base pública coordinada por la <strong>CNB</strong>. Registra personas desaparecidas y no localizadas. El <em>Protocolo Homologado de Búsqueda</em> entró en vigor el 26-mar-2026 con cambios estructurales documentados en la columna <em>"La aritmética que reduce sin encontrar"</em>.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>CNB <span class="acronym">(Comisión Nacional de Búsqueda)</span></dt>
+          <dd>Órgano federal que administra el RNPDNO. Puede clasificar registros como <em>confidenciales</em> por protección de la víctima (40.5% del padrón Morelos en dic-2025).</dd>
+        </div>
+        <div class="glo-item">
+          <dt>PUID <span class="acronym">(Plataforma Única de Identidad)</span> <span class="new">Nuevo · 2026</span></dt>
+          <dd>Herramienta presentada por el Gobierno federal el 27-mar-2026 como parte de la reactivación del RNPDNO. Cruza la CURP de personas desaparecidas con bases administrativas y registros privados. Segob declaró el 19-may-2026 haber localizado <strong>5,898 personas</strong> entre oct-2025 y may-2026 vía este método. Cuestionada por colectivos porque "localizar por cruce CURP" no equivale a localización material.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>INEGI <span class="acronym">(Instituto Nacional de Estadística y Geografía)</span></dt>
+          <dd>Organismo autónomo del Estado mexicano responsable de producir información oficial. Publica censos, encuestas (ENVIPE, ENSU) y administra el SNIEG. Fuente primaria para cualquier análisis estadístico con respaldo institucional.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>ENVIPE <span class="acronym">(Encuesta Nacional de Victimización y Percepción sobre Seguridad Pública)</span></dt>
+          <dd>Encuesta anual del INEGI levantada en marzo-abril y publicada en septiembre. Mide <em>victimización</em>, <em>cifra negra</em> (estima 93% no denunciados), <em>percepción de inseguridad</em> por entidad, <em>desempeño institucional</em> y <em>cambios en hábitos</em>. El proyecto usa la serie 2011-2025 (15 ediciones).</dd>
+        </div>
+        <div class="glo-item">
+          <dt>ENSU <span class="acronym">(Encuesta Nacional de Seguridad Pública Urbana)</span></dt>
+          <dd>Encuesta trimestral del INEGI sobre percepción en zonas urbanas (Cuernavaca y Cuautla en Morelos). Útil para coyuntura inmediata, no para tendencia decenal. La estructural sigue siendo la ENVIPE anual.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>CONAPO <span class="acronym">(Consejo Nacional de Población)</span></dt>
+          <dd>Publica las proyecciones poblacionales municipales. El proyecto usa la proyección 2025 (base Censo INEGI 2020) para calcular tasas por 100K habitantes.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>CONABIO <span class="acronym">(Comisión Nacional para el Conocimiento y Uso de la Biodiversidad)</span></dt>
+          <dd>Publica las geometrías municipales del país. El proyecto usa la edición 2023 simplificada para mostrar los mapas SVG.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>SNIEG <span class="acronym">(Sistema Nacional de Información Estadística y Geográfica)</span></dt>
+          <dd>Marco institucional que coordina la producción de estadísticas oficiales en México, administrado por INEGI.</dd>
+        </div>
+      </dl>
+
+      <!-- ===== DELITOS ===== -->
+      <span id="delitos"></span>
+      <h2 class="cat">Delitos <em>del fuero común</em></h2>
+      <p class="cat-desc">Las 13 categorías del catálogo SESNSP RNID Municipal usadas en la radiografía municipal.</p>
+      <dl class="glosario">
+        <div class="glo-item">
+          <dt>Catálogo SESNSP del fuero común <span class="new">Nuevo · 2026</span></dt>
+          <dd>Los <strong>13 tipos delictivos</strong> que aparecen como columnas en la base municipal: homicidio, feminicidio, extorsión, robo (todos los tipos), narcomenudeo, violencia familiar, abuso sexual, violación simple, amenazas, lesiones, daño a la propiedad y fraude. El total estatal 2025 suma 45,451 carpetas en Morelos.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Homicidio doloso (HD)</dt>
+          <dd>Privación de la vida con intención. Cuenta dos métricas distintas:<br><strong>Carpetas:</strong> número de expedientes abiertos.<br><strong>Víctimas:</strong> número de personas privadas de la vida. Una carpeta puede tener varias víctimas (eventos múltiples).</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Homicidio culposo (HC)</dt>
+          <dd>Privación de la vida sin intención (accidentes viales, mayoritariamente). El SESNSP los distingue del doloso a nivel estatal; a nivel municipal el desglose no estaba disponible hasta 2026.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Feminicidio</dt>
+          <dd>Privación de la vida de una mujer por razón de género. Tipificado en el Código Penal Federal y en los códigos estatales. Métricamente bajo cifra absoluta (Morelos 2025 = 35) pero editorialmente significativo.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Extorsión</dt>
+          <dd>Obligar a otro a dar, hacer u omitir, mediante violencia o intimidación, para obtener beneficio. Editorialmente clave en el proyecto: Cuautla es <strong>#1 nacional</strong> en extorsión per cápita. Subió +116% en Morelos en 6m sym nov24-abr25 vs nov25-abr26.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Narcomenudeo</dt>
+          <dd>Posesión, suministro o venta de narcóticos en cantidades menores. Tipificado por la Ley General de Salud. Polo del Sur de Morelos (Jojutla concentra 24.7% estatal).</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Violencia familiar</dt>
+          <dd>Acto u omisión recurrente que daña la integridad física, psicológica o sexual dentro del núcleo familiar. Delito de mayor volumen del catálogo SESNSP: 5,796 carpetas estatales 2025.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Tasa por 100,000 habitantes</dt>
+          <dd>Métrica de comparación entre municipios de distinto tamaño: <em>(carpetas / población) × 100,000</em>. Sin normalizar, Cuernavaca siempre lidera por volumen absoluto; con tasa, otros municipios pequeños emergen (Tlalnepantla, Huitzilac).</dd>
+        </div>
+      </dl>
+
+      <!-- ===== DESAPARICIÓN ===== -->
+      <span id="desaparicion"></span>
+      <h2 class="cat">Desaparición <em>y RNPDNO</em></h2>
+      <p class="cat-desc">Las categorías y estados del padrón RNPDNO, particularmente relevantes tras la reforma del 27-mar-2026.</p>
+      <dl class="glosario">
+        <div class="glo-item">
+          <dt>Persona desaparecida</dt>
+          <dd>Aquella cuya ubicación se desconoce y se presume que la ausencia se relaciona con un hecho ilícito. El Ministerio Público debe abrir carpeta de oficio.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Persona no localizada</dt>
+          <dd>Aquella cuya ubicación se desconoce sin indicios de delito (extravío, ausencia voluntaria). La <em>reforma RNPDNO del 27-mar-2026</em> propuso eliminar esta categoría y absorberla en "persona desaparecida" — al 3-jun-2026 ambas siguen separadas en el padrón (8,936 No Localizadas nacionales).</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Persona localizada con vida / sin vida</dt>
+          <dd>Estados finales del registro. Al 3-jun-2026 a nivel nacional: 244,723 con vida (60.9%) y 22,498 sin vida (5.6%). Asimetría por sexo: una mujer tiene 79.7% de probabilidad de ser localizada con vida; un hombre, 48.4%.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Registro confidencial</dt>
+          <dd>Caso con campos suprimidos (sexo, edad, fecha de desaparición, municipio, estatus de víctima) por solicitud de la familia o resolución INAI. En el snapshot RNPDNO Morelos dic-2025: <strong>40.5% (835 de 2,063)</strong>. La categoría desapareció del agregado público post-reforma.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>FUB <span class="acronym">(Folio Único de Búsqueda)</span></dt>
+          <dd>Identificador único asignado a cada registro del RNPDNO. Permite seguimiento del caso a lo largo del tiempo y entre instituciones.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Reforma RNPDNO 27-mar-2026 <span class="new">Nuevo · 2026</span></dt>
+          <dd>Anuncio presidencial de "reactivación" del registro: nuevo Protocolo Homologado de Búsqueda en vigor desde 26-mar-2026, eliminación propuesta de "no localizada", reclasificación en 4 grupos (pre-2006, sin movimientos, no aptos por información insuficiente, activos) y lanzamiento de la PUID. Documentado en la <a href="../columnas/aritmetica.html">columna editorial</a> y la <a href="../comunicados/sheinbaum-rnpdno-27mar2026.html">ficha del comunicado</a> del proyecto.</dd>
+        </div>
+      </dl>
+
+      <!-- ===== MÉTODO ===== -->
+      <span id="metodo"></span>
+      <h2 class="cat">Método <em>comparativo</em></h2>
+      <p class="cat-desc">Los criterios de comparación que el proyecto usa para evitar lecturas distorsionadas.</p>
+      <dl class="glosario">
+        <div class="glo-item">
+          <dt>6 meses simétricos (6m sym) <span class="new">Nuevo · 2026</span></dt>
+          <dd>Método de comparación temporal: ventana de 6 meses contra la ventana equivalente del año anterior. Ejemplo: <em>noviembre-abril 2024-2025</em> contra <em>noviembre-abril 2025-2026</em>. Controla estacionalidad. Es la lectura metodológicamente neutra. Frente a los anuncios oficiales del −62.8% (Harfuch nov-24 vs may-26, mes vs mes), la lectura 6m sym da −8.5% para Morelos.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Cifra negra</dt>
+          <dd>Proporción de delitos no denunciados. ENVIPE 2025: 93% nacional. Significa que el SESNSP solo captura el 7% de los delitos efectivamente ocurridos. Para extorsión y secuestro la cifra negra es aún mayor.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Carpetas vs víctimas</dt>
+          <dd><strong>Carpetas</strong>: expedientes abiertos. <strong>Víctimas</strong>: personas afectadas. Una carpeta puede tener múltiples víctimas. Las cifras 2026 del SESNSP publicadas hasta abril están en carpetas; las de 2025 y anteriores incluyen víctimas. Esto se documenta en cada gráfica del proyecto.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Cruce homicidio × desaparición</dt>
+          <dd>Cruce de delito-visible (deja cuerpo) con delito-silencioso (no deja cuerpo). Cuando el primero baja y la segunda sube, suele indicar <em>reclasificación administrativa</em>, no reducción real de violencia.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Cohorte de 5 pares</dt>
+          <dd>Comparativo de Morelos con cinco estados de tamaño poblacional similar: Querétaro, San Luis Potosí, Hidalgo, Tlaxcala y Aguascalientes. Permite responder a la crítica natural "Morelos es chico, no se compara con grandes".</dd>
+        </div>
+      </dl>
+
+      <!-- ===== REGIONES PED ===== -->
+      <span id="regiones"></span>
+      <h2 class="cat">Las 7 regiones <em>PED Morelos 2025-2030</em></h2>
+      <p class="cat-desc">División oficial del estado en el Plan Estatal de Desarrollo 2025-2030.</p>
+      <dl class="glosario">
+        <div class="glo-item">
+          <dt>PED <span class="acronym">(Plan Estatal de Desarrollo Morelos 2025-2030)</span> <span class="new">Nuevo · 2026</span></dt>
+          <dd>Documento programático de la administración estatal de <strong>Margarita González</strong> (2024-2030) que reorganiza el estado en 7 regiones de planeación territorial. Es la división oficial del periodo y el proyecto la usa para las agregaciones regionales.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Noroeste · 6 municipios</dt>
+          <dd>Cuernavaca, Jiutepec, Temixco, Emiliano Zapata, Xochitepec, Huitzilac. Color de identificación del proyecto: <span style="color:#58a6ff;font-weight:700;">azul</span>.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Norte · 5 municipios</dt>
+          <dd>Atlatlahucan, Tlayacapan, Tepoztlán, Tlalnepantla, Totolapan. Color: <span style="color:#84cc16;font-weight:700;">lima</span>. Sierra alta + Pueblos Mágicos.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Noreste · 6 municipios</dt>
+          <dd>Yecapixtla, Tetela del Volcán, Ocuituco, Temoac, Zacualpan de Amilpas, Hueyapan. Color: <span style="color:#14b8a6;font-weight:700;">teal</span>. Ladera del Popocatépetl.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Centro · 3 municipios</dt>
+          <dd>Cuautla, Ayala, Yautepec. Color: <span style="color:#fbbf24;font-weight:700;">ámbar</span>. Cuautla cabecera + corredor agrícola.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Oriente · 4 municipios</dt>
+          <dd>Tepalcingo, Jantetelco, Axochiapan, Jonacatepec de Leandro Valle. Color: <span style="color:#a371f7;font-weight:700;">morado</span>. Llanura agrícola.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Poniente · 6 municipios</dt>
+          <dd>Mazatepec, Tetecala, Miacatlán, Amacuzac, Coatetelco, Coatlán del Río. Color: <span style="color:#ec4899;font-weight:700;">rosa magenta</span>. Frontera con Guerrero.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Sur · 6 municipios</dt>
+          <dd>Jojutla, Puente de Ixtla, Tlaltizapán de Zapata, Zacatepec, Tlaquiltenango, Xoxocotla. Color: <span style="color:#f85149;font-weight:700;">rojo</span>. Corredor agroindustrial.</dd>
+        </div>
+      </dl>
+
+      <!-- ===== MARCO EDITORIAL ===== -->
+      <span id="editorial"></span>
+      <h2 class="cat">Marco <em>teórico editorial</em></h2>
+      <p class="cat-desc">Los conceptos académicos que las columnas del proyecto invocan para auditar los comunicados oficiales.</p>
+      <dl class="glosario">
+        <div class="glo-item">
+          <dt>Ley de Goodhart <span class="acronym">(Charles Goodhart, 1975)</span> <span class="new">Nuevo · 2026</span></dt>
+          <dd><em>"Cuando una medida se convierte en objetivo, deja de ser una buena medida."</em> Aplica cuando el homicidio doloso se vuelve KPI político: los incentivos institucionales generan reclasificación hacia otras categorías delictivas. Fuente: Banco de Inglaterra.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Ley de Campbell <span class="acronym">(Donald T. Campbell, 1976)</span> <span class="new">Nuevo · 2026</span></dt>
+          <dd><em>"Cuanto más se usa un indicador cuantitativo para decisiones sociales, más sujeto está a presiones de corrupción y más distorsiona los procesos que mide."</em> Corolario social de Goodhart. Marco principal de la columna <em>"La aritmética que reduce sin encontrar"</em>.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Efecto framing <span class="acronym">(Tversky & Kahneman, 1981)</span> <span class="new">Nuevo · 2026</span></dt>
+          <dd><em>"La elección del marco de referencia (frame) determina la respuesta tanto como el dato mismo."</em> Aplica al −62.8% Harfuch (nov-24 vs may-26), −43.7% (interanual) y −8.5% (6m sym): mismas cifras, distintas magnitudes según el marco. Nobel de Economía 2002.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Lie Factor visual <span class="acronym">(Edward Tufte, 1983)</span> <span class="new">Nuevo · 2026</span></dt>
+          <dd><em>Lie factor = efecto visual ÷ efecto real.</em> Toda visualización con factor &gt; 1.05 o &lt; 0.95 distorsiona. Anunciar el −62.8% sin las series paralelas que suben tiene un lie factor &gt; 2: la magnitud comunicada duplica la auditable.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>ICCS <span class="acronym">(International Classification of Crime for Statistical Purposes · UNODC 2015)</span> <span class="new">Nuevo · 2026</span></dt>
+          <dd>Estándar de la ONU para la comparabilidad interanual de cifras delictivas: la clasificación no puede cambiar entre periodos sin declararlo. SESNSP cambió la taxonomía en 2026 (desglose de extorsión, robo vehículo, narcomenudeo): el "−45% extorsión" anunciado es artefacto de reclasificación.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Pinza editorial · ANUNCIO vs AUDITADO <span class="new">Nuevo · 2026</span></dt>
+          <dd>Estructura de las fichas de <a href="../comunicados/">comunicados auditados</a>: dos paneles contiguos donde el primero cita textualmente o parafrasea el anuncio oficial, y el segundo muestra la cifra que arroja el archivo público leído con aritmética simple. El contraste es la lectura.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Aritmética del trasvase <span class="new">Nuevo · 2026</span></dt>
+          <dd>Cálculo de orden de magnitud para evaluar la opacidad RNPDNO contra la baja anunciada del homicidio: <em>(víctimas evitadas / año) ÷ confidenciales totales</em>. Si esa fracción de los confidenciales son víctimas mortales no reclasificadas en SESNSP, la baja anunciada se anula. <strong>No</strong> afirma que el trasvase exista; afirma que la opacidad impide descartarlo.</dd>
+        </div>
+      </dl>
+
+      <!-- ===== PROYECTO ===== -->
+      <span id="proyecto"></span>
+      <h2 class="cat">Términos <em>del proyecto</em></h2>
+      <p class="cat-desc">Convenciones internas del proyecto Inseguridad Morelos.</p>
+      <dl class="glosario">
+        <div class="glo-item">
+          <dt>Dashboard maestro</dt>
+          <dd>Panel ejecutivo del proyecto (<a href="../index.html#sExec">sExec</a>): mapa coroplético, KPIs, donut letal, serie temporal y bars divergentes. Tiene 3 filtros: Estado completo, 7 regiones PED y Municipio individual.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Radiografía municipal</dt>
+          <dd>Vista interactiva (<a href="../municipios/">/municipios/</a>) con estado inicial vacío que se llena al seleccionar municipio. Muestra los 13 delitos del catálogo SESNSP con volumen, % del estatal y ranking estatal del muni en cada uno.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Columna editorial</dt>
+          <dd>Lectura narrativa firmada de 45 Digital Noticias en <a href="../columnas/">/columnas/</a>. Marco teórico verificable + aritmética simple. Dos columnas publicadas: <em>"El Ángulo Conveniente"</em> (27-may-2026) y <em>"La aritmética que reduce sin encontrar"</em> (4-jun-2026).</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Comunicado auditado <span class="new">Nuevo · 2026</span></dt>
+          <dd>Ficha publicada en <a href="../comunicados/">/comunicados/</a> que contrasta un anuncio oficial (mañanera, conferencia, reporte Segob) contra los archivos públicos del propio Estado. Estructura: pinza ANUNCIO vs AUDITADO, datos verificables, link a la columna editorial relacionada, método y trazabilidad a <code>cifras.csv</code>.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>Embed-mode <span class="new">Nuevo · 2026</span></dt>
+          <dd>Modo técnico del index principal: al añadir <code>?embed=sR</code> a la URL, oculta el nav lateral y muestra únicamente la sección solicitada. Permite que páginas externas (<code>/secciones/*</code>, <code>/municipios/&lt;slug&gt;.html</code>) carguen secciones específicas vía iframe sin duplicar el código.</dd>
+        </div>
+        <div class="glo-item">
+          <dt>cifras.csv</dt>
+          <dd>Archivo de trazabilidad pública en el repositorio. Cada cifra publicada en el proyecto tiene una fila: id, ubicación, valor, contexto, archivo fuente, método de cálculo, fecha de corte y estado de verificación. Cualquiera puede reproducir el cálculo desde la fuente primaria.</dd>
+        </div>
+      </dl>
+
+      <div class="footer-note">
+        Glosario · 45 Digital Noticias · v2.50 (4-jun-2026) · si un término que usamos no aparece aquí, <a href="mailto:mevo@mevo.com.mx" style="color:#22d3ee;text-decoration:none;font-weight:700;letter-spacing:0;text-transform:none;font-family:Inter;">escríbenos</a> para incluirlo.
+      </div>
+    </article>
+  </main>
+
+  <footer class="page-footer">
+    45 Digital Noticias · Inseguridad Morelos · <a href="../index.html">Inicio</a> · <a href="fuentes.html">Fuentes y procedimiento</a> · <a href="../index.html#sExec">Dashboard maestro</a>
+  </footer>
+</body>
+</html>

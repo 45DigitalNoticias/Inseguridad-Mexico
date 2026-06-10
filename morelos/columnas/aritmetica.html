@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La aritmética que reduce sin encontrar · Columna · 45 Digital Noticias</title>
+<meta name="description" content="Columna editorial sobre la reforma RNPDNO del 27-mar-2026. Treinta de treinta y dos estados subieron sus activos. 2025 fue récord. Auditoría 45 Digital Noticias.">
+<meta property="og:title" content="La aritmética que reduce sin encontrar · 45 Digital Noticias">
+<meta property="og:description" content="Columna editorial sobre el padrón RNPDNO pre/post reforma del 27-mar-2026. 134,779 personas activas en junio 2026.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:#06080c;color:#e6edf3;font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction:column;}
+
+  /* ===== TOPBAR ===== */
+  .topbar{
+    padding:16px 36px;display:flex;justify-content:space-between;align-items:center;
+    border-bottom:1px solid #1a1f26;background:#0a0d12;position:sticky;top:0;z-index:50;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand-block{
+    width:34px;height:34px;background:linear-gradient(140deg,#3b72d9,#1e40af 60%,#0f2a7a);
+    border-radius:7px;display:flex;align-items:center;justify-content:center;
+    font-family:'Arial Black',sans-serif;font-size:17px;font-weight:900;color:#fff;letter-spacing:-1px;
+  }
+  .brand-text{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-text .n{font-size:12.5px;font-weight:800;color:#e6edf3;letter-spacing:1.2px;}
+  .brand-text .s{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:2px;color:#8b949e;text-transform:uppercase;margin-top:3px;}
+  .back-link{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    color:#a78bfa;text-decoration:none;font-weight:700;
+    display:flex;align-items:center;gap:8px;
+    padding:7px 14px;border:1px solid rgba(167,139,250,0.35);border-radius:6px;
+    transition:all 0.15s;
+  }
+  .back-link:hover{background:#a78bfa;color:#0a0d12;}
+  .back-link svg{width:13px;height:13px;}
+
+  /* ===== ARTICLE ===== */
+  main{flex:1;padding:60px 24px 70px;}
+  .article{max-width:760px;margin:0 auto;}
+
+  .art-eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;
+    color:#a78bfa;text-transform:uppercase;font-weight:700;
+    text-align:center;margin-bottom:18px;
+  }
+  .art-title{
+    font-family:'Fraunces',serif;font-size:64px;font-weight:700;
+    color:#e6edf3;text-align:center;line-height:1.04;letter-spacing:-1.6px;
+    margin:0 auto 28px;
+  }
+  .art-title em{color:#a78bfa;font-style:italic;font-weight:600;}
+  .art-meta{
+    text-align:center;color:#8b949e;font-size:13px;
+    margin-bottom:60px;letter-spacing:0.3px;
+    padding-bottom:32px;border-bottom:1px solid rgba(48,54,61,0.4);
+  }
+  .art-meta strong{color:#c9d1d9;font-weight:600;}
+  .art-meta .dot{margin:0 8px;color:#3a4047;}
+
+  .art-lead{
+    font-family:'Fraunces',serif;font-size:23px;font-weight:500;
+    line-height:1.5;color:#e6edf3;
+    margin:0 auto 50px;
+    text-align:justify;hyphens:auto;
+    font-variation-settings:"opsz" 28;
+  }
+  .art-lead strong{font-weight:700;color:#fff;}
+  .art-lead em{color:#a78bfa;font-style:italic;font-weight:600;}
+
+  /* ===== Subtitulos numerados ===== */
+  .art-h2{
+    font-family:'Fraunces',serif;font-size:32px;font-weight:700;
+    color:#e6edf3;line-height:1.15;letter-spacing:-0.8px;
+    margin:50px 0 18px;
+    padding-top:32px;
+  }
+  .art-h2 .art-num{
+    font-family:'JetBrains Mono',monospace;font-size:13px;
+    letter-spacing:3px;color:#a78bfa;font-weight:700;
+    display:block;margin-bottom:8px;text-transform:uppercase;
+  }
+  .art-h2 em{color:#a78bfa;font-style:italic;font-weight:600;}
+
+  .art-body p{
+    font-family:'Inter',sans-serif;font-size:17px;line-height:1.78;
+    color:#c9d1d9;margin-bottom:20px;
+    text-align:justify;hyphens:auto;
+  }
+  .art-body p strong{color:#e6edf3;font-weight:700;}
+  .art-body p em{color:#a78bfa;font-style:italic;font-weight:600;}
+  .art-body p:first-letter{font-weight:600;}
+
+  /* Cita destacada */
+  .art-quote{
+    border-left:3px solid #a78bfa;
+    padding:16px 24px;
+    margin:32px 0;
+    background:rgba(167,139,250,0.05);
+    font-family:'Fraunces',serif;font-size:19px;font-weight:500;
+    line-height:1.5;color:#e6edf3;
+    font-style:italic;
+  }
+  .art-quote .att{
+    display:block;
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:1.5px;color:#a78bfa;
+    text-transform:uppercase;font-weight:700;
+    font-style:normal;margin-top:12px;
+  }
+
+  /* Lista de hallazgos */
+  .art-bullets{
+    list-style:none;margin:24px 0;padding:0;
+  }
+  .art-bullets li{
+    position:relative;padding:10px 0 10px 32px;
+    border-bottom:1px solid rgba(48,54,61,0.3);
+    font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;
+    color:#c9d1d9;
+  }
+  .art-bullets li:last-child{border-bottom:none;}
+  .art-bullets li::before{
+    content:"•";position:absolute;left:8px;top:10px;
+    color:#a78bfa;font-size:18px;font-weight:700;
+  }
+  .art-bullets li strong{color:#e6edf3;font-weight:700;}
+
+  /* CIERRE */
+  .art-cierre{
+    margin:60px 0 0;padding:40px 36px;
+    background:linear-gradient(135deg,rgba(167,139,250,0.08),rgba(13,17,23,0.6));
+    border:1px solid rgba(167,139,250,0.30);
+    border-radius:14px;
+  }
+  .art-cierre h3{
+    font-family:'Fraunces',serif;font-size:28px;font-weight:700;
+    color:#e6edf3;line-height:1.25;text-align:center;
+    margin:0 0 20px;
+  }
+  .art-cierre h3 em{color:#a78bfa;font-style:italic;font-weight:600;}
+  .art-cierre p{
+    font-family:'Inter',sans-serif;font-size:15.5px;line-height:1.75;
+    color:#c9d1d9;margin-bottom:14px;text-align:justify;hyphens:auto;
+  }
+  .art-cierre p strong{color:#e6edf3;font-weight:700;}
+  .art-cierre p em{color:#a78bfa;font-style:italic;font-weight:600;}
+  .art-cierre .art-frase{
+    margin-top:24px;padding:22px 26px;
+    background:rgba(167,139,250,0.10);
+    border:1px solid rgba(167,139,250,0.30);border-radius:10px;
+    font-family:'Fraunces',serif;font-size:20px;line-height:1.55;
+    color:#e6edf3;font-style:italic;text-align:center;
+  }
+  .art-cierre .art-frase strong{color:#a78bfa;font-style:normal;font-weight:700;}
+
+  /* METODO */
+  .art-method{
+    margin-top:40px;padding:26px 30px;
+    background:rgba(13,17,23,0.55);
+    border:1px solid rgba(48,54,61,0.5);
+    border-radius:10px;
+    font-family:'Inter',sans-serif;font-size:13px;line-height:1.7;
+    color:#8b949e;
+  }
+  .art-method strong{color:#c9d1d9;font-weight:700;}
+  .art-method em{color:#a78bfa;font-style:italic;font-weight:600;}
+  .art-method code{
+    background:rgba(255,255,255,0.05);padding:1px 6px;border-radius:3px;
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:#fbbf24;
+  }
+  .art-method ul{list-style:none;padding:0;margin:8px 0;}
+  .art-method ul li{padding:4px 0 4px 18px;position:relative;}
+  .art-method ul li::before{content:"·";position:absolute;left:6px;color:#6b7280;font-weight:700;}
+
+  /* Llamada a datos */
+  .art-datos-link{
+    margin-top:40px;padding:22px 26px;
+    background:rgba(13,17,23,0.55);
+    border:1px dashed rgba(167,139,250,0.35);border-radius:10px;
+    text-align:center;
+  }
+  .art-datos-link .lbl{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2.5px;
+    color:#a78bfa;text-transform:uppercase;font-weight:700;margin-bottom:10px;
+  }
+  .art-datos-link p{
+    font-family:'Inter',sans-serif;font-size:14px;line-height:1.6;
+    color:#c9d1d9;margin:0 0 14px;
+  }
+  .art-datos-link a{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:1.5px;
+    color:#a78bfa;text-decoration:none;font-weight:700;text-transform:uppercase;
+    padding:10px 18px;border:1px solid rgba(167,139,250,0.4);border-radius:8px;
+    transition:all 0.18s;
+  }
+  .art-datos-link a:hover{background:rgba(167,139,250,0.12);color:#fff;}
+
+  /* ===== FOOTER ===== */
+  footer{
+    margin-top:auto;text-align:center;padding:26px 24px;
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;
+    color:#6b7480;text-transform:uppercase;border-top:1px solid #1a1f26;
+  }
+  footer a{color:#a78bfa;text-decoration:none;font-weight:700;}
+  footer a:hover{color:#fff;}
+
+  @media (max-width:760px){
+    .art-title{font-size:42px;}
+    .art-lead{font-size:18px;}
+    .art-body p{font-size:15.5px;}
+    .art-h2{font-size:26px;}
+    .topbar{padding:14px 18px;}
+    main{padding:40px 18px 50px;}
+    .art-cierre{padding:28px 22px;}
+  }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-block">45</div>
+      <div class="brand-text">
+        <span class="n">45 DIGITAL NOTICIAS</span>
+        <span class="s">Columnas · Inseguridad Morelos</span>
+      </div>
+    </div>
+    <a class="back-link" href="../index.html#sExec">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M11 7H3M7 3L3 7l4 4"/></svg>
+      Volver al dashboard
+    </a>
+  </header>
+
+  <main>
+    <article class="article">
+
+      <div class="art-eyebrow">Columna · Coyuntura nacional · Post-reforma RNPDNO</div>
+      <h1 class="art-title">La aritmética <em>que reduce sin encontrar</em></h1>
+      <div class="art-meta">
+        <strong>45 Digital Noticias</strong>
+        <span class="dot">·</span>
+        Inseguridad Morelos
+        <span class="dot">·</span>
+        4 de junio de 2026
+      </div>
+
+      <p class="art-lead">
+        El 27 de marzo de 2026, el Gobierno de México presentó una versión reactivada del Registro Nacional de Personas Desaparecidas y No Localizadas. La conferencia citó una <strong>reducción</strong> del problema. Seis meses antes, el padrón del propio Estado registraba ciento treinta y tres mil quinientos sesenta y seis personas activas. Hoy, con los datos publicados por la misma administración al tres de junio de 2026, el padrón registra <em>ciento treinta y cuatro mil setecientos setenta y nueve</em>. La cifra subió. No bajó.
+      </p>
+
+      <div class="art-body">
+
+        <h2 class="art-h2"><span class="art-num">01 · La geografía</span>Lo que no bajó</h2>
+
+        <p>Treinta de las treinta y dos entidades del país aumentaron sus registros de personas desaparecidas activas en este lapso. Solo dos presentan reducciones significativas: <strong>Ciudad de México (−16.5%) y Jalisco (−7.2%)</strong>. Una concentra el piloto de la Plataforma Única de Identidad — la herramienta de cruce de CURP que la propia Secretaría de Gobernación dice haber usado para localizar a cinco mil ochocientas noventa y ocho personas entre octubre de 2025 y mayo de 2026. La otra concentra la mayor densidad de colectivos buscadores con presión institucional sostenida.</p>
+
+        <p>En el resto del país, la cifra creció. Estado de México sumó setenta y tres casos. Michoacán, seiscientos catorce. Nuevo León, trescientos setenta y cinco. Sinaloa, quinientos treinta. Tamaulipas, trescientos cincuenta y siete. <strong>Morelos, cincuenta y tres</strong>. Más dos punto seis por ciento. Casi el triple del promedio nacional, que fue de cero punto noventa y uno por ciento.</p>
+
+        <h2 class="art-h2"><span class="art-num">02 · El año récord</span>Confirmado por el propio gobierno</h2>
+
+        <p>El dashboard publica una tabla cruzada por año de desaparición. En 2022 se reportaron veinticinco mil doscientos cincuenta y un casos. En 2023, treinta y dos mil doscientos veinte. En 2024, treinta y cinco mil novecientos trece. <em>En 2025, treinta y seis mil ochocientos sesenta y nueve</em>.</p>
+
+        <p>Es el año con más desapariciones registradas en la historia documentada de México. La administración federal heredó la curva ascendente y, según sus propios datos, esa curva no se ha invertido.</p>
+
+        <h2 class="art-h2"><span class="art-num">03 · Quién busca</span>El reparto del trabajo</h2>
+
+        <p>El padrón documenta el origen del reporte: autoridad o particular. La distinción es metodológicamente seca, pero socialmente brutal.</p>
+
+        <p>A nivel nacional, <strong>el ochenta y tres punto uno por ciento de los reportes los inicia un particular</strong> — un familiar, un colectivo, una persona física. La autoridad inicia el restante dieciséis punto nueve por ciento. En Morelos, el porcentaje de reporte particular sube a ochenta y cuatro punto tres. En Querétaro alcanza el noventa y seis punto cinco. En la Ciudad de México, noventa y cinco punto tres.</p>
+
+        <p>La obligación legal del Ministerio Público de iniciar carpeta de oficio ante una desaparición existe desde la Ley General de Desaparición Forzada de Personas de noviembre de 2017. La reforma de junio de 2025 dijo reforzar ese deber. <em>El padrón muestra que ocho de cada diez búsquedas siguen comenzando con un familiar tocando puertas</em>.</p>
+
+        <h2 class="art-h2"><span class="art-num">04 · La probabilidad por sexo</span>Una aritmética desigual</h2>
+
+        <p>El nuevo dashboard incluye una tabla cruzada por estatus final (activo, localizado con vida, localizado sin vida) y por sexo. La aritmética resulta inequívoca.</p>
+
+        <p>Una mujer que entra al padrón nacional tiene <strong>setenta y nueve punto siete por ciento</strong> de probabilidad histórica de ser localizada con vida. Un hombre, <strong>cuarenta y ocho punto cuatro</strong>. Una mujer tiene <strong>dos por ciento</strong> de probabilidad de terminar entre los localizados sin vida. Un hombre, <em>ocho por ciento</em>.</p>
+
+        <p>La asimetría no admite lectura ingenua. Y el siguiente cruce, por grupo etario, la profundiza.</p>
+
+        <h2 class="art-h2"><span class="art-num">05 · Adolescentes mujeres</span>Dos de cada tres</h2>
+
+        <p>En el grupo de diez a catorce años, el padrón registra veintiocho mil ciento setenta y cinco mujeres y doce mil trescientos sesenta y un hombres. <strong>Las mujeres son dos punto veintiocho veces más</strong>. En el grupo de quince a diecinueve años, cincuenta y seis mil doscientos ochenta y nueve mujeres y veintinueve mil novecientos setenta hombres. Las mujeres, uno punto ochenta y ocho veces más.</p>
+
+        <p>En el corredor diez a diecinueve años, <em>sesenta y seis punto seis por ciento del padrón son mujeres</em>: ochenta y cuatro mil cuatrocientas sesenta y cuatro adolescentes frente a cuarenta y dos mil trescientos treinta y un varones del mismo rango.</p>
+
+        <p>A partir de los veinte años, la composición se invierte y dominan víctimas masculinas. El corredor diez a diecinueve queda como una lectura clínica de <strong>trata de personas y violencia feminicida</strong> en concentrado.</p>
+
+        <h2 class="art-h2"><span class="art-num">06 · La opacidad</span>Lo que creció con la reforma</h2>
+
+        <p>El padrón unitario que estaba disponible antes de la reforma — ciento treinta y tres mil registros descargables con campos por caso — ya no se publica. El nuevo dashboard solo entrega agregados.</p>
+
+        <p>La categoría "confidencial" — que en diciembre de 2025 representaba el cuarenta punto cinco por ciento del padrón Morelos: ochocientos treinta y cinco registros con campos suprimidos — <em>desapareció del agregado público</em>. La opacidad, antes contable, ahora ni siquiera tiene espacio en la tabla.</p>
+
+        <p>Y las tablas que el dashboard llama "personas desaparecidas y no localizadas" por año, por edad y por nacionalidad <strong>incluyen en realidad a los localizados</strong>. Suman más de cuatrocientos mil registros: el padrón histórico completo, no los ciento treinta y cuatro mil activos que el título sugiere. Un periodista o investigador que confíe en el nombre del archivo, lee mal.</p>
+
+        <h2 class="art-h2"><span class="art-num">07 · El indicador y la meta</span>Tercera entrega del patrón</h2>
+
+        <div class="art-quote">
+          Cuanto más se usa un indicador cuantitativo para la toma de decisiones sociales, más sujeto está a presiones de corrupción y más distorsiona los procesos que pretende medir.
+          <span class="att">Donald T. Campbell · 1976</span>
+        </div>
+
+        <p>La administración federal anunció, en marzo de 2026, una reactivación del registro. La presentación habló de reducción. El padrón actualizado al tres de junio dice otra cosa.</p>
+
+        <ul class="art-bullets">
+          <li>El padrón nacional <strong>subió</strong> mil doscientos trece personas en seis meses.</li>
+          <li>Solo <strong>dos entidades</strong> presentan reducción significativa.</li>
+          <li><strong>Treinta</strong> subieron.</li>
+          <li><strong>2025 fue récord</strong>, confirmado por el propio dashboard.</li>
+          <li><strong>Ocho de cada diez</strong> búsquedas las inicia un particular.</li>
+          <li><strong>Dos de cada tres</strong> adolescentes desaparecidas son mujeres.</li>
+          <li>La <strong>categoría confidencial</strong> dejó de aparecer en el agregado público.</li>
+        </ul>
+
+      </div>
+
+      <!-- CIERRE -->
+      <div class="art-cierre">
+        <h3>La pregunta que <em>no acusa</em>, pero <em>queda</em></h3>
+        <p>
+          <strong>Esta columna no afirma que la administración federal manipule deliberadamente cifras.</strong> Documenta que los datos publicados por la propia administración, leídos con aritmética simple, describen una realidad <em>distinta</em> a la narrativa de reducción presentada el 27 de marzo de 2026.
+        </p>
+        <p>
+          Es la <strong>tercera entrega</strong> del patrón Goodhart-Campbell documentado por este dashboard, después de los anuncios del SESNSP (12-may, −40% homicidio doloso) y de García Harfuch sobre Morelos (27-may, −62.8%). En los tres casos el indicador agregado mejora; la realidad medida en sus componentes no.
+        </p>
+        <p>
+          El indicador no se redujo en seis meses por hallazgos materiales. Se redujo en dos entidades. En treinta más, subió. Y la categoría administrativa que cambia, el bucket que se mueve, la columna que desaparece son lo que la Ley de Campbell describe: cuando la cifra es la meta, la cifra deja de medir.
+        </p>
+        <div class="art-frase">
+          Cuando el indicador es la meta,<br>la cifra deja de medir.
+        </div>
+      </div>
+
+      <!-- LINK A DATOS -->
+      <div class="art-datos-link">
+        <div class="lbl">Las cifras en detalle, con tabla y tarjetas</div>
+        <p>El PISO 7 del bloque "Opacidad RNPDNO · Nacional" del dashboard contiene la pinza pre/post, la tabla 32 estados ordenada por padrón post-reforma, las cifras absolutas por entidad y las tarjetas Morelos.</p>
+        <a href="../index.html#sNAC7">Ver datos auditados en sNAC7 →</a>
+      </div>
+
+      <!-- METODO -->
+      <div class="art-method">
+        <strong>Fuentes y método.</strong>
+        <ul>
+          <li><strong>Padrón pre-reforma:</strong> <code>EXCEL - SEGURIDAD MORELOS/rnpdno_data.csv</code> · snapshot 1-dic-2025 (descargado 19-abr-2026, 133,566 registros activos individuales).</li>
+          <li><strong>Padrón post-reforma:</strong> quince archivos descargados del dashboard oficial <code>versionpublicarnpdno.segob.gob.mx</code> · corte 3-jun-2026. Universo: 134,779 activos · 402,000 padrón histórico.</li>
+          <li><strong>Reforma referencial:</strong> anuncio presidencial 27-mar-2026 · entrada en vigor del nuevo Protocolo Homologado de Búsqueda 26-mar-2026.</li>
+          <li><strong>Plataforma Única de Identidad:</strong> dato oficial 5,898 personas localizadas 14-oct-2025 a 18-may-2026 (declaración Segob, 19-may-2026 vía Proceso).</li>
+        </ul>
+        <p style="margin-top:14px;">Todas las cifras de esta columna están registradas con su línea de cálculo y archivo fuente en <code>cifras.csv</code> del repositorio del proyecto, filas <code>sNAC7b-001</code> a <code>sNAC7b-013</code>.</p>
+        <p style="margin-top:14px;"><strong>Lo que esta columna NO afirma.</strong> No afirma que la administración federal manipule deliberadamente cifras. No afirma que las dos entidades con baja sean casos de manipulación. La caída en CDMX es coherente con el despliegue piloto de la PUID; la de Jalisco, con presión sostenida de colectivos. No afirma que la opacidad sea ilegal. La confidencialidad tiene fundamento en la Ley General de Protección de Datos Personales en Posesión de Sujetos Obligados. <em>Sí afirma</em> que los datos publicados por el propio gobierno, leídos con aritmética y sin presunción de mala fe, describen una realidad distinta a la narrativa de reducción presentada el 27 de marzo de 2026.</p>
+      </div>
+
+    </article>
+  </main>
+
+  <footer>
+    45 Digital Noticias · <a href="index.html">Volver al índice de columnas</a> · <a href="../index.html#sNAC7">Datos en sNAC7</a> · <a href="../index.html#sExec">Dashboard maestro</a>
+  </footer>
+</body>
+</html>

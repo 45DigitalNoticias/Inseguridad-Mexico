@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cuernavaca · Noroeste · Municipal · 45 Digital Noticias</title>
+<meta name="description" content="Dashboard municipal de Cuernavaca (Noroeste de Morelos). 9 secciones: portada, estatal, ranking, serie decenal, top delitos, contratendencias, homicidio x desapariciones, vs estado, conclusiones y T1 2026.">
+<meta property="og:title" content="Cuernavaca · Inseguridad Morelos">
+<meta property="og:description" content="Radiografía municipal completa de Cuernavaca. Región PED Noroeste.">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../_partials/section-page.css">
+<style>
+  .page-back-link { color: #58a6ff !important; border-color: #58a6ff55 !important; }
+  .page-back-link:hover { background: #58a6ff !important; color: #0a0d12 !important; }
+  .section-iframe-wrap { width: 100%; flex: 1; background: #06080c; position: relative; }
+  .section-iframe-wrap iframe { width: 100%; min-height: calc(100vh - 110px); border: 0; background: #06080c; display: block; }
+  .page-brand-text .s { color: #58a6ff !important; }
+</style>
+</head>
+<body>
+  <header class="page-topbar">
+    <div class="page-brand">
+      <div class="page-brand-block">45</div>
+      <div class="page-brand-text">
+        <span class="n">45 DIGITAL NOTICIAS</span>
+        <span class="s">Región Noroeste · Cuernavaca</span>
+      </div>
+    </div>
+    <a class="page-back-link" href="index.html">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M11 7H3M7 3L3 7l4 4"/></svg>
+      36 municipios
+    </a>
+  </header>
+
+  <main class="section-main">
+    <div class="section-iframe-wrap">
+      <iframe src="../index.html?embed=sC1,sC2,sC3,sC4,sC5,sC6,sC7,sC8,sC9#sC1" title="Cuernavaca · dashboard municipal" loading="eager"></iframe>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    45 Digital Noticias · Inseguridad Morelos · <a href="index.html">36 municipios</a> · <a href="../index.html#sExec">Dashboard maestro</a> · <a href="../columnas/">Columnas</a> · <a href="../comunicados/">Comunicados</a>
+  </footer>
+
+  <script>
+    (function() {
+      const iframe = document.querySelector('iframe');
+      if (!iframe) return;
+      // v2.51: el iframe tiene altura fija = viewport (calc(100vh - 110px))
+      // y scrollea internamente. No requiere calculo dinamico (causaba loops).
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ranking estatal · 36 municipios · 45 Digital Noticias</title>
+<meta name="description" content="Ranking interactivo de los 36 municipios de Morelos por incidencia delictiva. Cifras SESNSP corte marzo 2026.">
+<meta property="og:title" content="Ranking estatal · 36 municipios · Inseguridad Morelos">
+<meta property="og:description" content="Tabla ordenable por homicidio, extorsión, total, tasa por 100K. 36 municipios.">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../_partials/section-page.css">
+<style>
+  .section-iframe-wrap {
+    width: 100%;
+    flex: 1;
+    background: #06080c;
+    position: relative;
+  }
+  .section-iframe-wrap iframe {
+    width: 100%;
+    height: calc(100vh - 110px);
+    border: 0;
+    background: #06080c;
+    display: block;
+  }
+</style>
+</head>
+<body>
+  <header class="page-topbar">
+    <div class="page-brand">
+      <div class="page-brand-block">45</div>
+      <div class="page-brand-text">
+        <span class="n">45 DIGITAL NOTICIAS</span>
+        <span class="s">Panel Estatal · Ranking</span>
+      </div>
+    </div>
+    <a class="page-back-link" href="../index.html#sExec">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M11 7H3M7 3L3 7l4 4"/></svg>
+      Volver al dashboard
+    </a>
+  </header>
+
+  <main class="section-main">
+    <div class="section-iframe-wrap">
+      <iframe src="../index.html?embed=sR#sR" title="Ranking estatal · 36 municipios" loading="eager"></iframe>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    45 Digital Noticias · Inseguridad Morelos · <a href="../index.html#sExec">Dashboard maestro</a> · <a href="../columnas/">Columnas editoriales</a>
+  </footer>
+
+  <script>
+    // ajustar altura del iframe dinamicamente al contenido (cuando esta del mismo dominio)
+    (function() {
+      const iframe = document.querySelector('iframe');
+      if (!iframe) return;
+      iframe.addEventListener('load', function() {
+        try {
+          // mismo origen - acceso al document
+          const doc = iframe.contentDocument || iframe.contentWindow.document;
+          if (!doc) return;
+          setTimeout(function() {
+            const target = doc.querySelector('section.embed-target');
+            if (target) {
+              const h = target.scrollHeight + 60;
+              iframe.style.minHeight = h + 'px';
+            }
+          }, 1500);
+        } catch (e) {
+          // cross-origin: ignorar
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

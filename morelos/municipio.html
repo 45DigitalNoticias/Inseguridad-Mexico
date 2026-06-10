@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Redirigiendo · 45 Digital Noticias · Inseguridad Morelos</title>
+<meta name="description" content="El dashboard municipal vive ahora en /municipios/. Redirigiendo automáticamente.">
+<link rel="canonical" href="municipios/index.html">
+<script>
+  // Compatibilidad con links viejos del tipo municipio.html?id=cuernavaca
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const id = (params.get('id') || '').toLowerCase().trim();
+    const map = {
+      'cuernavaca': 'cuernavaca',
+      'cuautla': 'cuautla',
+      'jiutepec': 'jiutepec',
+      'temixco': 'temixco',
+      'yautepec': 'yautepec',
+      'jojutla': 'jojutla',
+      'emiliano-zapata': 'emiliano-zapata',
+      'xochitepec': 'xochitepec',
+      'tepoztlan': 'tepoztlan',
+      'huitzilac': 'huitzilac',
+      'tlaltizapan': 'tlaltizapan'
+    };
+    const dest = (id && map[id]) ? ('municipios/' + map[id] + '.html') : 'municipios/index.html';
+    window.location.replace(dest);
+  })();
+</script>
+<meta http-equiv="refresh" content="0; url=municipios/index.html">
+<style>
+  body{background:#06080c;color:#e6edf3;font-family:Inter,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;}
+  .msg{text-align:center;padding:40px;}
+  .msg h1{font-family:Fraunces,serif;font-size:30px;margin-bottom:14px;}
+  .msg a{color:#ec4899;text-decoration:none;font-weight:700;}
+  .msg a:hover{color:#fff;}
+</style>
+</head>
+<body>
+  <div class="msg">
+    <h1>Redirigiendo a los 36 municipios…</h1>
+    <p>Si no fuiste redirigido, <a href="municipios/index.html">haz clic aquí</a>.</p>
+  </div>
+</body>
+</html>
