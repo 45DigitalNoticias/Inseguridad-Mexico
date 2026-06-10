@@ -4918,6 +4918,8 @@
      secciones in-page excepto sHero. Resuelve el scroll infinito
      del INICIO · RESUMEN. Las secciones siguen en DOM para iframes. */
   body.landing-mode section:not(#sHero){ display: none !important; }
+  /* fix: llegar con #sExec desde subpáginas (regresar) — dashboard-mode gana al landing */
+  body.landing-mode.dashboard-mode #sExec{ display:block !important; }
   body.landing-mode #sV23,
   body.landing-mode .v23-callout{ display: none !important; }
 
@@ -6210,7 +6212,7 @@
     z-index: 9000; overflow: auto;
     border-top: none; border-bottom: none;
   }
-  body.dashboard-mode > *:not(#sExec):not(.dashboard-overlay):not(.rb-share-fab):not(.rb-share-toast):not(.cine-go-top) {
+  body.dashboard-mode > *:not(#sExec):not(.dashboard-overlay):not(.rb-share-fab):not(.rb-share-toast):not(.cine-go-top):not(.nat-back) {
     display: none !important;
   }
   body.dashboard-mode .ex-wrap {
@@ -35121,5 +35123,9 @@ new Chart(document.getElementById('chartTemxRnpdno'), {
 })();
 </script>
 
+<a class="nat-back" href="../">⌂ PORTAL NACIONAL</a>
+<style>.nat-back{position:fixed;top:14px;right:16px;z-index:9500;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;font-weight:700;color:#fbbf24;text-decoration:none;padding:8px 13px;border:1.5px solid rgba(251,191,36,.55);border-radius:9px;background:rgba(13,17,23,.88);backdrop-filter:blur(6px);box-shadow:0 0 10px rgba(251,191,36,.25);}
+.nat-back:hover{background:rgba(251,191,36,.15);border-color:#fbbf24;}
+@media(max-width:680px){.nat-back{top:auto;bottom:16px;left:16px;right:auto;}}</style>
 </body>
 </html>
