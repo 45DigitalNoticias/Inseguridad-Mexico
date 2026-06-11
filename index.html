@@ -9,6 +9,7 @@
 <script src="panorama_estatal.js"></script>
 <script src="series_completo.js"></script>
 <script src="delitos_completo.js"></script>
+<script src="series_2026.js"></script>
 <style>
   :root{
     --bg:#0d1117; --panel:rgba(22,27,34,.75); --line:rgba(48,54,61,.7);
@@ -466,8 +467,9 @@ document.getElementById('gridEstados').innerHTML = PANORAMA_ESTATAL.slice()
 // ===== RADIOGRAFIA NACIONAL 55 DELITOS · ranking menor a mayor =====
 (function(){
   const CAT = DELITOS_COMPLETO_2025['17'].map(r=>({bj:r.bj, s:r.s}));
-  const anios = SERIES_ANIOS;
-  let anioSel = anios.length-1;
+  const anios = SERIES_ANIOS.concat(['2026 ene-abr']);
+  const I26 = anios.length-1;
+  let anioSel = I26-1; // default 2025 (ultimo completo)
   const METEO=['#1a2db0','#2e6fde','#35b5e8','#3dbb6e','#8bc63f','#f3e13a','#fbb03b','#f4711f','#e02f1f','#a31212','#6e0b0b'];
   function colMeteo(f){
     const x=f*(METEO.length-1), i=Math.min(METEO.length-2,Math.floor(x)), t=x-i;
@@ -477,7 +479,8 @@ document.getElementById('gridEstados').innerHTML = PANORAMA_ESTATAL.slice()
   }
   function natTotal(sub, ai){
     let t=0;
-    for(let e=1;e<=32;e++){ const d=SERIES_COMPLETO[String(e)][sub]; if(d) t+=d[ai]; }
+    if(ai===I26){ for(let e=1;e<=32;e++){ const d=SERIES_2026_PARCIAL[String(e)]; if(d&&d[sub]) t+=d[sub]; } }
+    else { for(let e=1;e<=32;e++){ const d=SERIES_COMPLETO[String(e)][sub]; if(d) t+=d[ai]; } }
     return t;
   }
   const chips=document.getElementById('anioChips');
@@ -500,7 +503,7 @@ document.getElementById('gridEstados').innerHTML = PANORAMA_ESTATAL.slice()
         '<span class="val">'+r.v.toLocaleString('en-US')+'</span></div>';
     });
     document.getElementById('tabla55').innerHTML=html;
-    document.getElementById('t55foot').textContent=CAT.length+' subtipos · total nacional '+anio+': '+total.toLocaleString('en-US')+' carpetas · suma de los 32 estados · SESNSP corte abr-2026 · cifras.csv';
+    document.getElementById('t55foot').textContent=CAT.length+' subtipos · total nacional '+anio+(ai===I26?' (PARCIAL · ene-abr)':'')+': '+total.toLocaleString('en-US')+' carpetas · suma de los 32 estados · SESNSP corte abr-2026 · cifras.csv'+(ai===I26?' · +'+EXTRA_2026.total.toLocaleString('en-US')+' carpetas en subtipos nuevos del RNID 2026 sin equivalente en el catálogo histórico (no mostradas)':'');
   }
   render55();
 })();
