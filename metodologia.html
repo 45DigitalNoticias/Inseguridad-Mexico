@@ -97,7 +97,16 @@ if(/github\.io$/.test(location.hostname)){
     <h2>6 · Reproducibilidad</h2>
     <p>Cada cifra publicada tiene una fila en el registro público de trazabilidad <a href="datos/cifras.csv"><code>datos/cifras.csv</code></a> con su identificador, fuente primaria, método de cálculo, fecha de corte y estado de verificación. Las bases originales son públicas y descargables de los portales oficiales; cualquier persona con una hoja de cálculo puede reproducir cada número de este sitio. Si encuentras una discrepancia, el correo del medio está abierto: la corrección pública es parte del método.</p>
 
-    <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#6b7480;margin-top:36px;">Última actualización: junio 2026 · contacto: mevo@mevo.com.mx</p>
+        <h2>7 · Cómo leer la columna <code>estado</code> del csv</h2>
+    <p>Cada fila del registro declara su nivel de verificación. No todos los niveles pesan igual, y el sufijo existe para confesarlo:</p>
+    <table>
+      <tr><th>Nivel</th><th>Estados</th><th>Qué garantizan</th></tr>
+      <tr><td>Cotejo directo</td><td><code>VERIFICADO</code> · <code>_AGREGADO</code> · <code>_CALC</code> · <code>_VALIDADO</code> · <code>_MAPEADO</code> · <code>_CORREGIDO</code> · <code>_GENERADO</code> · <code>_VISUAL</code></td><td>La cifra se leyó literal en la fuente primaria, o es suma/cálculo reproducible de microdatos oficiales. <code>_VALIDADO</code> es el máximo: cuadró además contra una segunda fuente independiente. <code>_CORREGIDO</code> documenta un error nuestro detectado y corregido. <code>_MAPEADO</code> declara la equivalencia de catálogos usada. <code>_VISUAL</code> aplica solo a geometrías.</td></tr>
+      <tr><td>Confianza menor</td><td><code>_INDIRECTO</code> · <code>_PROXY</code> · <code>_PREVIO</code> · <code>_BIBLIOGRAFICO</code> · <code>CONSISTENTE</code></td><td>No alcanzaron el cotejo directo: fuente secundaria, variable sustituta declarada, verificación heredada de una versión anterior, referencia de obra teórica, o mera consistencia con otras cifras. Son una fracción mínima del registro y ninguna sostiene los tableros nacionales; se conservan con su etiqueta en lugar de disfrazarse de verificadas.</td></tr>
+    </table>
+    <p>La regla de la casa: cuando la confianza baja, el apellido lo dice. Una tabla donde todo dijera "verificado" sería menos auditable, no más.</p>
+
+<p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#6b7480;margin-top:36px;">Última actualización: junio 2026 · contacto: mevo@mevo.com.mx</p>
   </main>
   <footer>45 Digital Noticias · Metodología · <a href="https://45digitalnoticias.github.io/columnas/privacidad.html" target="_blank" rel="noopener">aviso de privacidad</a></footer>
 </body>
