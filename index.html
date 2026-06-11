@@ -8,6 +8,7 @@
 <script src="mexico_estados.geojson.js"></script>
 <script src="panorama_estatal.js"></script>
 <script src="series_completo.js"></script>
+<script src="delitos_completo.js"></script>
 <style>
   :root{
     --bg:#0d1117; --panel:rgba(22,27,34,.75); --line:rgba(48,54,61,.7);
@@ -81,6 +82,25 @@
   .rrow .val{font-family:Fraunces,serif;font-size:19px;font-weight:800;}
 
   /* Señales */
+  /* radiografia nacional 55 */
+  .achip{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:1.2px;font-weight:700;padding:8px 14px;border-radius:8px;border:1px solid var(--line);color:var(--mut);cursor:pointer;background:transparent;}
+  .achip.act{background:rgba(251,191,36,.13);border-color:rgba(251,191,36,.5);color:var(--amber);}
+  .bj-group{border:1px solid var(--line);border-radius:11px;margin-bottom:10px;overflow:hidden;}
+  .bj-head{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:rgba(13,17,23,.65);cursor:pointer;user-select:none;}
+  .bj-head:hover{background:rgba(22,27,34,.9);}
+  .bj-head .t{font-family:Fraunces,serif;font-size:16px;font-weight:700;display:flex;align-items:center;gap:10px;}
+  .bj-head .tri{color:var(--amber);font-size:11px;transition:transform .15s;}
+  .bj-group.open .tri{transform:rotate(90deg);}
+  .bj-head .tot{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mut);}
+  .bj-head .tot b{color:var(--txt);font-size:14px;}
+  .bj-body{display:none;}
+  .bj-group.open .bj-body{display:block;}
+  table.del{width:100%;border-collapse:collapse;font-size:12.5px;}
+  table.del td{padding:8px 14px;border-top:1px solid rgba(48,54,61,.35);}
+  table.del td.nom .espejo{display:inline-block;margin-left:7px;padding:1px 6px;border-radius:4px;background:rgba(167,139,250,.16);color:var(--purple);font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1px;text-transform:uppercase;font-weight:700;}
+  table.del td.v{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;width:110px;}
+  table.del td.pct{width:150px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--mut);}
+  table.del td.pct .bar{display:inline-block;height:5px;border-radius:3px;background:linear-gradient(90deg,rgba(251,191,36,.35),var(--amber));vertical-align:middle;margin-right:6px;}
   .sec-head{text-align:center;margin:64px 0 10px;}
   .sec-head .eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:3.5px;color:var(--purple);text-transform:uppercase;font-weight:700;margin-bottom:10px;}
   .sec-head h2{font-family:Fraunces,serif;font-size:36px;font-weight:700;letter-spacing:-.8px;margin:0 0 10px;}
@@ -212,6 +232,19 @@ if(/github\.io$/.test(location.hostname)){
         <h3>Ranking por <em id="rankMetric">tasa</em> · top 10</h3>
         <div class="rank-list" id="ranking"></div>
       </div>
+    </div>
+
+
+    <!-- RADIOGRAFIA NACIONAL 55 DELITOS -->
+    <section class="sec-head">
+      <div class="eyebrow" style="color:var(--amber);">El catálogo completo · sin selección</div>
+      <h2>Radiografía nacional · <em style="color:var(--amber);">los 55 delitos</em></h2>
+      <p>La suma de los 32 estados, subtipo por subtipo del catálogo oficial, agrupados por el bien jurídico que afectan. Elige el año. Las categorías "Otros…" llevan su etiqueta espejo: son las bolsas donde el registro deja de ser auditable.</p>
+    </section>
+    <div class="panel" style="margin:18px 0 26px;">
+      <div id="anioChips" style="display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-bottom:16px;"></div>
+      <div id="tabla55"></div>
+      <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;text-align:center;" id="t55foot"></div>
     </div>
 
     <!-- SEÑALES -->
@@ -434,6 +467,54 @@ document.getElementById('gridEstados').innerHTML = PANORAMA_ESTATAL.slice()
     <span class="mt"><span>tasa HD</span><b>${Number(r.tasa_hd_100k_2025).toFixed(1)}</b></span>
     <span class="mt"><span>desap. activos</span><b>${Number(r.rnpdno_activos_total).toLocaleString('es-MX')}</b></span>
   </a>`).join('');
+</script>
+<script>
+// ===== RADIOGRAFIA NACIONAL 55 DELITOS =====
+(function(){
+  // catalogo bj/tipo/subtipo (uniforme): lo tomamos del estado 17
+  const CAT = DELITOS_COMPLETO_2025['17'].map(r=>({bj:r.bj, s:r.s}));
+  const anios = SERIES_ANIOS; // 2015..2025
+  let anioSel = anios.length-1;
+  function natTotal(sub, ai){
+    let t=0;
+    for(let e=1;e<=32;e++){ const d=SERIES_COMPLETO[String(e)][sub]; if(d) t+=d[ai]; }
+    return t;
+  }
+  const chips=document.getElementById('anioChips');
+  anios.forEach((a,i)=>{
+    const b=document.createElement('button'); b.className='achip'+(i===anioSel?' act':''); b.textContent=a;
+    b.onclick=()=>{anioSel=i; document.querySelectorAll('.achip').forEach((x,j)=>x.classList.toggle('act',j===i)); render55();};
+    chips.appendChild(b);
+  });
+  function render55(){
+    const ai=anioSel, anio=anios[ai];
+    const vals=CAT.map(c=>({...c, v:natTotal(c.s,ai)}));
+    const total=vals.reduce((a,b)=>a+b.v,0);
+    const porBJ={};
+    vals.forEach(r=>{(porBJ[r.bj]=porBJ[r.bj]||[]).push(r);});
+    const ordenBJ=Object.keys(porBJ).sort((a,b)=>porBJ[b].reduce((x,y)=>x+y.v,0)-porBJ[a].reduce((x,y)=>x+y.v,0));
+    let html='';
+    ordenBJ.forEach((bj,gi)=>{
+      const rows=porBJ[bj].sort((a,b)=>b.v-a.v);
+      const tot=rows.reduce((a,b)=>a+b.v,0);
+      const maxv=Math.max(...rows.map(r=>r.v),1);
+      html+=`<div class="bj-group${gi===0?' open':''}"><div class="bj-head" onclick="this.parentElement.classList.toggle('open')">
+        <span class="t"><span class="tri">▶</span>${bj}</span>
+        <span class="tot"><b>${tot.toLocaleString('en-US')}</b> · ${total?(tot*100/total).toFixed(1):0}% del país</span></div>
+        <div class="bj-body"><table class="del">`;
+      rows.forEach(r=>{
+        const esp=/^Otros/i.test(r.s)?'<span class="espejo">espejo</span>':'';
+        html+=`<tr><td class="nom">${r.s}${esp}</td>
+          <td class="v">${r.v.toLocaleString('en-US')}</td>
+          <td class="pct"><span class="bar" style="width:${Math.max(2,r.v*70/maxv)}px"></span>${total?(r.v*100/total).toFixed(2):0}%</td></tr>`;
+      });
+      html+='</table></div></div>';
+    });
+    document.getElementById('tabla55').innerHTML=html;
+    document.getElementById('t55foot').textContent=`${CAT.length} subtipos · total nacional ${anio}: ${total.toLocaleString('en-US')} carpetas · suma de los 32 estados · SESNSP corte abr-2026 · cifras.csv`;
+  }
+  render55();
+})();
 </script>
 </body>
 </html>
