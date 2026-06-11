@@ -109,5 +109,28 @@ if(/github\.io$/.test(location.hostname)){
 <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#6b7480;margin-top:36px;">Última actualización: junio 2026 · contacto: mevo@mevo.com.mx</p>
   </main>
   <footer>45 Digital Noticias · Metodología · <a href="https://45digitalnoticias.github.io/columnas/privacidad.html" target="_blank" rel="noopener">aviso de privacidad</a></footer>
+<button class="shfab" onclick="document.getElementById('shpop').classList.toggle('open')" title="Compartir" aria-label="Compartir">⤴</button>
+<div class="shpop" id="shpop">
+  <a href="#" onclick="shGo('x');return false;" style="--sc:#e6edf3" title="X">𝕏</a>
+  <a href="#" onclick="shGo('fb');return false;" style="--sc:#1877f2" title="Facebook">f</a>
+  <a href="#" onclick="shGo('wa');return false;" style="--sc:#25d366" title="WhatsApp">✆</a>
+  <button onclick="navigator.clipboard.writeText(location.href);this.textContent='✓';setTimeout(()=>this.textContent='⧉',1200);" style="--sc:#fbbf24" title="Copiar enlace">⧉</button>
+</div>
+<style>
+.shfab{position:fixed;bottom:18px;right:18px;z-index:9400;width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,#fbbf24,#f59e0b);box-shadow:0 0 18px rgba(251,191,36,.5),0 3px 10px rgba(0,0,0,.5);color:#0d1117;font-size:21px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.shfab:hover{box-shadow:0 0 26px rgba(251,191,36,.75),0 3px 10px rgba(0,0,0,.5);}
+.shpop{position:fixed;bottom:80px;right:21px;z-index:9400;display:none;flex-direction:column;gap:9px;}
+.shpop.open{display:flex;}
+.shpop a,.shpop button{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;text-decoration:none;cursor:pointer;background:rgba(13,17,23,.92);color:var(--sc);border:1.5px solid var(--sc);box-shadow:0 0 11px color-mix(in srgb, var(--sc) 40%, transparent);}
+.shpop a:hover,.shpop button:hover{background:color-mix(in srgb, var(--sc) 18%, rgba(13,17,23,.92));}
+@media(max-width:680px){.shfab{bottom:74px;}.shpop{bottom:136px;}}
+</style>
+<script>
+function shGo(n){
+  const u=encodeURIComponent(location.href), t=encodeURIComponent(document.title);
+  const m={x:'https://twitter.com/intent/tweet?text='+t+'&url='+u, fb:'https://www.facebook.com/sharer/sharer.php?u='+u, wa:'https://wa.me/?text='+t+'%20'+u};
+  window.open(m[n],'_blank','noopener');
+}
+</script>
 </body>
 </html>

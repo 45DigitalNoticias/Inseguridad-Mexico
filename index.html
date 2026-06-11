@@ -34,8 +34,8 @@
   /* compartir */
   .share{display:flex;gap:8px;align-items:center;justify-content:center;margin:18px 0 0;}
   .share .slbl{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;}
-  .share a,.share button{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:rgba(22,27,34,.8);color:#c9d1d9;display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;font-size:15px;transition:all .15s;}
-  .share a:hover,.share button:hover{border-color:rgba(251,191,36,.55);color:var(--amber);}
+  .share a,.share button{width:42px;height:42px;border-radius:11px;border:1.5px solid var(--sc,#c9d1d9);background:rgba(13,17,23,.9);color:var(--sc,#c9d1d9);display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;font-size:16px;transition:all .15s;box-shadow:0 0 11px color-mix(in srgb, var(--sc,#8b949e) 38%, transparent);}
+  .share a:hover,.share button:hover{background:color-mix(in srgb, var(--sc,#fbbf24) 18%, transparent);}
   /* zoom de charts */
   .zoomctl{display:flex;gap:6px;}
   .zoomctl button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-size:15px;font-weight:700;cursor:pointer;}
@@ -298,10 +298,10 @@ if(/github\.io$/.test(location.hostname)){
   <footer>
     <div class="share">
       <span class="slbl">Compartir</span>
-      <a href="https://twitter.com/intent/tweet?text=Inseguridad%20M%C3%A9xico%20%C2%B7%2045%20Digital%20Noticias&url=" target="_blank" rel="noopener" title="X">𝕏</a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" rel="noopener" title="Facebook">f</a>
-      <a href="https://wa.me/?text=" target="_blank" rel="noopener" title="WhatsApp">✆</a>
-      <button onclick="navigator.clipboard.writeText(location.href);this.textContent='✓';setTimeout(()=>this.textContent='⧉',1200);" title="Copiar enlace">⧉</button>
+      <a href="#" onclick="shGo('x');return false;" style="--sc:#e6edf3" title="X">𝕏</a>
+      <a href="#" onclick="shGo('fb');return false;" style="--sc:#1877f2" title="Facebook">f</a>
+      <a href="#" onclick="shGo('wa');return false;" style="--sc:#25d366" title="WhatsApp">✆</a>
+      <button onclick="navigator.clipboard.writeText(location.href);this.textContent='✓';setTimeout(()=>this.textContent='⧉',1200);" style="--sc:#fbbf24" title="Copiar enlace">⧉</button>
     </div>
     <div style="margin-top:14px;">45 Digital Noticias · Inseguridad México · cifras trazables en cifras.csv · <a href="https://45digitalnoticias.github.io/columnas/privacidad.html" target="_blank" rel="noopener" style="color:var(--mut);">Aviso de privacidad</a></div>
   </footer>
@@ -507,6 +507,29 @@ document.getElementById('gridEstados').innerHTML = PANORAMA_ESTATAL.slice()
   }
   render55();
 })();
+</script>
+<button class="shfab" onclick="document.getElementById('shpop').classList.toggle('open')" title="Compartir" aria-label="Compartir">⤴</button>
+<div class="shpop" id="shpop">
+  <a href="#" onclick="shGo('x');return false;" style="--sc:#e6edf3" title="X">𝕏</a>
+  <a href="#" onclick="shGo('fb');return false;" style="--sc:#1877f2" title="Facebook">f</a>
+  <a href="#" onclick="shGo('wa');return false;" style="--sc:#25d366" title="WhatsApp">✆</a>
+  <button onclick="navigator.clipboard.writeText(location.href);this.textContent='✓';setTimeout(()=>this.textContent='⧉',1200);" style="--sc:#fbbf24" title="Copiar enlace">⧉</button>
+</div>
+<style>
+.shfab{position:fixed;bottom:18px;right:18px;z-index:9400;width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,#fbbf24,#f59e0b);box-shadow:0 0 18px rgba(251,191,36,.5),0 3px 10px rgba(0,0,0,.5);color:#0d1117;font-size:21px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.shfab:hover{box-shadow:0 0 26px rgba(251,191,36,.75),0 3px 10px rgba(0,0,0,.5);}
+.shpop{position:fixed;bottom:80px;right:21px;z-index:9400;display:none;flex-direction:column;gap:9px;}
+.shpop.open{display:flex;}
+.shpop a,.shpop button{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;text-decoration:none;cursor:pointer;background:rgba(13,17,23,.92);color:var(--sc);border:1.5px solid var(--sc);box-shadow:0 0 11px color-mix(in srgb, var(--sc) 40%, transparent);}
+.shpop a:hover,.shpop button:hover{background:color-mix(in srgb, var(--sc) 18%, rgba(13,17,23,.92));}
+@media(max-width:680px){.shfab{bottom:74px;}.shpop{bottom:136px;}}
+</style>
+<script>
+function shGo(n){
+  const u=encodeURIComponent(location.href), t=encodeURIComponent(document.title);
+  const m={x:'https://twitter.com/intent/tweet?text='+t+'&url='+u, fb:'https://www.facebook.com/sharer/sharer.php?u='+u, wa:'https://wa.me/?text='+t+'%20'+u};
+  window.open(m[n],'_blank','noopener');
+}
 </script>
 </body>
 </html>
