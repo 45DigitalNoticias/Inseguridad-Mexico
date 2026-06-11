@@ -123,6 +123,7 @@
     table.del td.pct{width:80px;}
     .wrap{padding:0 14px;}
   }
+#panelMapaMun:fullscreen{background:#0d1117;overflow:auto;padding:26px;}
 </style>
 <script>
 /* GA4 · solo en produccion (mismo flujo que /morelos/) */
@@ -218,7 +219,7 @@ if(/github\.io$/.test(location.hostname)){
       <h3><span>Mapa de calor municipal · <em id="mapMunPeriodo"></em></span><span>vinculado al periodo del ranking · mismo filtro</span></h3>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;align-items:center;" id="mapMunCtrl"></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center;" id="indBtns"></div>
-      <div style="display:flex;gap:6px;margin-bottom:10px;"><button onclick="zoomMun(1.25)" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-weight:700;cursor:pointer;">+</button><button onclick="zoomMun(0.8)" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-weight:700;cursor:pointer;">−</button><button onclick="zoomMun(0)" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-size:11px;cursor:pointer;">⟲</button><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1px;align-self:center;">ZOOM · útil en tablet</span></div>
+      <div style="display:flex;gap:6px;margin-bottom:10px;"><button onclick="zoomMun(1.25)" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-weight:700;cursor:pointer;">+</button><button onclick="zoomMun(0.8)" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-weight:700;cursor:pointer;">−</button><button onclick="zoomMun(0)" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-size:11px;cursor:pointer;">⟲</button><button onclick="fsMun()" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-size:14px;cursor:pointer;" title="Pantalla completa">⛶</button><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1px;align-self:center;">ZOOM · útil en tablet</span></div>
       <div id="mapMunWrap" style="position:relative;overflow:auto;max-height:640px;border-radius:8px;">
         <canvas id="mapaMun" style="width:100%;display:block;border-radius:8px;"></canvas>
         <div id="mapMunAviso" style="display:none;position:absolute;inset:0;background:rgba(13,17,23,.82);border-radius:8px;align-items:center;justify-content:center;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:var(--mut);text-transform:uppercase;padding:30px;"></div>
@@ -657,6 +658,11 @@ function renderMapaMun(){
 }
 
 let _zmun=1;
+function fsMun(){
+  const el=document.getElementById('panelMapaMun');
+  if(document.fullscreenElement) document.exitFullscreen();
+  else (el.requestFullscreen||el.webkitRequestFullscreen).call(el);
+}
 function zoomMun(f){const cv=document.getElementById('mapaMun');_zmun=f===0?1:Math.min(4,Math.max(1,_zmun*f));cv.style.width=(_zmun*100)+'%';}
 // selector preview
 const sel = document.getElementById('selEstado');
