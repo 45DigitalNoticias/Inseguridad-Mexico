@@ -25,6 +25,14 @@
   footer{border-top:1px solid rgba(48,54,61,.7);padding:20px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.4px;color:#6b7480;text-transform:uppercase;}
   @media(max-width:900px){.grid{grid-template-columns:1fr;}h1{font-size:36px;}}
 </style>
+<script>
+/* GA4 · solo en produccion (mismo flujo que /morelos/) */
+if(/github\.io$/.test(location.hostname)){
+  var _g=document.createElement('script');_g.async=1;_g.src='https://www.googletagmanager.com/gtag/js?id=G-R64XZVCF6F';document.head.appendChild(_g);
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());gtag('config','G-R64XZVCF6F');
+}
+</script>
 </head>
 <body>
   <header class="topbar">

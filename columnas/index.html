@@ -32,6 +32,14 @@
   footer a{color:#6b7480;}
   @media(max-width:680px){h1{font-size:36px;}.lead{font-size:14px;}}
 </style>
+<script>
+/* GA4 · solo en produccion (mismo flujo que /morelos/) */
+if(/github\.io$/.test(location.hostname)){
+  var _g=document.createElement('script');_g.async=1;_g.src='https://www.googletagmanager.com/gtag/js?id=G-R64XZVCF6F';document.head.appendChild(_g);
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());gtag('config','G-R64XZVCF6F');
+}
+</script>
 </head>
 <body>
   <header class="topbar">
