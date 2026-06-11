@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metodología · Inseguridad México · 45 Digital Noticias</title>
+<meta name="description" content="Fuentes, cortes, métodos de cálculo, validaciones cruzadas y límites declarados del expediente Inseguridad México.">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  body{background:#0d1117 url(assets/fondo_vector.svg) center bottom/cover fixed no-repeat;color:#e6edf3;font-family:Inter,system-ui,sans-serif;margin:0;}
+  .topbar{display:flex;align-items:center;gap:11px;padding:13px 26px;border-bottom:1px solid rgba(48,54,61,.7);background:rgba(13,17,23,.93);position:sticky;top:0;z-index:50;}
+  .topbar a.volver{margin-left:auto;color:#fbbf24;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;font-weight:700;padding:9px 15px;border:1.5px solid rgba(251,191,36,.5);border-radius:9px;background:rgba(22,27,34,.7);}
+  .topbar a.volver:hover{background:rgba(251,191,36,.14);border-color:#fbbf24;}
+  .wrap{max-width:820px;margin:0 auto;padding:46px 26px 80px;}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:3.5px;color:#3fb950;text-transform:uppercase;font-weight:700;margin-bottom:12px;}
+  h1{font-family:Fraunces,serif;font-size:44px;letter-spacing:-1.2px;line-height:1.1;margin:0 0 12px;}
+  h1 em{color:#3fb950;font-style:italic;}
+  h2{font-family:Fraunces,serif;font-size:23px;letter-spacing:-.4px;margin:36px 0 10px;color:#3fb950;}
+  p,li{font-size:14.5px;line-height:1.8;color:#c9d1d9;text-align:justify;}
+  strong{color:#e6edf3;}
+  ul{padding-left:22px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:14px 0;}
+  th{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:#8b949e;text-align:left;padding:8px 10px;border-bottom:1px solid rgba(48,54,61,.7);}
+  td{padding:9px 10px;border-bottom:1px solid rgba(48,54,61,.35);vertical-align:top;line-height:1.55;}
+  td:first-child{font-weight:700;white-space:nowrap;}
+  .nota{background:rgba(22,27,34,.75);border:1px solid rgba(48,54,61,.7);border-left:4px solid #3fb950;border-radius:10px;padding:15px 19px;margin:20px 0;}
+  .nota p{margin:0;font-size:13.5px;}
+  .lim{border-left-color:#f85149;}
+  code{font-family:'JetBrains Mono',monospace;font-size:12px;background:rgba(48,54,61,.4);padding:2px 6px;border-radius:5px;}
+  a{color:#fbbf24;}
+  footer{border-top:1px solid rgba(48,54,61,.7);padding:20px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.4px;color:#6b7480;text-transform:uppercase;}
+  footer a{color:#6b7480;}
+  @media(max-width:680px){h1{font-size:32px;}td:first-child{white-space:normal;}}
+</style>
+<script>
+/* GA4 · solo en produccion (mismo flujo que /morelos/) */
+if(/github\.io$/.test(location.hostname)){
+  var _g=document.createElement('script');_g.async=1;_g.src='https://www.googletagmanager.com/gtag/js?id=G-R64XZVCF6F';document.head.appendChild(_g);
+  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());gtag('config','G-R64XZVCF6F');
+}
+</script>
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
+</head>
+<body>
+  <header class="topbar">
+    <img src="assets/logo45.webp" style="height:44px;border-radius:9px;" alt="45 Digital Noticias">
+    <div><span style="font-weight:800;font-size:13px;display:block;">45 DIGITAL NOTICIAS</span><span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:2.5px;color:#3fb950;text-transform:uppercase;">Metodología</span></div>
+    <a class="volver" href="./">⌂ Portal nacional</a>
+  </header>
+  <main class="wrap">
+    <div class="eyebrow">Cómo se construye este expediente</div>
+    <h1>Metodología y <em>trazabilidad</em></h1>
+    <p>Este expediente se sostiene sobre una regla única: <strong>toda cifra publicada debe poder rastrearse hasta un archivo oficial y reproducirse por cualquier persona</strong>. Esta página documenta las fuentes, los cortes, los métodos de cálculo, las validaciones cruzadas y, con el mismo peso, los límites de lo que mostramos.</p>
+
+    <h2>1 · Fuentes primarias y cortes</h2>
+    <table>
+      <tr><th>Dato</th><th>Fuente</th><th>Corte</th></tr>
+      <tr><td>Incidencia estatal 2015-2025</td><td>SESNSP · base estatal de carpetas de investigación del fuero común (55 subtipos del catálogo oficial)</td><td>abril 2026</td></tr>
+      <tr><td>Incidencia estatal 2026</td><td>SESNSP · RNID estatal, enero-abril 2026</td><td>abril 2026</td></tr>
+      <tr><td>Incidencia municipal 2016-2024</td><td>SESNSP · bases municipales anuales</td><td>abril 2026</td></tr>
+      <tr><td>Incidencia municipal 2025</td><td>SESNSP · base municipal de la publicación de diciembre 2025</td><td>febrero 2026</td></tr>
+      <tr><td>Incidencia municipal 2026</td><td>SESNSP · RNID municipal, enero-abril 2026</td><td>abril 2026</td></tr>
+      <tr><td>Personas desaparecidas</td><td>RNPDNO · consulta pública del registro nacional (estatus activo)</td><td>3 junio 2026</td></tr>
+      <tr><td>Población para tasas</td><td>CONAPO · proyecciones de población 2025</td><td>proyección vigente</td></tr>
+      <tr><td>Geometrías municipales</td><td>INEGI · marco geoestadístico 2023 (claves oficiales CVE_MUN)</td><td>2023</td></tr>
+    </table>
+
+    <h2>2 · Métodos de cálculo</h2>
+    <ul>
+      <li><strong>Tasas por 100 mil habitantes:</strong> carpetas del periodo ÷ población CONAPO del estado × 100,000. Es la única forma honesta de comparar estados de tamaños distintos.</li>
+      <li><strong>Catálogo completo:</strong> publicamos los 55 subtipos delictivos oficiales, incluidas las categorías "Otros…". La selección de delitos "importantes" es una decisión editorial que preferimos no tomar por el lector.</li>
+      <li><strong>Series municipales:</strong> acumulación mensual por clave oficial de municipio (no por nombre), 8 indicadores, 2016 a abril 2026.</li>
+      <li><strong>Detector de espejo:</strong> 4 pares específico/espejo del mismo bien jurídico. Una señal se enciende cuando el delito específico cae ≥25% y su espejo sube ≥25% entre 2018 y 2025. Las señales se ordenan por carpetas desplazadas, no por porcentaje.</li>
+      <li><strong>Monitor de Opacidad:</strong> para cada estado y año, porcentaje de todas sus carpetas registradas en subtipos "Otros…". Sin umbrales ni selección: la matriz completa, 32 estados × 11 años.</li>
+    </ul>
+
+    <h2>3 · Validaciones cruzadas</h2>
+    <p>Antes de publicar, el pipeline verifica que las fuentes se certifiquen entre sí:</p>
+    <ul>
+      <li><strong>Estatal vs. municipal:</strong> la suma municipal de homicidio doloso y del total de carpetas de cada estado debe coincidir con la cifra estatal del mismo año. En 2024, coincidencia <strong>exacta en los 32 estados</strong>.</li>
+      <li><strong>2025 municipal:</strong> 28 estados coinciden exactos con el ancla estatal; 4 (Chihuahua, CDMX, Jalisco, Nuevo León) difieren entre 1 y 70 carpetas porque provienen de cortes oficiales distintos (febrero vs. abril 2026): el SESNSP revisa cifras entre publicaciones. La diferencia máxima es de 0.09%.</li>
+      <li><strong>Geometrías:</strong> el conteo de municipios con geometría coincide con el padrón SESNSP en 30 de 32 estados; los 3 municipios faltantes (Villa de Pozos, SLP; Eldorado y Juan José Ríos, Sinaloa) fueron creados en 2024, después del marco geoestadístico 2023.</li>
+    </ul>
+
+    <h2>4 · Decisiones visuales declaradas</h2>
+    <div class="nota"><p><strong>El mapa de calor interpola.</strong> El degradado continuo entre estados (y entre municipios) es una decisión estética tipo mapa meteorológico para lectura inmediata. <strong>El dato real es el del tooltip y el ranking</strong>; la serie por delito es dato oficial sin interpolación. Los periodos incompletos siempre se marcan como parciales.</p></div>
+
+    <h2>5 · Límites declarados</h2>
+    <div class="nota lim"><p><strong>Opacidad no es culpa.</strong> Una celda alta en el Monitor o una señal de espejo no prueban manipulación: pueden responder a cambios de criterio de captura o reformas legales. Lo que sí establecen es cuánto del registro no puede auditarse y qué casos merecen explicación pública. Las señales son hipótesis a auditar, y quien tenga la explicación tiene en este medio el espacio para darla.</p></div>
+    <ul>
+      <li>La cifra negra no está aquí: el SESNSP cuenta carpetas de investigación, no delitos cometidos. El delito no denunciado no aparece en ningún registro oficial.</li>
+      <li>Las cifras de cortes distintos pueden diferir levemente entre sí; cuando ocurre, lo decimos en lugar de ocultarlo.</li>
+      <li>El RNPDNO es un registro vivo: las cifras de personas desaparecidas cambian diariamente y la fecha de consulta siempre se declara.</li>
+    </ul>
+
+    <h2>6 · Reproducibilidad</h2>
+    <p>Cada cifra publicada tiene una fila en el registro público de trazabilidad <a href="datos/cifras.csv"><code>datos/cifras.csv</code></a> con su identificador, fuente primaria, método de cálculo, fecha de corte y estado de verificación. Las bases originales son públicas y descargables de los portales oficiales; cualquier persona con una hoja de cálculo puede reproducir cada número de este sitio. Si encuentras una discrepancia, el correo del medio está abierto: la corrección pública es parte del método.</p>
+
+    <p style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#6b7480;margin-top:36px;">Última actualización: junio 2026 · contacto: mevo@mevo.com.mx</p>
+  </main>
+  <footer>45 Digital Noticias · Metodología · <a href="https://45digitalnoticias.github.io/columnas/privacidad.html" target="_blank" rel="noopener">aviso de privacidad</a></footer>
+</body>
+</html>
