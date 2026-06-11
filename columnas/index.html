@@ -23,6 +23,7 @@
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;}
   .card{background:rgba(22,27,34,.78);border:1px solid rgba(48,54,61,.7);border-radius:13px;padding:22px;text-decoration:none;color:inherit;transition:transform .12s,border-color .12s;display:flex;flex-direction:column;gap:8px;border-top:3px solid var(--cc,#fb923c);}
   .card:hover{transform:translateY(-3px);border-color:var(--cc,#fb923c);}
+  .card img.portada{width:100%;aspect-ratio:1200/630;object-fit:cover;border-radius:9px;display:block;margin-bottom:6px;}
   .card .tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--cc,#fb923c);}
   .card h3{font-family:Fraunces,serif;font-size:21px;margin:0;font-weight:700;line-height:1.2;}
   .card p{font-size:12.5px;color:#8b949e;line-height:1.6;margin:0;text-align:justify;}
@@ -58,6 +59,7 @@ if(/github\.io$/.test(location.hostname)){
     <div class="sec" style="--sc:#fbbf24"><em>Empieza aquí</em></div>
     <div class="grid">
       <a class="card destacada" href="../como_leer.html" style="--cc:#fbbf24">
+        <img class="portada" src="portadas/como_leer.webp" alt="Cómo leer Inseguridad México" loading="lazy">
         <div class="tag">Guía · expediente nacional</div>
         <h3>Cómo leer Inseguridad México (y por qué lo construimos así)</h3>
         <p>El mapa de temperatura, las tasas por 100 mil, los 55 delitos de tu estado, y la pieza que nadie más publica: las bolsas espejo y el Monitor de Opacidad. La guía ilustrada del tablero.</p>
@@ -67,16 +69,19 @@ if(/github\.io$/.test(location.hostname)){
     <div class="sec" style="--sc:#f85149"><em>Comunicados auditados</em> · el anuncio vs. el archivo</div>
     <div class="grid">
       <a class="card" href="../morelos/comunicados/figueroa-40-12may2026.html" style="--cc:#f85149">
+        <img class="portada" src="portadas/figueroa40.webp" alt="−40% homicidio doloso nacional" loading="lazy">
         <div class="tag">SESNSP · 12-may-2026</div>
         <h3>−40% homicidio doloso nacional</h3>
         <p>El anuncio del Secretariado sobre la baja del 40% en homicidios, cruzado contra las desapariciones del RNPDNO que corren en paralelo.</p>
       </a>
       <a class="card" href="../morelos/comunicados/harfuch-62-27may2026.html" style="--cc:#f85149">
+        <img class="portada" src="portadas/harfuch62.webp" alt="El −62.8% de Morelos" loading="lazy">
         <div class="tag">SSPC federal · 27-may-2026</div>
         <h3>El −62.8% de Morelos</h3>
         <p>El anuncio del secretario Omar García Harfuch sobre Morelos, auditado metodológicamente con los archivos del SESNSP, INEGI y RNPDNO.</p>
       </a>
       <a class="card" href="../morelos/comunicados/sheinbaum-rnpdno-27mar2026.html" style="--cc:#f85149">
+        <img class="portada" src="portadas/rnpdno.webp" alt="Reactivación RNPDNO" loading="lazy">
         <div class="tag">Presidencia · 27-mar-2026</div>
         <h3>Reactivación RNPDNO</h3>
         <p>El anuncio presidencial sobre la reactivación del registro de desaparecidos, auditado contra el padrón pre y post reforma.</p>
@@ -86,11 +91,13 @@ if(/github\.io$/.test(location.hostname)){
     <div class="sec" style="--sc:#ec4899"><em>Morelos · caso profundo</em></div>
     <div class="grid">
       <a class="card" href="../morelos/columnas/angulo_conveniente.html" style="--cc:#ec4899">
+        <img class="portada" src="portadas/angulo.webp" alt="El Ángulo Conveniente" loading="lazy">
         <div class="tag">Columna firmada</div>
         <h3>El Ángulo Conveniente</h3>
         <p>Anatomía de una narrativa numérica: cuando el homicidio baja, esto sube. La columna que abrió la línea editorial del expediente.</p>
       </a>
       <a class="card" href="../morelos/columnas/aritmetica.html" style="--cc:#ec4899">
+        <img class="portada" src="portadas/aritmetica.webp" alt="La aritmética que reduce sin encontrar" loading="lazy">
         <div class="tag">Columna firmada</div>
         <h3>La aritmética que reduce sin encontrar</h3>
         <p>El padrón RNPDNO antes y después de la reforma del 27 de marzo de 2026: 134,779 personas activas y un método que resta sin buscar.</p>
