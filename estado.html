@@ -562,7 +562,7 @@ function renderRank(){
 }
 
 // ================= MAPA MUNICIPAL VINCULADO =================
-let SMUN=null, GMUN=null, SMA=null, indMapa='hd', subMapa=null;
+let SMUN=null, GMUN=null, SMA=null, indMapa='total', subMapa=null;
 const INDS = [['hd','Homicidio'],['feminicidio','Feminicidio'],['extorsion','Extorsión'],['secuestro','Secuestro'],['violencia_familiar','V. familiar'],['violacion','Violación'],['narcomenudeo','Narcomenudeo'],['total','Total']];
 
 function cargarMun(clave){
@@ -587,14 +587,14 @@ function renderMapaMun(){
     `<span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;">· sincronizado con el ranking</span>`;
   // botones indicador
   const catEdo=(DELITOS_COMPLETO_2025[String(CLAVE)]||[]).slice().sort((a,b)=>b.v-a.v);
-  document.getElementById('indBtns').innerHTML=INDS.map(([k,l])=>
-    `<button onclick="subMapa=null;indMapa='${k}';renderMapaMun()" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;padding:8px 12px;border-radius:8px;cursor:pointer;border:1px solid ${(!subMapa&&k===indMapa)?P.color:'var(--line)'};color:${(!subMapa&&k===indMapa)?P.color:'var(--mut)'};background:transparent;">${l}</button>`).join('')
-    + `<span style="display:inline-flex;align-items:center;gap:7px;background:rgba(22,27,34,.9);border:1.5px solid ${subMapa?P.color:'var(--line)'};border-radius:9px;padding:6px 11px;${subMapa?`box-shadow:0 0 11px color-mix(in srgb, ${P.color} 30%, transparent);`:''}">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.4px;color:${subMapa?P.color:'var(--mut)'};font-weight:700;">▾ CATÁLOGO COMPLETO</span>
-        <select onchange="subMapa=this.value||null;renderMapaMun()" style="background:transparent;color:var(--txt);border:none;outline:none;font-family:Inter;font-size:12.5px;font-weight:700;cursor:pointer;max-width:250px;">
-          <option value="" ${!subMapa?'selected':''}>— elegir delito (anual) —</option>
+  document.getElementById('indBtns').innerHTML =
+    `<span style="display:inline-flex;align-items:center;gap:8px;background:rgba(22,27,34,.9);border:1.5px solid ${P.color};border-radius:10px;padding:8px 13px;box-shadow:0 0 12px color-mix(in srgb, ${P.color} 28%, transparent);">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.6px;color:${P.color};font-weight:700;">▾ DELITO</span>
+        <select onchange="subMapa=this.value||null;renderMapaMun()" style="background:transparent;color:var(--txt);border:none;outline:none;font-family:Inter;font-size:13.5px;font-weight:700;cursor:pointer;max-width:330px;">
+          <option value="" ${!subMapa?'selected':''}>Todos los delitos (total)</option>
           ${catEdo.map(r=>`<option value="${r.s.replace(/"/g,'&quot;')}" ${subMapa===r.s?'selected':''}>${r.s}</option>`).join('')}
-        </select></span>`;
+        </select></span>
+     <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;">catálogo completo · ${catEdo.length} subtipos · anual (total admite trimestres)</span>`;
   if(!SMUN||!GMUN){ aviso.style.display='flex'; aviso.textContent='Mapa municipal disponible próximamente para este estado (piloto: Coahuila)'; cv.style.visibility='hidden'; return; }
   // periodo compartido con el ranking (timeline estatal arranca 2015; municipal 2016)
   const per=PERIODOS_R[periodoR];
@@ -678,7 +678,7 @@ function renderMapaMun(){
   };
   // leyenda min/max
   const top=orden[orden.length-1],low=orden[0];
-  const lblInd=subMapa||INDS.find(i=>i[0]===indMapa)[1];
+  const lblInd=subMapa||'Todos los delitos';
   document.getElementById('mapMunLey').innerHTML=
     `<span>← tenue: ${nomDe[low]} ${fmtN(vals[low]||0)}</span><span>${lblInd} · ${per.label}</span><span>intenso: ${nomDe[top]} ${fmtN(vals[top]||0)} →</span>`;
 }
