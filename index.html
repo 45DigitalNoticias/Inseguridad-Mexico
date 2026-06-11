@@ -223,10 +223,9 @@ if(/github\.io$/.test(location.hostname)){
             <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.6px;color:var(--mut);font-weight:700;">AÑO</span>
             <select id="selAnioMapa" onchange="modoSerie=true;anioM=+this.value;render()" style="background:transparent;color:var(--txt);border:none;outline:none;font-family:Inter;font-size:13px;font-weight:700;cursor:pointer;"></select>
           </div>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--dim);">CATÁLOGO COMPLETO · 55 SUBTIPOS · O USA LOS ACCESOS RÁPIDOS ↓</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--dim);">CATÁLOGO COMPLETO · 55 SUBTIPOS + DESAPARECIDOS RNPDNO</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;">
-          <div class="metric-tabs" id="tabs" style="margin-bottom:0;"></div>
+        <div style="display:flex;justify-content:flex-end;align-items:center;gap:10px;">
           <div class="zoomctl"><button onclick="zoomMapa(1.25)" title="Acercar">+</button><button onclick="zoomMapa(0.8)" title="Alejar">−</button><button onclick="zoomMapa(0)" title="Restablecer" style="font-size:11px;">⟲</button></div>
         </div>
         <div class="zoomwrap" id="mapaWrap" style="margin-top:12px;">
@@ -400,7 +399,10 @@ const PAIS = new Path2D(); PATHS.forEach(o=>PAIS.addPath(o.p2d));
 
 function render(){
   let M, vals={};
-  if(modoSerie){
+  if(subSel==='__RNPDNO__'){
+    M = {label:'Desaparecidos /100K · RNPDNO corte 3-jun-2026', fmt:v=>Number(v).toFixed(0)};
+    PANORAMA_ESTATAL.forEach(r=>vals[r.clave_ent]=r.tasa_rnpdno_activos_100k);
+  } else if(modoSerie){
     const et = subSel==='__ALL__' ? 'Todos los delitos' : subSel;
     M = {label: et+' /100K · '+ANIOS_M[anioM]+(anioM===I26M?' (parcial)':''), fmt:v=>Number(v).toFixed(1)};
     PANORAMA_ESTATAL.forEach(r=>vals[r.clave_ent]=tasaSerie(r.clave_ent));
@@ -473,11 +475,9 @@ function render(){
       <div class="bar" style="width:${Math.max(8,Math.round(vals[r.clave_ent]/max*100))}%"></div></span>
       <span class="val">${M.fmt(vals[r.clave_ent])}</span>
     </a>`).join('');
-  // tabs
-  document.getElementById('tabs').innerHTML=METRICAS.map((m,i)=>`<button class="mtab ${(!modoSerie&&i===metricaAct)?'act':''}" onclick="modoSerie=false;metricaAct=${i};sincSelMapa();render()">${m.label}</button>`).join('');
 }
 const _sd=document.getElementById('selDelitoMapa');
-_sd.innerHTML='<option value="__ALL__">Todos los delitos (global)</option>'+CAT_MAPA.map(d=>`<option value="${d.s.replace(/"/g,'&quot;')}">${d.s}</option>`).join('');
+_sd.innerHTML='<option value="__ALL__">Todos los delitos (global)</option><option value="__RNPDNO__">Personas desaparecidas (RNPDNO)</option>'+CAT_MAPA.map(d=>`<option value="${d.s.replace(/"/g,'&quot;')}">${d.s}</option>`).join('');
 const _sa=document.getElementById('selAnioMapa');
 _sa.innerHTML=ANIOS_M.map((a,i)=>`<option value="${i}" ${i===anioM?'selected':''}>${a}</option>`).join('');
 function sincSelMapa(){ if(!modoSerie){_sd.value='__ALL__';} }
