@@ -246,11 +246,36 @@ if(/github\.io$/.test(location.hostname)){
         <div class="gradbar"></div>
         <div class="ley" id="ley"></div>
       </div>
-      <div class="panel">
-        <h3>Ranking por <em id="rankMetric">tasa</em> · top 10</h3>
-        <div class="rank-list" id="ranking"></div>
+      <div class="rankcol">
+        <div class="panel">
+          <h3>Ranking por <em id="rankMetric">tasa</em> · top 5</h3>
+          <div class="rank-list" id="ranking"></div>
+        </div>
+        <!-- COLUMNA MÁS RECIENTE · al publicar una nueva, reemplaza portada/título/gancho/liga de esta tarjeta -->
+        <a class="colreciente" href="https://45digitalnoticias.github.io/columnas/el-gotham-que-no-cuadra.html" target="_blank" rel="noopener">
+          <span class="cr-badge">● NUEVA</span>
+          <img src="columnas/portadas/gotham.webp" alt="El Gotham que no cuadra">
+          <div class="cr-body">
+            <span class="cr-kick">✒ Columna más reciente</span>
+            <h4>El Gotham que no cuadra</h4>
+            <p>El gobierno presume −46% en homicidios. Con los propios datos del SESNSP, por qué la cifra es verdadera en su aritmética y falsa en lo que esconde. La baja real: 8.6%.</p>
+            <span class="cr-more">Leer la columna →</span>
+          </div>
+        </a>
       </div>
     </div>
+    <style>
+      .rankcol{display:flex;flex-direction:column;gap:16px;min-width:0;}
+      .colreciente{position:relative;display:flex;flex-direction:column;background:linear-gradient(180deg,rgba(251,191,36,.08),rgba(22,27,34,.88));border:1px solid rgba(251,191,36,.45);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s;box-shadow:0 0 22px rgba(251,191,36,.06);}
+      .colreciente:hover{border-color:#fbbf24;transform:translateY(-2px);}
+      .colreciente img{width:100%;aspect-ratio:1344/620;object-fit:cover;display:block;}
+      .colreciente .cr-body{padding:13px 16px 15px;display:flex;flex-direction:column;gap:6px;}
+      .colreciente .cr-kick{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.8px;text-transform:uppercase;color:#fbbf24;font-weight:700;}
+      .colreciente h4{font-family:Fraunces,serif;font-size:20px;line-height:1.08;margin:0;letter-spacing:-.4px;}
+      .colreciente p{font-size:12px;line-height:1.55;color:#c9d1d9;margin:0;text-align:justify;}
+      .colreciente .cr-more{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#fbbf24;font-weight:700;margin-top:2px;}
+      .cr-badge{position:absolute;top:11px;left:11px;z-index:3;background:#fbbf24;color:#0d1117;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.12em;padding:5px 11px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.45);}
+    </style>
 
 
     <!-- RADIOGRAFIA NACIONAL 55 DELITOS -->
@@ -483,7 +508,7 @@ function render(){
   document.getElementById('mapScope').textContent=M.label;
   document.getElementById('rankMetric').textContent=M.label.toLowerCase();
   // ranking
-  const top=PANORAMA_ESTATAL.slice().sort((a,b)=>vals[b.clave_ent]-vals[a.clave_ent]).slice(0,10);
+  const top=PANORAMA_ESTATAL.slice().sort((a,b)=>vals[b.clave_ent]-vals[a.clave_ent]).slice(0,5);
   const max=top[0]?vals[top[0].clave_ent]:1;
   document.getElementById('ranking').innerHTML=top.map((r,i)=>`
     <a class="rrow" href="#">
