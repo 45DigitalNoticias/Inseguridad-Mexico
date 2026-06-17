@@ -21,6 +21,13 @@
  .leaflet-tooltip.tt{background:#161b22;border:1px solid #30363d;color:#e6edf3;font-size:12px}
  .estlbl{background:transparent;border:none;box-shadow:none;color:#dbeafe;font-size:10px;font-weight:600;text-shadow:0 0 3px #000,0 0 3px #000}
  .estIcon{font-size:16px;line-height:22px;text-align:center;filter:drop-shadow(0 0 2px #000) drop-shadow(0 0 2px #000)}
+ .resumen{top:12px;right:56px;width:330px;max-height:calc(100vh - 60px);overflow:auto;padding:14px 16px 16px;font-size:12px;line-height:1.55}
+ .resumen h2{font-size:13px;margin:0 0 8px;color:#22d3ee;letter-spacing:.04em;text-transform:uppercase}
+ .resumen p{margin:0 0 8px}.resumen b{color:#fbbf24}
+ .resumen ul{margin:4px 0 10px;padding-left:16px}.resumen li{margin:4px 0}
+ .resumen .close{position:absolute;top:7px;right:10px;cursor:pointer;color:#9aa4b2;font-size:16px;background:none;border:none}
+ .resumen .src{color:#6b7480;font-size:10px;margin:8px 0 0}
+ .togr{cursor:pointer;background:transparent}
 </style></head><body>
 <div id="map"></div>
 <div id="err" style="position:absolute;z-index:99999;top:8px;left:50%;transform:translateX(-50%);background:#bd0026;color:#fff;font:13px monospace;padding:6px 10px;border-radius:6px;display:none;max-width:80%"></div>
@@ -31,7 +38,22 @@
  <div>▶ / deslizador = evolución año por año 2018→2024 (Línea Z inaugurada dic-2023)</div>
  <div>Solo se iluminan los municipios por donde pasa el tren.</div>
 </div>
-<a class="dashlink" href="https://45digitalnoticias.github.io/Inseguridad-Mexico/" target="_blank" rel="noopener">◉ Inseguridad México · dashboard ↗</a></div>
+<a class="dashlink" href="https://45digitalnoticias.github.io/Inseguridad-Mexico/" target="_blank" rel="noopener">◉ Inseguridad México · dashboard ↗</a>
+<button class="dashlink togr" id="togResumen" style="margin-left:6px">📋 Resumen</button></div>
+<div class="panel resumen" id="resumen">
+ <button class="close" onclick="document.getElementById('resumen').style.display='none'">✕</button>
+ <h2>Resumen ejecutivo</h2>
+ <p><b>Qué muestra:</b> el homicidio doloso en los municipios por donde pasa el Corredor Interoceánico, año por año (mueve el deslizador).</p>
+ <p><b>El hallazgo, en una línea:</b> la violencia se concentró y subió en la VÍA, no en la región.</p>
+ <ul>
+  <li>Entre 2021 y 2024 el homicidio en la ruta subió <b>+71.5%</b>, mientras el resto de Veracruz, Oaxaca, Chiapas y Tabasco quedó <b>plano (−0.4%)</b> y el país bajó −10%.</li>
+  <li>No es maquillaje: aun sumando la categoría comodín "otros delitos contra la vida", la ruta sube <b>+49%</b> y su región baja.</li>
+  <li>Se encendió <b>tarde</b>: la mayoría de los nodos tuvo su peor año en 2024, tras inaugurarse el tren (Línea Z, dic-2023). Comalcalco 35→127, Tapachula 45→108, Cárdenas, Juchitán, Salina Cruz.</li>
+  <li>La firma es <b>matar + intimidar</b>: homicidio ×2.8 y amenazas ×1.8 sobre lo esperado; el robo común, en el promedio.</li>
+ </ul>
+ <p><b>La lectura (Charles Tilly, 1985):</b> controlar una ruta es poder cobrarla. Cuando lo hace el Estado se llama impuesto; cuando lo hace el crimen, plaza. El premio no es la obra: es el <b>peaje</b>, y por él se pelea.</p>
+ <p class="src">Fuente: SESNSP, homicidio doloso municipal 2018-2024 (cálculo por municipio de la ruta) · análisis 45 Digital Noticias.</p>
+</div>
 <div class="panel slider"><div class="yr">Año: <b id="ylbl">2024</b><button id="play">▶ animar</button></div>
 <input id="yr" type="range" min="2018" max="2024" step="1" value="2024"></div>
 <div class="panel leyenda" id="leyenda"></div>
@@ -62,6 +84,7 @@ ESTAC.forEach(e=>{
  if(e.k) L.tooltip({permanent:true,direction:'right',className:'estlbl',offset:[6,0]}).setLatLng([e.lat,e.lon]).setContent(e.n).addTo(map);
 });
 map.fitBounds(layer.getBounds(),{padding:[30,30]});
+document.getElementById('togResumen').onclick=function(){const r=document.getElementById('resumen');r.style.display=(r.style.display==='none')?'block':'none';};
 // DESLIZADOR
 const yr=document.getElementById('yr'), ylbl=document.getElementById('ylbl');
 function setYear(y){YEAR=String(y); ylbl.textContent=y; yr.value=y; layer.setStyle(styleFor);}
