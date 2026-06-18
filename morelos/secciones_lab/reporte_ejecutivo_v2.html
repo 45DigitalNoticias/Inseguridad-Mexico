@@ -8,7 +8,7 @@
 <title>Banderas rojas Morelos · primer trimestre 2026 · Reporte Ejecutivo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800;9..144,900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <style>
@@ -47,9 +47,9 @@
     --c-good:           #56d364;
 
     /* tipografía */
-    --font-serif: 'Fraunces', Georgia, serif;
-    --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono:  'JetBrains Mono', monospace;
+    --font-serif: 'Bricolage Grotesque', Georgia, serif;
+    --font-sans:  'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono:  'Spline Sans Mono', monospace;
 
     /* espacios */
     --sp-xs: 4px;
@@ -1349,7 +1349,7 @@
     .table-foot::before {
       content: '← desliza para ver toda la tabla →';
       display: block;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Spline Sans Mono', monospace;
       font-size: 10px; color: #fbbf24;
       text-align: center; margin-bottom: 8px;
       letter-spacing: 0.4px;
@@ -1465,7 +1465,7 @@
     }
   }
 </style>
-</head>
+<style id="noital">em,i{font-style:normal !important}</style></head>
 <body>
 
 <a href="#main" class="skip-link">Saltar al contenido</a>
@@ -1596,8 +1596,8 @@
             <!-- onda en superficie -->
             <path id="ondaLeft" d="M103,160 Q132,155 161,160 T217,160 L217,165 L103,165 Z" fill="rgba(255,255,255,0.18)" opacity="0.7"/>
             <!-- etiqueta -->
-            <text x="160" y="285" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="#c9d1d9" font-weight="700" id="lblLeft">DELITO A</text>
-            <text x="160" y="302" text-anchor="middle" font-family="JetBrains Mono" font-size="10.5" fill="#79c0ff" font-weight="700" id="lblLeftVal">cae</text>
+            <text x="160" y="285" text-anchor="middle" font-family="Spline Sans Mono" font-size="13" fill="#c9d1d9" font-weight="700" id="lblLeft">DELITO A</text>
+            <text x="160" y="302" text-anchor="middle" font-family="Spline Sans Mono" font-size="10.5" fill="#79c0ff" font-weight="700" id="lblLeftVal">cae</text>
           </g>
 
           <!-- vaso derecho -->
@@ -1608,8 +1608,8 @@
               <animate attributeName="height" id="animRightH" dur="2.4s" begin="indefinite" fill="freeze"/>
             </rect>
             <path id="ondaRight" d="M383,160 Q412,155 441,160 T497,160 L497,165 L383,165 Z" fill="rgba(255,255,255,0.18)" opacity="0.7"/>
-            <text x="440" y="285" text-anchor="middle" font-family="JetBrains Mono" font-size="13" fill="#c9d1d9" font-weight="700" id="lblRight">DELITO B</text>
-            <text x="440" y="302" text-anchor="middle" font-family="JetBrains Mono" font-size="10.5" fill="#ff7b72" font-weight="700" id="lblRightVal">sube</text>
+            <text x="440" y="285" text-anchor="middle" font-family="Spline Sans Mono" font-size="13" fill="#c9d1d9" font-weight="700" id="lblRight">DELITO B</text>
+            <text x="440" y="302" text-anchor="middle" font-family="Spline Sans Mono" font-size="10.5" fill="#ff7b72" font-weight="700" id="lblRightVal">sube</text>
           </g>
 
           <!-- conexión inferior -->
@@ -1632,8 +1632,8 @@
           </circle>
 
           <!-- títulos sobre cada vaso -->
-          <text x="160" y="48" text-anchor="middle" font-family="Fraunces" font-size="14" font-style="italic" fill="#79c0ff" id="titLeft">delito que cae</text>
-          <text x="440" y="48" text-anchor="middle" font-family="Fraunces" font-size="14" font-style="italic" fill="#ff7b72" id="titRight">delito que sube</text>
+          <text x="160" y="48" text-anchor="middle" font-family="Bricolage Grotesque" font-size="14" font-style="italic" fill="#79c0ff" id="titLeft">delito que cae</text>
+          <text x="440" y="48" text-anchor="middle" font-family="Bricolage Grotesque" font-size="14" font-style="italic" fill="#ff7b72" id="titRight">delito que sube</text>
         </svg>
       </div>
       <p class="vasos-caption" id="vasosCaption">El total del líquido es el mismo. Solo cambió dónde está. La cuenta no bajó: bajó la etiqueta más visible.</p>
@@ -2392,7 +2392,7 @@
         }
       },
       scales: {
-        x: { ticks: { color: '#6e7681', font: { size: 9, family: 'JetBrains Mono' } }, grid: { display: false } },
+        x: { ticks: { color: '#6e7681', font: { size: 9, family: 'Spline Sans Mono' } }, grid: { display: false } },
         y: { ticks: { color: '#6e7681', font: { size: 9 } }, grid: { color: 'rgba(48,54,61,0.3)' } }
       }
     }
@@ -2491,7 +2491,7 @@
       .attr('x', d => path.centroid(d)[0])
       .attr('y', d => path.centroid(d)[1])
       .attr('text-anchor', 'middle')
-      .attr('font-family', 'JetBrains Mono')
+      .attr('font-family', 'Spline Sans Mono')
       .attr('font-size', 9)
       .attr('font-weight', 700)
       .attr('fill', '#e6edf3')
@@ -2513,7 +2513,7 @@
         .attr('stroke', '#fff').attr('stroke-width', 1.2);
       g.append('text')
         .attr('x', x).attr('y', y - 14).attr('text-anchor', 'middle')
-        .attr('font-family', 'JetBrains Mono').attr('font-size', 8).attr('font-weight', 700)
+        .attr('font-family', 'Spline Sans Mono').attr('font-size', 8).attr('font-weight', 700)
         .attr('fill', '#e6edf3')
         .attr('stroke', '#0d1117').attr('stroke-width', 2)
         .attr('paint-order', 'stroke')

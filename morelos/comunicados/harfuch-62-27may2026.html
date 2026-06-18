@@ -7,7 +7,7 @@
 <meta name="description" content="Anuncio del Secretario de Seguridad federal Omar García Harfuch sobre Morelos. Auditoría metodológica con archivos SESNSP, INEGI y RNPDNO.">
 <meta property="og:title" content="El −62.8% Morelos auditado · 45 Digital Noticias">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../_partials/section-page.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
@@ -17,23 +17,23 @@
   /* HEADER */
   .com-head{border-bottom:1px solid rgba(48,54,61,0.5);padding-bottom:32px;margin-bottom:48px;}
   .com-head .breadcrumb{
-    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;
+    font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2px;
     color:#8b949e;text-transform:uppercase;font-weight:700;margin-bottom:18px;
   }
   .com-head .breadcrumb a{color:#f85149;text-decoration:none;}
   .com-head .breadcrumb a:hover{color:#fff;}
   .com-head .com-title{
-    font-family:'Fraunces',serif;font-size:48px;font-weight:700;
+    font-family:'Bricolage Grotesque',serif;font-size:48px;font-weight:700;
     color:#e6edf3;line-height:1.05;letter-spacing:-1.2px;margin:0 0 22px;
   }
   .com-head .com-title em{color:#f85149;font-style:italic;font-weight:600;}
   .com-head .com-attribute{
     display:flex;gap:24px;flex-wrap:wrap;
-    font-family:'Inter',sans-serif;font-size:13.5px;color:#c9d1d9;padding-top:8px;
+    font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;color:#c9d1d9;padding-top:8px;
   }
   .com-head .com-attribute > div{display:flex;flex-direction:column;gap:3px;}
   .com-head .com-attribute .lbl{
-    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;
+    font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.5px;
     color:#8b949e;text-transform:uppercase;font-weight:700;
   }
   .com-head .com-attribute .val{color:#e6edf3;font-weight:600;}
@@ -43,24 +43,24 @@
   .pinza-card{background:rgba(13,17,23,0.7);border:1px solid rgba(48,54,61,0.7);border-radius:14px;padding:30px 28px;}
   .pinza-card.anuncio{border-left:3px solid #6b7280;}
   .pinza-card.auditado{border-left:3px solid #f85149;}
-  .pinza-card .tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2.5px;color:#8b949e;text-transform:uppercase;font-weight:700;margin-bottom:14px;}
+  .pinza-card .tag{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2.5px;color:#8b949e;text-transform:uppercase;font-weight:700;margin-bottom:14px;}
   .pinza-card.auditado .tag{color:#f85149;}
-  .pinza-card .cita{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:#e6edf3;line-height:1.3;margin:0 0 16px;font-style:italic;}
+  .pinza-card .cita{font-family:'Bricolage Grotesque',serif;font-size:22px;font-weight:600;color:#e6edf3;line-height:1.3;margin:0 0 16px;font-style:italic;}
   .pinza-card.anuncio .cita::before{content:"\201C";color:#6e7681;font-size:38px;line-height:0;}
   .pinza-card.anuncio .cita::after{content:"\201D";color:#6e7681;font-size:38px;line-height:0;}
-  .pinza-card .cifra-big{font-family:'Fraunces',serif;font-size:54px;font-weight:800;color:#e6edf3;line-height:1;letter-spacing:-2px;margin:0 0 10px;}
+  .pinza-card .cifra-big{font-family:'Bricolage Grotesque',serif;font-size:54px;font-weight:800;color:#e6edf3;line-height:1;letter-spacing:-2px;margin:0 0 10px;}
   .pinza-card.auditado .cifra-big{color:#f85149;}
-  .pinza-card .sub{font-family:'Inter',sans-serif;font-size:13.5px;line-height:1.55;color:#c9d1d9;}
+  .pinza-card .sub{font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;line-height:1.55;color:#c9d1d9;}
   .pinza-card .sub strong{color:#e6edf3;}
-  .pinza-card .src{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:0.5px;color:#6e7681;margin-top:14px;padding-top:14px;border-top:1px solid rgba(48,54,61,0.5);}
-  .pinza-vs{align-self:center;font-family:'Fraunces',serif;font-size:22px;color:#6e7681;font-style:italic;font-weight:600;}
+  .pinza-card .src{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:0.5px;color:#6e7681;margin-top:14px;padding-top:14px;border-top:1px solid rgba(48,54,61,0.5);}
+  .pinza-vs{align-self:center;font-family:'Bricolage Grotesque',serif;font-size:22px;color:#6e7681;font-style:italic;font-weight:600;}
 
   /* BLOQUES */
   .bloque-head{margin:60px 0 22px;text-align:center;}
-  .bloque-piso{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:#f85149;text-transform:uppercase;font-weight:700;margin-bottom:8px;}
-  .bloque-head h2{font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:#e6edf3;line-height:1.2;margin:0 0 8px;}
+  .bloque-piso{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:3px;color:#f85149;text-transform:uppercase;font-weight:700;margin-bottom:8px;}
+  .bloque-head h2{font-family:'Bricolage Grotesque',serif;font-size:28px;font-weight:700;color:#e6edf3;line-height:1.2;margin:0 0 8px;}
   .bloque-head h2 em{color:#f85149;font-style:italic;font-weight:600;}
-  .bloque-head p{font-family:'Inter',sans-serif;color:#8b949e;font-size:14px;line-height:1.6;max-width:760px;margin:0 auto;}
+  .bloque-head p{font-family:'Hanken Grotesk',sans-serif;color:#8b949e;font-size:14px;line-height:1.6;max-width:760px;margin:0 auto;}
 
   /* 4 LECTURAS */
   .lecturas-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0;}
@@ -71,22 +71,22 @@
   }
   .lectura-card.oficial{border-color:rgba(251,191,36,0.55);background:linear-gradient(180deg,rgba(251,191,36,0.07),rgba(13,17,23,0.7));}
   .lectura-card.honesto{border-color:rgba(99,102,241,0.45);background:linear-gradient(180deg,rgba(99,102,241,0.06),rgba(13,17,23,0.7));}
-  .lectura-card .l-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;}
+  .lectura-card .l-tag{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;}
   .lectura-card.oficial .l-tag{color:#fbbf24;}
   .lectura-card.pico .l-tag{color:#f85149;}
   .lectura-card.anual .l-tag{color:#8b949e;}
   .lectura-card.honesto .l-tag{color:#a78bfa;}
-  .lectura-card .l-num{font-family:'Fraunces',serif;font-size:44px;font-weight:800;color:#e6edf3;line-height:1;letter-spacing:-1.5px;}
-  .lectura-card .l-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:#6e7681;letter-spacing:0.5px;}
-  .lectura-card .l-glosa{font-family:'Inter',sans-serif;font-size:12.5px;line-height:1.5;color:#c9d1d9;margin-top:4px;}
+  .lectura-card .l-num{font-family:'Bricolage Grotesque',serif;font-size:44px;font-weight:800;color:#e6edf3;line-height:1;letter-spacing:-1.5px;}
+  .lectura-card .l-meta{font-family:'Spline Sans Mono',monospace;font-size:11px;color:#6e7681;letter-spacing:0.5px;}
+  .lectura-card .l-glosa{font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;line-height:1.5;color:#c9d1d9;margin-top:4px;}
   .lectura-card .l-glosa strong{color:#e6edf3;}
 
   /* CHART BOX */
   .chart-box{background:rgba(13,17,23,0.65);border:1px solid rgba(48,54,61,0.7);border-radius:14px;padding:24px 26px 20px;margin:16px 0 8px;}
-  .chart-box h3{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:#e6edf3;margin:0 0 4px;line-height:1.3;}
-  .chart-sub{font-family:'Inter',sans-serif;font-size:12.5px;color:#8b949e;margin-bottom:18px;line-height:1.5;}
+  .chart-box h3{font-family:'Bricolage Grotesque',serif;font-size:20px;font-weight:700;color:#e6edf3;margin:0 0 4px;line-height:1.3;}
+  .chart-sub{font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;color:#8b949e;margin-bottom:18px;line-height:1.5;}
   .chart-canvas-wrap{position:relative;}
-  .chart-foot{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#6e7681;letter-spacing:0.5px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(48,54,61,0.5);}
+  .chart-foot{font-family:'Spline Sans Mono',monospace;font-size:10.5px;color:#6e7681;letter-spacing:0.5px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(48,54,61,0.5);}
 
   /* COLUMNA LINK */
   .columna-link{
@@ -94,15 +94,15 @@
     background:linear-gradient(135deg,rgba(251,191,36,0.10),rgba(13,17,23,0.6));
     border:1px solid rgba(251,191,36,0.30);border-radius:14px;text-align:center;
   }
-  .columna-link .tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2.5px;color:#fbbf24;text-transform:uppercase;font-weight:700;margin-bottom:12px;}
-  .columna-link h3{font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:#e6edf3;line-height:1.3;margin:0 0 18px;}
-  .columna-link a{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:#fbbf24;padding:12px 22px;text-decoration:none;border:1px solid rgba(251,191,36,0.4);border-radius:10px;transition:all 0.18s;}
+  .columna-link .tag{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2.5px;color:#fbbf24;text-transform:uppercase;font-weight:700;margin-bottom:12px;}
+  .columna-link h3{font-family:'Bricolage Grotesque',serif;font-size:22px;font-weight:700;color:#e6edf3;line-height:1.3;margin:0 0 18px;}
+  .columna-link a{display:inline-flex;align-items:center;gap:8px;font-family:'Spline Sans Mono',monospace;font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:#fbbf24;padding:12px 22px;text-decoration:none;border:1px solid rgba(251,191,36,0.4);border-radius:10px;transition:all 0.18s;}
   .columna-link a:hover{background:rgba(251,191,36,0.15);color:#fff;}
 
-  .metodo{margin-top:40px;padding:24px 28px;background:rgba(13,17,23,0.55);border:1px solid rgba(48,54,61,0.5);border-radius:10px;font-family:'Inter',sans-serif;font-size:13px;line-height:1.7;color:#8b949e;}
+  .metodo{margin-top:40px;padding:24px 28px;background:rgba(13,17,23,0.55);border:1px solid rgba(48,54,61,0.5);border-radius:10px;font-family:'Hanken Grotesk',sans-serif;font-size:13px;line-height:1.7;color:#8b949e;}
   .metodo strong{color:#c9d1d9;font-weight:700;}
   .metodo em{color:#f85149;font-style:italic;font-weight:600;}
-  .metodo code{background:rgba(255,255,255,0.05);padding:1px 6px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#fbbf24;}
+  .metodo code{background:rgba(255,255,255,0.05);padding:1px 6px;border-radius:3px;font-family:'Spline Sans Mono',monospace;font-size:11.5px;color:#fbbf24;}
 
   @media (max-width:960px){.lecturas-grid{grid-template-columns:repeat(2,1fr);}}
   @media (max-width:760px){
@@ -113,7 +113,7 @@
   }
 </style>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
-</head>
+<style id="noital">em,i{font-style:normal !important}</style></head>
 <body>
   <header class="page-topbar">
     <div class="page-brand">
@@ -269,7 +269,7 @@
       new Chart(cDiv, {
         type:'bar',
         data:{labels:datos.map(d=>d.lbl),datasets:[{data:datos.map(d=>d.delta),backgroundColor:datos.map(d=>d.delta<0?'rgba(63,185,80,0.78)':'rgba(248,81,73,0.82)'),borderColor:datos.map(d=>d.delta<0?'#3fb950':'#f85149'),borderWidth:1.5,borderRadius:3}]},
-        options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(13,17,23,0.96)',borderColor:'rgba(251,191,36,0.4)',borderWidth:1,titleColor:'#fbbf24',bodyColor:'#e6edf3',padding:10,displayColors:false,callbacks:{label:function(ctx){const d=datos[ctx.dataIndex];return ['Δ '+(d.delta>0?'+':'')+d.delta.toFixed(1)+'%','Base 6m: '+d.base.toLocaleString('es-MX')+' carpetas','Comp 6m: '+d.comp.toLocaleString('es-MX')+' carpetas'];}}}},scales:{x:{min:-40,max:130,grid:{color:'rgba(48,54,61,0.4)'},ticks:{color:'#8b949e',font:{size:11,family:'JetBrains Mono'},callback:v=>v+'%'},border:{color:'rgba(48,54,61,0.6)'}},y:{grid:{display:false},ticks:{color:'#c9d1d9',font:{size:12,family:'Inter'}},border:{color:'rgba(48,54,61,0.6)'}}}}
+        options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(13,17,23,0.96)',borderColor:'rgba(251,191,36,0.4)',borderWidth:1,titleColor:'#fbbf24',bodyColor:'#e6edf3',padding:10,displayColors:false,callbacks:{label:function(ctx){const d=datos[ctx.dataIndex];return ['Δ '+(d.delta>0?'+':'')+d.delta.toFixed(1)+'%','Base 6m: '+d.base.toLocaleString('es-MX')+' carpetas','Comp 6m: '+d.comp.toLocaleString('es-MX')+' carpetas'];}}}},scales:{x:{min:-40,max:130,grid:{color:'rgba(48,54,61,0.4)'},ticks:{color:'#8b949e',font:{size:11,family:'Spline Sans Mono'},callback:v=>v+'%'},border:{color:'rgba(48,54,61,0.6)'}},y:{grid:{display:false},ticks:{color:'#c9d1d9',font:{size:12,family:'Hanken Grotesk'}},border:{color:'rgba(48,54,61,0.6)'}}}}
       });
     }
 
@@ -283,8 +283,8 @@
       const hitos=[{idx:15,color:'#f85149',tag:'PICO ABR-24',sub:'179 víctimas',pos:'above',dy:-16},{idx:18,color:'#a78bfa',tag:'JUL-24 · BAJA INICIA',sub:'antes del cambio de gobierno',pos:'above',dy:-16},{idx:21,color:'#3fb950',tag:'SHEINBAUM · 1-OCT-24',sub:'toma protesta',pos:'below',dy:28},{idx:22,color:'#fbbf24',tag:'NOV-24 · BASELINE HARFUCH',sub:'128 víctimas · 4.27/día',pos:'above',dy:-16}];
       const ptColors=valores.map((v,i)=>{const h=hitos.find(x=>x.idx===i);return h?h.color:'rgba(201,209,217,0.0)';});
       const ptRadii=valores.map((v,i)=>hitos.find(x=>x.idx===i)?7:0);
-      const annotationPlugin={id:'h62Anno',afterDatasetsDraw(chart){const {ctx,chartArea,scales}=chart;if(!scales.x||!scales.y)return;ctx.save();const xStart=scales.x.getPixelForValue(22);const xEnd=scales.x.getPixelForValue(39);ctx.fillStyle='rgba(251,191,36,0.06)';ctx.fillRect(xStart,chartArea.top,xEnd-xStart,chartArea.bottom-chartArea.top);ctx.font='bold 10px "JetBrains Mono", monospace';ctx.fillStyle='rgba(251,191,36,0.85)';ctx.textAlign='center';ctx.fillText('PERIODO QUE HARFUCH CELEBRA',(xStart+xEnd)/2,chartArea.top+14);const xSh=scales.x.getPixelForValue(21);ctx.setLineDash([4,4]);ctx.strokeStyle='rgba(63,185,80,0.55)';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(xSh,chartArea.top+28);ctx.lineTo(xSh,chartArea.bottom);ctx.stroke();ctx.setLineDash([]);hitos.forEach(h=>{const xPx=scales.x.getPixelForValue(h.idx);const yPx=scales.y.getPixelForValue(valores[h.idx]);ctx.font='bold 10.5px "JetBrains Mono", monospace';ctx.fillStyle=h.color;ctx.textAlign='center';ctx.textBaseline=h.pos==='above'?'bottom':'top';const labelY=yPx+h.dy;ctx.fillText(h.tag,xPx,labelY);ctx.font='10px Inter, sans-serif';ctx.fillStyle='rgba(201,209,217,0.7)';const subY=h.pos==='above'?labelY+12:labelY+13;ctx.fillText(h.sub,xPx,subY);ctx.strokeStyle=h.color;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(xPx,yPx);ctx.lineTo(xPx,h.pos==='above'?labelY+4:labelY-2);ctx.stroke();});ctx.restore();}};
-      new Chart(cSerie,{type:'line',data:{labels:labels,datasets:[{label:'Víctimas / carpetas mensuales',data:valores,borderColor:'rgba(201,209,217,0.55)',backgroundColor:'transparent',borderWidth:1.6,pointBackgroundColor:ptColors,pointBorderColor:'#0d1117',pointBorderWidth:1.5,pointRadius:ptRadii,pointHoverRadius:7,tension:0},{label:'Tendencia (media móvil 3m)',data:tendencia,borderColor:'#fbbf24',backgroundColor:'transparent',borderWidth:3,pointRadius:0,tension:0.35}]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:'index'},layout:{padding:{top:56,right:16,bottom:8,left:8}},plugins:{legend:{position:'bottom',labels:{color:'#c9d1d9',font:{size:12,family:'Inter'},usePointStyle:true,padding:18,boxWidth:12}},tooltip:{backgroundColor:'rgba(13,17,23,0.96)',borderColor:'rgba(251,191,36,0.4)',borderWidth:1,titleColor:'#fbbf24',bodyColor:'#e6edf3',padding:10,callbacks:{label:function(ctx){return ctx.dataset.label+': '+Math.round(ctx.parsed.y);}}}},scales:{x:{grid:{color:'rgba(48,54,61,0.18)'},ticks:{color:'#8b949e',font:{size:10,family:'JetBrains Mono'},maxRotation:0,minRotation:0,autoSkip:true,maxTicksLimit:9,callback:function(value,index){const lbl=this.getLabelForValue(value);const m=lbl.split(' ')[0];if(m==='Ene'||m==='Jul')return lbl;if(index===labels.length-1)return lbl;return '';}},border:{color:'rgba(48,54,61,0.6)'}},y:{beginAtZero:false,min:40,max:200,grid:{color:'rgba(48,54,61,0.35)'},ticks:{color:'#8b949e',font:{size:11,family:'JetBrains Mono'},stepSize:40},border:{color:'rgba(48,54,61,0.6)'},title:{display:true,text:'Víctimas / carpetas por mes',color:'#8b949e',font:{size:11,family:'JetBrains Mono'}}}}},plugins:[annotationPlugin]});
+      const annotationPlugin={id:'h62Anno',afterDatasetsDraw(chart){const {ctx,chartArea,scales}=chart;if(!scales.x||!scales.y)return;ctx.save();const xStart=scales.x.getPixelForValue(22);const xEnd=scales.x.getPixelForValue(39);ctx.fillStyle='rgba(251,191,36,0.06)';ctx.fillRect(xStart,chartArea.top,xEnd-xStart,chartArea.bottom-chartArea.top);ctx.font='bold 10px "Spline Sans Mono", monospace';ctx.fillStyle='rgba(251,191,36,0.85)';ctx.textAlign='center';ctx.fillText('PERIODO QUE HARFUCH CELEBRA',(xStart+xEnd)/2,chartArea.top+14);const xSh=scales.x.getPixelForValue(21);ctx.setLineDash([4,4]);ctx.strokeStyle='rgba(63,185,80,0.55)';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(xSh,chartArea.top+28);ctx.lineTo(xSh,chartArea.bottom);ctx.stroke();ctx.setLineDash([]);hitos.forEach(h=>{const xPx=scales.x.getPixelForValue(h.idx);const yPx=scales.y.getPixelForValue(valores[h.idx]);ctx.font='bold 10.5px "Spline Sans Mono", monospace';ctx.fillStyle=h.color;ctx.textAlign='center';ctx.textBaseline=h.pos==='above'?'bottom':'top';const labelY=yPx+h.dy;ctx.fillText(h.tag,xPx,labelY);ctx.font='10px Inter, sans-serif';ctx.fillStyle='rgba(201,209,217,0.7)';const subY=h.pos==='above'?labelY+12:labelY+13;ctx.fillText(h.sub,xPx,subY);ctx.strokeStyle=h.color;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(xPx,yPx);ctx.lineTo(xPx,h.pos==='above'?labelY+4:labelY-2);ctx.stroke();});ctx.restore();}};
+      new Chart(cSerie,{type:'line',data:{labels:labels,datasets:[{label:'Víctimas / carpetas mensuales',data:valores,borderColor:'rgba(201,209,217,0.55)',backgroundColor:'transparent',borderWidth:1.6,pointBackgroundColor:ptColors,pointBorderColor:'#0d1117',pointBorderWidth:1.5,pointRadius:ptRadii,pointHoverRadius:7,tension:0},{label:'Tendencia (media móvil 3m)',data:tendencia,borderColor:'#fbbf24',backgroundColor:'transparent',borderWidth:3,pointRadius:0,tension:0.35}]},options:{responsive:true,maintainAspectRatio:false,interaction:{intersect:false,mode:'index'},layout:{padding:{top:56,right:16,bottom:8,left:8}},plugins:{legend:{position:'bottom',labels:{color:'#c9d1d9',font:{size:12,family:'Hanken Grotesk'},usePointStyle:true,padding:18,boxWidth:12}},tooltip:{backgroundColor:'rgba(13,17,23,0.96)',borderColor:'rgba(251,191,36,0.4)',borderWidth:1,titleColor:'#fbbf24',bodyColor:'#e6edf3',padding:10,callbacks:{label:function(ctx){return ctx.dataset.label+': '+Math.round(ctx.parsed.y);}}}},scales:{x:{grid:{color:'rgba(48,54,61,0.18)'},ticks:{color:'#8b949e',font:{size:10,family:'Spline Sans Mono'},maxRotation:0,minRotation:0,autoSkip:true,maxTicksLimit:9,callback:function(value,index){const lbl=this.getLabelForValue(value);const m=lbl.split(' ')[0];if(m==='Ene'||m==='Jul')return lbl;if(index===labels.length-1)return lbl;return '';}},border:{color:'rgba(48,54,61,0.6)'}},y:{beginAtZero:false,min:40,max:200,grid:{color:'rgba(48,54,61,0.35)'},ticks:{color:'#8b949e',font:{size:11,family:'Spline Sans Mono'},stepSize:40},border:{color:'rgba(48,54,61,0.6)'},title:{display:true,text:'Víctimas / carpetas por mes',color:'#8b949e',font:{size:11,family:'Spline Sans Mono'}}}}},plugins:[annotationPlugin]});
     }
   }
   if (document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();

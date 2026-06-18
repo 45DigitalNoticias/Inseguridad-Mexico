@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dashboard estatal · Inseguridad México · 45 Digital Noticias</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="mexico_estados.geojson.js"></script>
 <script src="panorama_estatal.js"></script>
 <script src="delitos_completo.js"></script>
@@ -17,22 +17,22 @@
     --acc:#d4ce5d; /* se sobreescribe con el color del estado */
   }
   *{box-sizing:border-box;}
-  body{background:#0d1117 url(assets/fondo_vector.svg) center bottom/cover fixed no-repeat;color:var(--txt);font-family:Inter,system-ui,sans-serif;margin:0;}
+  body{background:#0d1117 url(assets/fondo_vector.svg) center bottom/cover fixed no-repeat;color:var(--txt);font-family:'Hanken Grotesk',system-ui,sans-serif;margin:0;}
   .topbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:13px 26px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(13,17,23,.93);backdrop-filter:blur(8px);z-index:50;}
   .topbar .topctl{justify-self:center;}
-  .topbar .navder{justify-self:end;font-family:'JetBrains Mono',monospace;font-size:10.5px;}
+  .topbar .navder{justify-self:end;font-family:'Spline Sans Mono',monospace;font-size:10.5px;}
   .topbar .navder a{color:#fbbf24;text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;padding:9px 15px;border:1px solid color-mix(in srgb,#fbbf24 45%,transparent);border-radius:9px;background:rgba(22,27,34,.7);transition:all .15s;}
   .topbar .navder a:hover{background:rgba(251,191,36,.14);border-color:#fbbf24;}
   .brand{display:flex;align-items:center;gap:11px;}
   .brand .blk{width:36px;height:36px;border-radius:9px;background:#1f6feb;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;}
   .brand .n{font-weight:800;font-size:13px;display:block;}
-  .brand .s{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:2.5px;color:var(--acc);text-transform:uppercase;}
-  .topctl{display:flex;gap:16px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:10.5px;}
+  .brand .s{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:2.5px;color:var(--acc);text-transform:uppercase;}
+  .topctl{display:flex;gap:16px;align-items:center;font-family:'Spline Sans Mono',monospace;font-size:10.5px;}
   .topctl a{color:var(--mut);text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;}
   .selwrap{display:flex;align-items:center;gap:10px;background:rgba(22,27,34,.9);border:2px solid var(--acc);border-radius:11px;padding:8px 14px;box-shadow:0 0 16px color-mix(in srgb, var(--acc) 30%, transparent);}
-  .selwrap .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--acc);text-transform:uppercase;font-weight:700;white-space:nowrap;}
-  .topctl select{background:transparent;color:var(--txt);border:none;outline:none;font-family:Fraunces,serif;font-size:17px;font-weight:700;cursor:pointer;min-width:230px;}
-  .topctl select option{background:#161b22;font-family:Inter;font-size:13px;}
+  .selwrap .lbl{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--acc);text-transform:uppercase;font-weight:700;white-space:nowrap;}
+  .topctl select{background:transparent;color:var(--txt);border:none;outline:none;font-family:'Bricolage Grotesque',sans-serif;font-size:17px;font-weight:700;cursor:pointer;min-width:230px;}
+  .topctl select option{background:#161b22;font-family:'Hanken Grotesk';font-size:13px;}
 
   .wrap{max-width:1240px;margin:0 auto;padding:0 26px;}
 
@@ -40,68 +40,68 @@
   .hero{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;padding:46px 0 30px;}
   .hero .silueta{width:130px;height:130px;background:rgba(22,27,34,.7);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;align-items:center;justify-content:center;}
   .hero .silueta svg{width:100%;height:100%;}
-  .hero .eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:3.5px;color:var(--acc);text-transform:uppercase;font-weight:700;margin-bottom:10px;}
-  .hero h1{font-family:Fraunces,serif;font-size:52px;font-weight:700;line-height:1;letter-spacing:-1.5px;margin:0 0 10px;}
+  .hero .eyebrow{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:3.5px;color:var(--acc);text-transform:uppercase;font-weight:700;margin-bottom:10px;}
+  .hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:52px;font-weight:700;line-height:1;letter-spacing:-1.5px;margin:0 0 10px;}
   .hero .lead{font-size:14.5px;color:var(--mut);max-width:640px;line-height:1.6;text-align:justify;}
   .hero .pos{ text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 22px;}
-  .hero .pos .lbl{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--mut);text-transform:uppercase;}
-  .hero .pos .num{font-family:Fraunces,serif;font-size:40px;font-weight:800;color:var(--acc);line-height:1.1;}
+  .hero .pos .lbl{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--mut);text-transform:uppercase;}
+  .hero .pos .num{font-family:'Bricolage Grotesque',sans-serif;font-size:40px;font-weight:800;color:var(--acc);line-height:1.1;}
 
   /* KPIs */
   .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:11px;margin:8px 0 22px;}
   .kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px 16px;border-top:3px solid var(--acc);text-align:center;}
-  .kpi .lab{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.3px;color:var(--mut);text-transform:uppercase;font-weight:700;min-height:24px;display:flex;align-items:center;justify-content:center;}
-  .kpi .num{font-family:Fraunces,serif;font-size:26px;font-weight:800;letter-spacing:-.5px;margin:6px 0 3px;}
+  .kpi .lab{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.3px;color:var(--mut);text-transform:uppercase;font-weight:700;min-height:24px;display:flex;align-items:center;justify-content:center;}
+  .kpi .num{font-family:'Bricolage Grotesque',sans-serif;font-size:26px;font-weight:800;letter-spacing:-.5px;margin:6px 0 3px;}
   .kpi .sub{font-size:10.5px;color:var(--mut);line-height:1.4;}
   .kpi .sub b{color:var(--txt);}
 
   /* paneles */
   .row2{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-bottom:16px;}
   .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;}
-  .panel h3{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;color:var(--mut);text-transform:uppercase;font-weight:700;margin:0 0 12px;display:flex;justify-content:space-between;gap:10px;}
+  .panel h3{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:2px;color:var(--mut);text-transform:uppercase;font-weight:700;margin:0 0 12px;display:flex;justify-content:space-between;gap:10px;}
   .panel h3 em{color:var(--acc);font-style:normal;}
 
   /* señales */
   .sig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;}
   .sig{background:rgba(13,17,23,.6);border:1px solid var(--line);border-left:4px solid var(--purple);border-radius:11px;padding:15px 17px;}
-  .sig .tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.4px;color:var(--purple);text-transform:uppercase;font-weight:700;margin-bottom:7px;}
+  .sig .tag{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.4px;color:var(--purple);text-transform:uppercase;font-weight:700;margin-bottom:7px;}
   .sig .par{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px;}
   .sig .lado{background:rgba(22,27,34,.8);border-radius:7px;padding:8px 10px;}
-  .sig .lado .l{font-size:9px;color:var(--dim);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.6px;}
-  .sig .lado .v{font-family:Fraunces,serif;font-size:19px;font-weight:800;margin-top:2px;}
+  .sig .lado .l{font-size:9px;color:var(--dim);font-family:'Spline Sans Mono',monospace;text-transform:uppercase;letter-spacing:.6px;}
+  .sig .lado .v{font-family:'Bricolage Grotesque',sans-serif;font-size:19px;font-weight:800;margin-top:2px;}
   .sig .lado.down .v{color:var(--cyan);} .sig .lado.up .v{color:var(--red);}
   .sig .nom{font-size:12.5px;font-weight:600;line-height:1.35;}
-  .sin-sig{padding:18px;text-align:center;color:var(--dim);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;}
+  .sin-sig{padding:18px;text-align:center;color:var(--dim);font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;}
 
   /* tabla 55 delitos */
   .bj-group{border:1px solid var(--line);border-radius:11px;margin-bottom:10px;overflow:hidden;}
   .bj-head{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:rgba(13,17,23,.65);cursor:pointer;user-select:none;}
   .bj-head:hover{background:rgba(22,27,34,.9);}
-  .bj-head .t{font-family:Fraunces,serif;font-size:16px;font-weight:700;display:flex;align-items:center;gap:10px;}
+  .bj-head .t{font-family:'Bricolage Grotesque',sans-serif;font-size:16px;font-weight:700;display:flex;align-items:center;gap:10px;}
   .bj-head .tri{color:var(--acc);font-size:11px;transition:transform .15s;}
   .bj-group.open .tri{transform:rotate(90deg);}
-  .bj-head .tot{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mut);}
+  .bj-head .tot{font-family:'Spline Sans Mono',monospace;font-size:12px;color:var(--mut);}
   .bj-head .tot b{color:var(--txt);font-size:14px;}
   .bj-body{display:none;}
   .bj-group.open .bj-body{display:block;}
   table.del{width:100%;border-collapse:collapse;font-size:12.5px;}
   table.del td{padding:8px 14px;border-top:1px solid rgba(48,54,61,.35);}
   table.del td.nom{width:34%;}
-  table.del td.nom .espejo{display:inline-block;margin-left:7px;padding:1px 6px;border-radius:4px;background:rgba(167,139,250,.16);color:var(--purple);font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1px;text-transform:uppercase;font-weight:700;}
+  table.del td.nom .espejo{display:inline-block;margin-left:7px;padding:1px 6px;border-radius:4px;background:rgba(167,139,250,.16);color:var(--purple);font-family:'Spline Sans Mono',monospace;font-size:8.5px;letter-spacing:1px;text-transform:uppercase;font-weight:700;}
   table.del td.v{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;width:90px;}
-  table.del td.pct{width:120px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--mut);}
+  table.del td.pct{width:120px;font-family:'Spline Sans Mono',monospace;font-size:10.5px;color:var(--mut);}
   table.del td.pct .bar{display:inline-block;height:5px;border-radius:3px;background:linear-gradient(90deg,rgba(251,191,36,.35),var(--acc));vertical-align:middle;margin-right:6px;}
   table.del td.spark{width:130px;} table.del td.spark svg{display:block;}
-  table.del td.delta{width:80px;text-align:right;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;}
+  table.del td.delta{width:80px;text-align:right;font-family:'Spline Sans Mono',monospace;font-size:11px;font-weight:700;}
   .up{color:var(--red);} .down{color:#3fb950;} .flat{color:var(--dim);}
 
   /* RNPDNO */
   .rnp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
   .rnp{background:rgba(13,17,23,.6);border:1px solid var(--line);border-radius:10px;padding:13px 15px;text-align:center;}
-  .rnp .num{font-family:Fraunces,serif;font-size:24px;font-weight:800;}
-  .rnp .lbl{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1.2px;color:var(--mut);text-transform:uppercase;margin-top:3px;}
+  .rnp .num{font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:800;}
+  .rnp .lbl{font-family:'Spline Sans Mono',monospace;font-size:8.5px;letter-spacing:1.2px;color:var(--mut);text-transform:uppercase;margin-top:3px;}
 
-  footer{border-top:1px solid var(--line);margin-top:34px;padding:20px 26px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.4px;color:var(--dim);text-transform:uppercase;line-height:1.9;}
+  footer{border-top:1px solid var(--line);margin-top:34px;padding:20px 26px;text-align:center;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.4px;color:var(--dim);text-transform:uppercase;line-height:1.9;}
 
   /* ===== RESPONSIVE ===== */
   @media (max-width:1000px){
@@ -136,7 +136,7 @@ if(/github\.io$/.test(location.hostname)){
 }
 </script>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
-</head>
+<style id="noital">em,i{font-style:normal !important}</style></head>
 <body>
   <header class="topbar">
     <div class="brand">
@@ -194,9 +194,9 @@ if(/github\.io$/.test(location.hostname)){
     <div class="panel" style="margin-top:16px;">
       <h3><span>Histórico · <em>cualquier delito · 2015 a abr-2026</em></span><span id="histInfo"></span></h3>
       <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px;">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--acc);text-transform:uppercase;font-weight:700;">▾ Seleccionar delito</span>
-        <select id="selDelito" style="background:#161b22;color:var(--txt);border:1px solid var(--acc);border-radius:8px;padding:9px 12px;font-family:Inter;font-size:12.5px;max-width:440px;"></select>
-        <span id="lblUniverso" style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;"></span>
+        <span style="font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--acc);text-transform:uppercase;font-weight:700;">▾ Seleccionar delito</span>
+        <select id="selDelito" style="background:#161b22;color:var(--txt);border:1px solid var(--acc);border-radius:8px;padding:9px 12px;font-family:'Hanken Grotesk';font-size:12.5px;max-width:440px;"></select>
+        <span id="lblUniverso" style="font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;"></span>
         <div style="display:flex;gap:7px;margin-left:auto;" id="granBtns"></div>
       </div>
       <div id="chartHist"></div>
@@ -207,10 +207,10 @@ if(/github\.io$/.test(location.hostname)){
       <h3><span>Ranking de delitos · <em id="rankPeriodoLbl"></em></span><span>enumerados de menor a mayor · color = intensidad</span></h3>
       <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px;">
         <div style="display:flex;gap:7px;" id="granBtnsRank"></div>
-        <select id="selPeriodo" style="background:#161b22;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;"></select>
+        <select id="selPeriodo" style="background:#161b22;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-family:'Spline Sans Mono',monospace;font-size:11px;"></select>
       </div>
       <div id="chartRank"></div>
-      <div style="display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;">
+      <div style="display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;">
         <span id="rankFooterIzq"></span>
         <span>45 Digital Noticias · SESNSP corte abr-2026 · cifras.csv</span>
       </div>
@@ -221,13 +221,13 @@ if(/github\.io$/.test(location.hostname)){
       <h3><span>Mapa de calor municipal · <em id="mapMunPeriodo"></em></span><span>vinculado al periodo del ranking · mismo filtro</span></h3>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;align-items:center;" id="mapMunCtrl"></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center;" id="indBtns"></div>
-      <div style="display:flex;gap:6px;margin-bottom:10px;"><button onclick="zoomMun(1.25)" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-weight:700;cursor:pointer;">+</button><button onclick="zoomMun(0.8)" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-weight:700;cursor:pointer;">−</button><button onclick="zoomMun(0)" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-size:11px;cursor:pointer;">⟲</button><button onclick="fsMun()" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-size:14px;cursor:pointer;" title="Pantalla completa">⛶</button><span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1px;align-self:center;">ZOOM · útil en tablet</span></div>
+      <div style="display:flex;gap:6px;margin-bottom:10px;"><button onclick="zoomMun(1.25)" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-weight:700;cursor:pointer;">+</button><button onclick="zoomMun(0.8)" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-weight:700;cursor:pointer;">−</button><button onclick="zoomMun(0)" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-size:11px;cursor:pointer;">⟲</button><button onclick="fsMun()" style="width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-size:14px;cursor:pointer;" title="Pantalla completa">⛶</button><span style="font-family:'Spline Sans Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1px;align-self:center;">ZOOM · útil en tablet</span></div>
       <div id="mapMunWrap" style="position:relative;overflow:auto;max-height:640px;border-radius:8px;">
         <canvas id="mapaMun" style="width:100%;display:block;border-radius:8px;"></canvas>
-        <div id="mapMunAviso" style="display:none;position:absolute;inset:0;background:rgba(13,17,23,.82);border-radius:8px;align-items:center;justify-content:center;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:var(--mut);text-transform:uppercase;padding:30px;"></div>
+        <div id="mapMunAviso" style="display:none;position:absolute;inset:0;background:rgba(13,17,23,.82);border-radius:8px;align-items:center;justify-content:center;text-align:center;font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:1.5px;color:var(--mut);text-transform:uppercase;padding:30px;"></div>
       </div>
       <div class="gradbar" style="height:11px;border-radius:6px;margin-top:11px;background:linear-gradient(90deg,#1a2db0,#2e6fde,#35b5e8,#3dbb6e,#8bc63f,#f3e13a,#fbb03b,#f4711f,#e02f1f,#a31212,#6e0b0b);"></div>
-      <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);margin-top:5px;" id="mapMunLey"></div>
+      <div style="display:flex;justify-content:space-between;font-family:'Spline Sans Mono',monospace;font-size:10px;color:var(--dim);margin-top:5px;" id="mapMunLey"></div>
     </div>
   </main>
 
@@ -244,8 +244,8 @@ let CLAVE = _pE ? parseInt(_pE) : null;
 if (CLAVE === null) {
   document.querySelector('main').innerHTML = `
     <section style="text-align:center;padding:70px 0 30px;">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:3.5px;color:var(--amber);text-transform:uppercase;font-weight:700;margin-bottom:14px;">Radiografías estatales · elige uno</div>
-      <h1 style="font-family:Fraunces,serif;font-size:46px;letter-spacing:-1.2px;margin:0 0 30px;">¿Qué estado quieres <em style="color:var(--amber);font-style:italic;">auditar</em>?</h1>
+      <div style="font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:3.5px;color:var(--amber);text-transform:uppercase;font-weight:700;margin-bottom:14px;">Radiografías estatales · elige uno</div>
+      <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-size:46px;letter-spacing:-1.2px;margin:0 0 30px;">¿Qué estado quieres <em style="color:var(--amber);font-style:italic;">auditar</em>?</h1>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;max-width:1100px;margin:0 auto;">` +
     PANORAMA_ESTATAL.slice().sort((a,b)=>a.entidad.localeCompare(b.entidad,'es')).map(r=>
       `<a href="?estado=${r.clave_ent}" style="display:block;padding:15px;border:1px solid rgba(48,54,61,.7);border-left:4px solid ${r.color};border-radius:11px;background:rgba(22,27,34,.78);color:#e6edf3;text-decoration:none;font-weight:700;font-size:14px;text-align:left;">${r.entidad.replace(' de Zaragoza','').replace(' de Ocampo','').replace(' de Ignacio de la Llave','')}</a>`).join('') +
@@ -360,11 +360,11 @@ function render(){
     `<svg width="100%" viewBox="0 0 ${w} ${h}">
       <polyline points="${pts}" fill="none" stroke="${ACC}" stroke-width="2.2" stroke-linejoin="round"/>
       ${serieHD.map((v,i)=>`<circle cx="${p+i*(w-2*p)/(serieHD.length-1)}" cy="${h-p-(v/mx)*(h-2*p)}" r="2.6" fill="${ACC}"/>`).join('')}
-      <text x="${p}" y="${h-3}" font-size="9" fill="#6b7480" font-family="JetBrains Mono">2015</text>
-      <text x="${w-p-24}" y="${h-3}" font-size="9" fill="#6b7480" font-family="JetBrains Mono">2025</text>
-      <text x="${w-p-4}" y="${h-p-(serieHD[serieHD.length-1]/mx)*(h-2*p)+3}" font-size="11" font-weight="700" fill="${ACC}" font-family="JetBrains Mono" text-anchor="start"></text>
+      <text x="${p}" y="${h-3}" font-size="9" fill="#6b7480" font-family="Spline Sans Mono">2015</text>
+      <text x="${w-p-24}" y="${h-3}" font-size="9" fill="#6b7480" font-family="Spline Sans Mono">2025</text>
+      <text x="${w-p-4}" y="${h-p-(serieHD[serieHD.length-1]/mx)*(h-2*p)+3}" font-size="11" font-weight="700" fill="${ACC}" font-family="Spline Sans Mono" text-anchor="start"></text>
     </svg>
-    <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mut);margin-top:2px;">
+    <div style="display:flex;justify-content:space-between;font-family:'Spline Sans Mono',monospace;font-size:10px;color:var(--mut);margin-top:2px;">
       <span>pico: ${fmtN(Math.max(...serieHD))}</span><span>2025: <b style="color:${ACC}">${fmtN(serieHD[serieHD.length-1])}</b></span>
     </div>`;
 
@@ -450,12 +450,12 @@ function renderHist(){
   const gridY = [0.25,0.5,0.75,1].map(k=>{
     const v = mx*k;
     return `<line x1="${PL}" y1="${Y(v)}" x2="${W-PR}" y2="${Y(v)}" stroke="rgba(48,54,61,.4)" stroke-width="1"/>
-            <text x="${PL-6}" y="${Y(v)+3}" font-size="9.5" fill="#6b7480" text-anchor="end" font-family="JetBrains Mono">${v>=1000?(v/1000).toFixed(v>=10000?0:1)+'k':Math.round(v)}</text>`;
+            <text x="${PL-6}" y="${Y(v)+3}" font-size="9.5" fill="#6b7480" text-anchor="end" font-family="Spline Sans Mono">${v>=1000?(v/1000).toFixed(v>=10000?0:1)+'k':Math.round(v)}</text>`;
   }).join('');
   const dots = per.map((p,i)=>
     `<circle cx="${X(i).toFixed(1)}" cy="${Y(p.val).toFixed(1)}" r="${granAct===1?2:3.2}"
        fill="${p.parcial?'#0d1117':ACC}" stroke="${ACC}" stroke-width="1.6"><title>${p.label}: ${fmtN(p.val)}${p.parcial?' (parcial)':''}</title></circle>`).join('');
-  const xLabels = ticks.map(t=>`<text x="${X(t.i).toFixed(1)}" y="${H-10}" font-size="9.5" fill="#6b7480" font-family="JetBrains Mono">${t.anio}</text>`).join('');
+  const xLabels = ticks.map(t=>`<text x="${X(t.i).toFixed(1)}" y="${H-10}" font-size="9.5" fill="#6b7480" font-family="Spline Sans Mono">${t.anio}</text>`).join('');
   const maxPer = per.reduce((a,b)=>b.val>a.val?b:a, per[0]);
   const last = per[per.length-1];
   document.getElementById('chartHist').innerHTML =
@@ -465,14 +465,14 @@ function renderHist(){
       <polyline points="${linePts}" fill="none" stroke="${ACC}" stroke-width="2.2" stroke-linejoin="round"/>
       ${dots}${xLabels}
     </svg>
-    <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--mut);margin-top:4px;">
+    <div style="display:flex;justify-content:space-between;font-family:'Spline Sans Mono',monospace;font-size:10.5px;color:var(--mut);margin-top:4px;">
       <span>pico: <b style="color:var(--txt)">${fmtN(maxPer.val)}</b> (${maxPer.label})</span>
       <span>último periodo: <b style="color:${ACC}">${fmtN(last.val)}</b> (${last.label}${last.parcial?' · PARCIAL':''})</span>
     </div>`;
   document.getElementById('histInfo').textContent = `${delitoAct.toLowerCase()} · ${per.length} periodos`;
   // botones
   document.getElementById('granBtns').innerHTML = GRANS.map(g=>
-    `<button onclick="granAct=${g.v};renderHist()" style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;padding:8px 13px;border-radius:8px;cursor:pointer;border:1px solid ${g.v===granAct?ACC:'var(--line)'};color:${g.v===granAct?ACC:'var(--mut)'};background:${g.v===granAct?'rgba(255,255,255,.04)':'transparent'};">${g.n}</button>`).join('');
+    `<button onclick="granAct=${g.v};renderHist()" style="font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;padding:8px 13px;border-radius:8px;cursor:pointer;border:1px solid ${g.v===granAct?ACC:'var(--line)'};color:${g.v===granAct?ACC:'var(--mut)'};background:${g.v===granAct?'rgba(255,255,255,.04)':'transparent'};">${g.n}</button>`).join('');
 }
 
 function poblarSelDelito(){
@@ -539,12 +539,12 @@ function renderRank(){
     const wpct = Math.max(1.2, t*100);
     const esEspejo = x.nombre.startsWith('Otros');
     return `<div style="display:grid;grid-template-columns:34px minmax(190px,300px) 1fr 76px;gap:10px;align-items:center;padding:3px 0;">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim);text-align:right;">#${i+1}</span>
+      <span style="font-family:'Spline Sans Mono',monospace;font-size:10px;color:var(--dim);text-align:right;">#${i+1}</span>
       <span style="font-size:11.5px;line-height:1.25;${esEspejo?'color:var(--purple);':''}">${x.nombre}${esEspejo?' ◂espejo':''}</span>
       <div style="background:rgba(13,17,23,.5);border-radius:4px;height:13px;overflow:hidden;">
         <div style="width:${wpct.toFixed(1)}%;height:100%;border-radius:4px;background:${colorMeteo(t)};" title="${x.nombre}: ${fmtN(x.v)}"></div>
       </div>
-      <span style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-align:right;">${fmtN(x.v)}</span>
+      <span style="font-family:'Spline Sans Mono',monospace;font-size:11px;font-weight:700;text-align:right;">${fmtN(x.v)}</span>
     </div>`;
   }).join('');
 
@@ -554,7 +554,7 @@ function renderRank(){
 
   // controles: selector único de periodos curados (años + trimestres 2026)
   document.getElementById('granBtnsRank').innerHTML =
-    `<span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;">año / periodo:</span>`;
+    `<span style="font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;">año / periodo:</span>`;
   const selP = document.getElementById('selPeriodo');
   selP.innerHTML = PERIODOS_R.map((p,i)=>`<option value="${i}" ${i===periodoR?'selected':''}>${p.label}${p.parcial?' (parcial)':''}</option>`).join('');
   selP.onchange = e=>{ periodoR=parseInt(e.target.value); renderRank(); };
@@ -581,20 +581,20 @@ function renderMapaMun(){
   const P=PANORAMA_ESTATAL.find(r=>r.clave_ent===CLAVE);
   // periodo compartido con el ranking (mismos periodos curados)
   document.getElementById('mapMunCtrl').innerHTML =
-    `<span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;">año / periodo:</span>` +
-    `<select onchange="periodoR=parseInt(this.value);renderRank()" style="background:#161b22;color:var(--txt);border:1px solid ${P.color};border-radius:7px;padding:7px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;">` +
+    `<span style="font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;">año / periodo:</span>` +
+    `<select onchange="periodoR=parseInt(this.value);renderRank()" style="background:#161b22;color:var(--txt);border:1px solid ${P.color};border-radius:7px;padding:7px 12px;font-family:'Spline Sans Mono',monospace;font-size:11px;font-weight:700;">` +
     PERIODOS_R.map((p,i)=>`<option value="${i}" ${i===periodoR?'selected':''}>${p.label}${p.parcial?' (parcial)':''}</option>`).join('') + `</select>` +
-    `<span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;">· sincronizado con el ranking</span>`;
+    `<span style="font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;">· sincronizado con el ranking</span>`;
   // botones indicador
   const catEdo=(DELITOS_COMPLETO_2025[String(CLAVE)]||[]).slice().sort((a,b)=>b.v-a.v);
   document.getElementById('indBtns').innerHTML =
     `<span style="display:inline-flex;align-items:center;gap:8px;background:rgba(22,27,34,.9);border:1.5px solid ${P.color};border-radius:10px;padding:8px 13px;box-shadow:0 0 12px color-mix(in srgb, ${P.color} 28%, transparent);">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.6px;color:${P.color};font-weight:700;">▾ DELITO</span>
-        <select onchange="subMapa=this.value||null;renderMapaMun()" style="background:transparent;color:var(--txt);border:none;outline:none;font-family:Inter;font-size:13.5px;font-weight:700;cursor:pointer;max-width:330px;">
+        <span style="font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1.6px;color:${P.color};font-weight:700;">▾ DELITO</span>
+        <select onchange="subMapa=this.value||null;renderMapaMun()" style="background:transparent;color:var(--txt);border:none;outline:none;font-family:'Hanken Grotesk';font-size:13.5px;font-weight:700;cursor:pointer;max-width:330px;">
           <option value="" ${!subMapa?'selected':''}>Todos los delitos (total)</option>
           ${catEdo.map(r=>`<option value="${r.s.replace(/"/g,'&quot;')}" ${subMapa===r.s?'selected':''}>${r.s}</option>`).join('')}
         </select></span>
-     <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;">catálogo completo · ${catEdo.length} subtipos · anual (total admite trimestres)</span>`;
+     <span style="font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;">catálogo completo · ${catEdo.length} subtipos · anual (total admite trimestres)</span>`;
   if(!SMUN||!GMUN){ aviso.style.display='flex'; aviso.textContent='Mapa municipal disponible próximamente para este estado (piloto: Coahuila)'; cv.style.visibility='hidden'; return; }
   // periodo compartido con el ranking (timeline estatal arranca 2015; municipal 2016)
   const per=PERIODOS_R[periodoR];
