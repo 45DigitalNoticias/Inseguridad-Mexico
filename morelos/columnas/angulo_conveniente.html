@@ -10,12 +10,12 @@
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{background:#06080c;color:#e6edf3;font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction:column;}
+  body{background:#06080c;color:#e6edf3;font-family:'Hanken Grotesk',sans-serif;min-height:100vh;display:flex;flex-direction:column;}
 
   /* TOPBAR */
   .topbar{
@@ -30,9 +30,9 @@
   }
   .brand-text{display:flex;flex-direction:column;line-height:1.15;}
   .brand-text .n{font-size:12.5px;font-weight:800;color:#e6edf3;letter-spacing:1.2px;}
-  .brand-text .s{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:2px;color:#8b949e;text-transform:uppercase;margin-top:3px;}
+  .brand-text .s{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:2px;color:#8b949e;text-transform:uppercase;margin-top:3px;}
   .back-link{
-    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+    font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
     color:#fbbf24;text-decoration:none;font-weight:700;
     display:flex;align-items:center;gap:8px;
     padding:7px 14px;border:1px solid rgba(251,191,36,0.35);border-radius:6px;
@@ -46,11 +46,11 @@
     max-width:880px;margin:40px auto 0;padding:0 24px;text-align:center;
   }
   .article-meta .kicker{
-    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;
+    font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:3px;
     color:#fbbf24;text-transform:uppercase;font-weight:700;margin-bottom:14px;
   }
   .article-meta .byline{
-    font-family:'Inter',sans-serif;font-size:13px;color:#8b949e;
+    font-family:'Hanken Grotesk',sans-serif;font-size:13px;color:#8b949e;
     margin-top:18px;letter-spacing:0.3px;
   }
   .article-meta .byline strong{color:#c9d1d9;font-weight:600;}
@@ -58,7 +58,7 @@
   /* FOOTER */
   footer{
     margin-top:auto;text-align:center;padding:26px 24px;
-    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;
+    font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:2px;
     color:#6b7480;text-transform:uppercase;border-top:1px solid #1a1f26;
   }
   footer a{color:#fbbf24;text-decoration:none;font-weight:700;}
@@ -75,18 +75,18 @@
   #sAC .ac-wrap { max-width: 1100px; margin: 0 auto; }
   #sAC .ac-head { text-align: center; margin-bottom: 50px; }
   #sAC .ac-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Spline Sans Mono', monospace;
     font-size: 11px; letter-spacing: 3.5px; text-transform: uppercase;
     color: #fbbf24; font-weight: 700; margin-bottom: 14px;
   }
   #sAC .ac-title {
-    font-family: 'Fraunces', serif;
+    font-family: 'Bricolage Grotesque', serif;
     font-size: 52px; font-weight: 800; line-height: 1.05;
     color: #e6edf3; letter-spacing: -1.5px; margin: 0 0 20px;
   }
   #sAC .ac-title em { color: #fbbf24; font-style: italic; font-weight: 700; }
   #sAC .ac-lead {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Hanken Grotesk', sans-serif;
     font-size: 17px; line-height: 1.75; color: #c9d1d9;
     max-width: 820px; margin: 0 auto;
     text-align: justify; hyphens: auto;
@@ -96,12 +96,12 @@
 
   #sAC .ac-sect-head { margin: 60px 0 22px; text-align: center; }
   #sAC .ac-sect-piso {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    font-family: 'Spline Sans Mono', monospace; font-size: 11px;
     letter-spacing: 3px; color: #fbbf24; text-transform: uppercase;
     font-weight: 700; margin-bottom: 8px;
   }
   #sAC .ac-sect-head h3 {
-    font-family: 'Fraunces', serif; font-size: 30px; font-weight: 700;
+    font-family: 'Bricolage Grotesque', serif; font-size: 30px; font-weight: 700;
     color: #e6edf3; line-height: 1.18; margin: 0 0 10px;
   }
   #sAC .ac-sect-head h3 em { color: #fbbf24; font-style: italic; font-weight: 600; }
@@ -123,16 +123,16 @@
     position: relative;
   }
   #sAC .ac-paso-num {
-    font-family: 'Fraunces', serif; font-size: 44px; font-weight: 800;
+    font-family: 'Bricolage Grotesque', serif; font-size: 44px; font-weight: 800;
     color: #fbbf24; line-height: 1; letter-spacing: -2px;
     margin-bottom: 10px; opacity: 0.6;
   }
   #sAC .ac-paso-titulo {
-    font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 700;
+    font-family: 'Hanken Grotesk', sans-serif; font-size: 13.5px; font-weight: 700;
     color: #e6edf3; line-height: 1.35; margin-bottom: 6px;
   }
   #sAC .ac-paso-glosa {
-    font-family: 'Inter', sans-serif; font-size: 12px; line-height: 1.55;
+    font-family: 'Hanken Grotesk', sans-serif; font-size: 12px; line-height: 1.55;
     color: #8b949e;
   }
   #sAC .ac-paso-glosa strong { color: #c9d1d9; }
@@ -145,16 +145,16 @@
     margin: 16px 0 8px;
   }
   #sAC .ac-chart-box h4 {
-    font-family: 'Fraunces', serif; font-size: 20px; font-weight: 700;
+    font-family: 'Bricolage Grotesque', serif; font-size: 20px; font-weight: 700;
     color: #e6edf3; margin: 0 0 4px; line-height: 1.3;
   }
   #sAC .ac-chart-box .ac-chart-sub {
-    font-family: 'Inter', sans-serif; font-size: 12.5px; color: #8b949e;
+    font-family: 'Hanken Grotesk', sans-serif; font-size: 12.5px; color: #8b949e;
     margin-bottom: 18px; line-height: 1.5;
   }
   #sAC .ac-chart-canvas-wrap { position: relative; }
   #sAC .ac-chart-foot {
-    font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+    font-family: 'Spline Sans Mono', monospace; font-size: 10.5px;
     color: #6e7681; letter-spacing: 0.5px; margin-top: 14px;
     padding-top: 12px; border-top: 1px solid rgba(48,54,61,0.5);
   }
@@ -171,27 +171,27 @@
     border-top: 3px solid #a78bfa;
   }
   #sAC .ac-teoria-card .ac-t-autor {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    font-family: 'Spline Sans Mono', monospace; font-size: 10px;
     letter-spacing: 2px; text-transform: uppercase;
     color: #a78bfa; font-weight: 700; margin-bottom: 8px;
   }
   #sAC .ac-teoria-card .ac-t-concepto {
-    font-family: 'Fraunces', serif; font-size: 16px; font-weight: 700;
+    font-family: 'Bricolage Grotesque', serif; font-size: 16px; font-weight: 700;
     color: #e6edf3; line-height: 1.3; margin-bottom: 10px;
   }
   #sAC .ac-teoria-card .ac-t-cita {
-    font-family: 'Inter', sans-serif; font-size: 12px; line-height: 1.55;
+    font-family: 'Hanken Grotesk', sans-serif; font-size: 12px; line-height: 1.55;
     color: #c9d1d9; font-style: italic;
     border-left: 2px solid rgba(167,139,250,0.4); padding-left: 10px;
     margin-bottom: 10px;
   }
   #sAC .ac-teoria-card .ac-t-aplica {
-    font-family: 'Inter', sans-serif; font-size: 11.5px; line-height: 1.5;
+    font-family: 'Hanken Grotesk', sans-serif; font-size: 11.5px; line-height: 1.5;
     color: #8b949e; margin-top: auto;
   }
   #sAC .ac-teoria-card .ac-t-aplica strong { color: #fbbf24; }
   #sAC .ac-teoria-card .ac-t-fuente {
-    font-family: 'JetBrains Mono', monospace; font-size: 9.5px;
+    font-family: 'Spline Sans Mono', monospace; font-size: 9.5px;
     color: #6e7681; letter-spacing: 0.3px; margin-top: 8px;
     padding-top: 8px; border-top: 1px solid rgba(48,54,61,0.4);
   }
@@ -202,10 +202,10 @@
     background: rgba(13,17,23,0.65);
     border: 1px solid rgba(48,54,61,0.7);
     border-radius: 14px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Hanken Grotesk', sans-serif;
   }
   #sAC .ac-cierre h3 {
-    font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700;
+    font-family: 'Bricolage Grotesque', serif; font-size: 26px; font-weight: 700;
     color: #e6edf3; text-align: center; margin: 0 0 18px;
     line-height: 1.28;
   }
@@ -220,7 +220,7 @@
     margin-top: 22px; padding: 20px 22px;
     background: rgba(251,191,36,0.07);
     border: 1px solid rgba(251,191,36,0.3); border-radius: 8px;
-    font-family: 'Fraunces', serif; font-size: 18px; line-height: 1.55;
+    font-family: 'Bricolage Grotesque', serif; font-size: 18px; line-height: 1.55;
     color: #e6edf3; font-style: italic; text-align: center;
   }
   #sAC .ac-cierre .ac-frase strong { color: #fbbf24; font-style: normal; font-weight: 700; }
@@ -229,7 +229,7 @@
     margin-top: 22px;
   }
   #sAC .ac-cierre .ac-anclas a {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Spline Sans Mono', monospace;
     font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
     color: #8b949e; text-decoration: none;
     padding: 7px 13px; border: 1px solid rgba(139,148,158,0.3);
@@ -257,7 +257,7 @@
   }
 </style>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
-</head>
+<style id="noital">em,i{font-style:normal !important}</style></head>
 <body>
   <header class="topbar">
     <div class="brand">
@@ -486,12 +486,12 @@
             x: {
               min: -40, max: 130,
               grid: { color: 'rgba(48,54,61,0.4)', lineWidth: 1 },
-              ticks: { color: '#8b949e', font: { size: 11, family: 'JetBrains Mono' }, callback: v => v + '%' },
+              ticks: { color: '#8b949e', font: { size: 11, family: 'Spline Sans Mono' }, callback: v => v + '%' },
               border: { color: 'rgba(48,54,61,0.6)' }
             },
             y: {
               grid: { display: false },
-              ticks: { color: '#c9d1d9', font: { size: 12, family: 'Inter' } },
+              ticks: { color: '#c9d1d9', font: { size: 12, family: 'Hanken Grotesk' } },
               border: { color: 'rgba(48,54,61,0.6)' }
             }
           }
@@ -543,7 +543,7 @@
           const xEnd   = scales.x.getPixelForValue(39);
           ctx.fillStyle = 'rgba(251,191,36,0.06)';
           ctx.fillRect(xStart, chartArea.top, xEnd - xStart, chartArea.bottom - chartArea.top);
-          ctx.font = 'bold 10px "JetBrains Mono", monospace';
+          ctx.font = 'bold 10px "Spline Sans Mono", monospace';
           ctx.fillStyle = 'rgba(251,191,36,0.85)';
           ctx.textAlign = 'center';
           ctx.fillText('PERIODO QUE HARFUCH CELEBRA', (xStart + xEnd) / 2, chartArea.top + 14);
@@ -559,7 +559,7 @@
           hitos.forEach(h => {
             const xPx = scales.x.getPixelForValue(h.idx);
             const yPx = scales.y.getPixelForValue(valores[h.idx]);
-            ctx.font = 'bold 10.5px "JetBrains Mono", monospace';
+            ctx.font = 'bold 10.5px "Spline Sans Mono", monospace';
             ctx.fillStyle = h.color;
             ctx.textAlign = 'center';
             ctx.textBaseline = h.pos === 'above' ? 'bottom' : 'top';
@@ -613,7 +613,7 @@
           interaction: { intersect: false, mode: 'index' },
           layout: { padding: { top: 56, right: 16, bottom: 8, left: 8 } },
           plugins: {
-            legend: { position: 'bottom', labels: { color: '#c9d1d9', font: { size: 12, family: 'Inter' }, usePointStyle: true, padding: 18, boxWidth: 12 } },
+            legend: { position: 'bottom', labels: { color: '#c9d1d9', font: { size: 12, family: 'Hanken Grotesk' }, usePointStyle: true, padding: 18, boxWidth: 12 } },
             tooltip: {
               backgroundColor: 'rgba(13,17,23,0.96)',
               borderColor: 'rgba(251,191,36,0.4)', borderWidth: 1,
@@ -626,7 +626,7 @@
             x: {
               grid: { color: 'rgba(48,54,61,0.18)' },
               ticks: {
-                color: '#8b949e', font: { size: 10, family: 'JetBrains Mono' },
+                color: '#8b949e', font: { size: 10, family: 'Spline Sans Mono' },
                 maxRotation: 0, minRotation: 0, autoSkip: true, maxTicksLimit: 9,
                 callback: function(value, index) {
                   const lbl = this.getLabelForValue(value);
@@ -642,9 +642,9 @@
               beginAtZero: false,
               min: 40, max: 200,
               grid: { color: 'rgba(48,54,61,0.35)' },
-              ticks: { color: '#8b949e', font: { size: 11, family: 'JetBrains Mono' }, stepSize: 40 },
+              ticks: { color: '#8b949e', font: { size: 11, family: 'Spline Sans Mono' }, stepSize: 40 },
               border: { color: 'rgba(48,54,61,0.6)' },
-              title: { display: true, text: 'Víctimas / carpetas por mes', color: '#8b949e', font: { size: 11, family: 'JetBrains Mono' } }
+              title: { display: true, text: 'Víctimas / carpetas por mes', color: '#8b949e', font: { size: 11, family: 'Spline Sans Mono' } }
             }
           }
         },

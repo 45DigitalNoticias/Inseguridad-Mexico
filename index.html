@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Inseguridad México · 32 estados · 45 Digital Noticias</title>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="mexico_estados.geojson.js"></script>
 <script src="panorama_estatal.js"></script>
 <script src="series_completo.js"></script>
@@ -17,15 +17,15 @@
     --amber:#fbbf24; --rose:#ec4899; --cyan:#22d3ee; --green:#3fb950; --purple:#a78bfa; --red:#f85149;
   }
   *{box-sizing:border-box;}
-  body{background:#0d1117 url(assets/fondo_vector.svg) center bottom/cover fixed no-repeat;color:var(--txt);font-family:Inter,system-ui,sans-serif;margin:0;}
+  body{background:#0d1117 url(assets/fondo_vector.svg) center bottom/cover fixed no-repeat;color:var(--txt);font-family:'Hanken Grotesk',system-ui,sans-serif;margin:0;}
 
   .topbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:14px 28px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(13,17,23,.92);backdrop-filter:blur(8px);z-index:50;}
   .brand{display:flex;align-items:center;gap:12px;}
   .brand .blk{width:38px;height:38px;border-radius:9px;background:#1f6feb;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;}
   .brand .n{font-weight:800;font-size:13.5px;letter-spacing:.5px;display:block;}
-  .brand .s{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--amber);text-transform:uppercase;}
+  .brand .s{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--amber);text-transform:uppercase;}
   /* nav con presencia: chips con borde, hover ámbar */
-  .topnav{display:flex;gap:9px;justify-self:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;}
+  .topnav{display:flex;gap:9px;justify-self:center;font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;}
   .topnav a{color:var(--cc,#c9d1d9);text-decoration:none;padding:9px 15px;border:1.5px solid color-mix(in srgb, var(--cc,#8b949e) 60%, transparent);border-radius:9px;background:rgba(22,27,34,.75);transition:all .15s;box-shadow:0 0 9px color-mix(in srgb, var(--cc,#8b949e) 22%, transparent);}
   .topnav a:hover{background:color-mix(in srgb, var(--cc,#fbbf24) 16%, transparent);border-color:var(--cc,#fbbf24);box-shadow:0 0 14px color-mix(in srgb, var(--cc,#fbbf24) 45%, transparent);}
   /* Morelos: el caso profundo, destacado */
@@ -35,7 +35,7 @@
   .topnav a.navist:hover{background:color-mix(in srgb,#22d3ee 32%, transparent);box-shadow:0 0 20px rgba(34,211,238,.7);}
   /* compartir */
   .share{display:flex;gap:8px;align-items:center;justify-content:center;margin:18px 0 0;}
-  .share .slbl{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;}
+  .share .slbl{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;}
   .share a,.share button{width:42px;height:42px;border-radius:11px;border:1.5px solid var(--sc,#c9d1d9);background:rgba(13,17,23,.9);color:var(--sc,#c9d1d9);display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;font-size:16px;transition:all .15s;box-shadow:0 0 11px color-mix(in srgb, var(--sc,#8b949e) 38%, transparent);}
   .share a:hover,.share button:hover{background:color-mix(in srgb, var(--sc,#fbbf24) 18%, transparent);}
   /* zoom de charts */
@@ -48,8 +48,8 @@
 
   /* HERO */
   .hero{text-align:center;padding:64px 0 40px;}
-  .hero .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--amber);text-transform:uppercase;font-weight:700;margin-bottom:18px;}
-  .hero h1{font-family:Fraunces,serif;font-size:60px;font-weight:700;line-height:1.04;letter-spacing:-1.8px;margin:0 auto 20px;max-width:920px;}
+  .hero .eyebrow{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--amber);text-transform:uppercase;font-weight:700;margin-bottom:18px;}
+  .hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:60px;font-weight:700;line-height:1.04;letter-spacing:-1.8px;margin:0 auto 20px;max-width:920px;}
   .hero h1 em{color:var(--amber);font-style:italic;font-weight:600;}
   .hero .lead{max-width:760px;margin:0 auto;font-size:17px;line-height:1.65;color:#c9d1d9;text-align:justify;text-justify:inter-word;}
   .hero .lead strong{color:var(--txt);}
@@ -58,59 +58,59 @@
   .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:40px 0 18px;}
   .kpi{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:22px 22px;border-top:3px solid var(--amber);text-align:center;}
   .kpi.k2{border-top-color:var(--red);} .kpi.k3{border-top-color:var(--purple);} .kpi.k4{border-top-color:var(--cyan);}
-  .kpi .lab{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;color:var(--mut);text-transform:uppercase;font-weight:700;}
-  .kpi .num{font-family:Fraunces,serif;font-size:38px;font-weight:800;letter-spacing:-1px;line-height:1.1;margin:8px 0 4px;}
+  .kpi .lab{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.6px;color:var(--mut);text-transform:uppercase;font-weight:700;}
+  .kpi .num{font-family:'Bricolage Grotesque',sans-serif;font-size:38px;font-weight:800;letter-spacing:-1px;line-height:1.1;margin:8px 0 4px;}
   .kpi .sub{font-size:12px;color:var(--mut);line-height:1.45;}
 
   /* MAPA + panel */
   .mapgrid{display:grid;grid-template-columns:1.55fr 1fr;gap:18px;margin:26px 0;}
   .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;}
-  .panel h3{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--mut);text-transform:uppercase;font-weight:700;margin:0 0 14px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;}
+  .panel h3{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--mut);text-transform:uppercase;font-weight:700;margin:0 0 14px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;}
   .panel h3 em{color:var(--amber);font-style:normal;}
   .metric-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
-  .mtab{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;padding:8px 13px;border-radius:8px;border:1px solid var(--line);color:var(--mut);cursor:pointer;background:transparent;}
+  .mtab{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;padding:8px 13px;border-radius:8px;border:1px solid var(--line);color:var(--mut);cursor:pointer;background:transparent;}
   .mtab.act{background:rgba(251,191,36,.13);border-color:rgba(251,191,36,.5);color:var(--amber);}
   /* ===== MAPA · CAMPO METEOROLÓGICO INTERPOLADO (decisión final) ===== */
   canvas#mapa{width:100%;height:auto;display:block;border-radius:8px;cursor:pointer;}
   .gradbar{height:11px;border-radius:6px;margin-top:11px;background:linear-gradient(90deg,#1a2db0,#2e6fde,#35b5e8,#3dbb6e,#8bc63f,#f3e13a,#fbb03b,#f4711f,#e02f1f,#a31212,#6e0b0b);}
-  .ley{display:flex;gap:13px;align-items:center;margin-top:12px;font-size:10.5px;color:var(--dim);font-family:'JetBrains Mono',monospace;flex-wrap:wrap;}
+  .ley{display:flex;gap:13px;align-items:center;margin-top:12px;font-size:10.5px;color:var(--dim);font-family:'Spline Sans Mono',monospace;flex-wrap:wrap;}
   .sw{display:inline-block;width:24px;height:9px;border-radius:2px;vertical-align:middle;margin-right:4px;}
 
   .rank-list{display:flex;flex-direction:column;gap:7px;}
   .rrow{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:9px 12px;border-radius:8px;background:rgba(13,17,23,.55);border:1px solid rgba(48,54,61,.4);text-decoration:none;color:inherit;}
   .rrow:hover{border-color:rgba(251,191,36,.4);}
-  .rrow .pos{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);font-weight:700;}
+  .rrow .pos{font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--dim);font-weight:700;}
   .rrow .nom{font-size:13.5px;font-weight:600;}
   .rrow .bar{height:4px;border-radius:2px;background:linear-gradient(90deg,rgba(248,81,73,.25),rgba(248,81,73,.95));margin-top:5px;}
-  .rrow .val{font-family:Fraunces,serif;font-size:19px;font-weight:800;}
+  .rrow .val{font-family:'Bricolage Grotesque',sans-serif;font-size:19px;font-weight:800;}
 
   /* Señales */
   /* radiografia nacional 55 · ranking */
-  .achip{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:1.2px;font-weight:700;padding:8px 14px;border-radius:8px;border:1px solid var(--line);color:var(--mut);cursor:pointer;background:transparent;}
+  .achip{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:1.2px;font-weight:700;padding:8px 14px;border-radius:8px;border:1px solid var(--line);color:var(--mut);cursor:pointer;background:transparent;}
   .achip.act{background:rgba(251,191,36,.13);border-color:rgba(251,191,36,.5);color:var(--amber);}
   .rk55{display:grid;grid-template-columns:42px minmax(220px,330px) 1fr 92px;gap:12px;align-items:center;padding:6px 8px;border-radius:7px;}
   .rk55:hover{background:rgba(22,27,34,.85);}
-  .rk55 .num{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--dim);font-weight:700;}
+  .rk55 .num{font-family:'Spline Sans Mono',monospace;font-size:10.5px;color:var(--dim);font-weight:700;}
   .rk55 .nm{font-size:13px;font-weight:600;line-height:1.3;}
   .rk55 .nm.esp{color:var(--purple);}
-  .rk55 .etag{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:var(--purple);}
+  .rk55 .etag{font-family:'Spline Sans Mono',monospace;font-size:8.5px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:var(--purple);}
   .rk55 .track{height:13px;border-radius:7px;background:rgba(22,27,34,.9);overflow:hidden;}
   .rk55 .fill{height:100%;border-radius:7px;min-width:6px;}
-  .rk55 .val{font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;}
+  .rk55 .val{font-family:'Spline Sans Mono',monospace;font-size:12.5px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;}
   @media(max-width:760px){.rk55{grid-template-columns:34px 1fr 70px;}.rk55 .track{grid-column:1/-1;}}
   .sec-head{text-align:center;margin:64px 0 10px;}
-  .sec-head .eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:3.5px;color:var(--purple);text-transform:uppercase;font-weight:700;margin-bottom:10px;}
-  .sec-head h2{font-family:Fraunces,serif;font-size:36px;font-weight:700;letter-spacing:-.8px;margin:0 0 10px;}
+  .sec-head .eyebrow{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:3.5px;color:var(--purple);text-transform:uppercase;font-weight:700;margin-bottom:10px;}
+  .sec-head h2{font-family:'Bricolage Grotesque',sans-serif;font-size:36px;font-weight:700;letter-spacing:-.8px;margin:0 0 10px;}
   .sec-head h2 em{color:var(--purple);font-style:italic;}
   .sec-head p{max-width:720px;margin:0 auto;color:var(--mut);font-size:14.5px;line-height:1.6;}
   .signals{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0;}
   .sig{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--purple);border-radius:12px;padding:20px;}
-  .sig .tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.6px;color:var(--purple);text-transform:uppercase;font-weight:700;margin-bottom:8px;}
-  .sig h4{font-family:Fraunces,serif;font-size:19px;margin:0 0 10px;font-weight:700;}
+  .sig .tag{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1.6px;color:var(--purple);text-transform:uppercase;font-weight:700;margin-bottom:8px;}
+  .sig h4{font-family:'Bricolage Grotesque',sans-serif;font-size:19px;margin:0 0 10px;font-weight:700;}
   .sig .par{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0;}
   .sig .lado{background:rgba(13,17,23,.6);border-radius:8px;padding:10px 12px;}
-  .sig .lado .l{font-size:10px;color:var(--dim);font-family:'JetBrains Mono',monospace;letter-spacing:.8px;text-transform:uppercase;}
-  .sig .lado .v{font-family:Fraunces,serif;font-size:22px;font-weight:800;margin-top:3px;}
+  .sig .lado .l{font-size:10px;color:var(--dim);font-family:'Spline Sans Mono',monospace;letter-spacing:.8px;text-transform:uppercase;}
+  .sig .lado .v{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;margin-top:3px;}
   .sig .lado.down .v{color:var(--cyan);} .sig .lado.up .v{color:var(--red);}
   .sig p{font-size:12.5px;color:var(--mut);line-height:1.55;margin:8px 0 0;}
 
@@ -119,10 +119,10 @@
   .ecard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:9px;transition:transform .12s,border-color .12s;}
   .ecard:hover{transform:translateY(-3px);border-color:rgba(251,191,36,.45);}
   .ecard{align-items:center;text-align:center;}
-  .ecard .nm{font-family:Fraunces,serif;font-weight:700;font-size:19px;letter-spacing:1.5px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:12px;}
+  .ecard .nm{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;letter-spacing:1.5px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:12px;}
   .ecard .silueta{width:84px;height:84px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:8px;}
   .ecard .silueta svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 10px var(--glow,rgba(251,191,36,.45)));}
-  .ecard .mt{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--mut);display:flex;justify-content:center;gap:9px;}
+  .ecard .mt{font-family:'Spline Sans Mono',monospace;font-size:12px;color:var(--mut);display:flex;justify-content:center;gap:9px;}
   .ecard .mt b{color:var(--txt);font-size:13.5px;}
 
   /* Rutas */
@@ -130,14 +130,14 @@
   .ruta{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:22px;text-decoration:none;color:inherit;text-align:center;}
   .ruta:hover{border-color:rgba(251,191,36,.4);}
   .ruta .ic{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 10px;}
-  .ruta h4{font-family:Fraunces,serif;font-size:18px;margin:0 0 6px;font-weight:700;}
+  .ruta h4{font-family:'Bricolage Grotesque',sans-serif;font-size:18px;margin:0 0 6px;font-weight:700;}
   .ruta p{font-size:12.5px;color:var(--mut);line-height:1.5;margin:0;}
   .ruta.r1 .ic{background:rgba(236,72,153,.14);color:var(--rose);}
   .ruta.r2 .ic{background:rgba(167,139,250,.14);color:var(--purple);}
   .ruta.r3 .ic{background:rgba(63,185,80,.14);color:var(--green);}
   .ruta.r4 .ic{background:rgba(34,211,238,.14);color:var(--cyan);}
 
-  footer{border-top:1px solid var(--line);padding:22px 28px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;}
+  footer{border-top:1px solid var(--line);padding:22px 28px;text-align:center;font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;}
 
   /* ===== RESPONSIVE ===== */
   @media (max-width:1024px){
@@ -179,7 +179,7 @@ if(/github\.io$/.test(location.hostname)){
 }
 </script>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
-</head>
+<style id="noital">em,i{font-style:normal !important}</style></head>
 <body>
   <header class="topbar">
     <div class="brand">
@@ -227,17 +227,17 @@ if(/github\.io$/.test(location.hostname)){
     <!-- MAPA -->
     <div class="mapgrid">
       <div class="panel" id="panelMapa">
-        <h3><span>Mapa nacional · <em>elige qué violencia quieres ver</em></span><span id="mapScope" style="color:#c9d1d9;text-transform:none;letter-spacing:0;font-family:Inter;font-weight:700;font-size:13px;"></span></h3>
+        <h3><span>Mapa nacional · <em>elige qué violencia quieres ver</em></span><span id="mapScope" style="color:#c9d1d9;text-transform:none;letter-spacing:0;font-family:'Hanken Grotesk';font-weight:700;font-size:13px;"></span></h3>
         <div style="display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:11px;">
           <div style="display:flex;align-items:center;gap:8px;background:rgba(22,27,34,.9);border:1.5px solid rgba(251,191,36,.55);border-radius:10px;padding:7px 12px;box-shadow:0 0 12px rgba(251,191,36,.18);">
-            <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.6px;color:var(--amber);font-weight:700;">▾ DELITO</span>
-            <select id="selDelitoMapa" onchange="modoSerie=true;subSel=this.value;render()" style="background:transparent;color:var(--txt);border:none;outline:none;font-family:Inter;font-size:13px;font-weight:700;cursor:pointer;max-width:320px;"></select>
+            <span style="font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1.6px;color:var(--amber);font-weight:700;">▾ DELITO</span>
+            <select id="selDelitoMapa" onchange="modoSerie=true;subSel=this.value;render()" style="background:transparent;color:var(--txt);border:none;outline:none;font-family:'Hanken Grotesk';font-size:13px;font-weight:700;cursor:pointer;max-width:320px;"></select>
           </div>
           <div style="display:flex;align-items:center;gap:8px;background:rgba(22,27,34,.9);border:1px solid var(--line);border-radius:10px;padding:7px 12px;">
-            <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1.6px;color:var(--mut);font-weight:700;">AÑO</span>
-            <select id="selAnioMapa" onchange="modoSerie=true;anioM=+this.value;render()" style="background:transparent;color:var(--txt);border:none;outline:none;font-family:Inter;font-size:13px;font-weight:700;cursor:pointer;"></select>
+            <span style="font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1.6px;color:var(--mut);font-weight:700;">AÑO</span>
+            <select id="selAnioMapa" onchange="modoSerie=true;anioM=+this.value;render()" style="background:transparent;color:var(--txt);border:none;outline:none;font-family:'Hanken Grotesk';font-size:13px;font-weight:700;cursor:pointer;"></select>
           </div>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--dim);">CATÁLOGO COMPLETO · 55 SUBTIPOS + DESAPARECIDOS RNPDNO</span>
+          <span style="font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--dim);">CATÁLOGO COMPLETO · 55 SUBTIPOS + DESAPARECIDOS RNPDNO</span>
         </div>
         <div style="display:flex;justify-content:flex-end;align-items:center;gap:10px;">
           <div class="zoomctl"><button onclick="zoomMapa(1.25)" title="Acercar">+</button><button onclick="zoomMapa(0.8)" title="Alejar">−</button><button onclick="zoomMapa(0)" title="Restablecer" style="font-size:11px;">⟲</button><button class="fsbtn" onclick="fsMapa()" title="Pantalla completa">⛶</button></div>
@@ -272,11 +272,11 @@ if(/github\.io$/.test(location.hostname)){
       .colreciente:hover{border-color:#fbbf24;transform:translateY(-2px);}
       .colreciente img{width:100%;aspect-ratio:1344/620;object-fit:cover;display:block;}
       .colreciente .cr-body{padding:13px 16px 15px;display:flex;flex-direction:column;gap:6px;}
-      .colreciente .cr-kick{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.8px;text-transform:uppercase;color:#fbbf24;font-weight:700;}
-      .colreciente h4{font-family:Fraunces,serif;font-size:20px;line-height:1.08;margin:0;letter-spacing:-.4px;}
+      .colreciente .cr-kick{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.8px;text-transform:uppercase;color:#fbbf24;font-weight:700;}
+      .colreciente h4{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;line-height:1.08;margin:0;letter-spacing:-.4px;}
       .colreciente p{font-size:12px;line-height:1.55;color:#c9d1d9;margin:0;text-align:justify;}
-      .colreciente .cr-more{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#fbbf24;font-weight:700;margin-top:2px;}
-      .cr-badge{position:absolute;top:11px;left:11px;z-index:3;background:#fbbf24;color:#0d1117;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.12em;padding:5px 11px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.45);}
+      .colreciente .cr-more{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#fbbf24;font-weight:700;margin-top:2px;}
+      .cr-badge{position:absolute;top:11px;left:11px;z-index:3;background:#fbbf24;color:#0d1117;font-family:'Spline Sans Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.12em;padding:5px 11px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.45);}
     </style>
 
 
@@ -289,7 +289,7 @@ if(/github\.io$/.test(location.hostname)){
     <div class="panel" style="margin:18px 0 26px;">
       <div id="anioChips" style="display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-bottom:16px;"></div>
       <div id="tabla55"></div>
-      <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;text-align:center;" id="t55foot"></div>
+      <div style="margin-top:12px;font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;text-align:center;" id="t55foot"></div>
     </div>
 
     <!-- SEÑALES -->

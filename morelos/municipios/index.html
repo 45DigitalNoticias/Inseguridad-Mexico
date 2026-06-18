@@ -7,7 +7,7 @@
 <meta name="description" content="Radiografía interactiva de los 36 municipios de Morelos. Selecciona un municipio para ver todos sus delitos del catálogo SESNSP.">
 <meta property="og:title" content="Radiografía municipal · Inseguridad Morelos">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../_partials/section-page.css">
 <script src="../morelos.geojson.js"></script>
 <script src="../municipios_delitos.js"></script>
@@ -17,11 +17,11 @@
 
   .hero{text-align:center;margin-bottom:36px;}
   .hero .eyebrow{
-    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:4px;
+    font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:4px;
     color:#ec4899;text-transform:uppercase;font-weight:700;margin-bottom:14px;
   }
   .hero h1{
-    font-family:'Fraunces',serif;font-size:56px;font-weight:700;
+    font-family:'Bricolage Grotesque',serif;font-size:56px;font-weight:700;
     color:#e6edf3;line-height:1.05;letter-spacing:-1.5px;
     margin:0 auto 18px;max-width:880px;
   }
@@ -39,12 +39,12 @@
     padding:18px 20px;display:flex;align-items:center;gap:14px;
   }
   .selector-wrap .lbl{
-    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;
+    font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:2px;
     color:#ec4899;text-transform:uppercase;font-weight:700;flex-shrink:0;
   }
   .selector-wrap select{
     flex:1;padding:12px 14px;border-radius:8px;
-    font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
+    font-family:'Hanken Grotesk',sans-serif;font-size:15px;font-weight:600;
     color:#e6edf3;background:#0d1117;
     border:1px solid rgba(236,72,153,0.45);cursor:pointer;
   }
@@ -55,7 +55,7 @@
   .selector-wrap select option{background:#0d1117;color:#e6edf3;}
   .selector-wrap select optgroup{
     color:#ec4899;font-weight:700;font-style:normal;
-    font-family:'JetBrains Mono',monospace;font-size:11px;
+    font-family:'Spline Sans Mono',monospace;font-size:11px;
     letter-spacing:1px;text-transform:uppercase;
   }
 
@@ -66,7 +66,7 @@
   }
   .empty-banner .icon{font-size:34px;margin-bottom:10px;}
   .empty-banner h3{
-    font-family:'Fraunces',serif;font-size:22px;color:#e6edf3;
+    font-family:'Bricolage Grotesque',serif;font-size:22px;color:#e6edf3;
     margin:0 0 8px;font-weight:600;
   }
   .empty-banner p{font-size:13.5px;color:#8b949e;line-height:1.55;margin:0;}
@@ -83,14 +83,14 @@
     border-radius:14px;padding:22px 24px;
   }
   .panel h3.p-title{
-    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;
+    font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2px;
     color:#8b949e;text-transform:uppercase;font-weight:700;
     margin:0 0 16px;display:flex;justify-content:space-between;
     align-items:baseline;gap:12px;
   }
   .panel h3.p-title em{color:#ec4899;font-style:normal;font-weight:700;}
   .panel h3.p-title .scope{
-    color:#c9d1d9;font-weight:700;font-family:'Inter',sans-serif;
+    color:#c9d1d9;font-weight:700;font-family:'Hanken Grotesk',sans-serif;
     text-transform:none;letter-spacing:0;font-size:14px;
   }
   body:not(.has-selection) .panel h3.p-title .scope{color:#6b7480;}
@@ -108,7 +108,7 @@
   body.has-selection .map-panel svg .muni:not(.selected){opacity:0.22;}
   .map-legend{
     margin-top:10px;text-align:center;
-    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;
+    font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.5px;
     color:#6b7480;text-transform:uppercase;
   }
 
@@ -129,11 +129,11 @@
   .kpi.vf .kpi-icon   {background:rgba(167,139,250,0.14);color:#a78bfa;}
   .kpi.rank .kpi-icon {background:rgba(236,72,153,0.14);color:#ec4899;}
   .kpi-body .label{
-    font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;
+    font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.5px;
     color:#8b949e;text-transform:uppercase;font-weight:700;
   }
   .kpi-body .num{
-    font-family:'Fraunces',serif;font-size:30px;font-weight:800;
+    font-family:'Bricolage Grotesque',serif;font-size:30px;font-weight:800;
     color:#e6edf3;line-height:1;letter-spacing:-1px;margin-top:4px;
   }
   body:not(.has-selection) .kpi-body .num{color:#3a4047;}
@@ -144,11 +144,11 @@
   .delitos-panel{margin-top:22px;}
   table.delitos-tbl{
     width:100%;border-collapse:collapse;
-    font-family:'Inter',sans-serif;font-size:13.5px;
+    font-family:'Hanken Grotesk',sans-serif;font-size:13.5px;
   }
   table.delitos-tbl th{
     text-align:left;padding:12px 14px;
-    font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    font-family:'Spline Sans Mono',monospace;font-size:10.5px;
     letter-spacing:1.4px;color:#6e7681;
     text-transform:uppercase;font-weight:700;
     border-bottom:1px solid rgba(48,54,61,0.7);
@@ -167,7 +167,7 @@
   }
   table.delitos-tbl .rank-pill{
     display:inline-block;padding:2px 7px;border-radius:4px;
-    font-family:'JetBrains Mono',monospace;font-size:10px;
+    font-family:'Spline Sans Mono',monospace;font-size:10px;
     background:rgba(139,148,158,0.15);color:#8b949e;font-weight:700;
     letter-spacing:0.5px;
   }
@@ -175,7 +175,7 @@
   table.delitos-tbl .rank-pill.r2-3{background:rgba(251,191,36,0.15);color:#fbbf24;}
   body:not(.has-selection) .delitos-empty{
     padding:50px 24px;text-align:center;color:#6b7480;
-    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;
+    font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2px;
     text-transform:uppercase;
   }
   body.has-selection .delitos-empty{display:none;}
@@ -191,11 +191,11 @@
   body:not(.has-selection) .analisis-cta{display:none;}
   .analisis-cta .ac-body{flex:1;min-width:280px;}
   .analisis-cta .ac-tag{
-    font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:2px;
+    font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:2px;
     color:#ec4899;text-transform:uppercase;font-weight:700;margin-bottom:6px;
   }
   .analisis-cta h4{
-    font-family:'Fraunces',serif;font-size:20px;color:#e6edf3;
+    font-family:'Bricolage Grotesque',serif;font-size:20px;color:#e6edf3;
     margin:0;line-height:1.3;font-weight:600;
   }
   .analisis-cta h4 em{color:#ec4899;font-style:italic;}
@@ -203,7 +203,7 @@
     display:inline-flex;align-items:center;gap:8px;
     padding:13px 22px;border-radius:10px;
     background:#ec4899;color:#fff;text-decoration:none;
-    font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:1.5px;
+    font-family:'Spline Sans Mono',monospace;font-size:11.5px;letter-spacing:1.5px;
     text-transform:uppercase;font-weight:700;transition:background 0.15s;
   }
   .analisis-cta a:hover{background:#fff;color:#ec4899;}
@@ -212,13 +212,13 @@
     margin-top:42px;padding:22px 26px;
     background:rgba(13,17,23,0.4);border:1px solid rgba(48,54,61,0.45);
     border-radius:10px;
-    font-family:'Inter',sans-serif;font-size:12.5px;line-height:1.7;color:#8b949e;
+    font-family:'Hanken Grotesk',sans-serif;font-size:12.5px;line-height:1.7;color:#8b949e;
     text-align:center;
   }
   .meta-footer strong{color:#c9d1d9;}
   .meta-footer code{
     background:rgba(255,255,255,0.05);padding:1px 6px;border-radius:3px;
-    font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#fbbf24;
+    font-family:'Spline Sans Mono',monospace;font-size:11.5px;color:#fbbf24;
   }
 
   @media (max-width:760px){
@@ -230,7 +230,7 @@
   }
 </style>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
-</head>
+<style id="noital">em,i{font-style:normal !important}</style></head>
 <body>
   <header class="page-topbar">
     <div class="page-brand">
@@ -409,7 +409,7 @@
     const svg = document.getElementById('mapSvg');
     if (!svg) return;
     if (typeof MORELOS_GEOJSON === 'undefined' || !MORELOS_GEOJSON.features){
-      svg.outerHTML = '<div style="padding:40px;text-align:center;color:#6b7480;font-family:JetBrains Mono;font-size:11px;letter-spacing:2px;text-transform:uppercase;">Mapa no disponible</div>';
+      svg.outerHTML = '<div style="padding:40px;text-align:center;color:#6b7480;font-family:Spline Sans Mono;font-size:11px;letter-spacing:2px;text-transform:uppercase;">Mapa no disponible</div>';
       return;
     }
     let minX=Infinity, minY=Infinity, maxX=-Infinity, maxY=-Infinity;
