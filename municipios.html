@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Encuentra tu municipio · Atlas ciudadano de inseguridad</title>
+<meta name="description" content="Busca cualquiera de los 2,469 municipios de México y abre su radiografía de 55 delitos. Atlas ciudadano de inseguridad · 45 Digital Noticias.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0e14;--card:#141a23;--line:rgba(56,63,75,.55);--txt:#e9eef5;--mut:#9aa6b6;--dim:#67717f;--acc:#34d399}
+*{margin:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:'Hanken Grotesk',system-ui,sans-serif;overflow-x:hidden}
+.bgwrap::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(72% 50% at 82% -6%,rgba(52,211,153,.12),transparent 60%),radial-gradient(60% 50% at -5% 105%,rgba(34,211,238,.06),transparent 55%)}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:22px 30px 70px}
+.top{display:flex;align-items:center;gap:12px;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--mut)}
+.top a{color:var(--mut);text-decoration:none}.top a:hover{color:var(--acc)}
+.top .v{margin-left:auto;color:var(--acc);border:1px solid rgba(52,211,153,.45);border-radius:999px;padding:7px 15px;font-weight:700}
+.kick{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:2.4px;color:var(--acc);text-transform:uppercase;font-weight:700;margin-top:24px;text-align:center}
+h1{font-family:'Bricolage Grotesque',sans-serif;font-size:58px;letter-spacing:-1.8px;line-height:.96;margin:8px 0 0;text-align:center}
+.sub{color:var(--mut);font-size:15px;line-height:1.55;max-width:640px;margin:14px auto 0;text-align:center}
+.searchbox{max-width:680px;margin:30px auto 0;position:relative}
+#q{width:100%;background:var(--card);color:var(--txt);border:1.5px solid var(--acc);border-radius:14px;padding:18px 20px;font-family:'Hanken Grotesk';font-size:18px;font-weight:600;box-shadow:0 0 24px rgba(52,211,153,.18)}
+#q::placeholder{color:var(--dim)}
+#res{position:absolute;left:0;right:0;top:calc(100% + 6px);background:#0d111a;border:1px solid var(--line);border-radius:14px;overflow:hidden;z-index:20;box-shadow:0 18px 40px rgba(0,0,0,.55);max-height:60vh;overflow-y:auto}
+#res a{display:flex;align-items:center;gap:12px;padding:12px 18px;color:var(--txt);text-decoration:none;border-bottom:1px solid rgba(48,54,61,.4)}
+#res a:hover,#res a.act{background:color-mix(in srgb,var(--acc) 14%,transparent)}
+#res .mn{font-weight:700;font-size:15px}#res .st{margin-left:auto;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--dim);text-transform:uppercase}
+#res .dot{width:9px;height:9px;border-radius:2px;flex:none}
+.hint{text-align:center;color:var(--dim);font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1px;margin-top:10px;text-transform:uppercase}
+.sec{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2.6px;color:var(--acc);text-transform:uppercase;font-weight:700;margin:46px 0 16px;display:flex;gap:12px;align-items:center}
+.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+.states{display:grid;grid-template-columns:repeat(auto-fill,minmax(186px,1fr));gap:10px}
+.scard{display:flex;align-items:center;gap:11px;padding:11px 14px;border:1px solid var(--line);border-left:4px solid var(--c);border-radius:11px;background:rgba(22,27,34,.78);color:var(--txt);cursor:pointer;font-weight:700;font-size:14px}
+.scard:hover{background:rgba(255,255,255,.04)}
+.scard svg{flex:none}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-top:16px}
+.panel h3{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;margin:0 0 3px}
+.panel .cap{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.1px;color:var(--dim);text-transform:uppercase;margin-bottom:14px}
+.munlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.mcard{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;padding:9px 13px;border:1px solid rgba(48,54,61,.5);border-radius:9px;background:rgba(13,17,23,.6);color:var(--txt);text-decoration:none}
+.mcard:hover{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 8%,transparent)}
+.mcard .mn{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mcard .tt{font-family:'Spline Sans Mono',monospace;font-weight:700;font-size:13px}
+.mcard .tl{font-family:'Spline Sans Mono',monospace;font-size:8px;letter-spacing:.5px;color:var(--dim);text-transform:uppercase;text-align:right;line-height:1.1}
+footer{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-family:'Spline Sans Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:.4px;line-height:1.7;text-align:center}
+@media(max-width:700px){h1{font-size:42px}}
+</style></head><body><div class="bgwrap"><div class="wrap">
+<div class="top"><a href="index.html">◉ 45 DIGITAL NOTICIAS · ATLAS CIUDADANO</a><a class="v" href="index.html">‹ dashboard</a></div>
+<div class="kick">2,469 municipios · 55 delitos · 2016-2025</div>
+<h1>Encuentra tu municipio</h1>
+<div class="sub">Escribe el nombre de tu municipio y abre su radiografía completa: los 55 delitos, su lugar en el estado, cuándo ocurren y qué se reclasifica. O explóralos por estado.</div>
+<div class="searchbox"><input id="q" placeholder="🔍 Escribe tu municipio… (p. ej. Cuernavaca, León, Tijuana)" autocomplete="off"><div id="res" style="display:none"></div></div>
+<div class="hint">↑↓ para navegar · Enter para abrir</div>
+<div class="sec">Explorar por estado</div>
+<div class="states" id="states"></div>
+<div id="detalle"></div>
+<footer>Fuente: SESNSP, incidencia delictiva municipal (corte abr-2026) · Población: INEGI Censo 2020 ajustada por año (CONAPO) · 45 Digital Noticias · Atlas ciudadano de inseguridad.</footer>
+</div></div>
+<script src="mexico_estados.geojson.js"></script>
+<script src="panorama_estatal.js"></script>
+<script src="series_mun/mun_nombres.js"></script>
+<script src="series_mun/pob_mun.js"></script>
+<script>
+const norm=s=>(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+const fmt=n=>Number(Math.round(n)).toLocaleString('es-MX');
+const ENT={},COL={};(PANORAMA_ESTATAL||[]).forEach(r=>{ENT[r.clave_ent]=r.entidad.replace(' de Zaragoza','').replace(' de Ocampo','').replace(' de Ignacio de la Llave','');COL[r.clave_ent]=r.color||'#34d399';});
+function rings(g){return g.type==='Polygon'?[g.coordinates]:g.coordinates;}
+function silSVG(clave,color,sz){sz=sz||30;const f=(typeof MEXICO_ESTADOS_GEOJSON!=='undefined')?MEXICO_ESTADOS_GEOJSON.features.find(x=>x.properties.clave_ent===clave):null;if(!f)return `<span style="width:${sz}px;flex:none"></span>`;
+  let a=1e9,b=1e9,c=-1e9,d=-1e9;rings(f.geometry).forEach(p=>p.forEach(r=>r.forEach(([x,y])=>{if(x<a)a=x;if(x>c)c=x;if(y<b)b=y;if(y>d)d=y;})));
+  let s='';rings(f.geometry).forEach(p=>p.forEach(r=>{r.forEach(([x,y],i)=>{s+=(i?'L':'M')+x.toFixed(4)+' '+(-y).toFixed(4);});s+='Z';}));
+  return `<svg viewBox="${a.toFixed(3)} ${(-d).toFixed(3)} ${(c-a).toFixed(3)} ${(d-b).toFixed(3)}" width="${sz}" height="${sz}" preserveAspectRatio="xMidYMid meet"><path d="${s}" fill="${color}" opacity=".9"/></svg>`;}
+// indice de busqueda
+const IDX=Object.keys(MUN_NOMBRES).map(k=>{const cve=+k;const ent=Math.floor(cve/1000);return{cve,nom:MUN_NOMBRES[k],ent,est:ENT[ent]||'',n:norm(MUN_NOMBRES[k]),ne:norm(ENT[ent]||'')};});
+const url=cve=>'municipio.html?cve='+String(cve).padStart(5,'0');
+// buscador
+const q=document.getElementById('q'),res=document.getElementById('res');let cur=-1,list=[];
+function search(){const v=norm(q.value.trim());if(!v){res.style.display='none';return;}
+  list=IDX.filter(m=>m.n.includes(v)||(m.n+' '+m.ne).includes(v)).sort((a,b)=>{const ap=a.n.startsWith(v)?0:1,bp=b.n.startsWith(v)?0:1;return ap-bp||a.nom.localeCompare(b.nom,'es');}).slice(0,12);
+  cur=-1;
+  res.innerHTML=list.length?list.map((m,i)=>`<a href="${url(m.cve)}" data-i="${i}"><span class="dot" style="background:${COL[m.ent]}"></span><span class="mn">${m.nom}</span><span class="st">${m.est}</span></a>`).join(''):'<div style="padding:14px 18px;color:var(--dim)">Sin coincidencias</div>';
+  res.style.display='block';}
+q.addEventListener('input',search);
+q.addEventListener('keydown',e=>{const a=[...res.querySelectorAll('a')];if(!a.length)return;
+  if(e.key==='ArrowDown'){cur=Math.min(a.length-1,cur+1);e.preventDefault();}
+  else if(e.key==='ArrowUp'){cur=Math.max(0,cur-1);e.preventDefault();}
+  else if(e.key==='Enter'){if(cur>=0&&list[cur]){location.href=url(list[cur].cve);}else if(list[0]){location.href=url(list[0].cve);}return;}
+  else return;
+  a.forEach((x,i)=>x.classList.toggle('act',i===cur));if(a[cur])a[cur].scrollIntoView({block:'nearest'});});
+document.addEventListener('click',e=>{if(!e.target.closest('.searchbox'))res.style.display='none';});
+// explorar por estado
+const states=document.getElementById('states');
+(PANORAMA_ESTATAL||[]).slice().sort((a,b)=>a.entidad.localeCompare(b.entidad,'es')).forEach(r=>{
+  const d=document.createElement('div');d.className='scard';d.style.setProperty('--c',r.color||'#34d399');
+  d.innerHTML=silSVG(r.clave_ent,r.color||'#34d399',30)+`<span>${ENT[r.clave_ent]}</span>`;
+  d.onclick=()=>abrirEstado(r.clave_ent);states.appendChild(d);});
+const cacheSMA={};
+function abrirEstado(ent){
+  const det=document.getElementById('detalle');det.innerHTML=`<div class="panel"><div class="cap">cargando municipios de ${ENT[ent]}…</div></div>`;
+  det.scrollIntoView({behavior:'smooth',block:'start'});
+  const id=String(ent).padStart(2,'0');
+  const done=sma=>{cacheSMA[ent]=sma;
+    const li=sma.anios.indexOf('2025');const idx=li>=0?li:sma.anios.length-1;const an=sma.anios[idx];
+    const arr=Object.keys(sma.munis).map(cv=>{const full=ent*1000+(+cv);const hd=(sma.munis[cv]['Homicidio doloso']||[])[idx]||0;const p=(POB_MUN[full]||[])[idx]||0;return{full,nom:MUN_NOMBRES[full]||('Mun '+full),hd,tasa:p?hd/p*1e5:0};}).sort((a,b)=>b.tasa-a.tasa);
+    det.innerHTML=`<div class="panel"><h3>${silSVG(ent,COL[ent],22)} ${ENT[ent]} · ${arr.length} municipios</h3><div class="cap">ordenados por tasa de homicidio /100k (${an}) · clic para abrir su atlas</div><div class="munlist">`+
+      arr.map(m=>`<a class="mcard" href="${url(m.full)}"><span class="mn">${m.nom}</span><span><div class="tt" style="color:${m.tasa>=30?'#f85149':m.tasa>=10?'#fbbf24':'#3fb950'}">${m.tasa?m.tasa.toFixed(1):'0'}</div><div class="tl">HD /100k</div></span></a>`).join('')+`</div></div>`;};
+  if(cacheSMA[ent])return done(cacheSMA[ent]);
+  fetch(`series_mun/sma_${id}.js`).then(r=>r.text()).then(t=>done((new Function(t+';return SERIE_MUN_ANUAL;'))())).catch(()=>{det.innerHTML='<div class="panel"><div class="cap">no se pudo cargar</div></div>';});
+}
+</script></body></html>
