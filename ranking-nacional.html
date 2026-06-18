@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ranking nacional de la inseguridad · 45 Digital Noticias</title>
+<meta name="description" content="Quién encabeza cada uno de los 55 delitos en México, estado por estado y municipio por municipio, año por año. Atlas ciudadano de inseguridad.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0e14;--card:#141a23;--line:rgba(56,63,75,.55);--txt:#e9eef5;--mut:#9aa6b6;--dim:#67717f;--acc:#22d3ee}
+*{margin:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:'Hanken Grotesk',system-ui,sans-serif;overflow-x:hidden}
+.bgwrap::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(72% 50% at 82% -6%,rgba(34,211,238,.12),transparent 60%),radial-gradient(60% 50% at -5% 105%,rgba(244,113,31,.06),transparent 55%)}
+.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:22px 30px 70px}
+.top{display:flex;align-items:center;gap:12px;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--mut)}
+.top a{color:var(--mut);text-decoration:none}.top a:hover{color:var(--acc)}
+.top .v{margin-left:auto;color:var(--acc);border:1px solid rgba(34,211,238,.45);border-radius:999px;padding:7px 15px;font-weight:700}
+.bc{font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--dim);margin:18px 0 0}.bc a{color:var(--dim);text-decoration:none}.bc b{color:var(--acc)}
+.kick{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:2.4px;color:var(--acc);text-transform:uppercase;font-weight:700;margin-top:14px}
+h1{font-family:'Bricolage Grotesque',sans-serif;font-size:60px;letter-spacing:-1.8px;line-height:.95;margin:6px 0 0}
+.sub{color:var(--mut);font-size:14px;line-height:1.55;max-width:680px;margin-top:12px;text-align:justify}
+.ctrls{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:22px 0 6px;background:rgba(20,26,35,.7);border:1px solid var(--line);border-radius:16px;padding:15px 18px}
+.ctrls .grp{display:flex;flex-direction:column;gap:4px}
+.ctrls label{font-family:'Spline Sans Mono',monospace;font-size:8.5px;letter-spacing:1.4px;color:var(--dim);text-transform:uppercase}
+.delsel{background:#0b0e14;color:var(--txt);border:1px solid var(--acc);border-radius:9px;padding:8px 12px;font-family:'Hanken Grotesk';font-weight:700;font-size:14px;max-width:340px}
+.modo{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+.modo button{background:transparent;color:var(--mut);border:none;padding:8px 14px;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.modo button.on{background:var(--acc);color:#0b0e14;font-weight:700}
+.yrwrap{flex:1;min-width:240px}
+.yrwrap .lab{display:flex;align-items:baseline;gap:10px}
+.yrwrap .yr{font-family:'Bricolage Grotesque',sans-serif;font-size:30px;font-weight:800;color:var(--acc);line-height:1}
+.yrwrap .play{margin-left:auto;background:var(--acc);color:#0b0e14;border:none;border-radius:8px;font-weight:800;cursor:pointer;padding:7px 13px;font-family:'Spline Sans Mono',monospace;letter-spacing:1px;font-size:11px}
+#yr{width:100%;margin-top:8px;accent-color:var(--acc);height:6px}
+.ticks{display:flex;justify-content:space-between;font-family:'Spline Sans Mono',monospace;font-size:9px;color:var(--dim);margin-top:2px}
+.head{font-size:19px;line-height:1.5;font-weight:500;margin:20px 0 4px}
+.head b{font-family:'Bricolage Grotesque',sans-serif;font-weight:800}.head .hot{color:var(--acc)}.head .am{color:#fbbf24}
+.sec{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2.6px;color:var(--acc);text-transform:uppercase;font-weight:700;margin:32px 0 14px;display:flex;gap:12px;align-items:center}
+.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px}
+.panel h3{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;margin:0 0 10px}
+#mapsvg{width:100%;height:auto;display:block}
+#mapsvg path{stroke:#0b0e14;stroke-width:.5;transition:fill .3s;cursor:pointer}
+#mapsvg path:hover{stroke:#fff;stroke-width:1.4}
+.maptip{position:absolute;pointer-events:none;background:#0b0e14;border:1px solid var(--line);border-radius:7px;padding:5px 9px;font-size:12px;font-family:'Spline Sans Mono',monospace;display:none;z-index:5;white-space:nowrap}
+.mapleg{display:flex;align-items:center;gap:8px;margin-top:8px;font-family:'Spline Sans Mono',monospace;font-size:8.5px;letter-spacing:1px;color:var(--dim);text-transform:uppercase}
+.ramp{flex:1;height:8px;border-radius:4px;background:linear-gradient(90deg,#1a2db0,#2e6fde,#35b5e8,#3dbb6e,#8bc63f,#f3e13a,#fbb03b,#f4711f,#e02f1f)}
+.esc{display:flex;flex-direction:column;gap:3px}
+.bar{display:grid;grid-template-columns:26px 1fr 86px;align-items:center;gap:9px;cursor:pointer;padding:3px 5px;border-radius:7px}
+.bar:hover{background:rgba(255,255,255,.04)}
+.bar .rk{font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--dim);text-align:right}
+.bar .nm{font-size:13px;color:#c8d2de;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .nm small{color:var(--dim);font-size:10.5px}
+.bar .tk{height:11px;background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden;margin-top:3px}
+.bar .fl{height:100%;border-radius:6px}
+.bar .vv{font-family:'Spline Sans Mono',monospace;font-weight:700;font-size:13px;text-align:right}
+.search{width:100%;background:#0b0e14;color:var(--txt);border:1px solid var(--line);border-radius:9px;padding:9px 12px;font-family:'Hanken Grotesk';font-size:13px;margin-bottom:12px}
+.muni-rk .bar{grid-template-columns:32px 1fr 96px}
+.loading{text-align:center;padding:90px 0;font-family:'Spline Sans Mono',monospace;color:var(--mut);letter-spacing:1px}
+footer{margin-top:36px;border-top:1px solid var(--line);padding-top:16px;font-family:'Spline Sans Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:.4px;line-height:1.7}
+@media(max-width:820px){.grid{grid-template-columns:1fr}h1{font-size:44px}}
+</style></head><body><div class="bgwrap"><div class="wrap" id="wrap"><div class="loading" id="loading">Cargando ranking nacional…</div></div></div>
+<script src="mexico_estados.geojson.js"></script>
+<script src="panorama_estatal.js"></script>
+<script src="delitos_completo.js"></script>
+<script>
+const RAMP=['#1a2db0','#2e6fde','#35b5e8','#3dbb6e','#8bc63f','#f3e13a','#fbb03b','#f4711f','#e02f1f'];
+const fmt=n=>Number(Math.round(n)).toLocaleString('es-MX');
+function ramp(t){t=Math.max(0,Math.min(1,t));const x=t*(RAMP.length-1),i=Math.min(RAMP.length-2,Math.floor(x)),k=x-i;const h=s=>[parseInt(s.slice(1,3),16),parseInt(s.slice(3,5),16),parseInt(s.slice(5,7),16)];const a=h(RAMP[i]),b=h(RAMP[i+1]);return`rgb(${a.map((v,j)=>Math.round(v+(b[j]-v)*k)).join(',')})`;}
+function rings(g){return g.type==='Polygon'?[g.coordinates]:g.coordinates;}
+function fetchJS(u,v){return fetch(u).then(r=>{if(!r.ok)throw new Error(u);return r.text();}).then(t=>(new Function(t+';return '+v+';'))());}
+let SMA={},POB={},NAT=null,NOM={},ANIOS=[],NY=0,SUBS=[],SUBBJ={},STATES=[],yi=0,sub='__TOTAL__',modo='abs',timer=null;
+
+Promise.all([
+  fetchJS('series_mun/pob_mun.js','POB_MUN'),
+  fetchJS('series_mun/nat_hd.js','NAT_HD_RATE'),
+  fetchJS('series_mun/mun_nombres.js','MUN_NOMBRES'),
+].concat(Array.from({length:32},(_,i)=>fetchJS(`series_mun/sma_${String(i+1).padStart(2,'0')}.js`,'SERIE_MUN_ANUAL').then(d=>({e:i+1,d})))))
+.then(res=>{
+  POB=res[0];NAT=res[1];NOM=res[2];
+  res.slice(3).forEach(o=>SMA[o.e]=o.d);
+  init();
+}).catch(e=>{document.getElementById('loading').textContent='No se pudo cargar el ranking.';console.error(e);});
+
+function init(){
+  const any=SMA[1]; ANIOS=any.anios.slice(0,any.anios.indexOf('2025')+1||any.anios.length); NY=ANIOS.length;
+  // bj map (union)
+  if(typeof DELITOS_COMPLETO_2025!=='undefined')Object.values(DELITOS_COMPLETO_2025).forEach(arr=>arr.forEach(d=>SUBBJ[d.s]=d.bj));
+  // SUBS = union de subtipos, ordenado por total nacional 2025
+  const set=new Set();Object.values(SMA).forEach(s=>Object.values(s.munis).forEach(m=>Object.keys(m).forEach(k=>set.add(k))));
+  const li=NY-1;
+  SUBS=[...set].sort((a,b)=>natTot(b,li)-natTot(a,li));
+  STATES=(typeof PANORAMA_ESTATAL!=='undefined')?PANORAMA_ESTATAL.map(r=>({ent:r.clave_ent,nom:r.entidad.replace(' de Zaragoza','').replace(' de Ocampo','').replace(' de Ignacio de la Llave',''),color:r.color||'#22d3ee'})):[];
+  STATES.sort((a,b)=>a.ent-b.ent);
+  yi=NY-1; layout(); render();
+}
+function natTot(s,i){let v=0;for(const e in SMA)for(const cv in SMA[e].munis){const m=SMA[e].munis[cv];if(s==='__TOTAL__'){for(const k in m)v+=m[k][i]||0;}else if(m[s])v+=m[s][i]||0;}return v;}
+function muniVal(e,cv,s,i){if(s==='__TOTAL__'){let v=0;const m=SMA[e].munis[cv];for(const k in m)v+=m[k][i]||0;return v;}const a=SMA[e].munis[cv][s];return a?a[i]||0:0;}
+function pobOf(full,i){const p=POB[full];return p?p[i]:0;}
+function metric(val,pop){return modo==='tasa'?(pop?val/pop*1e5:0):val;}
+
+function layout(){
+  document.getElementById('wrap').innerHTML=`
+  <div class="top"><a href="index.html">◉ 45 DIGITAL NOTICIAS · ATLAS CIUDADANO</a><a class="v" href="index.html">‹ dashboard</a></div>
+  <div class="bc"><a href="index.html">Nacional</a> › <b>Ranking</b></div>
+  <div class="kick">55 DELITOS · 32 ESTADOS · 2,469 MUNICIPIOS · 2016-2025</div>
+  <h1>Ranking nacional<br>de la inseguridad</h1>
+  <div class="sub">Elige un delito y un año: el país se reordena. Quién encabeza homicidio no encabeza extorsión; quién manda en absolutos cae al cambiar a tasa por habitante. Estado por estado y municipio por municipio. Clic en cualquiera para abrir su panel.</div>
+  <div class="ctrls">
+    <div class="grp"><label>Delito</label><select class="delsel" id="delsel"></select></div>
+    <div class="grp"><label>Medida</label><div class="modo"><button id="mAbs" class="on" onclick="setModo('abs')">Carpetas</button><button id="mTasa" onclick="setModo('tasa')">Tasa /100k</button></div></div>
+    <div class="grp yrwrap"><label>Año</label><div class="lab"><span class="yr" id="yrBig"></span><button class="play" id="play">▶</button></div><input type="range" id="yr" min="0" max="${NY-1}" value="${NY-1}"><div class="ticks" id="ticks"></div></div>
+  </div>
+  <div class="head" id="head"></div>
+  <div class="sec">Mapa · estados</div>
+  <div class="grid">
+    <div class="panel"><h3 id="mapTit">México por estado</h3><div style="position:relative"><svg id="mapsvg"></svg><div class="maptip" id="maptip"></div></div><div class="mapleg"><span>menos</span><span class="ramp"></span><span>más</span></div></div>
+    <div class="panel"><h3>Los 32 estados</h3><div class="esc" id="escEdo"></div></div>
+  </div>
+  <div class="sec">Los municipios que encabezan</div>
+  <div class="panel"><input class="search" id="search" placeholder="🔍 busca tu municipio (de los 2,469)…"><div class="esc muni-rk" id="escMun"></div></div>
+  <footer>Fuente: SESNSP, incidencia delictiva municipal (corte abr-2026) · Población: INEGI Censo 2020 ajustada por año (CONAPO) · La tasa nivela municipios chicos y grandes; los absolutos no.<br>45 Digital Noticias · Atlas ciudadano de inseguridad · cada cifra trazable a su fuente.</footer>`;
+  const ds=document.getElementById('delsel');
+  let o0=document.createElement('option');o0.value='__TOTAL__';o0.textContent='Todos los delitos (total)';ds.appendChild(o0);
+  SUBS.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;ds.appendChild(o);});
+  ds.onchange=()=>{sub=ds.value;render();};
+  const yr=document.getElementById('yr');yr.oninput=()=>{yi=+yr.value;render();};
+  document.getElementById('ticks').innerHTML=ANIOS.map(a=>`<span>${a.slice(2)}</span>`).join('');
+  document.getElementById('play').onclick=function(){if(timer){clearInterval(timer);timer=null;this.textContent='▶';return;}this.textContent='⏸';timer=setInterval(()=>{yi=(yi+1)%NY;document.getElementById('yr').value=yi;render();},950);};
+  document.getElementById('search').oninput=render;
+  // mapa nacional
+  const gj=(typeof MEXICO_ESTADOS_GEOJSON!=='undefined')?MEXICO_ESTADOS_GEOJSON:null;
+  if(gj){let a=1e9,b=1e9,c=-1e9,d=-1e9;
+    gj.features.forEach(f=>rings(f.geometry).forEach(p=>p.forEach(r=>r.forEach(([x,y])=>{if(x<a)a=x;if(x>c)c=x;if(y<b)b=y;if(y>d)d=y;}))));
+    const W=620,sc=W/(c-a),H=(d-b)*sc;const ns='http://www.w3.org/2000/svg';const svg=document.getElementById('mapsvg');svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    const tip=document.getElementById('maptip');
+    gj.features.forEach(f=>{let s='';rings(f.geometry).forEach(p=>p.forEach(r=>{r.forEach(([x,y],i)=>{s+=(i?'L':'M')+((x-a)*sc).toFixed(1)+' '+((d-y)*sc).toFixed(1);});s+='Z';}));
+      const path=document.createElementNS(ns,'path');path.setAttribute('d',s);path.dataset.ent=f.properties.clave_ent;
+      path.onmousemove=e=>{tip.style.display='block';tip.style.left=(e.offsetX+14)+'px';tip.style.top=(e.offsetY+14)+'px';tip.dataset.ent=f.properties.clave_ent;tip.textContent=tip._txt||'';};
+      path.onclick=()=>{location.href='estado.html?estado='+f.properties.clave_ent;};svg.appendChild(path);});
+    svg.addEventListener('mousemove',e=>{});
+  }
+}
+function setModo(m){modo=m;document.getElementById('mAbs').classList.toggle('on',m==='abs');document.getElementById('mTasa').classList.toggle('on',m==='tasa');render();}
+function render(){
+  document.getElementById('yrBig').textContent=ANIOS[yi];
+  // estados
+  const edo=STATES.map(s=>{let v=0,p=0;const M=SMA[s.ent].munis;for(const cv in M){v+=muniVal(s.ent,cv,sub,yi);p+=pobOf(s.ent*1000+parseInt(cv),yi);}return{...s,val:v,pop:p,m:metric(v,p)};});
+  const emax=Math.max(...edo.map(x=>x.m),1);
+  // mapa recolorea + tooltip
+  const svg=document.getElementById('mapsvg');const byEnt={};edo.forEach(x=>byEnt[x.ent]=x);
+  if(svg)svg.querySelectorAll('path').forEach(p=>{const x=byEnt[+p.dataset.ent];const t=x?x.m/emax:0;p.setAttribute('fill',ramp(t));
+    p.onmousemove=ev=>{const tip=document.getElementById('maptip');tip.style.display='block';tip.style.left=(ev.offsetX+14)+'px';tip.style.top=(ev.offsetY+14)+'px';tip.textContent=`${x?x.nom:''}: ${x?(modo==='tasa'?x.m.toFixed(1):fmt(x.m)):''}`;};
+    p.onmouseleave=()=>{document.getElementById('maptip').style.display='none';};});
+  // escalada estados
+  const eor=edo.slice().sort((a,b)=>b.m-a.m);
+  document.getElementById('escEdo').innerHTML=eor.map((x,i)=>`<div class="bar" onclick="location.href='estado.html?estado=${x.ent}'"><div class="rk">${i+1}</div><div class="nm">${x.nom}<div class="tk"><div class="fl" style="width:${Math.max(2,100*x.m/emax)}%;background:${ramp(x.m/emax)}"></div></div></div><div class="vv">${modo==='tasa'?x.m.toFixed(1):fmt(x.m)}</div></div>`).join('');
+  // municipios
+  let mun=[];for(const e in SMA){const ent=+e;for(const cv in SMA[e].munis){const full=ent*1000+parseInt(cv);const v=muniVal(ent,cv,sub,yi);const p=pobOf(full,yi);mun.push({full,ent,nom:NOM[full]||('Mun '+full),est:(byEnt[ent]?byEnt[ent].nom:''),m:metric(v,p),val:v});}}
+  if(modo==='tasa')mun=mun.filter(x=>x.val>=5||x.m===0); // evita tasas absurdas de municipios diminutos con 1-2 casos
+  mun.sort((a,b)=>b.m-a.m);
+  const q=(document.getElementById('search').value||'').toLowerCase().trim();
+  let show=mun.slice(0,40),extra='';
+  if(q){const hits=mun.filter(x=>x.nom.toLowerCase().includes(q)||x.est.toLowerCase().includes(q));show=hits.slice(0,40);extra=` · ${hits.length} coincidencia(s)`;}
+  const mmax=Math.max(...mun.map(x=>x.m),1);
+  const rankPos={};mun.forEach((x,i)=>rankPos[x.full]=i+1);
+  document.getElementById('escMun').innerHTML=show.map(x=>`<div class="bar" onclick="location.href='municipio.html?cve=${String(x.full).padStart(5,'0')}'"><div class="rk">${rankPos[x.full]}</div><div class="nm">${x.nom} <small>· ${x.est}</small><div class="tk"><div class="fl" style="width:${Math.max(2,100*x.m/mmax)}%;background:${ramp(x.m/mmax)}"></div></div></div><div class="vv">${modo==='tasa'?x.m.toFixed(1):fmt(x.m)}</div></div>`).join('')||'<div style="color:var(--dim);padding:10px">sin coincidencias</div>';
+  // headline
+  const topE=eor[0],topM=mun[0];const label=sub==='__TOTAL__'?'carpetas (todos los delitos)':sub;
+  const natv=natTot(sub,yi);
+  document.getElementById('head').innerHTML=`En <span class="hot">${ANIOS[yi]}</span>, <b>${label}</b> sumó <b class="am">${fmt(natv)}</b> carpetas en el país. Estado al frente: <b class="am">${topE.nom}</b> · municipio: <b class="am">${topM?topM.nom:''}</b>${q?'<span style="color:var(--dim);font-size:13px">'+extra+'</span>':''}.`;
+  document.getElementById('mapTit').textContent=`México por estado · ${modo==='tasa'?'tasa /100k':'carpetas'} · ${ANIOS[yi]}`;
+}
+</script></body></html>

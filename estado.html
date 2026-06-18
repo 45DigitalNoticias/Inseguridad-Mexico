@@ -594,7 +594,7 @@ function renderMapaMun(){
           <option value="" ${!subMapa?'selected':''}>Todos los delitos (total)</option>
           ${catEdo.map(r=>`<option value="${r.s.replace(/"/g,'&quot;')}" ${subMapa===r.s?'selected':''}>${r.s}</option>`).join('')}
         </select></span>
-     <span style="font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;">catálogo completo · ${catEdo.length} subtipos · anual (total admite trimestres)</span>`;
+     <span style="font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;">catálogo completo · ${catEdo.length} subtipos · anual · 👆 clic en un municipio para abrir su atlas</span>`;
   if(!SMUN||!GMUN){ aviso.style.display='flex'; aviso.textContent='Mapa municipal disponible próximamente para este estado (piloto: Coahuila)'; cv.style.visibility='hidden'; return; }
   // periodo compartido con el ranking (timeline estatal arranca 2015; municipal 2016)
   const per=PERIODOS_R[periodoR];
@@ -671,10 +671,15 @@ function renderMapaMun(){
   GMUN.features.forEach(f=>ctx.stroke(p2d(f)));
   // tooltip por muni (hit-test)
   const paths=GMUN.features.map(f=>({p:p2d(f),n:f.properties.nombre,cv:f.properties.cve}));
+  cv.style.cursor='pointer';
   cv.onmousemove=e=>{
     const r=cv.getBoundingClientRect();const x=(e.clientX-r.left)*W/r.width,y=(e.clientY-r.top)*H/r.height;
-    for(const o of paths){if(ctx.isPointInPath(o.p,x,y)){cv.title=`${o.n}: ${fmtN(vals[o.cv]||0)}`;return;}}
+    for(const o of paths){if(ctx.isPointInPath(o.p,x,y)){cv.title=`${o.n}: ${fmtN(vals[o.cv]||0)} · clic para abrir`;return;}}
     cv.title='';
+  };
+  cv.onclick=e=>{
+    const r=cv.getBoundingClientRect();const x=(e.clientX-r.left)*W/r.width,y=(e.clientY-r.top)*H/r.height;
+    for(const o of paths){if(ctx.isPointInPath(o.p,x,y)){location.href='municipio.html?cve='+String(CLAVE*1000+o.cv).padStart(5,'0');return;}}
   };
   // leyenda min/max
   const top=orden[orden.length-1],low=orden[0];
