@@ -248,7 +248,7 @@ if (CLAVE === null) {
       <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-size:46px;letter-spacing:-1.2px;margin:0 0 30px;">¿Qué estado quieres <em style="color:var(--amber);font-style:italic;">auditar</em>?</h1>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;max-width:1100px;margin:0 auto;">` +
     PANORAMA_ESTATAL.slice().sort((a,b)=>a.entidad.localeCompare(b.entidad,'es')).map(r=>
-      `<a href="?estado=${r.clave_ent}" style="display:block;padding:15px;border:1px solid rgba(48,54,61,.7);border-left:4px solid ${r.color};border-radius:11px;background:rgba(22,27,34,.78);color:#e6edf3;text-decoration:none;font-weight:700;font-size:14px;text-align:left;">${r.entidad.replace(' de Zaragoza','').replace(' de Ocampo','').replace(' de Ignacio de la Llave','')}</a>`).join('') +
+      `<a href="?estado=${r.clave_ent}" style="display:flex;align-items:center;gap:11px;padding:12px 15px;border:1px solid rgba(48,54,61,.7);border-left:4px solid ${r.color};border-radius:11px;background:rgba(22,27,34,.78);color:#e6edf3;text-decoration:none;font-weight:700;font-size:14px;text-align:left;">${silSVG(r.clave_ent,r.color)}<span>${r.entidad.replace(' de Zaragoza','').replace(' de Ocampo','').replace(' de Ignacio de la Llave','')}</span></a>`).join('') +
     `</div></section>`;
   document.querySelector('.topctl').style.display='none';
   throw new Error('chooser-mode'); // detiene el resto del script limpiamente
@@ -264,6 +264,13 @@ const fmtN = v => Number(v).toLocaleString('es-MX');
 const IDX2018 = SERIES_ANIOS.indexOf(2018), IDX2025 = SERIES_ANIOS.indexOf(2025);
 
 function pathDe(f){const P=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;let s='';P.forEach(p=>p.forEach(r=>{r.forEach(([x,y],i)=>{s+=(i?'L':'M')+x.toFixed(4)+' '+(-y).toFixed(4);});s+='Z';}));return s;}
+function silSVG(clave,color){
+  const f=MEXICO_ESTADOS_GEOJSON.features.find(x=>x.properties.clave_ent===clave);
+  if(!f)return '<span style="width:32px;flex:none"></span>';
+  let a=1e9,b=1e9,c=-1e9,d=-1e9;
+  (f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates).forEach(p=>p.forEach(r=>r.forEach(([x,y])=>{if(x<a)a=x;if(x>c)c=x;if(y<b)b=y;if(y>d)d=y;})));
+  return `<svg viewBox="${a.toFixed(3)} ${(-d).toFixed(3)} ${(c-a).toFixed(3)} ${(d-b).toFixed(3)}" width="32" height="32" preserveAspectRatio="xMidYMid meet" style="flex:none"><path d="${pathDe(f)}" fill="${color}" opacity=".9"/></svg>`;
+}
 
 function sparkSVG(serie, color){
   const w=120,h=26,p=2;
