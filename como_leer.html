@@ -16,6 +16,13 @@ h2{font-family:'Bricolage Grotesque',sans-serif;font-size:24px;letter-spacing:-.
 p,li{font-size:15px;line-height:1.85;color:#c9d1d9;text-align:justify;}
 strong{color:#e6edf3;} em{color:#fbbf24;font-style:italic;}
 ul{padding-left:22px;} figure{margin:22px 0;}figure img{width:100%;border-radius:11px;border:1px solid rgba(48,54,61,.7);display:block;}figcaption{font-family:Spline Sans Mono,monospace;font-size:10px;letter-spacing:1px;color:#6b7480;text-transform:uppercase;margin-top:8px;text-align:center;}hr{border:none;border-top:1px solid rgba(48,54,61,.7);margin:26px 0;}
+.videowrap{margin:28px 0;}
+.videobox{position:relative;aspect-ratio:16/9;border:1.5px dashed rgba(251,191,36,.55);border-radius:14px;background:linear-gradient(180deg,rgba(22,27,34,.7),rgba(13,17,23,.5));display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.videobox iframe,.videobox video{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:14px;}
+.vinner{text-align:center;padding:20px;}
+.vplay{width:64px;height:64px;margin:0 auto 14px;border-radius:50%;background:rgba(251,191,36,.16);border:1.5px solid #fbbf24;color:#fbbf24;font-size:24px;display:flex;align-items:center;justify-content:center;}
+.vtxt{font-family:Spline Sans Mono,monospace;font-size:12px;letter-spacing:2px;color:#fbbf24;text-transform:uppercase;font-weight:700;}
+.vsub{font-size:13px;color:#9aa6b6;margin-top:6px;}
 </style><script>
 /* GA4 · solo en produccion (mismo flujo que /morelos/) */
 if(/github\.io$/.test(location.hostname)){
@@ -32,6 +39,11 @@ if(/github\.io$/.test(location.hostname)){
 <hr>
 <p>México discute su seguridad con cifras sueltas: un porcentaje en una mañanera, un ranking en un titular, un mapa rojo en un noticiero. Cada cifra suele ser cierta, y cada una, sola, suele contar solo la parte que conviene a quien la enuncia. <strong>Inseguridad México</strong> existe para lo contrario: poner todas las cifras oficiales en un mismo lugar, con el catálogo completo de delitos, su historia y su fuente, para que cualquier persona pueda auditar lo que se le dice.</p>
 <p>Esta primera columna es la guía de uso. No porque el tablero sea difícil, pues está hecho para leerse de un vistazo, sino porque algunas de sus piezas muestran cosas que ningún reporte oficial pone junto, y conviene saber exactamente qué se está viendo.</p>
+<figure class="videowrap" id="video-guia">
+  <!-- VIDEO_SLOT: cuando el video esté listo, reemplazar el contenido de .videobox por <iframe ...> o <video controls ...> -->
+  <div class="videobox"><div class="vinner"><div class="vplay">▶</div><div class="vtxt">Video guía · próximamente</div><div class="vsub">El recorrido en dos minutos: del mapa nacional hasta su municipio</div></div></div>
+  <figcaption>Video explicativo del expediente (en producción)</figcaption>
+</figure>
 <h2>Primero: el país como campo de temperatura</h2>
 <p>Lo primero que aparece es un mapa de México que se lee como un mapa del clima: zonas frías en azul, zonas que arden en rojo. No mide grados: mide <strong>tasas por cada 100 mil habitantes</strong> del delito que usted elija: homicidio, feminicidio, desaparecidos, extorsión, secuestro, violencia familiar, violación, o el total de carpetas.</p>
 <p>Dos decisiones de diseño importan aquí, y las declaramos:</p>
@@ -52,6 +64,19 @@ if(/github\.io$/.test(location.hostname)){
 <p>Para responderla sin perseguir caso por caso, construimos el <strong>Monitor de Opacidad</strong>: una matriz de los 32 estados por once años donde cada celda dice qué fracción de todas las carpetas de ese estado cayó en bolsas ese año. Se lee en tres movimientos: la <strong>celda</strong> (Tabasco 2025: 34 de cada 100 carpetas son inauditables), la <strong>fila</strong> (si el color se intensifica, el estado mueve cada año más registro a las bolsas), y el <strong>Δ</strong> (el saldo de la década: rojo se opacó, cyan se transparentó).</p><figure><img src="assets/img/col_monitor.webp" alt="El Monitor de Opacidad · 32 estados × 11 años · % de carpetas en bolsas Otros" loading="lazy"><figcaption>El Monitor de Opacidad · 32 estados × 11 años · % de carpetas en bolsas Otros</figcaption></figure>
 <p>Debajo, el detector de pares muestra los casos concretos: <strong>27 señales</strong> donde un delito específico cayó más de 25% mientras su espejo subió más de 25% entre 2018 y 2025, cada una con sus dos series enfrentadas. El cruce de esas dos líneas es la pregunta.</p><figure><img src="assets/img/col_senal.webp" alt="Una señal: el delito específico (cyan) cae mientras su espejo (rojo) sube" loading="lazy"><figcaption>Una señal: el delito específico (cyan) cae mientras su espejo (rojo) sube</figcaption></figure>
 <p>Y aquí la advertencia que repetiremos siempre, porque la seriedad del proyecto depende de ella: <strong>opacidad no es culpa</strong>. Una celda alta o una señal no prueban manipulación; pueden ser cambios de criterio de captura o reformas legales. Lo que sí vuelven innegable es cuánto del delito de cada estado no se puede auditar, hacia dónde va esa fracción, y qué casos merecen explicación pública. Las señales son hipótesis a auditar. Quien tenga la explicación, tiene en este medio el espacio para darla.</p>
+<h2>Y ahora, hasta el último municipio</h2>
+<p>El expediente ya no se detiene en el estado. Haga clic en cualquier municipio del mapa estatal, o entre por <strong>Encuentra tu municipio</strong> en la cabecera, y abrirá su radiografía propia: los mismos 55 delitos del catálogo, pero a la escala donde la inseguridad se vive. Hasta donde sabemos, es el único lugar que reúne los <strong>2,469 municipios del país</strong> con su catálogo completo, año por año, de 2016 a 2025.</p>
+<figure><img src="assets/img/como_municipios.webp" alt="Buscador de municipios y exploración por estado" loading="lazy"><figcaption>La puerta de entrada: busca tu municipio o explóralos por estado</figcaption></figure>
+<p>Cada municipio responde con rigor lo que sí se puede contestar, y declara lo que no:</p>
+<ul>
+<li><strong>Su lugar, no su interior.</strong> El dato del SESNSP llega al municipio, no a la colonia. Por eso no pintamos calor dentro de un municipio: sería inventar dónde se concentra. En su lugar mostramos un <strong>mapa de posición</strong> que colorea a todos los municipios del estado y enciende el suyo, para contestar con honestidad si está peor o mejor que sus vecinos.</li>
+<li><strong>El cuándo, en vez del dónde.</strong> Un calendario de calor de mes por año revela la estacionalidad: en qué meses se dispara cada delito.</li>
+<li><strong>Un termómetro</strong> que pone su tasa de homicidio junto a la media de su estado y la del país, para medir el tamaño real del problema.</li>
+<li><strong>Los pares espejo</strong> y la <strong>escalada</strong> de los 55 delitos, también a escala municipal y filtrables por año.</li>
+</ul>
+<figure><img src="assets/img/como_muni.webp" alt="El atlas de un municipio" loading="lazy"><figcaption>El atlas de un municipio: su posición en el estado, cuándo ocurre, el termómetro y la escalada de los 55</figcaption></figure>
+<p><strong>Y un ranking que reordena el país.</strong> En <strong>Ranking nacional</strong> elija un delito y un año: los 32 estados y los 2,469 municipios se acomodan al instante, en número de carpetas o en tasa por habitante. Quien encabeza el homicidio no encabeza la extorsión, y quien manda en volumen cae cuando se mide por habitante. Ahí se ve, de un golpe, dónde pega cada delito.</p>
+<figure><img src="assets/img/como_ranking.webp" alt="Ranking nacional por delito y año" loading="lazy"><figcaption>Ranking nacional: el país, los estados y los municipios reordenados por el delito y el año que usted elija</figcaption></figure>
 <h2>Lo que sostiene todo: la trazabilidad</h2>
 <p>Cada cifra publicada en Inseguridad México tiene un registro en un archivo público de auditoría con su fuente primaria, su método de cálculo y su fecha de corte. Los datos provienen de bases oficiales (SESNSP, el Registro Nacional de Personas Desaparecidas RNPDNO, INEGI y CONAPO) y cualquier persona con una computadora puede reproducir cada número desde el archivo original. Cuando dos cortes oficiales difieren entre sí, lo decimos; cuando un dato no existe, lo decimos también, en lugar de rellenarlo.</p>
 <p>Las magnitudes de fondo, por si las busca al entrar: en 2025 el país registró <strong>2,016,723 carpetas de investigación</strong> del fuero común y <strong>19,987 homicidios dolosos</strong>: un descenso de 21.5% frente a 2024 que este tablero permite examinar delito por delito y estado por estado, en lugar de aplaudirlo o negarlo en bloque. Y en el registro de desaparecidos permanecen <strong>133,924 personas</strong> en calidad de activas: detrás de cada fila de esa base hay una familia que sigue buscando. Ese dato no baja con ningún comunicado.</p>
