@@ -237,8 +237,7 @@ if(/github\.io$/.test(location.hostname)){
     <!-- BANDA GUÍA + VIDEO -->
     <section class="guiaband">
       <div class="gb-video" id="video-portada">
-        <!-- VIDEO_SLOT: cuando el video esté listo, reemplazar el contenido de .gb-vbox por <iframe ...> o <video controls ...> -->
-        <div class="gb-vbox"><div class="gb-play">▶</div><div class="gb-vt">Video guía · próximamente</div></div>
+        <div class="gb-vbox"><video controls playsinline preload="metadata" poster="assets/video/guia-poster.webp"><source src="assets/video/guia.mp4" type="video/mp4">Tu navegador no reproduce video.</video></div>
       </div>
       <div class="gb-info">
         <div class="gb-kick">Empieza aquí · qué puedes encontrar</div>
