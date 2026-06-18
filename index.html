@@ -61,6 +61,24 @@
   .kpi .lab{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.6px;color:var(--mut);text-transform:uppercase;font-weight:700;}
   .kpi .num{font-family:'Bricolage Grotesque',sans-serif;font-size:38px;font-weight:800;letter-spacing:-1px;line-height:1.1;margin:8px 0 4px;}
   .kpi .sub{font-size:12px;color:var(--mut);line-height:1.45;}
+  /* tablero nacional (reemplaza las 4 cards) */
+  .natboard{margin:22px 0 18px;background:linear-gradient(180deg,rgba(22,27,34,.72),rgba(13,17,23,.45));border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  .nb-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--line);background:rgba(13,17,23,.4);flex-wrap:wrap;}
+  .nb-eye{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);font-weight:700;}
+  .nb-src{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--dim);}
+  .nb-row{display:grid;grid-template-columns:repeat(4,1fr);}
+  .nb-cell{padding:20px 22px;border-left:1px solid var(--line);}
+  .nb-cell:first-child{border-left:none;}
+  .nb-lab{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.4px;color:var(--mut);text-transform:uppercase;font-weight:700;}
+  .nb-num{font-family:'Bricolage Grotesque',sans-serif;font-size:40px;font-weight:800;letter-spacing:-1.5px;line-height:1.05;margin:6px 0 8px;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;}
+  .nb-cell.warn .nb-num{color:var(--red);}
+  .spark{width:100%;max-width:170px;height:36px;display:block;margin:0 0 9px;}
+  .nb-sub{font-size:12px;color:var(--mut);line-height:1.4;}
+  .nb-flat{font-size:12px;color:var(--dim);margin:0 0 9px;}
+  .chip{font-family:'Spline Sans Mono',monospace;font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;letter-spacing:.5px;}
+  .chip.down{color:#3fb950;background:rgba(63,185,80,.14);}
+  @media(max-width:900px){.nb-row{grid-template-columns:repeat(2,1fr);}.nb-cell:nth-child(3){border-left:none;}.nb-cell:nth-child(3),.nb-cell:nth-child(4){border-top:1px solid var(--line);}}
+  @media(max-width:560px){.nb-row{grid-template-columns:1fr;}.nb-cell{border-left:none;border-top:1px solid var(--line);}.nb-cell:first-child{border-top:none;}}
 
   /* MAPA + panel */
   .mapgrid{display:grid;grid-template-columns:1.55fr 1fr;gap:18px;margin:26px 0;}
@@ -230,29 +248,44 @@ if(/github\.io$/.test(location.hostname)){
       </div>
     </section>
 
-    <!-- KPIs -->
-    <div class="kpis">
-      <div class="kpi">
-        <div class="lab">Carpetas fuero común 2025</div>
-        <div class="num">2,016,723</div>
-        <div class="sub">32 entidades · año completo · SESNSP corte abr-2026</div>
+    <!-- TABLERO NACIONAL -->
+    <section class="natboard">
+      <div class="nb-head"><span class="nb-eye">◉ México 2025 · el tamaño del problema</span><span class="nb-src">SESNSP · RNPDNO · INEGI · cortes abr-jun 2026</span></div>
+      <div class="nb-row">
+        <div class="nb-cell">
+          <div class="nb-lab">Carpetas · fuero común</div>
+          <div class="nb-num">2,016,723</div>
+          <svg class="spark" data-series="tot" data-color="#fbbf24"></svg>
+          <div class="nb-sub">año completo 2025 · 32 entidades</div>
+        </div>
+        <div class="nb-cell">
+          <div class="nb-lab">Homicidios dolosos</div>
+          <div class="nb-num">19,987 <span class="chip down">▼ 21.5%</span></div>
+          <svg class="spark" data-series="hd" data-color="#f85149"></svg>
+          <div class="nb-sub">vs 2024 · de 2 a 73 por 100K</div>
+        </div>
+        <div class="nb-cell warn">
+          <div class="nb-lab">Personas desaparecidas</div>
+          <div class="nb-num">133,924</div>
+          <div class="nb-flat">activas · no baja con ningún comunicado</div>
+          <div class="nb-sub">RNPDNO post-reforma · 3-jun-2026</div>
+        </div>
+        <div class="nb-cell">
+          <div class="nb-lab">2026 · ritmo corriente</div>
+          <div class="nb-num">652,342</div>
+          <div class="nb-flat">ene-abr · proyección ×3 ≈ 1.96M</div>
+          <div class="nb-sub">con desglose · corte abr-2026</div>
+        </div>
       </div>
-      <div class="kpi k2">
-        <div class="lab">Homicidios dolosos 2025</div>
-        <div class="num">19,987</div>
-        <div class="sub">carpetas · −21.5% vs 2024 · rangos de 2 a 73 por 100K</div>
-      </div>
-      <div class="kpi k3">
-        <div class="lab">Desaparecidos activos</div>
-        <div class="num">133,924</div>
-        <div class="sub">en las 32 entidades · RNPDNO post-reforma · 3-jun-2026</div>
-      </div>
-      <div class="kpi k4">
-        <div class="lab">2026 ene-abr · ritmo corriente</div>
-        <div class="num">652,342</div>
-        <div class="sub">carpetas ene-abr 2026 · con desglose · corte abr-2026</div>
-      </div>
-    </div>
+    </section>
+    <script>
+    (function(){const S={tot:[1764179,1939495,1989928,2071181,1841191,2044255,2141989,2173524,2092189,2016644],hd:[20147,25031,29091,29499,28839,28278,26288,25311,25463,19983]};
+      document.querySelectorAll('.natboard .spark').forEach(sv=>{const a=S[sv.dataset.series];if(!a)return;const c=sv.dataset.color,w=170,h=36,mn=Math.min(...a),mx=Math.max(...a),rg=(mx-mn)||1;
+        const X=i=>3+i*(w-6)/(a.length-1),Y=v=>h-3-((v-mn)/rg)*(h-9);
+        const pts=a.map((v,i)=>`${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');
+        sv.setAttribute('viewBox',`0 0 ${w} ${h}`);sv.setAttribute('preserveAspectRatio','none');
+        sv.innerHTML=`<polyline points="${pts}" fill="none" stroke="${c}" stroke-width="2" vector-effect="non-scaling-stroke"/><circle cx="${X(a.length-1).toFixed(1)}" cy="${Y(a[a.length-1]).toFixed(1)}" r="2.8" fill="${c}"/>`;});})();
+    </script>
 
     <!-- MAPA -->
     <div class="mapgrid">
