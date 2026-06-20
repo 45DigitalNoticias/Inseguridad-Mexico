@@ -272,11 +272,11 @@ if(/github\.io$/.test(location.hostname)){
   <div class="wrap">
     <!-- HERO -->
     <section class="hero">
-      <div class="eyebrow">México · Seguridad · 32 estados · catálogo completo de 55 delitos · cortes abr-jun 2026</div>
+      <div class="eyebrow">México · Seguridad · 32 estados · catálogo completo de 55 delitos · cortes may-jun 2026</div>
       <h1>El país completo, <em>delito por delito</em>, sin categorías que escondan</h1>
       <p class="lead">Auditamos las cinco fuentes oficiales — SESNSP, RNPDNO, ENVIPE, CONAPO, INEGI — con el <strong>catálogo completo de 55 delitos</strong> y su serie 2015-2025, estado por estado. Incluidas las categorías "Otros…", donde la reclasificación se esconde. Cada cifra es trazable a su archivo fuente.</p>
       <p class="lead" style="margin-top:20px;padding:16px 20px;border-left:3px solid var(--amber);background:rgba(22,27,34,.55);border-radius:0 10px 10px 0;">
-        <strong>¿Bajó la violencia en México en 2025?</strong> En 2025 México registró 19,987 homicidios dolosos, 21.5% menos que en 2024, y 2,016,723 carpetas de investigación del fuero común (SESNSP). Las personas desaparecidas activas suman 133,924 y no descienden (RNPDNO, junio 2026). En 22 series el delito específico cae mientras su categoría espejo "Otros…" sube.
+        <strong>¿Bajó la violencia en México en 2025?</strong> En 2025 México registró 20,191 homicidios dolosos, 20.7% menos que en 2024, y 2,016,724 carpetas de investigación del fuero común (SESNSP). Las personas desaparecidas activas suman 133,924 y no descienden (RNPDNO, junio 2026). En 22 series el delito específico cae mientras su categoría espejo "Otros…" sube.
       </p>
     </section>
 
@@ -295,17 +295,17 @@ if(/github\.io$/.test(location.hostname)){
 
     <!-- TABLERO NACIONAL -->
     <section class="natboard">
-      <div class="nb-head"><span class="nb-eye">◉ México 2025 · el tamaño del problema</span><span class="nb-src">SESNSP · RNPDNO · INEGI · cortes abr-jun 2026</span></div>
+      <div class="nb-head"><span class="nb-eye">◉ México 2025 · el tamaño del problema</span><span class="nb-src">SESNSP · RNPDNO · INEGI · cortes may-jun 2026</span></div>
       <div class="nb-row">
         <div class="nb-cell">
           <div class="nb-lab">Carpetas · fuero común</div>
-          <div class="nb-num">2,016,723</div>
+          <div class="nb-num">2,016,724</div>
           <svg class="spark" data-series="tot" data-color="#fbbf24"></svg>
           <div class="nb-sub">año completo 2025 · 32 entidades</div>
         </div>
         <div class="nb-cell">
           <div class="nb-lab">Homicidios dolosos</div>
-          <div class="nb-num">19,987 <span class="chip down">▼ 21.5%</span></div>
+          <div class="nb-num">20,191 <span class="chip down">▼ 20.7%</span></div>
           <svg class="spark" data-series="hd" data-color="#f85149"></svg>
           <div class="nb-sub">vs 2024 · de 2 a 73 por 100K</div>
         </div>
@@ -324,7 +324,7 @@ if(/github\.io$/.test(location.hostname)){
       </div>
     </section>
     <script>
-    (function(){const S={tot:[1764179,1939495,1989928,2071181,1841191,2044255,2141989,2173524,2092189,2016644],hd:[20147,25031,29091,29499,28839,28278,26288,25311,25463,19983]};
+    (function(){const S={tot:[1764179,1939495,1989928,2071181,1841191,2044255,2141989,2173524,2092189,2016724],hd:[20147,25031,29091,29499,28839,28278,26288,25311,25463,20191]};
       document.querySelectorAll('.natboard .spark').forEach(sv=>{const a=S[sv.dataset.series];if(!a)return;const c=sv.dataset.color,w=170,h=36,mn=Math.min(...a),mx=Math.max(...a),rg=(mx-mn)||1;
         const X=i=>3+i*(w-6)/(a.length-1),Y=v=>h-3-((v-mn)/rg)*(h-9);
         const pts=a.map((v,i)=>`${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');
