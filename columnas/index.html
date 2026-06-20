@@ -87,30 +87,36 @@ if(/github\.io$/.test(location.hostname)){
     </section>
 
     <style>
-      /* Sello NUEVA automático por POSICIÓN: la 1ª tarjeta del grid es siempre la más reciente.
-         Al publicar una nueva, insértala como primer <a class="card"> dentro de .grid-nueva. */
-      .grid-nueva .card{position:relative;}
-      .grid-nueva .card:first-child::after{content:'● NUEVA';position:absolute;top:13px;left:13px;z-index:3;background:#fbbf24;color:#0d1117;font-family:'Spline Sans Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.12em;padding:5px 11px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.4);}
+      /* Fila destacada MITAD Y MITAD: la guía (izquierda) y la columna más reciente (derecha). */
+      .duo{grid-template-columns:1fr 1fr;}
+      @media(max-width:760px){.duo{grid-template-columns:1fr;}}
+      /* Sello NUEVA: va en la card con class "nueva" (la columna más reciente del .duo).
+         AL PUBLICAR UNA NUEVA:
+           1) quita class "nueva" a la columna actual del .duo y bájala al grid
+              "Lecturas firmadas" como una <a class="card"> normal (igual que Comunicados auditados);
+           2) pon la nueva como 2ª card del .duo con class="card nueva". */
+      .card.nueva{position:relative;}
+      .card.nueva::after{content:'● NUEVA';position:absolute;top:13px;left:13px;z-index:3;background:#fbbf24;color:#0d1117;font-family:'Spline Sans Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.12em;padding:5px 11px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.4);}
     </style>
-    <div class="sec" style="--sc:#fbbf24"><em>Empieza aquí</em> · la guía del tablero</div>
-    <div class="grid">
-      <a class="card destacada" href="../como_leer.html" style="--cc:#fbbf24">
+    <div class="sec" style="--sc:#fbbf24"><em>Empieza aquí</em> · la guía y lo más reciente</div>
+    <div class="grid duo">
+      <a class="card" href="../como_leer.html" style="--cc:#fbbf24">
         <img class="portada" src="portadas/como_leer.webp" alt="Cómo leer Inseguridad México" loading="lazy">
         <div class="tag">Guía · expediente nacional</div>
-        <h3>Cómo leer Inseguridad México (y por qué lo construimos así)</h3>
+        <h3>Cómo leer Inseguridad México</h3>
         <p>El mapa de temperatura, las tasas por 100 mil, los 55 delitos de tu estado, y la pieza que nadie más publica: las bolsas espejo y el Monitor de Opacidad. La guía ilustrada del tablero.</p>
       </a>
-    </div>
-
-    <div class="sec" style="--sc:#fb923c"><em>Lo más reciente</em> · lectura nacional</div>
-    <div class="grid grid-nueva">
-      <a class="card destacada" href="https://45digitalnoticias.github.io/columnas/cuatro-cifras-y-un-relevo.html" target="_blank" rel="noopener" style="--cc:#fb923c">
+      <a class="card nueva" href="https://45digitalnoticias.github.io/columnas/cuatro-cifras-y-un-relevo.html" target="_blank" rel="noopener" style="--cc:#fb923c">
         <img class="portada" src="portadas/cuatro-cifras.webp" alt="Cuatro cifras y un relevo" loading="lazy">
         <div class="tag">Columna firmada · Morelos · SESNSP</div>
         <h3>Cuatro cifras y un relevo</h3>
-        <p>Morelos relevó a su jefe de seguridad por el alza de violencia y, cinco semanas después, se presentó como caso de éxito con −62.8%. La misma baja, contada de cuatro formas, y un relevo que la contradice.</p>
+        <p>Morelos relevó a su jefe de seguridad por el alza de violencia y, cinco semanas después, presumió −62.8%. La misma baja, contada de cuatro formas, y un relevo que la contradice.</p>
       </a>
-      <a class="card destacada" href="https://45digitalnoticias.github.io/columnas/el-gotham-que-no-cuadra.html" target="_blank" rel="noopener" style="--cc:#fb923c">
+    </div>
+
+    <div class="sec" style="--sc:#fb923c"><em>Lecturas firmadas</em> · lectura nacional</div>
+    <div class="grid">
+      <a class="card" href="https://45digitalnoticias.github.io/columnas/el-gotham-que-no-cuadra.html" target="_blank" rel="noopener" style="--cc:#fb923c">
         <img class="portada" src="portadas/gotham.webp" alt="El Gotham que no cuadra" loading="lazy">
         <div class="tag">Columna firmada · nacional · SESNSP</div>
         <h3>El Gotham que no cuadra</h3>
