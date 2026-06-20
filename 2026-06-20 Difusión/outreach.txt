@@ -1,0 +1,21 @@
+OUTREACH — Dashboard Inseguridad México
+(pitch sobrio bajo 150 palabras + voces + cláusula de atribución)
+
+=== PITCH ===
+
+Asunto: La violencia baja en las cifras, sube en los cajones "Otros"
+
+Compartimos un tablero abierto que cruza las cinco fuentes oficiales (SESNSP, RNPDNO, INEGI, ENVIPE, CONAPO) con el catálogo completo de 55 delitos, 2015-2025, estado por estado. Hallazgo: en 22 series, el delito nombrado cae mientras su categoría espejo "Otros…" sube (secuestro −100% frente a "Otros contra la libertad" +563%; homicidio doloso −25.4% frente a "Otros contra la vida" +10,733%). Cada cifra es trazable a su archivo fuente. Por si te sirve para tu cobertura, te dejo el dato y el gráfico.
+
+Dashboard: 45digitalnoticias.github.io/Inseguridad-Mexico
+45 Digital Noticias
+
+=== VOCES A VERIFICAR (leer sus últimas 4-5 publicaciones antes de escribir) ===
+
+- Periodistas de seguridad y de datos (beat de incidencia delictiva).
+- Animal Político, Data Cívica, Causa en Común, México Evalúa.
+Priorizar a quien ya cubre seguridad pero no ha visto el ángulo de las categorías espejo.
+
+=== CLÁUSULA DE ATRIBUCIÓN (va en todo material que se comparta) ===
+
+Uso libre del dato y los gráficos con la única condición de acreditar a 45 Digital Noticias (cita o enlace a la fuente). La trazabilidad (cifras.csv + columnas fechadas) es la prueba de autoría.

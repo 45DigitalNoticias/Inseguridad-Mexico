@@ -1,0 +1,27 @@
+CAPTION FACEBOOK — Dashboard Inseguridad México
+(con emojis, no expandir, facebook.com/45DigitalMx)
+
+=== Versión principal ===
+
+📊 La violencia en México "baja". ¿O cambia de cajón?
+
+Cruzamos las 5 fuentes oficiales (SESNSP, RNPDNO, INEGI) con el catálogo completo de 55 delitos, estado por estado, 2015-2025.
+
+🔎 Secuestro −100%… pero "Otros contra la libertad" +563%.
+🔎 Homicidio doloso −25.4%… y "Otros contra la vida" +10,733%.
+
+Cada cifra es trazable a su archivo fuente. No te lo creas: audítalo tú mismo 👇
+
+🔗 45digitalnoticias.github.io/Inseguridad-Mexico
+
+Uso libre del dato citando a 45 Digital Noticias.
+Síguenos en facebook.com/45DigitalMx
+
+=== Versión corta (alterna) ===
+
+📊 ¿Y si la violencia no baja, solo se reclasifica?
+
+22 señales en las cifras oficiales: el delito nombrado cae, su categoría espejo "Otros…" se dispara. 55 delitos, 32 estados, todo trazable.
+
+🔗 45digitalnoticias.github.io/Inseguridad-Mexico
+Uso libre citando a 45 Digital Noticias.

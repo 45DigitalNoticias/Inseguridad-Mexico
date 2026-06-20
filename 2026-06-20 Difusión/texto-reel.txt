@@ -1,0 +1,40 @@
+GUION REEL — Dashboard Inseguridad México
+Estilo de casa: DOSSIER INFOGRÁFICO (tablero oscuro editorial, para piezas que son un truco de datos).
+Reglas: texto GRANDE (subtítulos ~110-120px), cifras completas y legibles, repartir el espacio, no pegar al borde, ritmo lento (~2-3.5 s por tarjeta), cierre con la marca sola.
+Vertical 9:16. Render en Remotion.
+
+--- TARJETA 1 · gancho (3 s) ---
+LA VIOLENCIA "BAJA".
+¿O cambia de cajón?
+
+--- TARJETA 2 · contexto (3.5 s) ---
+5 fuentes oficiales.
+55 delitos.
+32 estados.
+2015 → 2025.
+
+--- TARJETA 3 · par espejo 1 (3.5 s) ---
+SECUESTRO
+−100%
+"Otros contra la libertad"
++563%
+
+--- TARJETA 4 · par espejo 2 (3.5 s) ---
+HOMICIDIO DOLOSO
+−25.4%
+"Otros contra la vida"
++10,733%
+
+--- TARJETA 5 · lectura (3 s) ---
+El delito nombrado cae.
+Su cajón "Otros…" se dispara.
+
+--- TARJETA 6 · cierre dato (3 s) ---
+Cada cifra, trazable a su fuente.
+Audítalo tú mismo.
+
+--- TARJETA 7 · marca (3 s, sola, centrada) ---
+45 Digital Noticias
+45digitalnoticias.github.io/Inseguridad-Mexico
+
+NOTA: idea visual de transición = una ventana de la gráfica que se recolorea de rojo (caída) a un pico saturado (el "Otros…" que sube). Animar el contador de la cifra al entrar cada tarjeta.

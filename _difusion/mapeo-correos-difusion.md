@@ -1,7 +1,7 @@
 # Mapeo de correos públicos para difusión — Dashboard *Inseguridad México*
 
 **Producto a difundir:** dashboard *Inseguridad México · 32 estados* (45 Digital Noticias), con caso profundo Morelos y lectura crítica de la metodología del SESNSP.
-**URL pública:** _(pendiente de confirmar la ruta exacta; el sitio vive bajo `45digitalnoticias.github.io`)_
+**URL pública:** https://45digitalnoticias.github.io/Inseguridad-Mexico/ (atlas por municipio: `/municipios.html` · ranking nacional: `/ranking-nacional.html` · guía: `/como_leer.html`)
 **Fecha del mapeo:** 16 de junio de 2026.
 
 ---
@@ -81,6 +81,28 @@
 
 **Solo formulario web (sin correo editorial):** La Jornada (`jornada.com.mx/contacto.html`, incluye Coordinación de Opinión), SinEmbargo, Emeequis (m-x), Pie de Página, Proceso. — ❓
 
+### 3.b · Televisión nacional *(añadido 18-jun-2026)*
+
+| Medio | Buzón | Correo | Conf. | Fuente | Nota |
+|---|---|---|---|---|---|
+| **TV Azteca — A Quien Corresponda** (ADN 40 / A Más+) | Denuncia ciudadana | aqc@tvazteca.com.mx | ✅ | X oficial de Jorge Garralda (@jorgegarralda) | Programa de denuncia ciudadana de alto alcance. Encaja con el ángulo "audita la seguridad de tu municipio". Tel. 55-5166-2313. |
+| **TV Azteca — Prensa / representación** | Prensa | vlopezm@tvazteca.com.mx | ⚠️ | directorio mediavyasa (TV abierta) | Contacto de representación; puede enrutar el pitch a la redacción. Tel. 55-1720-1313. Reconfirmar. |
+| **TV Azteca — Institucional** | General | centrode@tvazteca.com.mx | ⚠️ | directorio mediavyasa | Contacto institucional. Reconfirmar. |
+| **ADN 40** (canal de análisis 24 h) | Redacción / seguridad | _sin correo de redacción público_ · patrón `inicial+apellido@tvazteca.com.mx` | ❓ | — | **Mejor encaje editorial.** Identificar al reportero/conductor que cubre seguridad por X o LinkedIn y deducir su correo con el patrón. Vías web: "Reporte ADN 40" y "Denuncia AM" (formularios). |
+| **N+ (Televisa Noticias)** | Redacción | _sin correo de redacción público_ | ❓ | nmas.com.mx · @nmas / @NTelevisa | Misma situación que TV Azteca: la redacción no publica correo. Vía: DM en X o LinkedIn a un conductor/reportero de N+; nmas.com.mx tiene formularios. |
+| **Televisa — denuncia corporativa** (NO editorial) | Cumplimiento/ética | derarcodenuncias01@televisa.com.mx | ✅ | capturadenuncias.televisa.com.mx | OJO: es el buzón del Código de Ética (denuncias internas), NO sirve para proponer cobertura. Listado solo para no confundirlo con un contacto editorial. |
+
+> Las televisoras no publican el correo de redacción. La ruta más efectiva para ADN 40 es un DM en X o LinkedIn a un conductor/reportero de seguridad para conseguir el correo directo, respaldado con el contacto de prensa (vlopezm@). El único 100% verificado y de alto alcance es A Quien Corresponda (aqc@).
+
+### 3.c · Medios digitales y programas de opinión *(añadido 18-jun-2026)*
+
+| Medio | Buzón | Correo | Conf. | Fuente | Nota |
+|---|---|---|---|---|---|
+| **La Silla Rota** | Opinión | opinion@lasillarota.com | ✅ | lasillarota.com (sección Opinión) · @OpinionLSR | Buzón de Opinión verificado. Medio digital nacional; cubre seguridad y política. Comercial (no editorial): e.flores.ventas@lasillarota.com. |
+| **Minuto Crítico** | Contacto general | minutonetworks@gmail.com | ⚠️ | snippet del medio · @minutocriticomx | Medio digital de análisis político/geopolítico, gran alcance (IG 658K, TikTok 958K). Muy afín a la lectura del dashboard. Cuenta gmail; reconfirmar o contactar por DM. |
+| **Animal Político** | Redacción / fact-checking | redaccion@animalpolitico.com · elsabueso@animalpolitico.com | ⚠️ | grupoanimal.mx (directorio) · El Sabueso | El Sabueso (verificación) es lo más cercano a seguridad/justicia. `redaccion@` es el formato institucional probable; reconfirmar. (También en la sección 3.) |
+| **Sin Embargo** | Contacto / coberturas | contacto@sinembargo.mx | ⚠️ | sinembargo.mx/contacto (403 al fetch) | La página de contacto tiene un correo para coberturas/boletines y otro confidencial solo-editores. Reconfirmar el correo exacto en el sitio. (También en la sección 3.) |
+
 ---
 
 ## 4 · Morelos y regional *(caso profundo del dashboard)*
@@ -110,4 +132,6 @@
 3. **Academia / think tanks:** INSYDE, CIDE-DEJ, ITAM-CESIG, Ibero-PSC, Belisario Domínguez (vincula al circuito legislativo).
 4. **Medios nacionales para columna derivada:** El Economista, Aristegui, El Universal, Expansión Política, Eje Central.
 
-**Pendiente del usuario:** confirmar la URL pública exacta del dashboard para insertarla en el cuerpo del correo de difusión.
+5. **Televisión nacional:** A Quien Corresponda (aqc@, verificado) como puerta de alto alcance; ADN 40 vía reportero de seguridad identificado por redes + prensa (vlopezm@).
+
+**Pendiente del usuario:** reconfirmar los correos ⚠️ de TV Azteca (vlopezm@, centrode@) e identificar por X/LinkedIn al reportero o conductor de seguridad de ADN 40 para el correo directo. (La URL del dashboard ya quedó confirmada arriba.)

@@ -1,0 +1,24 @@
+HILO — Dashboard Inseguridad México
+(sobrio, sin emojis, 6 posts, separar dato de opinión)
+
+1/
+La violencia oficial en México baja. Auditamos las cinco fuentes oficiales con el catálogo completo de 55 delitos, 2015-2025, estado por estado. Lo que aparece no es una sola historia.
+
+2/
+Homicidio doloso 2025: 19,987 carpetas, 21.5% menos que en 2024 (SESNSP). El dato es real. Pero no es toda la foto.
+
+3/
+En el cruce 2018-2024 detectamos 22 señales: un delito específico cae mientras su categoría espejo "Otros…" sube.
+Secuestro: −100%. "Otros contra la libertad": +563%.
+
+4/
+Violación simple: −37.2%. "Otros delitos sexuales": +4,418%.
+Homicidio doloso: −25.4%. "Otros contra la vida": +10,733%.
+
+5/
+Puede ser cambio de criterio de captura, reforma legal o reclasificación. Por eso publicamos cada serie completa: el lector decide. No afirmamos fraude. Mostramos el dato.
+
+6/
+Todo es trazable a su archivo fuente. Dashboard abierto:
+45digitalnoticias.github.io/Inseguridad-Mexico
+Uso libre del dato citando a 45 Digital Noticias.

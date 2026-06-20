@@ -1,0 +1,40 @@
+PROMPTS DE IMAGEN — Dashboard Inseguridad México
+Tema de datos/seguridad => estilo cinematográfico oscuro (NO el latón general).
+Cada bloque trae ES + EN, 2-3 variantes, modelo recomendado y proporción.
+
+============================================================
+(1) PORTADA DE LA PIEZA  ·  Recraft V4 Pro o Mystic 2.5  ·  3:2
+============================================================
+
+ES:
+Un archivero metálico oscuro de oficina, un cajón rotulado "OTROS" entreabierto y desbordado de carpetas, sobre fondo casi negro con un haz de luz frío (cian) que cae en diagonal. Atmósfera de expediente, sobria, tensa, editorial. Sin texto. Profundidad cinematográfica, grano sutil.
+
+EN:
+A dark metal office filing cabinet, one drawer labeled "OTROS" half-open and overflowing with folders, on an almost-black background with a cold cyan light beam falling diagonally. Dossier atmosphere, sober, tense, editorial. No text. Cinematic depth, subtle film grain.
+
+Variante A: foco macro en el rótulo "OTROS", el resto en penumbra.
+Variante B: vista cenital de carpetas regándose fuera del cajón, acento rojo en una sola.
+Variante C: el archivero al fondo y, al frente desenfocado, un mapa de México apenas insinuado.
+
+============================================================
+(2) STILLS DEL REEL  ·  Mystic 2.5 / Flux.2 Pro  ·  9:16
+============================================================
+
+ES:
+Fondo de tablero de datos oscuro (azul muy profundo, casi negro), líneas de cuadrícula tenues, una curva descendente roja que al final se quiebra hacia arriba en un pico saturado. Espacio amplio para texto grande. Estética editorial, limpia, sin texto.
+
+EN:
+Dark data-dashboard background (deep near-black blue), faint grid lines, a red descending curve that snaps upward into a saturated spike at the end. Generous empty space for large type. Clean editorial aesthetic, no text.
+
+Variante A: la curva sola, centrada, mucho aire arriba y abajo.
+Variante B: dos curvas espejo (una baja, otra sube) cruzándose.
+
+============================================================
+(3) ANIMACIÓN  ·  Magnific (image-to-video)  ·  9:16
+============================================================
+
+ES:
+Anima la curva: la línea roja se traza descendiendo lento y, al final, salta hacia el pico. Polvo/grano flotando, leve parpadeo de la cuadrícula, cámara con micro-zoom hacia el quiebre. Movimiento sobrio, sin estridencia.
+
+EN:
+Animate the curve: the red line draws itself descending slowly, then jumps into the spike at the end. Floating dust/grain, faint grid flicker, slow micro-zoom toward the break point. Sober motion, no flashiness.
