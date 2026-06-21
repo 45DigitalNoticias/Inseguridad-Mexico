@@ -41,6 +41,7 @@
  .leg{bottom:14px;right:12px;padding:9px 12px;font-size:10.5px}
  .leg i{width:13px;height:13px;display:inline-block;vertical-align:middle;margin-right:5px;border-radius:3px}
  .leg .rail{display:inline-block;width:16px;height:0;border-top:3px solid #22d3ee;vertical-align:middle;margin-right:5px}
+ .stIcon{font-size:15px;line-height:18px;text-align:center;filter:drop-shadow(0 0 2px #000) drop-shadow(0 0 2px #000)}
  .leaflet-tooltip.tt{background:#161b22;border:1px solid #30363d;color:#e6edf3;font-size:12px}
  @media(max-width:680px){.ctrl{width:170px}.card{width:auto;right:12px}.titulo{max-width:60vw}}
 </style></head><body>
@@ -86,6 +87,7 @@ L.control.zoom({position:'bottomright'}).addTo(map);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:13,attribution:'&copy; OpenStreetMap &copy; CARTO'}).addTo(map);
 const COLOR=['#3a3f48','#ffffcc','#fed976','#feb24c','#fd8d3c','#f03b20','#bd0026'];
 const COLINE={istmo:'#a78bfa',maya:'#22d3ee'};
+const ST_ICON=L.divIcon({className:'stIcon',html:'🚉',iconSize:[18,18],iconAnchor:[9,9]});
 function val(f){return f.s[DEL][YR]||0;}
 function visible(f){return COR==='ambos'||f.cor===COR;}
 function maxVis(){let m=0; D.feats.forEach(f=>{if(visible(f)){const v=val(f); if(v>m)m=v;}}); return m||1;}
@@ -116,7 +118,7 @@ function buildRail(){
   const sts=(D.stations[cor]||[]);
   sts.forEach(s=>{
    const lat=s.lat||(s[0]), lon=s.lon||(s[1]); if(lat==null)return;
-   railLayers.push(L.circleMarker([lat,lon],{radius:3,color:'#fff',weight:1,fillColor:COLINE[cor],fillOpacity:1}).addTo(map).bindTooltip('🚉 '+(s.n||s.name||''),{className:'tt'}));
+   railLayers.push(L.marker([lat,lon],{icon:ST_ICON,zIndexOffset:1000}).addTo(map).bindTooltip('🚉 '+(s.n||s.name||''),{className:'tt',direction:'top'}));
   });
  });
 }
