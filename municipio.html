@@ -145,7 +145,14 @@ function build(ent,mw,id,sma,gm,smu,pob,nat){
   const NY=sma.anios.indexOf('2025')+1||sma.anios.length;const anios=sma.anios.slice(0,NY);
   // geometria
   let a=1e9,b=1e9,c=-1e9,dd=-1e9;
-  gm.features.forEach(f=>rings(f.geometry).forEach(p=>p.forEach(r=>r.forEach(([x,y])=>{if(x<a)a=x;if(x>c)c=x;if(y<b)b=y;if(y>dd)dd=y;}))));
+  // bbox excluyendo islas lejanas (ej. Revillagigedo en Colima): descarta anillos cuyo centroide está muy lejos del centro
+  {const _R=[];gm.features.forEach(f=>rings(f.geometry).forEach(p=>p.forEach(r=>_R.push(r))));
+   const _all=[];_R.forEach(r=>r.forEach(q=>_all.push(q)));
+   const _md=arr=>{const s=arr.slice().sort((u,v)=>u-v);return s.length?s[s.length>>1]:0;};
+   const _cx=_md(_all.map(q=>q[0])),_cy=_md(_all.map(q=>q[1]));
+   const _dist=_R.map(r=>{let sx=0,sy=0;r.forEach(q=>{sx+=q[0];sy+=q[1];});return Math.hypot(sx/r.length-_cx,sy/r.length-_cy);});
+   const _thr=Math.max(_md(_dist)*5,1.0);
+   _R.forEach((r,k)=>{if(_dist[k]>_thr)return;r.forEach(([x,y])=>{if(x<a)a=x;if(x>c)c=x;if(y<b)b=y;if(y>dd)dd=y;});});}
   const W=520,sc=W/(c-a),H=(dd-b)*sc;
   const pathOf=f=>{let s='';rings(f.geometry).forEach(p=>p.forEach(r=>{r.forEach(([x,y],i)=>{s+=(i?'L':'M')+((x-a)*sc).toFixed(1)+' '+((dd-y)*sc).toFixed(1);});s+='Z';}));return s;};
   const MUNIS={};gm.features.forEach(f=>{MUNIS[String(f.properties.cve)]={nombre:f.properties.nombre,path:pathOf(f)};});
