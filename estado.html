@@ -57,6 +57,7 @@
 
   /* paneles */
   .row2{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-bottom:16px;}
+  .row2 .panel{min-height:360px;} /* CLS: reservar espacio antes de que el JS dibuje los gráficos (evita el brinco) */
   .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;}
   .panel h3{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:2px;color:var(--mut);text-transform:uppercase;font-weight:700;margin:0 0 12px;display:flex;justify-content:space-between;gap:10px;}
   .panel h3 em{color:var(--acc);font-style:normal;}
