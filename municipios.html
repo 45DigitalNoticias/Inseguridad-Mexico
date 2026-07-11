@@ -1,13 +1,20 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html><html lang="es" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Encuentra tu municipio · Atlas ciudadano de inseguridad</title>
 <meta name="description" content="Busca cualquiera de los 2,469 municipios de México y abre su radiografía de 55 delitos. Atlas ciudadano de inseguridad · 45 Digital Noticias.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0b0e14;--card:#141a23;--line:rgba(56,63,75,.55);--txt:#e9eef5;--mut:#9aa6b6;--dim:#67717f;--acc:#34d399}
+:root[data-theme="dark"]{--bg:#0e0c0b;--panel:#17130d;--panel2:#1b1712;--line:rgba(120,110,95,.18);--line2:rgba(120,110,95,.36);--txt:#f2ede3;--mut:#b8ad9a;--dim:#8a8072;--oro:#efb03a;--cian:#49c2d0;--rojo:#e8573f;--sello:#cf5440;--verde:#6fae5f;--morado:#a78bfa;--grain:.05;--gridop:.5;--glow:.5}
+:root[data-theme="light"]{--bg:#f1eadb;--panel:#faf6ec;--panel2:#efe7d6;--line:rgba(40,34,26,.16);--line2:rgba(40,34,26,.34);--txt:#191510;--mut:#4a4238;--dim:#7a7061;--oro:#a86a12;--cian:#0f6f7c;--rojo:#a52c1f;--sello:#9a3324;--verde:#3f7a30;--morado:#6b4fc4;--grain:.028;--gridop:.7;--glow:.25}
+:root{--card:var(--panel);--acc:#34d399;--amber:var(--oro);--cyan:var(--cian)}
 *{margin:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--txt);font-family:'Hanken Grotesk',system-ui,sans-serif;overflow-x:hidden}
-.bgwrap::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(72% 50% at 82% -6%,rgba(52,211,153,.12),transparent 60%),radial-gradient(60% 50% at -5% 105%,rgba(34,211,238,.06),transparent 55%)}
+body{background:var(--bg);color:var(--txt);font-family:'Hanken Grotesk',system-ui,sans-serif;overflow-x:hidden;font-weight:500;transition:background .3s,color .3s}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:var(--grain);mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.gridbg{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:var(--gridop);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:radial-gradient(130% 100% at 50% 0%,#000,transparent 72%);mask-image:radial-gradient(130% 100% at 50% 0%,#000,transparent 72%)}
+.tog{display:inline-flex;border:1px solid var(--line2);border-radius:999px;overflow:hidden;font-family:'Spline Sans Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.tog button{background:transparent;color:var(--mut);border:none;padding:6px 11px;cursor:pointer;font-weight:700}
+.tog button.on{background:var(--oro);color:var(--bg)}
+.bgwrap::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(72% 50% at 82% -6%,color-mix(in srgb,var(--oro) calc(var(--glow)*20%),transparent),transparent 60%),radial-gradient(60% 50% at -5% 105%,color-mix(in srgb,var(--cian) calc(var(--glow)*14%),transparent),transparent 55%)}
 .wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:22px 30px 70px}
 .top{display:flex;align-items:center;gap:12px;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--mut)}
 .top a{color:var(--mut);text-decoration:none}.top a:hover{color:var(--acc)}
@@ -18,7 +25,7 @@ h1{font-family:'Bricolage Grotesque',sans-serif;font-size:58px;letter-spacing:-1
 .searchbox{max-width:680px;margin:30px auto 0;position:relative}
 #q{width:100%;background:var(--card);color:var(--txt);border:1.5px solid var(--acc);border-radius:14px;padding:18px 20px;font-family:'Hanken Grotesk';font-size:18px;font-weight:600;box-shadow:0 0 24px rgba(52,211,153,.18)}
 #q::placeholder{color:var(--dim)}
-#res{position:absolute;left:0;right:0;top:calc(100% + 6px);background:#0d111a;border:1px solid var(--line);border-radius:14px;overflow:hidden;z-index:20;box-shadow:0 18px 40px rgba(0,0,0,.55);max-height:60vh;overflow-y:auto}
+#res{position:absolute;left:0;right:0;top:calc(100% + 6px);background:var(--bg);border:1px solid var(--line);border-radius:14px;overflow:hidden;z-index:20;box-shadow:0 18px 40px rgba(0,0,0,.55);max-height:60vh;overflow-y:auto}
 #res a{display:flex;align-items:center;gap:12px;padding:12px 18px;color:var(--txt);text-decoration:none;border-bottom:1px solid rgba(48,54,61,.4)}
 #res a:hover,#res a.act{background:color-mix(in srgb,var(--acc) 14%,transparent)}
 #res .mn{font-weight:700;font-size:15px}#res .st{margin-left:auto;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--dim);text-transform:uppercase}
@@ -27,14 +34,14 @@ h1{font-family:'Bricolage Grotesque',sans-serif;font-size:58px;letter-spacing:-1
 .sec{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2.6px;color:var(--acc);text-transform:uppercase;font-weight:700;margin:46px 0 16px;display:flex;gap:12px;align-items:center}
 .sec::after{content:"";flex:1;height:1px;background:var(--line)}
 .states{display:grid;grid-template-columns:repeat(auto-fill,minmax(186px,1fr));gap:10px}
-.scard{display:flex;align-items:center;gap:11px;padding:11px 14px;border:1px solid var(--line);border-left:4px solid var(--c);border-radius:11px;background:rgba(22,27,34,.78);color:var(--txt);cursor:pointer;font-weight:700;font-size:14px}
-.scard:hover{background:rgba(255,255,255,.04)}
+.scard{display:flex;align-items:center;gap:11px;padding:11px 14px;border:1px solid var(--line);border-left:4px solid var(--c);border-radius:11px;background:var(--panel);color:var(--txt);cursor:pointer;font-weight:700;font-size:14px}
+.scard:hover{background:color-mix(in srgb,var(--txt) 6%,transparent)}
 .scard svg{flex:none}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-top:16px}
 .panel h3{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;margin:0 0 3px}
 .panel .cap{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.1px;color:var(--dim);text-transform:uppercase;margin-bottom:14px}
 .munlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
-.mcard{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;padding:9px 13px;border:1px solid rgba(48,54,61,.5);border-radius:9px;background:rgba(13,17,23,.6);color:var(--txt);text-decoration:none}
+.mcard{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;padding:9px 13px;border:1px solid rgba(48,54,61,.5);border-radius:9px;background:var(--panel2);color:var(--txt);text-decoration:none}
 .mcard:hover{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 8%,transparent)}
 .mcard .mn{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mcard .tt{font-family:'Spline Sans Mono',monospace;font-weight:700;font-size:13px}
@@ -73,8 +80,8 @@ footer{margin-top:40px;border-top:1px solid var(--line);padding-top:16px;font-fa
 }
 </script>
 <!-- SEO-AUTO end -->
-</head><body><div class="bgwrap"><div class="wrap">
-<div class="top"><a href="index.html">◉ 45 DIGITAL NOTICIAS · ATLAS CIUDADANO</a><a class="v" href="index.html">‹ dashboard</a></div>
+<script>/* anti-flash */(function(){var t=null;try{t=localStorage.getItem('imx-theme');}catch(e){}if(location.hash==='#light')t='light';else if(location.hash==='#dark')t='dark';if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;})();</script></head><body><div class="gridbg"></div><div class="bgwrap"><div class="wrap">
+<div class="top"><a href="index.html">◉ 45 DIGITAL NOTICIAS · ATLAS CIUDADANO</a><a class="v" href="index.html">‹ dashboard</a><div class="tog" style="margin-left:12px"><button data-t="dark" class="on" onclick="setT('dark')">Oscuro</button><button data-t="light" onclick="setT('light')">Claro</button></div></div>
 <div class="kick">2,469 municipios · 55 delitos · 2016-2025</div>
 <h1>Encuentra tu municipio</h1>
 <div class="sub">Escribe el nombre de tu municipio y abre su radiografía completa: los 55 delitos, su lugar en el estado, cuándo ocurren y qué se reclasifica. O explóralos por estado.</div>
@@ -135,7 +142,9 @@ function abrirEstado(ent){
   if(cacheSMA[ent])return done(cacheSMA[ent]);
   fetch(`series_mun/sma_${id}.js`).then(r=>r.text()).then(t=>done((new Function(t+';return SERIE_MUN_ANUAL;'))())).catch(()=>{det.innerHTML='<div class="panel"><div class="cap">no se pudo cargar</div></div>';});
 }
-</script><!-- RED-45 start -->
+</script><script>function setT(t){document.documentElement.dataset.theme=t;document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));try{localStorage.setItem('imx-theme',t);}catch(e){}}
+(function(){var t=document.documentElement.dataset.theme||'dark';document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));})();</script>
+<!-- RED-45 start -->
 <nav aria-label="Red 45 Digital Noticias" style="max-width:1100px;margin:48px auto 22px;padding:18px 20px 4px;border-top:1px solid rgba(128,128,128,.28);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:13px;line-height:1.9;text-align:center;opacity:.85;"><div style="text-transform:uppercase;letter-spacing:2.5px;font-size:10.5px;opacity:.6;margin-bottom:7px;">Red 45 Digital Noticias</div><div><a href="https://45digitalnoticias.github.io/columnas/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Columnas</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/Inseguridad-Mexico/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Inseguridad México</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/Expediente-Hantavirus/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Expediente Brotes</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/cementerio-transparencia/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Cementerio de la Transparencia</a></div></nav>
 <!-- RED-45 end -->
 </body></html>
