@@ -366,9 +366,8 @@ if(/github\.io$/.test(location.hostname)){
         sv.innerHTML=`<polyline points="${pts}" fill="none" stroke="${c}" stroke-width="2" vector-effect="non-scaling-stroke"/><circle cx="${X(a.length-1).toFixed(1)}" cy="${Y(a[a.length-1]).toFixed(1)}" r="2.8" fill="${c}"/>`;});})();
     </script>
 
-    <!-- MAPA -->
-    <div class="mapgrid">
-      <div class="panel" id="panelMapa">
+    <!-- MAPA · protagonista, ancho completo -->
+    <div class="panel mapafull" id="panelMapa">
         <style>
           #panelMapa .mrow{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-bottom:9px;}
           #panelMapa .ml{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.3px;color:var(--mut);text-transform:uppercase;font-weight:700;}
@@ -400,11 +399,12 @@ if(/github\.io$/.test(location.hostname)){
         <div id="gradbar2" style="height:11px;border-radius:6px;margin-top:10px;"></div>
         <div class="ley" id="leglabels2" style="justify-content:space-between;"></div>
         <div class="legnote2" id="legnote2"></div>
-      </div>
+    </div>
 
-      <div class="rankcol">
+    <!-- DOS SECCIONES ABAJO: focos rojos + columna reciente -->
+    <div class="belowmap">
         <div class="panel">
-          <h3>Focos rojos &#183; <em id="rankMetric" style="font-style:normal;color:#ff9d97;">homicidio doloso</em></h3>
+          <h3>Focos rojos &#183; <em id="rankMetric" style="font-style:normal;color:var(--rojo);">homicidio doloso</em></h3>
           <p id="rksub" style="font-size:11px;color:var(--dim);margin:0 0 9px;"></p>
           <div class="rank-list" id="ranking"></div>
         </div>
@@ -419,10 +419,12 @@ if(/github\.io$/.test(location.hostname)){
             <span class="cr-more">Leer la columna →</span>
           </div>
         </a>
-      </div>
     </div>
     <style>
       .rankcol{display:flex;flex-direction:column;gap:16px;min-width:0;}
+      .mapafull{margin:24px 0 16px;}
+      .belowmap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:0 0 26px;align-items:start;}
+      @media(max-width:900px){.belowmap{grid-template-columns:1fr;}}
       .colreciente{position:relative;display:flex;flex-direction:column;background:linear-gradient(180deg,rgba(251,191,36,.08),var(--panel));border:1px solid rgba(251,191,36,.45);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s;box-shadow:0 0 22px rgba(251,191,36,.06);}
       .colreciente:hover{border-color:#fbbf24;transform:translateY(-2px);}
       .colreciente img{width:100%;aspect-ratio:1344/620;object-fit:cover;display:block;}
@@ -537,7 +539,7 @@ function countOf(k){const row=DATA.d[k];return row?row[di][yi]:0;}
 let EB=null;
 function calcEB(){const A=Mp.map(o=>({k:o.k,O:countOf(o.k),n:popOf(o.k)})).filter(a=>a.n>0);const sO=A.reduce((s,a)=>s+a.O,0),sN=A.reduce((s,a)=>s+a.n,0),N=A.length,b=sO/sN;let num=0;A.forEach(a=>{const r=a.O/a.n;num+=a.n*(r-b)*(r-b);});let s2=num/sN-b/(sN/N);if(s2<0)s2=0;const E={};A.forEach(a=>{const r=a.O/a.n,C=s2>0?s2/(s2+b/a.n):0;E[a.k]=(b+C*(r-b))*100000;});return E;}
 function valOf(k){if(metric==='tasa'){if(smooth==='ajustada'&&EB)return EB[k]||0;const p=popOf(k);return p>0?countOf(k)/p*100000:0;}return countOf(k);}
-function fmt(v){return metric==='tasa'?(v>=100?v.toFixed(0):v.toFixed(1)):Math.round(v).toLocaleString('es-MX');}
+function fmt(v){if(v==null||!isFinite(v))return '—';return metric==='tasa'?(v>=100?v.toFixed(0):v.toFixed(1)):Math.round(v).toLocaleString('es-MX');}
 function bb2(){let a=1e9,b=1e9,c=-1e9,d=-1e9;F.forEach(f=>f.geometry.coordinates.forEach(p=>p.forEach(r=>r.forEach(([x,y])=>{if(x<a)a=x;if(x>c)c=x;if(y<b)b=y;if(y>d)d=y;}))));return{a,b,c,d};}
 const B=bb2(),CW=1650,PAD=14,ES=(CW-2*PAD)/(B.c-B.a),CH=Math.ceil((B.d-B.b)*ES)+2*PAD;
 const PX=x=>PAD+(x-B.a)*ES,PY=y=>PAD+(B.d-y)*ES;
