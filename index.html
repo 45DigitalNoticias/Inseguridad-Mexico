@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,23 +54,51 @@
 <script src="series_completo.js"></script>
 <script src="delitos_completo.js"></script>
 <script src="series_2026.js"></script>
+<script src="_nac_muni_geo.js"></script>
+<script src="_nac_muni_data.js"></script>
+<script src="_nac_muni_pop.js"></script>
 <style>
-  :root{
-    --bg:#0d1117; --panel:rgba(22,27,34,.75); --line:rgba(48,54,61,.7);
-    --txt:#e6edf3; --mut:#8b949e; --dim:#6b7480;
-    --amber:#fbbf24; --rose:#ec4899; --cyan:#22d3ee; --green:#3fb950; --purple:#a78bfa; --red:#f85149;
+  /* ===== SISTEMA DE DISEÑO · Expediente forense · claro/oscuro ===== */
+  :root[data-theme="dark"]{
+    --bg:#0e0c0b;--panel:#17130d;--panel2:#1b1712;--line:rgba(120,110,95,.18);--line2:rgba(120,110,95,.36);
+    --txt:#f2ede3;--mut:#b8ad9a;--dim:#8a8072;--oro:#efb03a;--cian:#49c2d0;--rojo:#e8573f;--sello:#cf5440;
+    --tinta:#000;--verde:#6fae5f;--morado:#a78bfa;
+    --s0:#00808a;--s1:#4ba3a3;--s2:#9fc7a6;--s3:#e2dd9a;--s4:#f4c04e;--s5:#e67e39;--s6:#d64a3a;--s7:#b42222;
+    --grain:.05;--gridop:.5;--glow:.5;--nores:#20262e;--stroke:rgba(255,255,255,.6);
   }
+  :root[data-theme="light"]{
+    --bg:#f1eadb;--panel:#faf6ec;--panel2:#efe7d6;--line:rgba(40,34,26,.16);--line2:rgba(40,34,26,.34);
+    --txt:#191510;--mut:#4a4238;--dim:#7a7061;--oro:#a86a12;--cian:#0f6f7c;--rojo:#a52c1f;--sello:#9a3324;
+    --tinta:#191510;--verde:#3f7a30;--morado:#6b4fc4;
+    --s0:#0d6d75;--s1:#4a9a96;--s2:#8fbf98;--s3:#d8cf7f;--s4:#e9ab34;--s5:#dd6a26;--s6:#c73a2c;--s7:#9e1a1a;
+    --grain:.028;--gridop:.7;--glow:.25;--nores:#e3d9c6;--stroke:rgba(40,34,26,.5);
+  }
+  /* alias de nombres viejos → tokens nuevos (para que el CSS existente herede el tema) */
+  :root{--amber:var(--oro);--rose:var(--sello);--cyan:var(--cian);--green:var(--verde);--purple:var(--morado);--red:var(--rojo);}
   *{box-sizing:border-box;}
-  body{background:#0d1117 url(assets/fondo_vector.svg) center bottom/cover fixed no-repeat;color:var(--txt);font-family:'Hanken Grotesk',system-ui,sans-serif;margin:0;}
+  body{background:var(--bg);color:var(--txt);font-family:'Hanken Grotesk',system-ui,sans-serif;margin:0;font-weight:500;transition:background .3s,color .3s;}
+  /* grano + glow atlas + retícula tenue (fondo de casa) */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:var(--grain);mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background:radial-gradient(90% 55% at 50% -8%,color-mix(in srgb,var(--oro) calc(var(--glow)*14%),transparent),transparent 70%),
+              radial-gradient(70% 50% at 100% 100%,color-mix(in srgb,var(--s7) calc(var(--glow)*10%),transparent),transparent 60%);}
+  .gridbg{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:var(--gridop);
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:46px 46px;
+    -webkit-mask-image:radial-gradient(130% 100% at 50% 0%,#000,transparent 72%);mask-image:radial-gradient(130% 100% at 50% 0%,#000,transparent 72%);}
+  .mono{font-family:'Spline Sans Mono',monospace;}.tnum{font-variant-numeric:tabular-nums;}
+  /* toggle claro/oscuro */
+  .tog{display:flex;border:1px solid var(--line2);border-radius:999px;overflow:hidden;font-family:'Spline Sans Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+  .tog button{background:transparent;color:var(--mut);border:none;padding:7px 13px;cursor:pointer;font-weight:700;}
+  .tog button.on{background:var(--oro);color:var(--bg);}
 
-  .topbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:14px 28px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(13,17,23,.92);backdrop-filter:blur(8px);z-index:50;}
+  .topbar{display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap;padding:12px 28px;border-bottom:1px solid var(--line2);position:sticky;top:0;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);z-index:50;}
   .brand{display:flex;align-items:center;gap:12px;}
   .brand .blk{width:38px;height:38px;border-radius:9px;background:#1f6feb;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;}
   .brand .n{font-weight:800;font-size:13.5px;letter-spacing:.5px;display:block;}
   .brand .s{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--amber);text-transform:uppercase;}
   /* nav con presencia: chips con borde, hover ámbar */
-  .topnav{display:flex;gap:9px;justify-self:center;font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;}
-  .topnav a{color:var(--cc,#c9d1d9);text-decoration:none;padding:9px 15px;border:1.5px solid color-mix(in srgb, var(--cc,#8b949e) 60%, transparent);border-radius:9px;background:rgba(22,27,34,.75);transition:all .15s;box-shadow:0 0 9px color-mix(in srgb, var(--cc,#8b949e) 22%, transparent);}
+  .topnav{display:flex;gap:9px;flex:1;justify-content:center;flex-wrap:wrap;font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;}
+  .topnav a{color:var(--cc,var(--mut));text-decoration:none;padding:9px 15px;border:1.5px solid color-mix(in srgb, var(--cc,#8b949e) 60%, transparent);border-radius:9px;background:var(--panel);transition:all .15s;box-shadow:0 0 9px color-mix(in srgb, var(--cc,#8b949e) 22%, transparent);}
   .topnav a:hover{background:color-mix(in srgb, var(--cc,#fbbf24) 16%, transparent);border-color:var(--cc,#fbbf24);box-shadow:0 0 14px color-mix(in srgb, var(--cc,#fbbf24) 45%, transparent);}
   /* Morelos: el caso profundo, destacado */
   .topnav a.navmor{background:color-mix(in srgb,#d45d9e 18%, transparent);border-color:#d45d9e;box-shadow:0 0 14px rgba(212,93,158,.4);}
@@ -80,11 +108,11 @@
   /* compartir */
   .share{display:flex;gap:8px;align-items:center;justify-content:center;margin:18px 0 0;}
   .share .slbl{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;}
-  .share a,.share button{width:42px;height:42px;border-radius:11px;border:1.5px solid var(--sc,#c9d1d9);background:rgba(13,17,23,.9);color:var(--sc,#c9d1d9);display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;font-size:16px;transition:all .15s;box-shadow:0 0 11px color-mix(in srgb, var(--sc,#8b949e) 38%, transparent);}
+  .share a,.share button{width:42px;height:42px;border-radius:11px;border:1.5px solid var(--sc,var(--mut));background:var(--panel);color:var(--sc,var(--mut));display:flex;align-items:center;justify-content:center;cursor:pointer;text-decoration:none;font-size:16px;transition:all .15s;box-shadow:0 0 11px color-mix(in srgb, var(--sc,#8b949e) 38%, transparent);}
   .share a:hover,.share button:hover{background:color-mix(in srgb, var(--sc,#fbbf24) 18%, transparent);}
   /* zoom de charts */
   .zoomctl{display:flex;gap:6px;}
-  .zoomctl button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-size:15px;font-weight:700;cursor:pointer;}
+  .zoomctl button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--mut);font-size:15px;font-weight:700;cursor:pointer;}
   .zoomctl button:hover{border-color:rgba(251,191,36,.55);color:var(--amber);}
   .zoomwrap{overflow:auto;max-height:640px;border-radius:8px;}
 
@@ -95,7 +123,7 @@
   .hero .eyebrow{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:4px;color:var(--amber);text-transform:uppercase;font-weight:700;margin-bottom:18px;}
   .hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:60px;font-weight:700;line-height:1.04;letter-spacing:-1.8px;margin:0 auto 20px;max-width:920px;}
   .hero h1 em{color:var(--amber);font-style:italic;font-weight:600;}
-  .hero .lead{max-width:760px;margin:0 auto;font-size:17px;line-height:1.65;color:#c9d1d9;text-align:justify;text-justify:inter-word;}
+  .hero .lead{max-width:760px;margin:0 auto;font-size:17px;line-height:1.65;color:var(--mut);text-align:justify;text-justify:inter-word;}
   .hero .lead strong{color:var(--txt);}
 
   /* KPIs nacionales */
@@ -106,8 +134,8 @@
   .kpi .num{font-family:'Bricolage Grotesque',sans-serif;font-size:38px;font-weight:800;letter-spacing:-1px;line-height:1.1;margin:8px 0 4px;}
   .kpi .sub{font-size:12px;color:var(--mut);line-height:1.45;}
   /* tablero nacional (reemplaza las 4 cards) */
-  .natboard{margin:22px 0 18px;background:linear-gradient(180deg,rgba(22,27,34,.72),rgba(13,17,23,.45));border:1px solid var(--line);border-radius:16px;overflow:hidden;}
-  .nb-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--line);background:rgba(13,17,23,.4);flex-wrap:wrap;}
+  .natboard{margin:22px 0 18px;background:linear-gradient(180deg,var(--panel),color-mix(in srgb,var(--bg) 55%,transparent));border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+  .nb-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 55%,transparent);flex-wrap:wrap;}
   .nb-eye{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);font-weight:700;}
   .nb-src{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--dim);}
   .nb-row{display:grid;grid-template-columns:repeat(4,1fr);}
@@ -139,7 +167,7 @@
   .sw{display:inline-block;width:24px;height:9px;border-radius:2px;vertical-align:middle;margin-right:4px;}
 
   .rank-list{display:flex;flex-direction:column;gap:7px;}
-  .rrow{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:9px 12px;border-radius:8px;background:rgba(13,17,23,.55);border:1px solid rgba(48,54,61,.4);text-decoration:none;color:inherit;}
+  .rrow{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:9px 12px;border-radius:8px;background:var(--panel2);border:1px solid var(--line);text-decoration:none;color:inherit;}
   .rrow:hover{border-color:rgba(251,191,36,.4);}
   .rrow .pos{font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--dim);font-weight:700;}
   .rrow .nom{font-size:13.5px;font-weight:600;}
@@ -151,12 +179,12 @@
   .achip{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:1.2px;font-weight:700;padding:8px 14px;border-radius:8px;border:1px solid var(--line);color:var(--mut);cursor:pointer;background:transparent;}
   .achip.act{background:rgba(251,191,36,.13);border-color:rgba(251,191,36,.5);color:var(--amber);}
   .rk55{display:grid;grid-template-columns:42px minmax(220px,330px) 1fr 92px;gap:12px;align-items:center;padding:6px 8px;border-radius:7px;}
-  .rk55:hover{background:rgba(22,27,34,.85);}
+  .rk55:hover{background:var(--panel);}
   .rk55 .num{font-family:'Spline Sans Mono',monospace;font-size:10.5px;color:var(--dim);font-weight:700;}
   .rk55 .nm{font-size:13px;font-weight:600;line-height:1.3;}
   .rk55 .nm.esp{color:var(--purple);}
   .rk55 .etag{font-family:'Spline Sans Mono',monospace;font-size:8.5px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:var(--purple);}
-  .rk55 .track{height:13px;border-radius:7px;background:rgba(22,27,34,.9);overflow:hidden;}
+  .rk55 .track{height:13px;border-radius:7px;background:var(--panel2);overflow:hidden;}
   .rk55 .fill{height:100%;border-radius:7px;min-width:6px;}
   .rk55 .val{font-family:'Spline Sans Mono',monospace;font-size:12.5px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;}
   @media(max-width:760px){.rk55{grid-template-columns:34px 1fr 70px;}.rk55 .track{grid-column:1/-1;}}
@@ -170,7 +198,7 @@
   .sig .tag{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1.6px;color:var(--purple);text-transform:uppercase;font-weight:700;margin-bottom:8px;}
   .sig h4{font-family:'Bricolage Grotesque',sans-serif;font-size:19px;margin:0 0 10px;font-weight:700;}
   .sig .par{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0;}
-  .sig .lado{background:rgba(13,17,23,.6);border-radius:8px;padding:10px 12px;}
+  .sig .lado{background:var(--panel2);border-radius:8px;padding:10px 12px;}
   .sig .lado .l{font-size:10px;color:var(--dim);font-family:'Spline Sans Mono',monospace;letter-spacing:.8px;text-transform:uppercase;}
   .sig .lado .v{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;margin-top:3px;}
   .sig .lado.down .v{color:var(--cyan);} .sig .lado.up .v{color:var(--red);}
@@ -219,8 +247,8 @@
     .rutas{grid-template-columns:1fr;}
     .wrap{padding:0 14px;}
   }
-#selDelitoMapa option,#selAnioMapa option{background:#161b22;color:#e6edf3;font-size:12.5px;}
-.menuBtn{display:none;width:44px;height:44px;border-radius:10px;border:1.5px solid rgba(251,191,36,.55);background:rgba(22,27,34,.85);color:var(--amber);font-size:19px;cursor:pointer;box-shadow:0 0 10px rgba(251,191,36,.2);}
+#selDelitoMapa option,#selAnioMapa option{background:var(--panel2);color:var(--txt);font-size:12.5px;}
+.menuBtn{display:none;width:44px;height:44px;border-radius:10px;border:1.5px solid rgba(251,191,36,.55);background:var(--panel);color:var(--amber);font-size:19px;cursor:pointer;box-shadow:0 0 10px rgba(251,191,36,.2);}
 @media(max-width:980px){
   .topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;backdrop-filter:none;}
   .menuBtn{display:flex;align-items:center;justify-content:center;}
@@ -228,23 +256,23 @@
   .topnav.open{display:flex;}
   .topnav a{text-align:center;padding:15px;font-size:12px;}
 }
-.fsbtn{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:rgba(22,27,34,.85);color:#c9d1d9;font-size:14px;cursor:pointer;}
+.fsbtn{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--mut);font-size:14px;cursor:pointer;}
 .fsbtn:hover{border-color:rgba(251,191,36,.55);color:var(--amber);}
-#panelMapa:fullscreen{background:#0d1117;overflow:auto;padding:26px;}
+#panelMapa:fullscreen{background:var(--bg);overflow:auto;padding:26px;}
 
 .topnav a.navrank{background:color-mix(in srgb,#fde047 16%, transparent);border-color:#fde047;box-shadow:0 0 14px rgba(253,224,71,.4);}.topnav a.navrank:hover{background:color-mix(in srgb,#fde047 30%, transparent);box-shadow:0 0 20px rgba(253,224,71,.65);}
 .topnav a.navmun{background:color-mix(in srgb,#34d399 16%, transparent);border-color:#34d399;box-shadow:0 0 14px rgba(52,211,153,.4);}.topnav a.navmun:hover{background:color-mix(in srgb,#34d399 30%, transparent);box-shadow:0 0 20px rgba(52,211,153,.65);}
-.guiaband{display:grid;grid-template-columns:1.05fr 1fr;gap:24px;align-items:center;margin:6px 0 28px;background:linear-gradient(180deg,rgba(22,27,34,.66),rgba(13,17,23,.4));border:1px solid rgba(48,54,61,.7);border-radius:18px;padding:22px;}
+.guiaband{display:grid;grid-template-columns:1.05fr 1fr;gap:24px;align-items:center;margin:6px 0 28px;background:linear-gradient(180deg,var(--panel),color-mix(in srgb,var(--bg) 55%,transparent));border:1px solid var(--line);border-radius:18px;padding:22px;}
 .gb-video{position:relative;}
-.gb-vbox{position:relative;aspect-ratio:16/9;border:1.5px dashed rgba(251,191,36,.5);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;background:rgba(13,17,23,.5);overflow:hidden;}
+.gb-vbox{position:relative;aspect-ratio:16/9;border:1.5px dashed rgba(251,191,36,.5);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;background:var(--panel2);overflow:hidden;}
 .gb-video iframe,.gb-video video{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:14px;}
 .gb-play{width:58px;height:58px;border-radius:50%;background:rgba(251,191,36,.16);border:1.5px solid #fbbf24;color:#fbbf24;font-size:22px;display:flex;align-items:center;justify-content:center;}
 .gb-vt{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2px;color:#fbbf24;text-transform:uppercase;font-weight:700;}
 .gb-kick{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:2.4px;color:#fbbf24;text-transform:uppercase;font-weight:700;}
 .gb-h{font-family:'Bricolage Grotesque',sans-serif;font-size:27px;letter-spacing:-.5px;margin:8px 0;line-height:1.08;}
-.gb-p{font-size:14.5px;line-height:1.6;color:#c9d1d9;margin:0 0 14px;text-align:justify;}
+.gb-p{font-size:14.5px;line-height:1.6;color:var(--mut);margin:0 0 14px;text-align:justify;}
 .gb-links{display:flex;flex-wrap:wrap;gap:9px;}
-.gb-links a{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:#e6edf3;text-decoration:none;padding:8px 13px;border:1px solid rgba(48,54,61,.8);border-radius:9px;background:rgba(22,27,34,.7);}
+.gb-links a{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:var(--txt);text-decoration:none;padding:8px 13px;border:1px solid var(--line2);border-radius:9px;background:var(--panel);}
 .gb-links a:hover{border-color:#fbbf24;color:#fbbf24;}
 @media(max-width:760px){.guiaband{grid-template-columns:1fr;}}
 </style>
@@ -257,17 +285,22 @@ if(/github\.io$/.test(location.hostname)){
 }
 </script>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
-<style id="noital">em,i{font-style:normal !important}</style></head>
+<style id="noital">em,i{font-style:normal !important}</style>
+<script>/* anti-flash: fija tema (hash o guardado) antes de pintar, sin transición */(function(){var t=null;try{t=localStorage.getItem('imx-theme');}catch(e){}if(location.hash==='#light')t='light';else if(location.hash==='#dark')t='dark';if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;})();</script></head>
 <body>
+  <div class="gridbg"></div>
   <header class="topbar">
     <div class="brand">
       <img src="assets/logo45.webp" style="height:44px;border-radius:9px;display:block;" alt="45 Digital Noticias">
       <div><span class="n">45 DIGITAL NOTICIAS</span><span class="s">Inseguridad México</span></div>
     </div>
     <nav class="topnav">
-      <a href="como_leer.html" style="--cc:#e6edf3">✦ ¿Cómo leer?</a><a href="#" style="--cc:#fbbf24">◉ Mapa</a><a href="corredores-sureste.html" class="navist" style="--cc:#22d3ee">🚆 Corredores del sureste</a><a href="estado.html" style="--cc:#ec4899">⌖ Estados</a><a href="municipios.html" class="navmun" style="--cc:#34d399">📍 Municipios</a><a href="ranking-nacional.html" class="navrank" style="--cc:#fde047">🏆 Ranking</a><a href="senales.html" style="--cc:#a78bfa">⇄ Señales</a><a href="columnas/" style="--cc:#fb923c">✒ Columnas</a><a href="metodologia.html" style="--cc:#3fb950">⧉ Metodología</a><a href="glosario.html" style="--cc:#22d3ee">Aa Glosario</a><a href="expedientes.html" style="--cc:#f85149">▣ Expedientes</a><a href="morelos/" class="navmor" style="--cc:#d45d9e">⌖ Morelos · a fondo</a>
+      <a href="como_leer.html" style="--cc:var(--txt)">✦ ¿Cómo leer?</a><a href="#" style="--cc:#fbbf24">◉ Mapa</a><a href="corredores-sureste.html" class="navist" style="--cc:#22d3ee">🚆 Corredores del sureste</a><a href="estado.html" style="--cc:#ec4899">⌖ Estados</a><a href="municipios.html" class="navmun" style="--cc:#34d399">📍 Municipios</a><a href="ranking-nacional.html" class="navrank" style="--cc:#fde047">🏆 Ranking</a><a href="senales.html" style="--cc:#a78bfa">⇄ Señales</a><a href="columnas/" style="--cc:#fb923c">✒ Columnas</a><a href="metodologia.html" style="--cc:#3fb950">⧉ Metodología</a><a href="glosario.html" style="--cc:#22d3ee">Aa Glosario</a><a href="expedientes.html" style="--cc:#f85149">▣ Expedientes</a><a href="morelos/" class="navmor" style="--cc:#d45d9e">⌖ Morelos · a fondo</a>
     </nav>
-    <button class="menuBtn" onclick="document.querySelector('.topnav').classList.toggle('open');this.textContent=this.textContent==='☰'?'✕':'☰';" aria-label="Menú">☰</button>
+    <div style="flex-shrink:0;display:flex;align-items:center;gap:10px;">
+      <div class="tog"><button data-t="dark" class="on" onclick="setT('dark')">Oscuro</button><button data-t="light" onclick="setT('light')">Claro</button></div>
+      <button class="menuBtn" onclick="document.querySelector('.topnav').classList.toggle('open');this.textContent=this.textContent==='☰'?'✕':'☰';" aria-label="Menú">☰</button>
+    </div>
   </header>
 
   <div class="wrap">
@@ -276,7 +309,7 @@ if(/github\.io$/.test(location.hostname)){
       <div class="eyebrow">México · Seguridad · 32 estados · catálogo completo de 55 delitos · cortes may-jun 2026</div>
       <h1>El país completo, <em>delito por delito</em>, sin categorías que escondan</h1>
       <p class="lead">Auditamos las cinco fuentes oficiales — SESNSP, RNPDNO, ENVIPE, CONAPO, INEGI — con el <strong>catálogo completo de 55 delitos</strong> y su serie 2015-2025, estado por estado. Incluidas las categorías "Otros…", donde la reclasificación se esconde. Cada cifra es trazable a su archivo fuente.</p>
-      <p class="lead" style="margin-top:20px;padding:16px 20px;border-left:3px solid var(--amber);background:rgba(22,27,34,.55);border-radius:0 10px 10px 0;">
+      <p class="lead" style="margin-top:20px;padding:16px 20px;border-left:3px solid var(--amber);background:var(--panel);border-radius:0 10px 10px 0;">
         <strong>¿Bajó la violencia en México en 2025?</strong> En 2025 México registró 20,191 homicidios dolosos, 20.7% menos que en 2024, y 2,016,724 carpetas de investigación del fuero común (SESNSP). Las personas desaparecidas activas suman 133,924 y no descienden (RNPDNO, junio 2026). En 22 series el delito específico cae mientras su categoría espejo "Otros…" sube.
       </p>
     </section>
@@ -318,9 +351,9 @@ if(/github\.io$/.test(location.hostname)){
         </div>
         <div class="nb-cell">
           <div class="nb-lab">2026 · ritmo corriente</div>
-          <div class="nb-num">652,342</div>
-          <div class="nb-flat">ene-abr · proyección ×3 ≈ 1.96M</div>
-          <div class="nb-sub">con desglose · corte abr-2026</div>
+          <div class="nb-num">826,759</div>
+          <div class="nb-flat">ene-may · proyección ×2.4 ≈ 1.98M</div>
+          <div class="nb-sub">con desglose · corte may-2026</div>
         </div>
       </div>
     </section>
@@ -336,30 +369,43 @@ if(/github\.io$/.test(location.hostname)){
     <!-- MAPA -->
     <div class="mapgrid">
       <div class="panel" id="panelMapa">
-        <h3><span>Mapa nacional · <em>elige qué violencia quieres ver</em></span><span id="mapScope" style="color:#c9d1d9;text-transform:none;letter-spacing:0;font-family:'Hanken Grotesk';font-weight:700;font-size:13px;"></span></h3>
-        <div style="display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:11px;">
-          <div style="display:flex;align-items:center;gap:8px;background:rgba(22,27,34,.9);border:1.5px solid rgba(251,191,36,.55);border-radius:10px;padding:7px 12px;box-shadow:0 0 12px rgba(251,191,36,.18);">
-            <span style="font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1.6px;color:var(--amber);font-weight:700;">▾ DELITO</span>
-            <select id="selDelitoMapa" onchange="modoSerie=true;subSel=this.value;render()" style="background:transparent;color:var(--txt);border:none;outline:none;font-family:'Hanken Grotesk';font-size:13px;font-weight:700;cursor:pointer;max-width:320px;"></select>
-          </div>
-          <div style="display:flex;align-items:center;gap:8px;background:rgba(22,27,34,.9);border:1px solid var(--line);border-radius:10px;padding:7px 12px;">
-            <span style="font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1.6px;color:var(--mut);font-weight:700;">AÑO</span>
-            <select id="selAnioMapa" onchange="modoSerie=true;anioM=+this.value;render()" style="background:transparent;color:var(--txt);border:none;outline:none;font-family:'Hanken Grotesk';font-size:13px;font-weight:700;cursor:pointer;"></select>
-          </div>
-          <span style="font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--dim);">CATÁLOGO COMPLETO · 55 SUBTIPOS + DESAPARECIDOS RNPDNO</span>
+        <style>
+          #panelMapa .mrow{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-bottom:9px;}
+          #panelMapa .ml{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.3px;color:var(--mut);text-transform:uppercase;font-weight:700;}
+          #panelMapa select{background:var(--panel);color:var(--txt);border:1.5px solid rgba(248,81,73,.4);border-radius:9px;padding:7px 10px;font-family:'Hanken Grotesk';font-size:12.5px;font-weight:700;cursor:pointer;outline:none;}
+          #panelMapa .mseg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+          #panelMapa .mseg button{background:transparent;color:var(--mut);border:none;padding:7px 10px;font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:.5px;text-transform:uppercase;font-weight:700;cursor:pointer;}
+          #panelMapa .mseg button.on{background:rgba(248,81,73,.16);color:#ff9d97;}
+          #panelMapa .mseg button:not(:last-child){border-right:1px solid var(--line);}
+          #panelMapa .legnote2{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:.3px;color:var(--dim);margin-top:5px;line-height:1.45;}
+          #panelMapa .legnote2 b{color:var(--mut);}
+        </style>
+        <h3><span>Mapa municipal · <em>2,475 municipios, sin esconder</em></span><span id="mapScope" style="color:var(--mut);text-transform:none;letter-spacing:0;font-family:'Hanken Grotesk';font-weight:700;font-size:13px;"></span></h3>
+        <div class="mrow">
+          <span class="ml">&#9662; Delito</span><select id="selDelitoMapa"></select>
+          <span class="ml">A&#241;o</span><select id="selAnioMapa"></select>
         </div>
-        <div style="display:flex;justify-content:flex-end;align-items:center;gap:10px;">
-          <div class="zoomctl"><button onclick="zoomMapa(1.25)" title="Acercar">+</button><button onclick="zoomMapa(0.8)" title="Alejar">−</button><button onclick="zoomMapa(0)" title="Restablecer" style="font-size:11px;">⟲</button><button class="fsbtn" onclick="fsMapa()" title="Pantalla completa">⛶</button></div>
+        <div class="mrow">
+          <span class="ml">M&#233;trica</span><div class="mseg" id="segMet"><button data-x="tasa" class="on">Tasa /100 mil</button><button data-x="casos">Casos</button></div>
+          <span class="ml">Colores</span><div class="mseg" id="segPal"><button data-p="sem_cb" class="on">Sem&#225;foro accesible</button><button data-p="semaforo">Sem&#225;foro</button><button data-p="magma">T&#233;rmica</button></div>
         </div>
-        <div class="zoomwrap" id="mapaWrap" style="margin-top:12px;">
-        <canvas id="mapa" width="1600" height="1050"></canvas>
+        <div class="mrow">
+          <span class="ml">Agrupaci&#243;n</span><div class="mseg" id="segMode"><button data-m="quant" class="on">Rangos iguales</button><button data-m="log">Logar&#237;tmica</button></div>
+          <span class="ml">Tasa</span><div class="mseg" id="segSmooth"><button data-s="ajustada" class="on">Ajustada</button><button data-s="cruda">Cruda</button></div>
+          <div class="zoomctl" style="margin-left:auto;"><button onclick="zMapa(1.3)" title="Acercar">+</button><button onclick="zMapa(.77)" title="Alejar">&#8722;</button><button onclick="zMapa(0)" title="Restablecer" style="font-size:11px;">&#10227;</button></div>
         </div>
-        <div class="gradbar"></div>
-        <div class="ley" id="ley"></div>
+        <div class="zoomwrap" id="mapaWrap" style="margin-top:4px;overflow:hidden;border-radius:8px;">
+          <canvas id="mapa"></canvas>
+        </div>
+        <div id="gradbar2" style="height:11px;border-radius:6px;margin-top:10px;"></div>
+        <div class="ley" id="leglabels2" style="justify-content:space-between;"></div>
+        <div class="legnote2" id="legnote2"></div>
       </div>
+
       <div class="rankcol">
         <div class="panel">
-          <h3>Ranking por <em id="rankMetric">tasa</em> · top 5</h3>
+          <h3>Focos rojos &#183; <em id="rankMetric" style="font-style:normal;color:#ff9d97;">homicidio doloso</em></h3>
+          <p id="rksub" style="font-size:11px;color:var(--dim);margin:0 0 9px;"></p>
           <div class="rank-list" id="ranking"></div>
         </div>
         <!-- COLUMNA MÁS RECIENTE · al publicar una nueva, reemplaza portada/título/gancho/liga de esta tarjeta -->
@@ -377,15 +423,15 @@ if(/github\.io$/.test(location.hostname)){
     </div>
     <style>
       .rankcol{display:flex;flex-direction:column;gap:16px;min-width:0;}
-      .colreciente{position:relative;display:flex;flex-direction:column;background:linear-gradient(180deg,rgba(251,191,36,.08),rgba(22,27,34,.88));border:1px solid rgba(251,191,36,.45);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s;box-shadow:0 0 22px rgba(251,191,36,.06);}
+      .colreciente{position:relative;display:flex;flex-direction:column;background:linear-gradient(180deg,rgba(251,191,36,.08),var(--panel));border:1px solid rgba(251,191,36,.45);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s;box-shadow:0 0 22px rgba(251,191,36,.06);}
       .colreciente:hover{border-color:#fbbf24;transform:translateY(-2px);}
       .colreciente img{width:100%;aspect-ratio:1344/620;object-fit:cover;display:block;}
       .colreciente .cr-body{padding:13px 16px 15px;display:flex;flex-direction:column;gap:6px;}
       .colreciente .cr-kick{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.8px;text-transform:uppercase;color:#fbbf24;font-weight:700;}
       .colreciente h4{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;line-height:1.08;margin:0;letter-spacing:-.4px;}
-      .colreciente p{font-size:12px;line-height:1.55;color:#c9d1d9;margin:0;text-align:justify;}
+      .colreciente p{font-size:12px;line-height:1.55;color:var(--mut);margin:0;text-align:justify;}
       .colreciente .cr-more{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:#fbbf24;font-weight:700;margin-top:2px;}
-      .cr-badge{position:absolute;top:11px;left:11px;z-index:3;background:#fbbf24;color:#0d1117;font-family:'Spline Sans Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.12em;padding:5px 11px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.45);}
+      .cr-badge{position:absolute;top:11px;left:11px;z-index:3;background:#fbbf24;color:var(--bg);font-family:'Spline Sans Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.12em;padding:5px 11px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.45);}
     </style>
 
 
@@ -449,7 +495,7 @@ if(/github\.io$/.test(location.hostname)){
   <footer>
     <div class="share">
       <span class="slbl">Compartir</span>
-      <a href="#" onclick="shGo('x');return false;" style="--sc:#e6edf3" title="X">𝕏</a>
+      <a href="#" onclick="shGo('x');return false;" style="--sc:var(--txt)" title="X">𝕏</a>
       <a href="#" onclick="shGo('fb');return false;" style="--sc:#1877f2" title="Facebook">f</a>
       <a href="#" onclick="shGo('wa');return false;" style="--sc:#25d366" title="WhatsApp">✆</a>
       <button onclick="navigator.clipboard.writeText(location.href);this.textContent='✓';setTimeout(()=>this.textContent='⧉',1200);" style="--sc:#fbbf24" title="Copiar enlace">⧉</button>
@@ -471,162 +517,101 @@ if(/github\.io$/.test(location.hostname)){
   </script>
 
 <script>
-// Escala FRÍO→CALIENTE · 3 tonalidades (azul → violeta → rojo fuego) · 5 bins
-const HEAT = ['#1e3356','#3b4a8f','#7048a8','#b8447f','#f85149'];
-// Los 7 delitos de mayor peso político y social + tasa total como contexto (8 filtros)
-const METRICAS = [
-  {campo:'tasa_hd_100k_2025',                 label:'Homicidio /100K', fmt:v=>Number(v).toFixed(1)},
-  {campo:'tasa_feminicidio_100k_2025',        label:'Feminicidio /100K', fmt:v=>Number(v).toFixed(2)},
-  {campo:'tasa_rnpdno_activos_100k',          label:'Desaparecidos /100K', fmt:v=>Number(v).toFixed(0)},
-  {campo:'tasa_extorsion_100k_2025',          label:'Extorsión /100K', fmt:v=>Number(v).toFixed(1)},
-  {campo:'tasa_secuestro_100k_2025',          label:'Secuestro /100K', fmt:v=>Number(v).toFixed(2)},
-  {campo:'tasa_violencia_familiar_100k_2025', label:'Violencia familiar /100K', fmt:v=>Number(v).toFixed(0)},
-  {campo:'tasa_violacion_100k_2025',          label:'Violación /100K', fmt:v=>Number(v).toFixed(1)},
-  {campo:'tasa_total_100k_2025',              label:'Tasa total /100K', fmt:v=>Number(v).toLocaleString('es-MX',{maximumFractionDigits:0})},
-];
-let metricaAct = 0;
-// === modo catalogo completo: cualquier delito x cualquier anio (tasa /100K) ===
-const ANIOS_M = SERIES_ANIOS.concat(['2026 ene-abr']);
-const I26M = ANIOS_M.length-1;
-let modoSerie = true, subSel = '__ALL__', anioM = ANIOS_M.length-2; // default: TODOS los delitos, 2025
-const POB = {}; PANORAMA_ESTATAL.forEach(r=>POB[r.clave_ent]=r.poblacion_2025);
-function valSerie(e, sub, ai){
-  if(ai===I26M){ const d=SERIES_2026_PARCIAL[String(e)]||{}; return sub==='__ALL__' ? Object.values(d).reduce((a,b)=>a+b,0) : (d[sub]||0); }
-  const S=SERIES_COMPLETO[String(e)];
-  if(sub==='__ALL__'){ let t=0; for(const k in S) t+=S[k][ai]; return t; }
-  return S[sub]?S[sub][ai]:0;
+/* ===== MAPA MUNICIPAL HONESTO · reemplaza el campo IDW (armonizado con estado/municipio) ===== */
+(function(){
+const DATA=NAC_MUNI_DATA, POB=NAC_MUNI_POP, MG=NAC_MUNI_GEO, F=MG.features;
+const tc=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim()||'#20262e';
+let di=1, yi=DATA.anios.indexOf('2025'), pal='sem_cb', mode='quant', metric='tasa', smooth='ajustada';
+const THR=50000, DENUN=0;
+const PALS={
+  magma:['#0b0724','#2c1160','#5f187f','#8c2981','#b73779','#dd4968','#f0605d','#fb8761','#fec287','#fcfdbf'],
+  semaforo:['#1a9850','#66bd63','#a6d96a','#d9ef8b','#fee08b','#fdae61','#f46d43','#d73027'],
+  sem_cb:['#00808a','#4ba3a3','#9fc7a6','#e2dd9a','#f4c04e','#e67e39','#d64a3a','#b42222'],
+};
+const h2r=h=>[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];
+function ramp(st,t){t=Math.max(0,Math.min(1,t));const x=t*(st.length-1),i=Math.min(st.length-2,Math.floor(x)),k=x-i,a=h2r(st[i]),b=h2r(st[i+1]);return 'rgb('+Math.round(a[0]+(b[0]-a[0])*k)+','+Math.round(a[1]+(b[1]-a[1])*k)+','+Math.round(a[2]+(b[2]-a[2])*k)+')';}
+const grad=st=>'linear-gradient(90deg,'+st.map((s,i)=>s+' '+(i/(st.length-1)*100).toFixed(0)+'%').join(',')+')';
+function popYi(){const y=parseInt(DATA.anios[yi]);return POB.anios.indexOf(y);}
+function popOf(k){const r=POB.p[k];const pi=popYi();return r&&pi>=0?r[pi]:0;}
+function countOf(k){const row=DATA.d[k];return row?row[di][yi]:0;}
+let EB=null;
+function calcEB(){const A=Mp.map(o=>({k:o.k,O:countOf(o.k),n:popOf(o.k)})).filter(a=>a.n>0);const sO=A.reduce((s,a)=>s+a.O,0),sN=A.reduce((s,a)=>s+a.n,0),N=A.length,b=sO/sN;let num=0;A.forEach(a=>{const r=a.O/a.n;num+=a.n*(r-b)*(r-b);});let s2=num/sN-b/(sN/N);if(s2<0)s2=0;const E={};A.forEach(a=>{const r=a.O/a.n,C=s2>0?s2/(s2+b/a.n):0;E[a.k]=(b+C*(r-b))*100000;});return E;}
+function valOf(k){if(metric==='tasa'){if(smooth==='ajustada'&&EB)return EB[k]||0;const p=popOf(k);return p>0?countOf(k)/p*100000:0;}return countOf(k);}
+function fmt(v){return metric==='tasa'?(v>=100?v.toFixed(0):v.toFixed(1)):Math.round(v).toLocaleString('es-MX');}
+function bb2(){let a=1e9,b=1e9,c=-1e9,d=-1e9;F.forEach(f=>f.geometry.coordinates.forEach(p=>p.forEach(r=>r.forEach(([x,y])=>{if(x<a)a=x;if(x>c)c=x;if(y<b)b=y;if(y>d)d=y;}))));return{a,b,c,d};}
+const B=bb2(),CW=1650,PAD=14,ES=(CW-2*PAD)/(B.c-B.a),CH=Math.ceil((B.d-B.b)*ES)+2*PAD;
+const PX=x=>PAD+(x-B.a)*ES,PY=y=>PAD+(B.d-y)*ES;
+const cvM=document.getElementById('mapa');cvM.width=CW;cvM.height=CH;cvM.style.width='100%';cvM.style.height='auto';cvM.style.cursor='pointer';cvM.style.display='block';
+const cx=cvM.getContext('2d');
+const hitC=document.createElement('canvas');hitC.width=CW;hitC.height=CH;const hc=hitC.getContext('2d',{willReadFrequently:true});hc.imageSmoothingEnabled=false;
+function mkp(f){const p=new Path2D();f.geometry.coordinates.forEach(poly=>poly.forEach(ring=>{ring.forEach(([x,y],i)=>{i?p.lineTo(PX(x),PY(y)):p.moveTo(PX(x),PY(y));});p.closePath();}));return p;}
+const Mp=F.map(f=>({k:f.properties.k,n:f.properties.n,e:f.properties.e,p:mkp(f),fill:tc('--nores')}));
+const byC={};Mp.forEach(o=>byC[o.k]=o);
+const SP=MEXICO_ESTADOS_GEOJSON.features.map(f=>{const p=new Path2D();const P=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;P.forEach(poly=>poly.forEach(ring=>{ring.forEach(([x,y],i)=>{i?p.lineTo(PX(x),PY(y)):p.moveTo(PX(x),PY(y));});p.closePath();}));return p;});
+let sc=1,tx=0,ty=0;
+function clampp(){const mx=CW*(1-sc),my=CH*(1-sc);tx=Math.max(mx,Math.min(0,tx));ty=Math.max(my,Math.min(0,ty));}
+function draw(){cx.setTransform(1,0,0,1,0,0);cx.clearRect(0,0,CW,CH);cx.setTransform(sc,0,0,sc,tx,ty);Mp.forEach(o=>{cx.fillStyle=o.fill;cx.fill(o.p);});if(sc>2.2){cx.strokeStyle=tc('--line2');cx.lineWidth=.5/sc;Mp.forEach(o=>cx.stroke(o.p));}cx.strokeStyle=tc('--stroke');cx.lineWidth=1.1/sc;cx.lineJoin='round';SP.forEach(p=>cx.stroke(p));}
+let hd=true;
+function drawHit(){hc.setTransform(1,0,0,1,0,0);hc.clearRect(0,0,CW,CH);hc.setTransform(sc,0,0,sc,tx,ty);Mp.forEach(o=>{const r=(o.k>>8)&255,g=o.k&255;hc.fillStyle='rgb('+r+','+g+',200)';hc.fill(o.p);});hd=false;}
+function classify(){const nz=Mp.map(o=>valOf(o.k)).filter(v=>v>0).sort((a,b)=>a-b);const K=5,br=[];for(let j=1;j<K;j++)br.push(nz[Math.min(nz.length-1,Math.floor(j/K*nz.length))]);return{K,br,min:nz[0]||0,max:nz[nz.length-1]||1};}
+function clsf(v,br){let i=0;while(i<br.length&&v>br[i])i++;return i;}
+let CL=null;
+function col(v){const st=PALS[pal];if(v<=0)return tc('--nores');if(mode==='log')return ramp(st,(Math.log(v)-Math.log(CL.min||1))/((Math.log(CL.max)-Math.log(CL.min))||1));return ramp(st,(clsf(v,CL.br)+0.5)/CL.K);}
+function recompute(){
+  EB=(metric==='tasa'&&smooth==='ajustada')?calcEB():null;
+  CL=classify();
+  Mp.forEach(o=>o.fill=col(valOf(o.k)));
+  const esDen=(di===DENUN), anio=DATA.anios[yi];
+  document.getElementById('mapScope').textContent=(esDen?'Delito denunciado':DATA.delitos[di])+' · '+anio+' · '+(metric==='tasa'?('tasa /100 mil'+(smooth==='ajustada'?' ajustada':' cruda')):'casos');
+  const elig=Mp.filter(o=>metric==='casos'||popOf(o.k)>=THR).map(o=>({o,v:valOf(o.k)})).sort((a,b)=>b.v-a.v);
+  const mx=elig[0]?elig[0].v:1;
+  document.getElementById('rankMetric').textContent=esDen?'incidencia denunciada':DATA.delitos[di].toLowerCase();
+  document.getElementById('rksub').textContent=(metric==='tasa'?'Municipios ≥50 mil hab. ':'')+(esDen?'Mide lo denunciado, no lo ocurrido.':'Cifra cotejable · clic para el atlas.');
+  document.getElementById('ranking').innerHTML=elig.slice(0,10).map((x,i)=>'<a class="rrow" href="municipio.html?cve='+String(x.o.k).padStart(5,'0')+'"><span class="pos">'+String(i+1).padStart(2,'0')+'</span><span><span class="nom">'+x.o.n+' <small style="color:var(--dim)">· '+x.o.e+'</small></span><div class="bar" style="width:'+Math.max(8,x.v/mx*100)+'%;background:'+col(x.v)+'"></div></span><span class="val">'+fmt(x.v)+'</span></a>').join('');
+  document.getElementById('gradbar2').style.background=grad(PALS[pal]);
+  const edges=[CL.min,...CL.br,CL.max];
+  document.getElementById('leglabels2').innerHTML='<span>0</span>'+edges.map(v=>'<span>'+fmt(v)+'</span>').join('');
+  document.getElementById('legnote2').innerHTML= esDen
+    ? 'Gris = sin registro. Tasa de <b>delito denunciado</b>: la cifra negra (lo no denunciado) varía por estado; una tasa alta puede ser más denuncia, no más peligro. Para violencia, usa homicidio doloso.'
+    : 'Gris = sin registro. '+(metric==='tasa'&&smooth==='ajustada'?'Tasa /100 mil <b>ajustada</b>: corrige municipios chicos donde pocos casos inflan la cifra.':(metric==='tasa'?'Tasa /100 mil cruda.':'Casos = volumen (sigue a la población).'));
 }
-function tasaSerie(e){ return valSerie(e, subSel, anioM)*100000/POB[e]; }
-// catalogo ordenado de principales a menores (volumen nacional 2025)
-const CAT_MAPA = DELITOS_COMPLETO_2025['17'].map(r=>r.s)
-  .map(s=>({s, v:Object.keys(SERIES_COMPLETO).reduce((a,e)=>a+(SERIES_COMPLETO[e][s]?SERIES_COMPLETO[e][s][SERIES_ANIOS.length-1]:0),0)}))
-  .sort((a,b)=>b.v-a.v);
-
-
-function bboxDe(geo){let a=1e9,b=1e9,c=-1e9,d=-1e9;geo.features.forEach(f=>{const P=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;P.forEach(p=>p.forEach(r=>r.forEach(([x,y])=>{if(x<a)a=x;if(x>c)c=x;if(y<b)b=y;if(y>d)d=y;})))});return{minX:a,minY:b,maxX:c,maxY:d};}
-function pathDe(f){const P=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;let s='';P.forEach(p=>p.forEach(r=>{r.forEach(([x,y],i)=>{s+=(i?'L':'M')+x.toFixed(4)+' '+(-y).toFixed(4);});s+='Z';}));return s;}
-function qBins(vals){const s=vals.slice().sort((a,b)=>a-b);const q=k=>s[Math.min(s.length-1,Math.floor(k*s.length))];return[q(.2),q(.4),q(.6),q(.8)];}
-function binColor(v,c){let i=0;while(i<c.length&&v>c[i])i++;return HEAT[i];}
-
-const geo = MEXICO_ESTADOS_GEOJSON;
-const ABREV = {1:'AGS',2:'BC',3:'BCS',4:'CAMP',5:'COAH',6:'COL',7:'CHIS',8:'CHIH',9:'CDMX',10:'DGO',11:'GTO',12:'GRO',13:'HGO',14:'JAL',15:'MEX',16:'MICH',17:'MOR',18:'NAY',19:'NL',20:'OAX',21:'PUE',22:'QRO',23:'QROO',24:'SLP',25:'SIN',26:'SON',27:'TAB',28:'TAM',29:'TLAX',30:'VER',31:'YUC',32:'ZAC'};
-// Espectro meteorológico (decisión final)
-const METEO = ['#1a2db0','#2e6fde','#35b5e8','#3dbb6e','#8bc63f','#f3e13a','#fbb03b','#f4711f','#e02f1f','#a31212','#6e0b0b'];
-function hex2rgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
-function lerpN(a,b,t){return a+(b-a)*t;}
-
-// === geometría → pixeles del canvas ===
-const cvMapa = document.getElementById('mapa');
-const bb = bboxDe(geo);
-const CW = 1600, CPAD = 26;
-const cEsc = (CW-2*CPAD)/(bb.maxX-bb.minX);
-const CH = Math.ceil((bb.maxY-bb.minY)*cEsc)+2*CPAD;
-cvMapa.width = CW; cvMapa.height = CH;
-function pxC(x){return CPAD+(x-bb.minX)*cEsc;}
-function pyC(y){return CPAD+(bb.maxY-y)*cEsc;}
-function path2D(f){
-  const p=new Path2D();
-  const P=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;
-  P.forEach(poly=>poly.forEach(ring=>{
-    ring.forEach(([x,y],i)=>{ if(i===0)p.moveTo(pxC(x),pyC(y)); else p.lineTo(pxC(x),pyC(y)); });
-    p.closePath();
-  }));
-  return p;
-}
-function centroideC(f){
-  const P=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;
-  let best=null,bl=0;P.forEach(p=>{if(p[0].length>bl){bl=p[0].length;best=p[0];}});
-  let sx=0,sy=0;best.forEach(([x,y])=>{sx+=x;sy+=y;});
-  return [pxC(sx/best.length),pyC(sy/best.length)];
-}
-const PATHS = geo.features.map(f=>({f, p2d: path2D(f), cen: centroideC(f)}));
-const PAIS = new Path2D(); PATHS.forEach(o=>PAIS.addPath(o.p2d));
-
-function render(){
-  let M, vals={};
-  if(subSel==='__RNPDNO__'){
-    M = {label:'Desaparecidos /100K · RNPDNO corte 3-jun-2026', fmt:v=>Number(v).toFixed(0)};
-    PANORAMA_ESTATAL.forEach(r=>vals[r.clave_ent]=r.tasa_rnpdno_activos_100k);
-  } else if(modoSerie){
-    const et = subSel==='__ALL__' ? 'Todos los delitos' : subSel;
-    M = {label: et+' /100K · '+ANIOS_M[anioM]+(anioM===I26M?' (parcial)':''), fmt:v=>Number(v).toFixed(1)};
-    PANORAMA_ESTATAL.forEach(r=>vals[r.clave_ent]=tasaSerie(r.clave_ent));
-  } else {
-    M = METRICAS[metricaAct];
-    PANORAMA_ESTATAL.forEach(r=>vals[r.clave_ent]=r[M.campo]);
-  }
-
-  // ranking-t POR MÉTRICA: el campo se recalcula con cada indicador
-  const orden = PANORAMA_ESTATAL.slice().sort((a,b)=>vals[a.clave_ent]-vals[b.clave_ent]);
-  const tDe = {}; orden.forEach((r,i)=>{ tDe[r.clave_ent] = i/(orden.length-1); });
-  const CEN = PATHS.map(o=>({cx:o.cen[0], cy:o.cen[1], t:tDe[o.f.properties.clave_ent]}));
-
-  const ctx = cvMapa.getContext('2d');
-  // 1) campo IDW a 1/4 de resolución
-  const DS=4, w2=Math.ceil(CW/DS), h2=Math.ceil(CH/DS);
-  const tmp=document.createElement('canvas'); tmp.width=w2; tmp.height=h2;
-  const tctx=tmp.getContext('2d');
-  const img=tctx.createImageData(w2,h2);
-  for(let yy=0;yy<h2;yy++){
-    for(let xx=0;xx<w2;xx++){
-      const X=xx*DS, Y=yy*DS;
-      let sw=0, sv=0;
-      for(let i=0;i<CEN.length;i++){
-        const dx=X-CEN[i].cx, dy=Y-CEN[i].cy;
-        const d2=dx*dx+dy*dy;
-        if(d2<25){ sv=CEN[i].t; sw=1; break; }
-        const wgt=1/Math.pow(d2,1.4);
-        sw+=wgt; sv+=wgt*CEN[i].t;
-      }
-      const t=sv/sw;
-      const x2=t*(METEO.length-1);
-      const i2=Math.min(METEO.length-2,Math.floor(x2));
-      const k2=x2-i2;
-      const c0=hex2rgb(METEO[i2]), c1=hex2rgb(METEO[i2+1]);
-      const o=(yy*w2+xx)*4;
-      img.data[o]=Math.round(lerpN(c0[0],c1[0],k2));
-      img.data[o+1]=Math.round(lerpN(c0[1],c1[1],k2));
-      img.data[o+2]=Math.round(lerpN(c0[2],c1[2],k2));
-      img.data[o+3]=255;
-    }
-  }
-  tctx.putImageData(img,0,0);
-  // 2) upscale + máscara país (UN path combinado)
-  ctx.clearRect(0,0,CW,CH);
-  ctx.imageSmoothingEnabled=true; ctx.imageSmoothingQuality='high';
-  ctx.drawImage(tmp,0,0,CW,CH);
-  ctx.globalCompositeOperation='destination-in';
-  ctx.fill(PAIS);
-  ctx.globalCompositeOperation='source-over';
-  // 3) bordes blancos finos
-  ctx.strokeStyle='rgba(255,255,255,.85)'; ctx.lineWidth=1.5; ctx.lineJoin='round';
-  PATHS.forEach(o=>ctx.stroke(o.p2d));
-  // (sin valores numéricos sobre el mapa · el campo es indicativo y el
-  //  ranking lateral da la precisión · decisión 9-jun-2026)
-  // leyenda continua: min / max reales de la métrica
-  const vMin=Math.min(...Object.values(vals)), vMax=Math.max(...Object.values(vals));
-  const eMin=PANORAMA_ESTATAL.find(r=>vals[r.clave_ent]===vMin), eMax=PANORAMA_ESTATAL.find(r=>vals[r.clave_ent]===vMax);
-  document.getElementById('ley').innerHTML=
-    `<span>← tenue: ${eMin.entidad.split(' de ')[0]} ${M.fmt(vMin)}</span><span style="margin-left:auto">intenso: ${eMax.entidad.split(' de ')[0]} ${M.fmt(vMax)} →</span>`;
-  document.getElementById('mapScope').textContent=M.label;
-  document.getElementById('rankMetric').textContent=M.label.toLowerCase();
-  // ranking
-  const top=PANORAMA_ESTATAL.slice().sort((a,b)=>vals[b.clave_ent]-vals[a.clave_ent]).slice(0,5);
-  const max=top[0]?vals[top[0].clave_ent]:1;
-  document.getElementById('ranking').innerHTML=top.map((r,i)=>`
-    <a class="rrow" href="#">
-      <span class="pos">${String(i+1).padStart(2,'0')}</span>
-      <span><span class="nom">${r.entidad.replace(' de Zaragoza','').replace(' de Ocampo','').replace(' de Ignacio de la Llave','')}</span>
-      <div class="bar" style="width:${Math.max(8,Math.round(vals[r.clave_ent]/max*100))}%"></div></span>
-      <span class="val">${M.fmt(vals[r.clave_ent])}</span>
-    </a>`).join('');
-}
+function refresh(){recompute();draw();}
+const tt=document.createElement('div');tt.style.cssText='position:fixed;pointer-events:none;z-index:9000;background:rgba(13,17,23,.97);border:1.5px solid rgba(248,81,73,.5);border-radius:9px;padding:7px 11px;display:none;box-shadow:0 6px 20px rgba(0,0,0,.6);';document.body.appendChild(tt);
+let drag=false,lx=0,ly=0,moved=false;
+cvM.addEventListener('mousedown',ev=>{drag=true;moved=false;lx=ev.clientX;ly=ev.clientY;tt.style.display='none';});
+window.addEventListener('mouseup',()=>{drag=false;});
+cvM.addEventListener('mousemove',ev=>{const rect=cvM.getBoundingClientRect();
+  if(drag){const kx=CW/rect.width;tx+=(ev.clientX-lx)*kx;ty+=(ev.clientY-ly)*(CH/rect.height);lx=ev.clientX;ly=ev.clientY;moved=true;clampp();draw();hd=true;return;}
+  if(hd)drawHit();
+  const x=Math.round((ev.clientX-rect.left)/rect.width*CW),y=Math.round((ev.clientY-rect.top)/rect.height*CH);
+  if(x<0||y<0||x>=CW||y>=CH){tt.style.display='none';return;}
+  const d=hc.getImageData(x,y,1,1).data;if(d[2]<150){tt.style.display='none';return;}
+  const o=byC[(d[0]<<8)|d[1]];if(!o){tt.style.display='none';return;}
+  tt.innerHTML='<div style="font-family:\'Bricolage Grotesque\',sans-serif;font-weight:700;font-size:14px">'+o.n+'</div><div style="font-family:\'Spline Sans Mono\',monospace;font-size:10px;color:#8b949e">'+o.e+'</div><div style="font-family:\'Spline Sans Mono\',monospace;font-size:12px;color:#ff9d97;font-weight:700;margin-top:3px">'+fmt(valOf(o.k))+(metric==='tasa'?' /100 mil':' casos')+'</div><div style="font-size:10px;color:#6b7480;margin-top:2px">clic para su atlas →</div>';
+  tt.style.display='block';tt.style.left=Math.min(ev.clientX+14,innerWidth-200)+'px';tt.style.top=(ev.clientY+14)+'px';
+});
+cvM.addEventListener('mouseleave',()=>tt.style.display='none');
+cvM.addEventListener('click',ev=>{if(moved)return;const rect=cvM.getBoundingClientRect();const x=Math.round((ev.clientX-rect.left)/rect.width*CW),y=Math.round((ev.clientY-rect.top)/rect.height*CH);const d=hc.getImageData(x,y,1,1).data;if(d[2]<150)return;const o=byC[(d[0]<<8)|d[1]];if(o)location.href='municipio.html?cve='+String(o.k).padStart(5,'0');});
+function zAt(a,b,f){const ns=Math.max(1,Math.min(10,sc*f));const wx=(a-tx)/sc,wy=(b-ty)/sc;sc=ns;tx=a-wx*sc;ty=b-wy*sc;clampp();draw();hd=true;}
+cvM.addEventListener('wheel',ev=>{ev.preventDefault();const rect=cvM.getBoundingClientRect();zAt((ev.clientX-rect.left)/rect.width*CW,(ev.clientY-rect.top)/rect.height*CH,ev.deltaY<0?1.18:.85);},{passive:false});
+window.zMapa=function(f){if(f===0){sc=1;tx=0;ty=0;draw();hd=true;}else zAt(CW/2,CH/2,f);};
 const _sd=document.getElementById('selDelitoMapa');
-_sd.innerHTML='<option value="__ALL__">Todos los delitos (global)</option><option value="__RNPDNO__">Personas desaparecidas (RNPDNO)</option>'+CAT_MAPA.map(d=>`<option value="${d.s.replace(/"/g,'&quot;')}">${d.s}</option>`).join('');
+_sd.innerHTML=DATA.delitos.map((d,i)=>'<option value="'+i+'">'+(i===0?'Todos los delitos (denunciados)':d)+'</option>').join('');
+_sd.value=String(di);_sd.onchange=()=>{di=+_sd.value;refresh();};
 const _sa=document.getElementById('selAnioMapa');
-_sa.innerHTML=ANIOS_M.map((a,i)=>`<option value="${i}" ${i===anioM?'selected':''}>${a}</option>`).join('');
-function sincSelMapa(){ if(!modoSerie){_sd.value='__ALL__';} }
-render();
+_sa.innerHTML=DATA.anios.map((a,i)=>'<option value="'+i+'"'+(i===yi?' selected':'')+'>'+a+'</option>').join('');
+_sa.onchange=()=>{yi=+_sa.value;refresh();};
+function seg(id,cb){document.querySelectorAll('#'+id+' button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.toggle('on',x===b));cb(b);});}
+seg('segMet',b=>{metric=b.dataset.x;refresh();});
+seg('segPal',b=>{pal=b.dataset.p;refresh();});
+seg('segMode',b=>{mode=b.dataset.m;refresh();});
+seg('segSmooth',b=>{smooth=b.dataset.s;refresh();});
+refresh();window.__mapaRefresh=refresh;
+})();
+
+/* ===== helpers para la retícula de 32 estados (abajo) ===== */
+const geo = MEXICO_ESTADOS_GEOJSON;
+function pathDe(f){const P=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;let s='';P.forEach(p=>p.forEach(r=>{r.forEach(([x,y],i)=>{s+=(i?'L':'M')+x.toFixed(4)+' '+(-y).toFixed(4);});s+='Z';}));return s;}
 
 // grid 32 estados · icono = silueta real del estado en su color de identidad
 const featPorClave = {};
@@ -654,10 +639,10 @@ document.getElementById('gridEstados').innerHTML = PANORAMA_ESTATAL.slice()
 // ===== RADIOGRAFIA NACIONAL 55 DELITOS · ranking menor a mayor =====
 (function(){
   const CAT = DELITOS_COMPLETO_2025['17'].map(r=>({bj:r.bj, s:r.s}));
-  const anios = SERIES_ANIOS.concat(['2026 ene-abr']);
+  const anios = SERIES_ANIOS.concat(['2026 ene-may']);
   const I26 = anios.length-1;
   let anioSel = I26-1; // default 2025 (ultimo completo)
-  const METEO=['#1a2db0','#2e6fde','#35b5e8','#3dbb6e','#8bc63f','#f3e13a','#fbb03b','#f4711f','#e02f1f','#a31212','#6e0b0b'];
+  const METEO=['#00808a','#4ba3a3','#9fc7a6','#e2dd9a','#f4c04e','#e67e39','#d64a3a','#b42222'];
   function colMeteo(f){
     const x=f*(METEO.length-1), i=Math.min(METEO.length-2,Math.floor(x)), t=x-i;
     const h=(s,a,b)=>parseInt(s.slice(a,b),16);
@@ -690,25 +675,25 @@ document.getElementById('gridEstados').innerHTML = PANORAMA_ESTATAL.slice()
         '<span class="val">'+r.v.toLocaleString('en-US')+'</span></div>';
     });
     document.getElementById('tabla55').innerHTML=html;
-    document.getElementById('t55foot').textContent=CAT.length+' subtipos · total nacional '+anio+(ai===I26?' (PARCIAL · ene-abr)':'')+': '+total.toLocaleString('en-US')+' carpetas · suma de los 32 estados · SESNSP corte abr-2026 · cifras.csv'+(ai===I26?' · +'+EXTRA_2026.total.toLocaleString('en-US')+' carpetas en subtipos nuevos del RNID 2026 sin equivalente en el catálogo histórico (no mostradas)':'');
+    document.getElementById('t55foot').textContent=CAT.length+' subtipos · total nacional '+anio+(ai===I26?' (PARCIAL · ene-may)':'')+': '+total.toLocaleString('en-US')+' carpetas · suma de los 32 estados · SESNSP corte may-2026 · cifras.csv'+(ai===I26?' · +'+EXTRA_2026.total.toLocaleString('en-US')+' carpetas en subtipos nuevos del RNID 2026 sin equivalente en el catálogo histórico (no mostradas)':'');
   }
   render55();
 })();
 </script>
 <button class="shfab" onclick="document.getElementById('shpop').classList.toggle('open')" title="Compartir" aria-label="Compartir">⤴</button>
 <div class="shpop" id="shpop">
-  <a href="#" onclick="shGo('x');return false;" style="--sc:#e6edf3" title="X">𝕏</a>
+  <a href="#" onclick="shGo('x');return false;" style="--sc:var(--txt)" title="X">𝕏</a>
   <a href="#" onclick="shGo('fb');return false;" style="--sc:#1877f2" title="Facebook">f</a>
   <a href="#" onclick="shGo('wa');return false;" style="--sc:#25d366" title="WhatsApp">✆</a>
   <button onclick="navigator.clipboard.writeText(location.href);this.textContent='✓';setTimeout(()=>this.textContent='⧉',1200);" style="--sc:#fbbf24" title="Copiar enlace">⧉</button>
 </div>
 <style>
-.shfab{position:fixed;bottom:18px;right:18px;z-index:9400;width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,#fbbf24,#f59e0b);box-shadow:0 0 18px rgba(251,191,36,.5),0 3px 10px rgba(0,0,0,.5);color:#0d1117;font-size:21px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.shfab{position:fixed;bottom:18px;right:18px;z-index:9400;width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,#fbbf24,#f59e0b);box-shadow:0 0 18px rgba(251,191,36,.5),0 3px 10px rgba(0,0,0,.5);color:var(--bg);font-size:21px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
 .shfab:hover{box-shadow:0 0 26px rgba(251,191,36,.75),0 3px 10px rgba(0,0,0,.5);}
 .shpop{position:fixed;bottom:80px;right:21px;z-index:9400;display:none;flex-direction:column;gap:9px;}
 .shpop.open{display:flex;}
-.shpop a,.shpop button{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;text-decoration:none;cursor:pointer;background:rgba(13,17,23,.92);color:var(--sc);border:1.5px solid var(--sc);box-shadow:0 0 11px color-mix(in srgb, var(--sc) 40%, transparent);}
-.shpop a:hover,.shpop button:hover{background:color-mix(in srgb, var(--sc) 18%, rgba(13,17,23,.92));}
+.shpop a,.shpop button{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;text-decoration:none;cursor:pointer;background:color-mix(in srgb,var(--bg) 88%,transparent);color:var(--sc);border:1.5px solid var(--sc);box-shadow:0 0 11px color-mix(in srgb, var(--sc) 40%, transparent);}
+.shpop a:hover,.shpop button:hover{background:color-mix(in srgb, var(--sc) 18%, color-mix(in srgb,var(--bg) 88%,transparent));}
 @media(max-width:680px){.shfab{bottom:74px;}.shpop{bottom:136px;}}
 </style>
 <script>
@@ -717,6 +702,11 @@ function shGo(n){
   const m={x:'https://twitter.com/intent/tweet?text='+t+'&url='+u, fb:'https://www.facebook.com/sharer/sharer.php?u='+u, wa:'https://wa.me/?text='+t+'%20'+u};
   window.open(m[n],'_blank','noopener');
 }
+</script>
+<script>
+/* toggle claro/oscuro · re-dibuja el mapa canvas (colores dependen del tema) */
+function setT(t){document.documentElement.dataset.theme=t;document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));try{localStorage.setItem('imx-theme',t);}catch(e){}if(window.__mapaRefresh)window.__mapaRefresh();}
+(function(){if(location.hash==='#light')setT('light');else if(location.hash==='#dark')setT('dark');var t=document.documentElement.dataset.theme||'dark';document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));})();
 </script>
 <!-- RED-45 start -->
 <nav aria-label="Red 45 Digital Noticias" style="max-width:1100px;margin:48px auto 22px;padding:18px 20px 4px;border-top:1px solid rgba(128,128,128,.28);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:13px;line-height:1.9;text-align:center;opacity:.85;"><div style="text-transform:uppercase;letter-spacing:2.5px;font-size:10.5px;opacity:.6;margin-bottom:7px;">Red 45 Digital Noticias</div><div><a href="https://45digitalnoticias.github.io/columnas/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Columnas</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/Inseguridad-Mexico/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Inseguridad México</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/Expediente-Hantavirus/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Expediente Brotes</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/cementerio-transparencia/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Cementerio de la Transparencia</a></div></nav>

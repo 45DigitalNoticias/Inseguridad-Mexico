@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">
+<!DOCTYPE html><html lang="es" data-theme="dark"><head><meta charset="utf-8">
 <title>Corredores ferroviarios · Istmo, Tren Maya y la red de carga · 45 Digital Noticias</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Tres corredores ferroviarios de México leídos por su firma delictiva: el Istmo (guerra por la ruta, homicidio), el Tren Maya (cobro de piso, extorsión y narcomenudeo) y la red de carga (saqueo, robo al tren). Datos SESNSP y ARTF.">
@@ -14,38 +14,50 @@
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-polylinedecorator@1.6.0/dist/leaflet.polylineDecorator.js"></script>
+<script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;600;700&family=Spline+Sans+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
- html,body{margin:0;height:100%;background:#0d1117;font-family:'Hanken Grotesk',system-ui,Arial,sans-serif;color:#e6edf3}
+ :root[data-theme="dark"]{--bg:#0e0c0b;--panel:#17130d;--panel2:#1b1712;--line:rgba(120,110,95,.2);--line2:rgba(120,110,95,.4);--txt:#f2ede3;--mut:#b8ad9a;--dim:#8a8072;--oro:#efb03a;--cian:#49c2d0;--rojo:#e8573f;--morado:#a78bfa;--nores:#20262e}
+ :root[data-theme="light"]{--bg:#f1eadb;--panel:#fbf7ee;--panel2:#efe7d6;--line:rgba(40,34,26,.18);--line2:rgba(40,34,26,.36);--txt:#191510;--mut:#4a4238;--dim:#7a7061;--oro:#a86a12;--cian:#0f6f7c;--rojo:#a52c1f;--morado:#6b4fc4;--nores:#e3d9c6}
+ html,body{margin:0;height:100%;background:var(--bg);font-family:'Hanken Grotesk',system-ui,Arial,sans-serif;color:var(--txt)}
+ .tog{display:inline-flex;border:1px solid var(--line2);border-radius:999px;overflow:hidden;font-family:'Spline Sans Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+ .tog button{background:transparent;color:var(--mut);border:none;padding:6px 11px;cursor:pointer;font-weight:700}
+ .tog button.on{background:var(--oro);color:var(--bg)}
  #map{position:absolute;top:0;bottom:0;left:0;right:0}
- .panel{position:absolute;z-index:1000;background:rgba(13,17,23,.93);border:1px solid #30363d;border-radius:12px;backdrop-filter:blur(3px)}
+ .panel{position:absolute;z-index:1000;background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px solid var(--line2);border-radius:12px;backdrop-filter:blur(3px)}
  .titulo{top:12px;left:12px;padding:13px 16px;max-width:340px}
  .titulo h1{font-family:'Bricolage Grotesque',sans-serif;font-size:18px;margin:0 0 4px;letter-spacing:-.4px}
- .titulo .sub{font-size:11px;color:#9aa4b2;line-height:1.5}
- .titulo .dash{display:inline-block;margin-top:9px;color:#fbbf24;text-decoration:none;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;border:1px solid rgba(251,191,36,.5);border-radius:7px;padding:5px 10px}
+ .titulo .sub{font-size:11px;color:var(--mut);line-height:1.5}
+ .titulo .dash{display:inline-block;margin-top:9px;color:var(--oro);text-decoration:none;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;border:1px solid color-mix(in srgb,var(--oro) 50%,transparent);border-radius:7px;padding:5px 10px}
  .ctrl{top:12px;right:12px;padding:12px 14px;width:226px}
- .ctrl .lab{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:#8b949e;font-weight:700;margin:0 0 7px}
+ .ctrl .lab{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);font-weight:700;margin:0 0 7px}
  .segs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:13px}
- .seg{flex:1;min-width:62px;text-align:center;cursor:pointer;font-size:11.5px;font-weight:700;padding:7px 4px;border-radius:8px;border:1px solid #30363d;background:rgba(34,40,49,.7);color:#c9d1d9;transition:.15s}
- .seg.on{background:#fbbf24;color:#0d1117;border-color:#fbbf24}
+ .seg{flex:1;min-width:62px;text-align:center;cursor:pointer;font-size:11.5px;font-weight:700;padding:7px 4px;border-radius:8px;border:1px solid var(--line2);background:color-mix(in srgb,var(--panel2) 80%,transparent);color:var(--mut);transition:.15s}
+ .seg.on{background:var(--oro);color:var(--bg);border-color:var(--oro)}
  .seg.cm.on{background:#22d3ee;border-color:#22d3ee}
- .seg.ce.on{background:#a78bfa;border-color:#a78bfa;color:#0d1117}
- .seg.cc.on{background:#e8a13a;border-color:#e8a13a;color:#0d1117}
- #yr{width:100%;accent-color:#fbbf24;margin-top:4px}
- .yv{font-family:'Spline Sans Mono',monospace;font-size:13px;color:#fbbf24;font-weight:700}
+ .seg.ce.on{background:#a78bfa;border-color:#a78bfa;color:var(--bg)}
+ .seg.cc.on{background:#e8a13a;border-color:#e8a13a;color:var(--bg)}
+ #yr{width:100%;accent-color:var(--oro);margin-top:4px}
+ .yv{font-family:'Spline Sans Mono',monospace;font-size:13px;color:var(--oro);font-weight:700}
  .card{bottom:14px;left:12px;width:330px;max-width:calc(100vw - 24px);padding:15px 17px}
  .card h2{font-family:'Bricolage Grotesque',sans-serif;font-size:15px;margin:0 0 7px;display:flex;align-items:center;gap:8px}
  .card h2 .dot{width:11px;height:11px;border-radius:50%;flex:none}
- .card p{font-size:12.5px;line-height:1.6;color:#c9d1d9;margin:0 0 8px;text-align:justify;hyphens:auto}
- .card b{color:#fbbf24}
- .card .src{font-family:'Spline Sans Mono',monospace;font-size:9px;color:#6b7480;letter-spacing:.3px;margin:0}
+ .card p{font-size:12.5px;line-height:1.6;color:var(--mut);margin:0 0 8px;text-align:justify;hyphens:auto}
+ .card b{color:var(--oro)}
+ .card .src{font-family:'Spline Sans Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:.3px;margin:0}
  .leg{bottom:14px;right:12px;padding:9px 12px;font-size:10.5px}
  .leg i{width:13px;height:13px;display:inline-block;vertical-align:middle;margin-right:5px;border-radius:3px}
  .leg .rail{display:inline-block;width:16px;height:0;border-top:3px solid #22d3ee;vertical-align:middle;margin-right:5px}
  .stIcon{font-size:15px;line-height:18px;text-align:center;filter:drop-shadow(0 0 2px #000) drop-shadow(0 0 2px #000)}
- .leaflet-tooltip.tt{background:#161b22;border:1px solid #30363d;color:#e6edf3;font-size:12px}
+ .hotI{text-align:center;filter:drop-shadow(0 0 3px #000) drop-shadow(0 0 3px #000)}
+ .portI{text-align:center;filter:drop-shadow(0 0 2px #000) drop-shadow(0 0 2px #000)}
+ .stDot span{display:block;width:9px;height:9px;border-radius:50%;border:1.5px solid #0b0f16;box-shadow:0 0 3px #000,0 0 2px #000}
+ .leaflet-tooltip.tt{background:var(--panel2);border:1px solid var(--line2);color:var(--txt);font-size:12px}
  @media(max-width:680px){.ctrl{width:170px}.card{width:auto;right:12px}.titulo{max-width:60vw}}
-</style></head><body>
+</style>
+<script>/* anti-flash: fija tema (hash o guardado) antes de pintar */(function(){var t=null;try{t=localStorage.getItem('imx-theme');}catch(e){}if(location.hash==='#light')t='light';else if(location.hash==='#dark')t='dark';if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;})();</script>
+</head><body>
 <div id="map"></div>
 <div id="err" style="position:absolute;z-index:9999;top:8px;left:50%;transform:translateX(-50%);background:#bd0026;color:#fff;font:13px monospace;padding:6px 10px;border-radius:6px;display:none"></div>
 
@@ -53,15 +65,17 @@
  <h1 id="h1">Corredores ferroviarios</h1>
  <div class="sub">Tres trenes, tres firmas: el Istmo (homicidio), el Tren Maya (extorsión y narco) y la red de carga (robo al tren), cada uno leído por su firma delictiva. Color = intensidad del delito elegido.</div>
  <a class="dash" href="https://45digitalnoticias.github.io/Inseguridad-Mexico/" target="_blank" rel="noopener">◉ Inseguridad México ↗</a>
+ <div class="tog" style="margin-top:10px"><button data-t="dark" class="on" onclick="setT('dark')">Oscuro</button><button data-t="light" onclick="setT('light')">Claro</button></div>
 </div>
 
 <div class="panel ctrl">
  <div class="lab">Corredor</div>
  <div class="segs" id="segCor">
+  <div class="seg on" data-c="todos" style="flex-basis:100%">Todos los corredores</div>
   <div class="seg ce" data-c="istmo">Istmo</div>
   <div class="seg cm" data-c="maya">Tren Maya</div>
   <div class="seg cc" data-c="carga">Carga</div>
-  <div class="seg on" data-c="ambos">Sureste</div>
+  <div class="seg" data-c="ambos" style="flex-basis:100%">Sureste (Istmo + Maya)</div>
  </div>
  <div class="lab" id="labDel">Delito</div>
  <div class="segs" id="segDel"></div>
@@ -75,90 +89,143 @@
 <script src="corredores_data.js"></script>
 <script src="corredor_ferro_geo.js"></script>
 <script src="red_ferroviaria.js"></script>
+<script src="corredor_mun_geo.js"></script>
 <script>
 try{
 const D=CORREDORES, AN=D.anios;
 const CFG=(typeof CORREDOR_FERRO_GEO!=='undefined')?CORREDOR_FERRO_GEO:null;
 const RED=(typeof RED_FERROVIARIA!=='undefined')?RED_FERROVIARIA:null;
-let COR='ambos', DEL='hd', YR=AN.indexOf('2024');
+const MUN=(typeof CORREDOR_MUN_GEO!=='undefined')?CORREDOR_MUN_GEO:null;
+let COR='todos', DEL='ar', YR=0;
 const _p=new URLSearchParams(location.search);
-if(['istmo','maya','ambos','carga'].includes(_p.get('cor'))) COR=_p.get('cor');
+if(['istmo','maya','ambos','carga','todos'].includes(_p.get('cor'))) COR=_p.get('cor');
+const VIZ = (_p.get('viz')==='heat') ? 'heat' : 'mun';   // honesto por default: 'mun' pinta cada municipio con su cifra; ?viz=heat para el mapa de calor interpolado
 const CARGA=()=>COR==='carga';
-function years(){return CARGA()?CFG.anios:AN;}
+const NAT=()=>COR==='carga'||COR==='todos';   // régimen nacional: heatmap ARTF, años de carga, encuadre país
+function years(){return NAT()?CFG.anios:AN;}
 const map=L.map('map',{zoomControl:false}).setView([18.2,-92.5],6);
 L.control.zoom({position:'bottomright'}).addTo(map);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:13,attribution:'&copy; OpenStreetMap &copy; CARTO'}).addTo(map);
+let _tileL=null;window.setTiles=function(){var lt=(document.documentElement.dataset.theme==='light')?'light_all':'dark_all';if(_tileL)map.removeLayer(_tileL);_tileL=L.tileLayer('https://{s}.basemaps.cartocdn.com/'+lt+'/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:13,attribution:'&copy; OpenStreetMap &copy; CARTO'}).addTo(map);};setTiles();
 const COLOR=['#3a3f48','#ffffcc','#fed976','#feb24c','#fd8d3c','#f03b20','#bd0026'];
+const SEMCB=['#00808a','#4ba3a3','#9fc7a6','#e2dd9a','#f4c04e','#e67e39','#d64a3a','#b42222'];
+const _semNores=()=>getComputedStyle(document.documentElement).getPropertyValue('--nores').trim()||'#20262e';
+function semCol(v,mx){if(v<=0)return _semNores();const t=Math.max(0,Math.min(1,v/(mx||1))),x=t*(SEMCB.length-1),i=Math.min(SEMCB.length-2,Math.floor(x)),k=x-i,h=s=>[parseInt(s.slice(1,3),16),parseInt(s.slice(3,5),16),parseInt(s.slice(5,7),16)],a=h(SEMCB[i]),b=h(SEMCB[i+1]);return'rgb('+a.map((c,j)=>Math.round(c+(b[j]-c)*k)).join(',')+')';}
 const COLINE={istmo:'#a78bfa',maya:'#22d3ee'};
+const COLTIE={istmo:'#d6c9ff',maya:'#bff3fb',carga:'#ffd98a'};
 const ST_ICON=L.divIcon({className:'stIcon',html:'🚉',iconSize:[18,18],iconAnchor:[9,9]});
+// hotspots de robo al tren — [nombre, lat, lon, ARTF robo al tren 24-25, SESNSP robo a transportista (estado, 2025)]
+const HOTSPOTS=[['Silao',20.93,-101.43,299,19],['Torreón',25.54,-103.42,298,11],['El Fuerte',26.42,-108.62,295,3],['Aguascalientes',21.88,-102.29,289,0],['Culiacán',24.80,-107.39,209,3],['Irapuato',20.67,-101.35,194,19],['Cosío',22.37,-102.30,191,0],['Hermosillo',29.07,-110.96,189,6],['Pabellón de Arteaga',22.15,-102.27,176,0],['Ramos Arizpe',25.54,-100.95,168,11],['S. F. de los Romo',21.99,-102.27,138,0],['Gómez Palacio',25.57,-103.50,134,0],['Encarnación de Díaz',21.52,-102.24,128,102],['Apaseo el Grande',20.55,-100.67,125,19],['Parras',25.44,-102.18,119,11]];
+// puertos ferroviarios (ARTF, 03_origen_destino) — [lat, lon, 'm'=marítimo / 'f'=fronterizo]
+const PORTS=[[31.748,-106.485,'f'],[32.665,-115.496,'f'],[31.333,-110.942,'f'],[29.542,-104.378,'f'],[28.696,-100.51,'f'],[22.262,-97.802,'m'],[27.924,-110.882,'m'],[23.197,-106.414,'m'],[25.582,-109.062,'m'],[22.481,-97.885,'m'],[19.087,-104.273,'m'],[27.499,-99.516,'f'],[25.892,-97.505,'f'],[32.543,-117.027,'f'],[14.676,-92.147,'f'],[19.214,-96.13,'m'],[18.123,-94.428,'m'],[16.17,-95.182,'m'],[17.917,-102.178,'m']];
 const DELS={sureste:[['hd','Homicidio'],['ext','Extorsión'],['narco','Narco'],['tot','Total 55']],
             carga:[['ar','Robo al tren'],['st','Robo a transportista']]};
-function delOpts(){return CARGA()?DELS.carga:DELS.sureste;}
+function delOpts(){return NAT()?DELS.carga:DELS.sureste;}
 const DELNAME={hd:'Homicidio',ext:'Extorsión',narco:'Narcomenudeo',tot:'Total 55',ar:'Robo al tren · ARTF',st:'Robo a transportista · SESNSP'};
 function val(f){return f.s[DEL][YR]||0;}
 function visible(f){return COR==='ambos'||f.cor===COR;}
 function maxVis(){let m=0; D.feats.forEach(f=>{if(visible(f)){const v=val(f); if(v>m)m=v;}}); return m||1;}
 function col(v,mx){if(v<=0)return COLOR[0]; const r=v/mx; return r>.75?COLOR[6]:r>.5?COLOR[5]:r>.3?COLOR[4]:r>.15?COLOR[3]:r>.05?COLOR[2]:COLOR[1];}
+// rampa roja para municipios de carga (foco rojo = más robo al tren)
+function cargaCol(v,mx){if(v<=0)return '#2e2414'; const r=v/mx; return r>.8?'#7f0000':r>.6?'#c30000':r>.42?'#e6220f':r>.26?'#f0531f':r>.13?'#f97e3c':'#f7b267';}
 function cval(p){return (p[DEL]||[])[YR]||0;}
 function cmax(){let m=0; CFG.features.forEach(f=>{const v=cval(f.properties); if(v>m)m=v;}); return m||1;}
 // capas de polígonos (municipios sureste o estados carga)
 let polyLayers=[];
 function buildPolys(){
  polyLayers.forEach(l=>map.removeLayer(l)); polyLayers=[];
- if(CARGA()){
-  const mx=cmax();
-  const lyr=L.geoJSON(CFG,{style:f=>({fillColor:col(cval(f.properties),mx),weight:1,color:'#3a4048',fillOpacity:.82})});
-  lyr.eachLayer(l=>{const p=l.feature.properties; l.bindTooltip(`<b>${p.estado}</b><br>${DELNAME[DEL]} ${years()[YR]}: <b>${cval(p).toLocaleString('es-MX')}</b>`,{className:'tt',sticky:true});});
-  lyr.addTo(map); polyLayers.push(lyr); return;
+ if(NAT()){
+  const useSt = DEL==='st';   // false = ARTF robo al tren (municipal), true = SESNSP robo a transportista (estatal)
+  if(VIZ==='mun' && MUN){     // ── municipios pintados con geometría real (gm_XX.json) ──
+   const mx = Math.max.apply(null, MUN.features.map(f=>f.properties[useSt?'st':'artf']).concat([1]));
+   MUN.features.forEach(f=>{
+    const v = f.properties[useSt?'st':'artf']||0;
+    const lyr=L.geoJSON(f,{style:{fillColor:semCol(v,mx),weight:1.1,color:'#160a05',fillOpacity:v>0?.84:.32,opacity:.9}}).addTo(map);
+    lyr.bindTooltip(`<b>${f.properties.nombre}</b><br>Robo al tren (ARTF): <b>${f.properties.artf}</b><br>Robo a transportista (SESNSP, estado): <b>${f.properties.st}</b>`,{className:'tt',sticky:true});
+    polyLayers.push(lyr);
+   });
+   return;
+  }
+  // ── mapa de calor (?viz=heat) ──
+  const mi = useSt ? 4 : 3;
+  const mx = Math.max.apply(null, HOTSPOTS.map(h=>h[mi]).concat([1]));
+  const pts = HOTSPOTS.filter(h=>h[mi]>0).map(h=>[h[1],h[2],Math.max(.28,h[mi]/mx)]);
+  if(pts.length) polyLayers.push(L.heatLayer(pts,{radius:55,blur:24,max:1,minOpacity:.55,gradient:{0.15:'#b30000',0.4:'#e60000',0.62:'#ff4d1a',0.82:'#ff9e2c',1:'#ffe06a'}}).addTo(map));
+  const hmax = Math.max.apply(null, HOTSPOTS.map(h=>h[3]).concat([1]));
+  HOTSPOTS.forEach(h=>{
+   const sz = Math.round(15 + 10*(h[3]/hmax));   // tamaño del nudo según robo al tren (ARTF)
+   const ic=L.divIcon({className:'hotI',html:`<span style="font-size:${sz}px">🚉</span>`,iconSize:[sz,sz],iconAnchor:[sz/2,sz/2]});
+   polyLayers.push(L.marker([h[1],h[2]],{icon:ic,zIndexOffset:800}).addTo(map)
+    .bindTooltip(`<b>${h[0]}</b> <span style="color:var(--mut)">· nudo ferroviario</span><br>Robo al tren (ARTF): <b>${h[3]}</b><br>Robo a transportista (SESNSP, estado): <b>${h[4]}</b>`,{className:'tt',direction:'top'}));
+  });
+  return;
  }
  const mx=maxVis();
  D.feats.forEach(f=>{
   if(!visible(f))return;
-  const lyr=L.geoJSON({type:'Feature',geometry:f.geo},{style:{fillColor:col(val(f),mx),weight:1,color:COLINE[f.cor],fillOpacity:.86}});
-  lyr.bindTooltip(()=>`<b>${f.name}</b> <span style="color:#9aa4b2">(${f.cor==='istmo'?'Istmo':'Tren Maya'})</span><br>${({hd:'Homicidio',ext:'Extorsión',narco:'Narcomenudeo',tot:'Total 55 delitos'})[DEL]} ${AN[YR]}: <b>${val(f).toLocaleString('es-MX')}</b>`,{className:'tt',sticky:true});
+  const lyr=L.geoJSON({type:'Feature',geometry:f.geo},{style:{fillColor:semCol(val(f),mx),weight:1,color:COLINE[f.cor],fillOpacity:.86}});
+  lyr.bindTooltip(()=>`<b>${f.name}</b> <span style="color:var(--mut)">(${f.cor==='istmo'?'Istmo':'Tren Maya'})</span><br>${({hd:'Homicidio',ext:'Extorsión',narco:'Narcomenudeo',tot:'Total 55 delitos'})[DEL]} ${AN[YR]}: <b>${val(f).toLocaleString('es-MX')}</b>`,{className:'tt',sticky:true});
   lyr.addTo(map); polyLayers.push(lyr);
  });
 }
 // líneas férreas + estaciones
 let railLayers=[];
-function buildRail(){
- railLayers.forEach(l=>map.removeLayer(l)); railLayers=[];
- if(CARGA()){
-  if(!RED)return;
-  const idle=RED.segs.filter(s=>!s.op).map(s=>s.p.map(pt=>[pt[1],pt[0]]));
-  const oper=RED.segs.filter(s=>s.op).map(s=>s.p.map(pt=>[pt[1],pt[0]]));
-  railLayers.push(L.polyline(idle,{color:'#7a5c30',weight:1,opacity:.32}).addTo(map));
-  railLayers.push(L.polyline(oper,{color:'#e8a13a',weight:1.4,opacity:.72}).addTo(map));
-  return;
- }
+// dibuja vía con durmientes (base + traviesas perpendiculares vía PolylineDecorator)
+function railTies(latlngs, railCol, tieCol, w, gap, len){
+ const base=L.polyline(latlngs,{color:railCol,weight:w,opacity:.95}).addTo(map); railLayers.push(base);
+ railLayers.push(L.polylineDecorator(base,{patterns:[{offset:'6px',repeat:gap+'px',symbol:L.Symbol.dash({pixelSize:len,pathOptions:{color:tieCol,weight:2.4,opacity:.95}})}]}).addTo(map));
+}
+function drawSureste(){   // rutas Istmo (morado) + Maya (cian) + estaciones
  [['istmo',Object.values(D.lines.istmo||{})],['maya',(D.lines.maya&&D.lines.maya.length)?[D.lines.maya]:[]]].forEach(([cor,routes])=>{
-  if(!(COR==='ambos'||COR===cor))return;
+  if(!(COR==='ambos'||COR==='todos'||COR===cor))return;
   (routes||[]).forEach(r=>{
    if(!r||!r.length)return;
-   railLayers.push(L.polyline(r,{color:'#0b0f16',weight:6,opacity:.9}).addTo(map));
-   railLayers.push(L.polyline(r,{color:COLINE[cor],weight:2.6,opacity:1}).addTo(map));
+   railLayers.push(L.polyline(r,{color:'#0b0f16',weight:6,opacity:.85}).addTo(map));
+   railTies(r, COLINE[cor], COLTIE[cor], 3, 11, 10);
   });
   const sts=(D.stations[cor]||[]);
   sts.forEach(s=>{
    const lat=s.lat||(s[0]), lon=s.lon||(s[1]); if(lat==null)return;
-   railLayers.push(L.marker([lat,lon],{icon:ST_ICON,zIndexOffset:1000}).addTo(map).bindTooltip('🚉 '+(s.n||s.name||''),{className:'tt',direction:'top'}));
+   railLayers.push(L.marker([lat,lon],{icon:ST_ICON,zIndexOffset:900}).addTo(map).bindTooltip('🚉 '+(s.n||s.name||''),{className:'tt',direction:'top'}));
   });
  });
 }
+function buildRail(){
+ railLayers.forEach(l=>map.removeLayer(l)); railLayers=[];
+ if(NAT()){
+  if(RED){
+   const idle=RED.segs.filter(s=>!s.op).map(s=>s.p.map(pt=>[pt[1],pt[0]]));
+   const oper=RED.segs.filter(s=>s.op).map(s=>s.p.map(pt=>[pt[1],pt[0]]));
+   railLayers.push(L.polyline(idle,{color:'#6b5124',weight:1.2,opacity:.3}).addTo(map));
+   railTies(oper, '#c67f1f', COLTIE.carga, 2.6, 12, 8);
+   PORTS.forEach(p=>{
+    const em = p[2]==='f' ? '🛃' : '⚓';
+    const ic=L.divIcon({className:'portI',html:`<span style="font-size:19px">${em}</span>`,iconSize:[19,19],iconAnchor:[10,10]});
+    railLayers.push(L.marker([p[0],p[1]],{icon:ic,zIndexOffset:600}).addTo(map)
+     .bindTooltip(p[2]==='f'?'🛃 Puerto ferroviario fronterizo':'⚓ Puerto ferroviario marítimo',{className:'tt',direction:'top'}));
+   });
+  }
+  if(COR==='todos') drawSureste();   // vista nacional: superponemos Istmo + Maya como contexto
+  return;
+ }
+ drawSureste();
+}
 function fit(){
- if(CARGA()){map.fitBounds([[14.4,-118.6],[32.8,-86.5]],{padding:[18,18]});return;}
+ if(NAT()){map.fitBounds([[14.4,-118.6],[32.8,-86.5]],{padding:[18,18]});return;}
  const b=[]; D.feats.forEach(f=>{if(visible(f)){try{b.push(L.geoJSON({type:'Feature',geometry:f.geo}).getBounds())}catch(e){}}});
  if(b.length){let bb=b[0]; b.slice(1).forEach(x=>bb.extend(x)); map.fitBounds(bb,{padding:[40,40]});}
 }
 // tarjeta dinámica
 const CARDS={
+ todos:{dot:'var(--oro)',h:'Los tres corredores del riel',
+  p:'Vista nacional de las tres firmas del ferrocarril: el <b>Istmo</b> se pelea la ruta a tiros (homicidio), el <b>Tren Maya</b> cobra el paso (extorsión y narco) y la <b>red de carga</b> Ferromex es saqueada (robo al tren). El mapa de calor marca dónde arde el robo al tren; en morado y cian, los dos corredores del sureste. Elige un corredor para ver sus cifras por año y delito.',
+  s:'ARTF robo al tren + SESNSP municipal (Istmo y Maya) · 45 Digital Noticias'},
  istmo:{dot:'#a78bfa',h:'Istmo · la guerra por la ruta',
   p:'Entre 2021 y 2024 el homicidio en la vía subió <b>+69.1%</b>, pero el <b>total de los 55 delitos bajó −20.4%</b> (más que su región y que el país) y el robo cayó −37.4%. Solo se disparó lo letal. No es más delito: es <b>guerra por el control</b>. El premio es el peaje, y por él se mata (Tilly, 1985). En 2025 el homicidio cedió (−26.2%), pero el narcomenudeo saltó (+139%).',
   s:'Corredor Interoceánico (Líneas Z, FA, K) · SESNSP municipal, corte may-2026'},
  maya:{dot:'#22d3ee',h:'Tren Maya · el cobro de piso',
   p:'Por homicidio parece tranquilo (<b>−6.5%</b>), pero el <b>total subió +8.1%</b> en la ruta mientras su región bajaba, empujado por <b>extorsión +47%</b> y <b>narcomenudeo +87%</b>. La firma no es matar, es cobrar: la venta de protección sobre una economía que el tren multiplicó (Gambetta, 1993).',
   s:'Ruta del Tren Maya · SESNSP municipal, corte may-2026'},
- ambos:{dot:'#fbbf24',h:'Dos trenes del sureste, dos firmas',
+ ambos:{dot:'var(--oro)',h:'Dos trenes del sureste, dos firmas',
   p:'El <b>Istmo se pelea a tiros</b> (homicidio +69.1%, el delito total a la baja): guerra por quedarse con el paso. El <b>Tren Maya ya factura</b> (extorsión +47%, narco +87%): cobro por dejar pasar. Cambia el delito y mueve el año para ver cómo cada corredor enciende el suyo.',
   s:'Istmo y Tren Maya · SESNSP municipal, corte may-2026 · 45 Digital Noticias'},
  carga:{dot:'#e8a13a',h:'Carga · el saqueo',
@@ -167,12 +234,27 @@ const CARDS={
 };
 function setCard(){const c=CARDS[COR]; document.getElementById('card').innerHTML=`<h2><span class="dot" style="background:${c.dot}"></span>${c.h}</h2><p>${c.p}</p><p class="src">Fuente: ${c.s}</p>`;}
 function setLeg(){
- const railNote = CARGA()
-  ? '<span class="rail" style="border-color:#e8a13a"></span> red de carga · color por estado'
-  : '<span class="rail"></span> vía · color relativo al máximo visible';
+ if(NAT()){
+  const metric = (DEL==='st') ? 'robo a transportista (SESNSP · estatal)' : 'robo al tren (ARTF · municipal)';
+  let scale;
+  if(VIZ==='mun'){
+   scale = [['#b42222','más'],['#f4c04e','medio'],['#4ba3a3','menos'],[_semNores(),'0 · sin registro']]
+     .map(x=>`<span style="display:inline-block;width:13px;height:13px;border-radius:3px;background:${x[0]};vertical-align:-2px;margin-right:3px"></span>${x[1]}`).join('&nbsp; ');
+  }else{
+   scale = '<span style="display:inline-block;width:64px;height:9px;border-radius:3px;background:linear-gradient(90deg,#00808a,#9fc7a6,#f4c04e,#e67e39,#b42222);vertical-align:middle"></span> intensidad';
+  }
+  const extra = (COR==='todos')
+   ? '<br><span class="rail" style="border-color:#a78bfa"></span> Istmo &nbsp;<span class="rail" style="border-color:#22d3ee"></span> Tren Maya'
+   : '';
+  document.getElementById('leg').innerHTML='<b>'+DELNAME[DEL]+' '+years()[YR]+'</b><br>'+
+   '<span style="color:var(--mut);font-size:11px">'+metric+'</span><br>'+scale+'<br>'+
+   '<span class="rail" style="border-color:'+COLTIE.carga+'"></span> vía de carga (Ferromex)'+extra+'<br>'+
+   '🚉 estación / nudo ferroviario<br>⚓ puerto marítimo · 🛃 puerto fronterizo';
+  return;
+ }
  document.getElementById('leg').innerHTML='<b>'+DELNAME[DEL]+' '+years()[YR]+'</b><br>'+
   [['#bd0026','más'],['#fd8d3c','medio'],['#fed976','poco'],['#3a3f48','0']].map(x=>`<div><i style="background:${x[0]}"></i>${x[1]}</div>`).join('')+
-  '<hr style="border-color:#30363d;margin:6px 0">'+railNote;
+  '<hr style="border-color:var(--line2);margin:6px 0"><span class="rail"></span> vía · color relativo al máximo visible';
 }
 function renderDel(){
  document.getElementById('segDel').innerHTML=delOpts().map(([d,t])=>`<div class="seg${d===DEL?' on':''}" data-d="${d}">${t}</div>`).join('');
@@ -181,20 +263,23 @@ function renderDel(){
  document.getElementById('yv').textContent=ys[YR];
  document.getElementById('h1').textContent = CARGA()?'Corredores ferroviarios · Carga':'Corredores ferroviarios';
 }
-function redrawColor(){buildPolys();setLeg();}
+function redrawColor(){buildPolys();if(NAT())buildRail();setLeg();}
 function redrawAll(){buildPolys();buildRail();setCard();setLeg();fit();}
 // controles
 document.getElementById('segCor').onclick=e=>{const t=e.target.closest('.seg');if(!t)return;
- const wasC=CARGA(); COR=t.dataset.c;
+ const wasN=NAT(); COR=t.dataset.c;
  document.querySelectorAll('#segCor .seg').forEach(s=>s.classList.toggle('on',s===t));
- if(wasC!==CARGA()){ DEL=CARGA()?'ar':'hd'; YR=years().length-1; }
+ if(wasN!==NAT()){ DEL=NAT()?'ar':'hd'; YR=years().length-1; }
  renderDel(); redrawAll();
 };
 document.getElementById('segDel').onclick=e=>{const t=e.target.closest('.seg');if(!t)return;DEL=t.dataset.d;document.querySelectorAll('#segDel .seg').forEach(s=>s.classList.toggle('on',s===t));redrawColor();};
 document.getElementById('yr').oninput=e=>{YR=+e.target.value;document.getElementById('yv').textContent=years()[YR];redrawColor();};
 document.querySelectorAll('#segCor .seg').forEach(s=>s.classList.toggle('on',s.dataset.c===COR));
-if(CARGA()){DEL='ar';YR=years().length-1;}
+DEL = NAT()?'ar':'hd'; YR = years().length-1;   // arranque: delito y año por defecto según el régimen del corredor inicial
 renderDel(); redrawAll();
 }catch(e){var d=document.getElementById('err');d.style.display='block';d.textContent='ERR: '+e.message;}
 </script>
+<script>/* toggle claro/oscuro · swap de tiles + paneles vía var() */
+function setT(t){document.documentElement.dataset.theme=t;document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));try{localStorage.setItem('imx-theme',t);}catch(e){}if(window.setTiles)setTiles();}
+(function(){var t=document.documentElement.dataset.theme||'dark';document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));})();</script>
 </body></html>
