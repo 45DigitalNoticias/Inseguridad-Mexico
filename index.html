@@ -263,6 +263,10 @@
 
 .topnav a.navrank{background:color-mix(in srgb,#fde047 16%, transparent);border-color:#fde047;box-shadow:0 0 14px rgba(253,224,71,.4);}.topnav a.navrank:hover{background:color-mix(in srgb,#fde047 30%, transparent);box-shadow:0 0 20px rgba(253,224,71,.65);}
 .topnav a.navmun{background:color-mix(in srgb,#34d399 16%, transparent);border-color:#34d399;box-shadow:0 0 14px rgba(52,211,153,.4);}.topnav a.navmun:hover{background:color-mix(in srgb,#34d399 30%, transparent);box-shadow:0 0 20px rgba(52,211,153,.65);}
+/* MODO CLARO: los chips del nav se entintan hacia tinta (conservan su matiz) para no lavarse sobre papel */
+:root[data-theme="light"] .topnav a{color:color-mix(in srgb,var(--cc,#4a4238) 38%,var(--txt));border-color:color-mix(in srgb,var(--cc,#4a4238) 50%,rgba(40,34,26,.4));box-shadow:0 0 8px color-mix(in srgb,var(--cc,#4a4238) 12%,transparent);}
+:root[data-theme="light"] .topnav a:hover{color:color-mix(in srgb,var(--cc,#a86a12) 50%,var(--txt));background:color-mix(in srgb,var(--cc,#a86a12) 14%,transparent);border-color:color-mix(in srgb,var(--cc,#a86a12) 55%,var(--txt));}
+:root[data-theme="light"] .topnav a.navmor,:root[data-theme="light"] .topnav a.navist,:root[data-theme="light"] .topnav a.navrank,:root[data-theme="light"] .topnav a.navmun{box-shadow:none;background:color-mix(in srgb,var(--cc) 16%,transparent);}
 .guiaband{display:grid;grid-template-columns:1.05fr 1fr;gap:24px;align-items:center;margin:6px 0 28px;background:linear-gradient(180deg,var(--panel),color-mix(in srgb,var(--bg) 55%,transparent));border:1px solid var(--line);border-radius:18px;padding:22px;}
 .gb-video{position:relative;}
 .gb-vbox{position:relative;aspect-ratio:16/9;border:1.5px dashed rgba(251,191,36,.5);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;background:var(--panel2);overflow:hidden;}
@@ -553,7 +557,7 @@ function ramp(st,t){t=Math.max(0,Math.min(1,t));const x=t*(st.length-1),i=Math.m
 const grad=st=>'linear-gradient(90deg,'+st.map((s,i)=>s+' '+(i/(st.length-1)*100).toFixed(0)+'%').join(',')+')';
 function popYi(){const y=parseInt(DATA.anios[yi]);return POB.anios.indexOf(y);}
 function popOf(k){const r=POB.p[k];const pi=popYi();return r&&pi>=0?r[pi]:0;}
-function countOf(k){const row=DATA.d[k];return row?row[di][yi]:0;}
+function countOf(k){const row=DATA.d[k],s=row&&row[di];return s?(s[yi]||0):0;}
 let EB=null;
 function calcEB(){const A=Mp.map(o=>({k:o.k,O:countOf(o.k),n:popOf(o.k)})).filter(a=>a.n>0);const sO=A.reduce((s,a)=>s+a.O,0),sN=A.reduce((s,a)=>s+a.n,0),N=A.length,b=sO/sN;let num=0;A.forEach(a=>{const r=a.O/a.n;num+=a.n*(r-b)*(r-b);});let s2=num/sN-b/(sN/N);if(s2<0)s2=0;const E={};A.forEach(a=>{const r=a.O/a.n,C=s2>0?s2/(s2+b/a.n):0;E[a.k]=(b+C*(r-b))*100000;});return E;}
 function valOf(k){if(metric==='tasa'){if(smooth==='ajustada'&&EB)return EB[k]||0;const p=popOf(k);return p>0?countOf(k)/p*100000:0;}return countOf(k);}
