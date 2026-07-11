@@ -57,6 +57,7 @@
 <script src="_nac_muni_geo.js"></script>
 <script src="_nac_muni_data.js"></script>
 <script src="_nac_muni_pop.js"></script>
+<script src="_nac_estados_borde.js"></script>
 <style>
   /* ===== SISTEMA DE DISEÑO · Expediente forense · claro/oscuro ===== */
   :root[data-theme="dark"]{
@@ -549,36 +550,14 @@ const hitC=document.createElement('canvas');hitC.width=CW;hitC.height=CH;const h
 function mkp(f){const p=new Path2D();f.geometry.coordinates.forEach(poly=>poly.forEach(ring=>{ring.forEach(([x,y],i)=>{i?p.lineTo(PX(x),PY(y)):p.moveTo(PX(x),PY(y));});p.closePath();}));return p;}
 const Mp=F.map(f=>({k:f.properties.k,n:f.properties.n,e:f.properties.e,p:mkp(f),fill:tc('--nores')}));
 const byC={};Mp.forEach(o=>byC[o.k]=o);
-/* contorno de estados derivado de los PROPIOS municipios (calza exacto): un borde
-   compartido por municipios del mismo estado se ve 2 veces (interno, no se traza);
-   un borde exterior (1 vez) o entre estados distintos → se traza. */
+/* Contorno de estados PRECALCULADO offline desde la propia geometría municipal
+   (scratchpad/gen_borde.js → _nac_estados_borde.js, clasificación punto-en-polígono
+   EXACTA): solo fronteras estatales reales + contorno nacional. Sin heurísticas
+   en el navegador. */
 const SP=[];  // (ya no se usa el geojson de estados para el mapa)
 const borderPath=(function(){
-  const em=new Map();
-  F.forEach(f=>{const st=(f.properties.k/1000)|0;f.geometry.coordinates.forEach(poly=>poly.forEach(ring=>{for(let i=0;i+1<ring.length;i++){const a=ring[i],b=ring[i+1];const ka=a[0].toFixed(4)+','+a[1].toFixed(4),kb=b[0].toFixed(4)+','+b[1].toFixed(4);const k=ka<kb?ka+'|'+kb:kb+'|'+ka;let e=em.get(k);if(!e){e={n:0,s:st,d:false,a,b};em.set(k,e);}e.n++;if(e.s!==st)e.d=true;}}));});
-  /* Un borde "huérfano" (aparece 1 vez) puede ser costa/frontera REAL o un artefacto
-     de simplificación entre municipios del MISMO estado. Se clasifica muestreando
-     ambos lados contra el hit-canvas: mismo estado a ambos lados → artefacto, no se traza. */
-  hc.setTransform(1,0,0,1,0,0);hc.clearRect(0,0,CW,CH);
-  Mp.forEach(o=>{const r=(o.k>>8)&255,g=o.k&255;hc.fillStyle='rgb('+r+','+g+',200)';hc.fill(o.p);});
-  const img=hc.getImageData(0,0,CW,CH).data;
-  const stAt=(x,y)=>{x=Math.round(x);y=Math.round(y);if(x<0||y<0||x>=CW||y>=CH)return -1;const i=(y*CW+x)*4;return img[i+2]<150?-1:((((img[i]<<8)|img[i+1])/1000)|0);};
   const p=new Path2D();
-  em.forEach(e=>{
-    let trazar=e.d;
-    if(!trazar&&e.n===1){
-      const ax=PX(e.a[0]),ay=PY(e.a[1]),bx=PX(e.b[0]),by=PY(e.b[1]);
-      let dx=bx-ax,dy=by-ay;const L=Math.hypot(dx,dy)||1;dx/=L;dy/=L;
-      let interno=true;
-      for(const t of [0.5,0.25,0.75]){
-        const mx=ax+(bx-ax)*t,my=ay+(by-ay)*t;
-        const s1=stAt(mx-dy*1.6,my+dx*1.6),s2=stAt(mx+dy*1.6,my-dx*1.6);
-        if(!(s1>=0&&s2>=0&&s1===s2)){interno=false;break;}
-      }
-      trazar=!interno;
-    }
-    if(trazar){p.moveTo(PX(e.a[0]),PY(e.a[1]));p.lineTo(PX(e.b[0]),PY(e.b[1]));}
-  });
+  (typeof NAC_ESTADOS_BORDE!=='undefined'?NAC_ESTADOS_BORDE:[]).forEach(l=>{l.forEach(([x,y],i)=>{i?p.lineTo(PX(x),PY(y)):p.moveTo(PX(x),PY(y));});});
   return p;
 })();
 let sc=1,tx=0,ty=0;
