@@ -64,14 +64,14 @@
     --txt:#f2ede3;--mut:#b8ad9a;--dim:#8a8072;--oro:#efb03a;--cian:#49c2d0;--rojo:#e8573f;--sello:#cf5440;
     --tinta:#000;--verde:#6fae5f;--morado:#a78bfa;
     --s0:#00808a;--s1:#4ba3a3;--s2:#9fc7a6;--s3:#e2dd9a;--s4:#f4c04e;--s5:#e67e39;--s6:#d64a3a;--s7:#b42222;
-    --grain:.05;--gridop:.5;--glow:.5;--nores:#20262e;--stroke:rgba(255,255,255,.6);
+    --grain:.05;--gridop:.5;--glow:.5;--nores:#20262e;--stroke:rgba(255,255,255,.6);--sline:rgba(255,255,255,.82);--slinec:rgba(0,0,0,.4);--munline:rgba(0,0,0,.34);
   }
   :root[data-theme="light"]{
     --bg:#f1eadb;--panel:#faf6ec;--panel2:#efe7d6;--line:rgba(40,34,26,.16);--line2:rgba(40,34,26,.34);
     --txt:#191510;--mut:#4a4238;--dim:#7a7061;--oro:#a86a12;--cian:#0f6f7c;--rojo:#a52c1f;--sello:#9a3324;
     --tinta:#191510;--verde:#3f7a30;--morado:#6b4fc4;
     --s0:#0d6d75;--s1:#4a9a96;--s2:#8fbf98;--s3:#d8cf7f;--s4:#e9ab34;--s5:#dd6a26;--s6:#c73a2c;--s7:#9e1a1a;
-    --grain:.028;--gridop:.7;--glow:.25;--nores:#e3d9c6;--stroke:rgba(40,34,26,.5);
+    --grain:.028;--gridop:.7;--glow:.25;--nores:#e3d9c6;--stroke:rgba(40,34,26,.5);--sline:rgba(28,23,17,.78);--slinec:rgba(255,255,255,.55);--munline:rgba(40,33,24,.26);
   }
   /* alias de nombres viejos → tokens nuevos (para que el CSS existente herede el tema) */
   :root{--amber:var(--oro);--rose:var(--sello);--cyan:var(--cian);--green:var(--verde);--purple:var(--morado);--red:var(--rojo);}
@@ -560,7 +560,7 @@ const borderPath=(function(){
 })();
 let sc=1,tx=0,ty=0;
 function clampp(){const mx=CW*(1-sc),my=CH*(1-sc);tx=Math.max(mx,Math.min(0,tx));ty=Math.max(my,Math.min(0,ty));}
-function draw(){cx.setTransform(1,0,0,1,0,0);cx.clearRect(0,0,CW,CH);cx.setTransform(sc,0,0,sc,tx,ty);Mp.forEach(o=>{cx.fillStyle=o.fill;cx.fill(o.p);});if(sc>2.2){cx.strokeStyle=tc('--line2');cx.lineWidth=.5/sc;Mp.forEach(o=>cx.stroke(o.p));}cx.strokeStyle=tc('--stroke');cx.lineWidth=1.8/sc;cx.lineJoin='round';cx.stroke(borderPath);}
+function draw(){cx.setTransform(1,0,0,1,0,0);cx.clearRect(0,0,CW,CH);cx.setTransform(sc,0,0,sc,tx,ty);Mp.forEach(o=>{cx.fillStyle=o.fill;cx.fill(o.p);});cx.lineJoin='round';cx.strokeStyle=tc('--munline');cx.lineWidth=Math.max(.4,0.7/sc);Mp.forEach(o=>cx.stroke(o.p));cx.lineCap='round';cx.strokeStyle=tc('--slinec');cx.lineWidth=2.8/sc;cx.stroke(borderPath);cx.strokeStyle=tc('--sline');cx.lineWidth=1.4/sc;cx.stroke(borderPath);}
 let hd=true;
 function drawHit(){hc.setTransform(1,0,0,1,0,0);hc.clearRect(0,0,CW,CH);hc.setTransform(sc,0,0,sc,tx,ty);Mp.forEach(o=>{const r=(o.k>>8)&255,g=o.k&255;hc.fillStyle='rgb('+r+','+g+',200)';hc.fill(o.p);});hd=false;}
 function classify(){const nz=Mp.map(o=>valOf(o.k)).filter(v=>v>0).sort((a,b)=>a-b);const K=5,br=[];for(let j=1;j<K;j++)br.push(nz[Math.min(nz.length-1,Math.floor(j/K*nz.length))]);return{K,br,min:nz[0]||0,max:nz[nz.length-1]||1};}
