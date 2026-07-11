@@ -651,7 +651,7 @@ function _eramp(st,t){t=Math.max(0,Math.min(1,t));const x=t*(st.length-1),i=Math
 const _egrad=st=>'linear-gradient(90deg,'+st.map((s,i)=>s+' '+(i/(st.length-1)*100).toFixed(0)+'%').join(',')+')';
 function _epopYi(){const y=parseInt(NAC_MUNI_DATA.anios[_E.yi]);return NAC_MUNI_POP.anios.indexOf(y);}
 function _epop(k){const r=NAC_MUNI_POP.p[k];const pi=_epopYi();return r&&pi>=0?r[pi]:0;}
-function _ecount(k){const row=NAC_MUNI_DATA.d[k];return row?row[_E.di][_E.yi]:0;}
+function _ecount(k){const row=NAC_MUNI_DATA.d[k],s=row&&row[_E.di];return s?(s[_E.yi]||0):0;}
 
 function _ebuildCtrls(){
   if(_E.built) return; _E.built=true;
