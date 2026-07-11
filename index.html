@@ -296,7 +296,7 @@ if(/github\.io$/.test(location.hostname)){
       <div><span class="n">45 DIGITAL NOTICIAS</span><span class="s">Inseguridad México</span></div>
     </div>
     <nav class="topnav">
-      <a href="como_leer.html" style="--cc:var(--txt)">✦ ¿Cómo leer?</a><a href="#" style="--cc:#fbbf24">◉ Mapa</a><a href="corredores-sureste.html" class="navist" style="--cc:#22d3ee">🚆 Corredores ferroviarios</a><a href="estado.html" style="--cc:#ec4899">⌖ Estados</a><a href="municipios.html" class="navmun" style="--cc:#34d399">📍 Municipios</a><a href="ranking-nacional.html" class="navrank" style="--cc:#fde047">🏆 Ranking</a><a href="senales.html" style="--cc:#a78bfa">⇄ Señales</a><a href="columnas/" style="--cc:#fb923c">✒ Columnas</a><a href="metodologia.html" style="--cc:#3fb950">⧉ Metodología</a><a href="glosario.html" style="--cc:#22d3ee">Aa Glosario</a><a href="expedientes.html" style="--cc:#f85149">▣ Expedientes</a><a href="morelos/" class="navmor" style="--cc:#d45d9e">⌖ Morelos · a fondo</a>
+      <a href="como_leer.html" style="--cc:var(--txt)">✦ ¿Cómo leer?</a><a href="#" style="--cc:#fbbf24">◉ Mapa</a><a href="corredores-sureste.html" class="navist" style="--cc:#22d3ee">🚆 Corredores ferroviarios</a><a href="estado.html" style="--cc:#ec4899">⌖ Estados</a><a href="municipios.html" class="navmun" style="--cc:#34d399">📍 Municipios</a><a href="ranking-nacional.html" class="navrank" style="--cc:#fde047">🏆 Ranking</a><a href="senales.html" style="--cc:#a78bfa">⇄ Señales</a><a href="columnas/" style="--cc:#fb923c">✒ Columnas</a><a href="metodologia.html" style="--cc:#3fb950">⧉ Metodología</a><a href="glosario.html" style="--cc:#22d3ee">Glosario</a><a href="expedientes.html" style="--cc:#f85149">▣ Expedientes</a><a href="morelos/" class="navmor" style="--cc:#d45d9e">⌖ Morelos · a fondo</a>
     </nav>
     <div style="flex-shrink:0;display:flex;align-items:center;gap:10px;">
       <div class="tog"><button data-t="dark" class="on" onclick="setT('dark')">Oscuro</button><button data-t="light" onclick="setT('light')">Claro</button></div>
@@ -400,6 +400,19 @@ if(/github\.io$/.test(location.hostname)){
         <div id="gradbar2" style="height:11px;border-radius:6px;margin-top:10px;"></div>
         <div class="ley" id="leglabels2" style="justify-content:space-between;"></div>
         <div class="legnote2" id="legnote2"></div>
+        <div class="fintanote">
+          <b>OJO — no te vayas con la finta:</b> cada delito dibuja un país distinto. El homicidio pinta el Istmo (Matías Romero, percentil 97 nacional); la Riviera Maya se ve tranquila ahí porque su firma es otra: <b>cobrar</b>. Pruébalo:
+          <span class="fbtns"><button onclick="fintaGo(4)">▸ Narcomenudeo · Tulum p99</button><button onclick="fintaGo(3)">▸ Extorsión</button><a href="corredores-sureste.html">🚆 Corredores ferroviarios →</a></span>
+        </div>
+        <style>
+          .fintanote{margin-top:12px;padding:11px 16px;border-left:3px solid var(--oro);background:var(--panel2);font-size:12.5px;line-height:1.6;color:var(--mut);border-radius:0 9px 9px 0;}
+          .fintanote b{color:var(--txt);}
+          .fintanote .fbtns{display:inline-flex;gap:8px;flex-wrap:wrap;margin-left:6px;vertical-align:middle;}
+          .fintanote button{background:transparent;border:1px solid var(--line2);border-radius:7px;color:var(--oro);font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:.8px;text-transform:uppercase;font-weight:700;padding:5px 10px;cursor:pointer;}
+          .fintanote button:hover{border-color:var(--oro);}
+          .fintanote a{color:var(--oro);font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:.8px;text-transform:uppercase;font-weight:700;text-decoration:none;padding:5px 2px;}
+        </style>
+        <script>function fintaGo(i){const s=document.getElementById('selDelitoMapa');if(!s)return;s.value=String(i);s.dispatchEvent(new Event('change'));}</script>
     </div>
 
     <!-- DOS SECCIONES ABAJO: focos rojos + columna reciente -->
@@ -424,7 +437,9 @@ if(/github\.io$/.test(location.hostname)){
     <style>
       .rankcol{display:flex;flex-direction:column;gap:16px;min-width:0;}
       .mapafull{margin:24px 0 16px;}
-      .belowmap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:0 0 26px;align-items:start;}
+      .belowmap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:0 0 26px;align-items:stretch;}
+      .belowmap .colreciente{height:100%;margin-top:0;}
+      .belowmap .colreciente img{flex:1 1 0;min-height:220px;aspect-ratio:auto;object-fit:cover;}
       @media(max-width:900px){.belowmap{grid-template-columns:1fr;}}
       .colreciente{position:relative;display:flex;flex-direction:column;background:linear-gradient(180deg,rgba(251,191,36,.08),var(--panel));border:1px solid rgba(251,191,36,.45);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s;box-shadow:0 0 22px rgba(251,191,36,.06);}
       .colreciente:hover{border-color:#fbbf24;transform:translateY(-2px);}
@@ -525,6 +540,8 @@ if(/github\.io$/.test(location.hostname)){
 const DATA=NAC_MUNI_DATA, POB=NAC_MUNI_POP, MG=NAC_MUNI_GEO, F=MG.features;
 const tc=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim()||'#20262e';
 let di=1, yi=DATA.anios.indexOf('2025'), pal='sem_cb', mode='quant', metric='tasa', smooth='ajustada';
+/* estado compartible por URL: ?delito=4&anio=2025 */
+{const _q=new URLSearchParams(location.search);if(_q.has('delito')){const v=+_q.get('delito');if(v>=0&&v<DATA.delitos.length)di=v;}if(_q.has('anio')){const ai=DATA.anios.indexOf(_q.get('anio'));if(ai>=0)yi=ai;}}
 const THR=50000, DENUN=0;
 const PALS={
   magma:['#0b0724','#2c1160','#5f187f','#8c2981','#b73779','#dd4968','#f0605d','#fb8761','#fec287','#fcfdbf'],
