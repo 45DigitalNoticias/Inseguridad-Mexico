@@ -129,11 +129,24 @@ function col(v,mx){if(v<=0)return COLOR[0]; const r=v/mx; return r>.75?COLOR[6]:
 function cargaCol(v,mx){if(v<=0)return '#2e2414'; const r=v/mx; return r>.8?'#7f0000':r>.6?'#c30000':r>.42?'#e6220f':r>.26?'#f0531f':r>.13?'#f97e3c':'#f7b267';}
 function cval(p){return (p[DEL]||[])[YR]||0;}
 function cmax(){let m=0; CFG.features.forEach(f=>{const v=cval(f.properties); if(v>m)m=v;}); return m||1;}
+// huella territorial TENUE del Istmo (morado) y Tren Maya (cian) en la vista nacional:
+// no pretende ser dato (las métricas de carga y sureste no son comparables); el tinte
+// solo marca qué municipios son del corredor y el tooltip da sus cifras 2025.
+function huellaSureste(){
+ if(COR!=='todos')return;
+ const iy=AN.length-1;
+ D.feats.forEach(f=>{
+  const lyr=L.geoJSON({type:'Feature',geometry:f.geo},{style:{fillColor:COLINE[f.cor],weight:1.3,color:COLINE[f.cor],fillOpacity:.34,opacity:.85}}).addTo(map);
+  lyr.bindTooltip(()=>`<b>${f.name}</b> <span style="color:var(--mut)">(${f.cor==='istmo'?'Istmo':'Tren Maya'} · huella)</span><br>Homicidio ${AN[iy]}: <b>${(f.s.hd[iy]||0).toLocaleString('es-MX')}</b> · Extorsión: <b>${(f.s.ext[iy]||0).toLocaleString('es-MX')}</b> · Narco: <b>${(f.s.narco[iy]||0).toLocaleString('es-MX')}</b><br><span style="color:var(--dim)">elige el corredor para pintarlo por delito</span>`,{className:'tt',sticky:true});
+  polyLayers.push(lyr);
+ });
+}
 // capas de polígonos (municipios sureste o estados carga)
 let polyLayers=[];
 function buildPolys(){
  polyLayers.forEach(l=>map.removeLayer(l)); polyLayers=[];
  if(NAT()){
+  huellaSureste();
   const useSt = DEL==='st';   // false = ARTF robo al tren (municipal), true = SESNSP robo a transportista (estatal)
   if(VIZ==='mun' && MUN){     // ── municipios pintados con geometría real (gm_XX.json) ──
    const mx = Math.max.apply(null, MUN.features.map(f=>f.properties[useSt?'st':'artf']).concat([1]));
@@ -217,7 +230,7 @@ function fit(){
 // tarjeta dinámica
 const CARDS={
  todos:{dot:'var(--oro)',h:'Los tres corredores del riel',
-  p:'Vista nacional de las tres firmas del ferrocarril: el <b>Istmo</b> se pelea la ruta a tiros (homicidio), el <b>Tren Maya</b> cobra el paso (extorsión y narco) y la <b>red de carga</b> Ferromex es saqueada (robo al tren). El mapa de calor marca dónde arde el robo al tren; en morado y cian, los dos corredores del sureste. Elige un corredor para ver sus cifras por año y delito.',
+  p:'Vista nacional de las tres firmas del ferrocarril: el <b>Istmo</b> se pelea la ruta a tiros (homicidio), el <b>Tren Maya</b> cobra el paso (extorsión y narco) y la <b>red de carga</b> Ferromex es saqueada (robo al tren). Los municipios de la carga se pintan por robo al tren (ARTF); en morado y cian, la <b>huella</b> del Istmo y el Tren Maya (sus métricas no son comparables con la carga: elige un corredor para pintarlo por su delito).',
   s:'ARTF robo al tren + SESNSP municipal (Istmo y Maya) · 45 Digital Noticias'},
  istmo:{dot:'#a78bfa',h:'Istmo · la guerra por la ruta',
   p:'Entre 2021 y 2024 el homicidio en la vía subió <b>+69.1%</b>, pero el <b>total de los 55 delitos bajó −20.4%</b> (más que su región y que el país) y el robo cayó −37.4%. Solo se disparó lo letal. No es más delito: es <b>guerra por el control</b>. El premio es el peaje, y por él se mata (Tilly, 1985). En 2025 el homicidio cedió (−26.2%), pero el narcomenudeo saltó (+139%).',
@@ -244,7 +257,7 @@ function setLeg(){
    scale = '<span style="display:inline-block;width:64px;height:9px;border-radius:3px;background:linear-gradient(90deg,#00808a,#9fc7a6,#f4c04e,#e67e39,#b42222);vertical-align:middle"></span> intensidad';
   }
   const extra = (COR==='todos')
-   ? '<br><span class="rail" style="border-color:#a78bfa"></span> Istmo &nbsp;<span class="rail" style="border-color:#22d3ee"></span> Tren Maya'
+   ? '<br><span class="rail" style="border-color:#a78bfa"></span> Istmo &nbsp;<span class="rail" style="border-color:#22d3ee"></span> Tren Maya <span style="color:var(--dim)">· huella municipal en tinte tenue</span>'
    : '';
   document.getElementById('leg').innerHTML='<b>'+DELNAME[DEL]+' '+years()[YR]+'</b><br>'+
    '<span style="color:var(--mut);font-size:11px">'+metric+'</span><br>'+scale+'<br>'+

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,30 +7,38 @@
 <meta name="description" content="La lectura firmada y los comunicados oficiales auditados del expediente Inseguridad México.">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  body{background:#0d1117 url(../assets/fondo_vector.svg) center bottom/cover fixed no-repeat;color:#e6edf3;font-family:'Hanken Grotesk',system-ui,sans-serif;margin:0;}
-  .topbar{display:flex;align-items:center;gap:11px;padding:13px 26px;border-bottom:1px solid rgba(48,54,61,.7);background:rgba(13,17,23,.93);position:sticky;top:0;z-index:50;}
-  .topbar a.volver{margin-left:auto;color:#fbbf24;font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;font-weight:700;padding:9px 15px;border:1.5px solid rgba(251,191,36,.5);border-radius:9px;background:rgba(22,27,34,.7);}
-  .topbar a.volver:hover{background:rgba(251,191,36,.14);border-color:#fbbf24;}
+  :root[data-theme="dark"]{--bg:#0e0c0b;--panel:#17130d;--panel2:#1b1712;--line:rgba(120,110,95,.18);--line2:rgba(120,110,95,.36);--txt:#f2ede3;--mut:#b8ad9a;--dim:#8a8072;--oro:#efb03a;--cian:#49c2d0;--rojo:#e8573f;--sello:#cf5440;--verde:#6fae5f;--morado:#a78bfa;--naranja:var(--naranja);--grain:.05;--gridop:.5;--glow:.5}
+  :root[data-theme="light"]{--bg:#f1eadb;--panel:#faf6ec;--panel2:#efe7d6;--line:rgba(40,34,26,.16);--line2:rgba(40,34,26,.34);--txt:#191510;--mut:#4a4238;--dim:#7a7061;--oro:#a86a12;--cian:#0f6f7c;--rojo:#a52c1f;--sello:#9a3324;--verde:#3f7a30;--morado:#6b4fc4;--naranja:#a8500e;--grain:.028;--gridop:.7;--glow:.25}
+  body{background:var(--bg);color:var(--txt);font-family:'Hanken Grotesk',system-ui,sans-serif;margin:0;font-weight:500;transition:background .3s,color .3s;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:var(--grain);mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(90% 55% at 50% -8%,color-mix(in srgb,var(--oro) calc(var(--glow)*14%),transparent),transparent 70%);}
+  .gridbg{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:var(--gridop);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:radial-gradient(130% 100% at 50% 0%,#000,transparent 72%);mask-image:radial-gradient(130% 100% at 50% 0%,#000,transparent 72%);}
+  .tog{display:inline-flex;border:1px solid var(--line2);border-radius:999px;overflow:hidden;font-family:'Spline Sans Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+  .tog button{background:transparent;color:var(--mut);border:none;padding:6px 11px;cursor:pointer;font-weight:700;}
+  .tog button.on{background:var(--oro);color:var(--bg);}
+  .topbar{display:flex;align-items:center;gap:11px;padding:13px 26px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 90%,transparent);position:sticky;top:0;z-index:50;}
+  .topbar a.volver{margin-left:auto;color:var(--oro);font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;font-weight:700;padding:9px 15px;border:1.5px solid color-mix(in srgb,var(--oro) 50%,transparent);border-radius:9px;background:var(--panel);}
+  .topbar a.volver:hover{background:color-mix(in srgb,var(--oro) 14%,transparent);border-color:var(--oro);}
   .wrap{max-width:1100px;margin:0 auto;padding:0 26px 70px;}
   .hero{text-align:center;padding:54px 0 30px;}
-  .eyebrow{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:3.5px;color:#fb923c;text-transform:uppercase;font-weight:700;margin-bottom:12px;}
+  .eyebrow{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:3.5px;color:var(--naranja);text-transform:uppercase;font-weight:700;margin-bottom:12px;}
   h1{font-family:'Bricolage Grotesque',sans-serif;font-size:50px;letter-spacing:-1.4px;margin:0 0 14px;}
-  h1 em{color:#fb923c;font-style:italic;}
-  .lead{max-width:680px;margin:0 auto;font-size:15px;line-height:1.65;color:#c9d1d9;text-align:justify;}
-  .sec{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:2.5px;color:#8b949e;text-transform:uppercase;font-weight:700;margin:40px 0 14px;display:flex;align-items:center;gap:12px;}
-  .sec::after{content:'';flex:1;height:1px;background:rgba(48,54,61,.7);}
-  .sec em{color:var(--sc,#fb923c);font-style:normal;}
+  h1 em{color:var(--naranja);font-style:italic;}
+  .lead{max-width:680px;margin:0 auto;font-size:15px;line-height:1.65;color:var(--mut);text-align:justify;}
+  .sec{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:2.5px;color:var(--mut);text-transform:uppercase;font-weight:700;margin:40px 0 14px;display:flex;align-items:center;gap:12px;}
+  .sec::after{content:'';flex:1;height:1px;background:var(--line);}
+  .sec em{color:var(--sc,var(--naranja));font-style:normal;}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;}
-  .card{background:rgba(22,27,34,.78);border:1px solid rgba(48,54,61,.7);border-radius:13px;padding:22px;text-decoration:none;color:inherit;transition:transform .12s,border-color .12s;display:flex;flex-direction:column;gap:8px;border-top:3px solid var(--cc,#fb923c);}
-  .card:hover{transform:translateY(-3px);border-color:var(--cc,#fb923c);}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:22px;text-decoration:none;color:inherit;transition:transform .12s,border-color .12s;display:flex;flex-direction:column;gap:8px;border-top:3px solid var(--cc,var(--naranja));}
+  .card:hover{transform:translateY(-3px);border-color:var(--cc,var(--naranja));}
   .card img.portada{width:100%;aspect-ratio:1200/630;object-fit:cover;border-radius:9px;display:block;margin-bottom:6px;}
-  .card .tag{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--cc,#fb923c);}
+  .card .tag{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--cc,var(--naranja));}
   .card h3{font-family:'Bricolage Grotesque',sans-serif;font-size:21px;margin:0;font-weight:700;line-height:1.2;}
-  .card p{font-size:12.5px;color:#8b949e;line-height:1.6;margin:0;text-align:justify;}
-  .card.destacada{grid-column:1/-1;border-top-width:4px;background:linear-gradient(180deg,rgba(251,191,36,.06),rgba(22,27,34,.78));}
+  .card p{font-size:12.5px;color:var(--mut);line-height:1.6;margin:0;text-align:justify;}
+  .card.destacada{grid-column:1/-1;border-top-width:4px;background:linear-gradient(180deg,color-mix(in srgb,var(--oro) 8%,transparent),var(--panel));}
   .card.destacada h3{font-size:26px;}
-  footer{border-top:1px solid rgba(48,54,61,.7);padding:20px;text-align:center;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.4px;color:#6b7480;text-transform:uppercase;}
-  footer a{color:#6b7480;}
+  footer{border-top:1px solid var(--line);padding:20px;text-align:center;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.4px;color:var(--dim);text-transform:uppercase;}
+  footer a{color:var(--dim);}
   @media(max-width:680px){h1{font-size:36px;}.lead{font-size:14px;}}
 </style>
 <script>
@@ -43,6 +51,7 @@ if(/github\.io$/.test(location.hostname)){
 </script>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
 <style id="noital">em,i{font-style:normal !important}</style>
+<script>/* anti-flash */(function(){var t=null;try{t=localStorage.getItem('imx-theme');}catch(e){}if(location.hash==='#light')t='light';else if(location.hash==='#dark')t='dark';if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;})();</script>
 <!-- SEO-AUTO start -->
 <link rel="canonical" href="https://45digitalnoticias.github.io/Inseguridad-Mexico/columnas/">
 <meta property="og:url" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/columnas/">
@@ -75,10 +84,12 @@ if(/github\.io$/.test(location.hostname)){
 <!-- SEO-AUTO end -->
 </head>
 <body>
+  <div class="gridbg"></div>
   <header class="topbar">
     <img src="../assets/logo45.webp" style="height:44px;border-radius:9px;" alt="45 Digital Noticias">
-    <div><span style="font-weight:800;font-size:13px;display:block;">45 DIGITAL NOTICIAS</span><span style="font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:2.5px;color:#fb923c;text-transform:uppercase;">Columnas · Inseguridad México</span></div>
+    <div><span style="font-weight:800;font-size:13px;display:block;">45 DIGITAL NOTICIAS</span><span style="font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:2.5px;color:var(--naranja);text-transform:uppercase;">Columnas · Inseguridad México</span></div>
     <a class="volver" href="../">⌂ Portal nacional</a>
+    <div class="tog" style="margin-left:12px"><button data-t="dark" class="on" onclick="setT('dark')">Oscuro</button><button data-t="light" onclick="setT('light')">Claro</button></div>
   </header>
   <main class="wrap">
     <section class="hero">
@@ -97,63 +108,57 @@ if(/github\.io$/.test(location.hostname)){
               "Lecturas firmadas" como una <a class="card"> normal (igual que Comunicados auditados);
            2) pon la nueva como 2ª card del .duo con class="card nueva". */
       .card.nueva{position:relative;}
-      .card.nueva::after{content:'● NUEVA';position:absolute;top:13px;left:13px;z-index:3;background:#fbbf24;color:#0d1117;font-family:'Spline Sans Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.12em;padding:5px 11px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.4);}
+      .card.nueva::after{content:'● NUEVA';position:absolute;top:13px;left:13px;z-index:3;background:var(--oro);color:var(--bg);font-family:'Spline Sans Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.12em;padding:5px 11px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.4);}
     </style>
-    <div class="sec" style="--sc:#fbbf24"><em>Empieza aquí</em> · la guía y lo más reciente</div>
+    <div class="sec" style="--sc:var(--oro)"><em>Empieza aquí</em> · la guía y lo más reciente</div>
     <div class="grid duo">
-      <a class="card" href="../como_leer.html" style="--cc:#fbbf24">
+      <a class="card" href="../como_leer.html" style="--cc:var(--oro)">
         <img class="portada" src="portadas/como_leer.webp" alt="Cómo leer Inseguridad México" loading="lazy">
         <div class="tag">Guía · expediente nacional</div>
         <h3>Cómo leer Inseguridad México</h3>
-        <p>El mapa de temperatura, las tasas por 100 mil, los 55 delitos de tu estado, y la pieza que nadie más publica: las bolsas espejo y el Monitor de Opacidad. La guía ilustrada del tablero.</p>
+        <p>El mapa municipal honesto (2,475 piezas, cada una un dato), las tasas por 100 mil, los 55 delitos de tu estado, y la pieza que nadie más publica: las bolsas espejo y el Monitor de Opacidad. La guía ilustrada del tablero.</p>
       </a>
-      <a class="card nueva" href="https://45digitalnoticias.github.io/columnas/dos-cobradores-en-la-misma-via.html" target="_blank" rel="noopener" style="--cc:#a78bfa">
-        <img class="portada" src="portadas/dos-cobradores.webp" alt="Dos cobradores en la misma vía" loading="lazy">
-        <div class="tag">Columna firmada · corredores · SESNSP</div>
-        <h3>Dos cobradores en la misma vía</h3>
-        <p>Entre 2021 y 2024 el homicidio subió 72% en los municipios del Tren Interoceánico mientras el país bajaba. La violencia siguió a la ruta, no a la pobreza, y llegó con el tren.</p>
+      <a class="card nueva" href="https://45digitalnoticias.github.io/columnas/el-robo-que-se-llama-vandalismo.html" target="_blank" rel="noopener" style="--cc:var(--oro)">
+        <img class="portada" src="portadas/el-robo-que-se-llama-vandalismo.webp" alt="El robo que se llama vandalismo" loading="lazy">
+        <div class="tag">Columna firmada · Seguridad · ARTF</div>
+        <h3>El robo que se llama vandalismo</h3>
+        <p>El robo al tren de carga no bajó: cambió de casilla. La ARTF registra 7 de cada 10 asaltos como vandalismo, y ese vandalismo (cerrar los angulares para frenar el tren) es el método del hurto. En Aguascalientes: 470 robos al tren en 2025 según la ARTF, 0 según el SESNSP. Con la legibilidad de James C. Scott.</p>
       </a>
     </div>
 
-    <div class="sec" style="--sc:#fb923c"><em>Columnas</em> · la lectura del expediente</div>
+    <div class="sec" style="--sc:var(--naranja)"><em>Columnas</em> · la lectura del expediente</div>
     <div class="grid">
-      <a class="card" href="https://45digitalnoticias.github.io/columnas/el-robo-que-se-llama-vandalismo.html" target="_blank" rel="noopener" style="--cc:#fb923c">
-        <img class="portada" src="portadas/el-robo-que-se-llama-vandalismo.webp" alt="El robo que se llama vandalismo" loading="lazy">
-        <div class="tag">Columna firmada · Seguridad · SESNSP</div>
-        <h3>El robo que se llama vandalismo</h3>
-        <p>El robo a los trenes de carga en México no bajó: cambió de casilla. La Agencia Reguladora del Transporte Ferroviario (ARTF) registra 7 de cada 10 asaltos como vandalismo y solo 29% como robo, y ese vandalismo (cerrar los angulares para frenar el tren y abrir los vagones) es el método del hurto. Peor: el robo al tren no vive en la estadística del Secretariado. En Aguascalientes hubo 470 robos al tren en 2025 según la ARTF y 0 en robo a transportista según el SESNSP. El saqueo no sigue a la pobreza, sigue a la carga: Silao, Aguascalientes, Hermosillo, Ramos Arizpe, Irapuato y Torreón, los nudos automotrices y de exportación. Con el concepto de legibilidad de James C. Scott: el Estado solo ve lo que su rejilla clasifica.</p>
-      </a>
-      <a class="card" href="https://45digitalnoticias.github.io/columnas/el-peaje-del-tren-maya.html" target="_blank" rel="noopener" style="--cc:#fb923c">
+      <a class="card" href="https://45digitalnoticias.github.io/columnas/el-peaje-del-tren-maya.html" target="_blank" rel="noopener" style="--cc:var(--naranja)">
         <img class="portada" src="portadas/el-peaje-del-tren-maya.webp" alt="El peaje del Tren Maya" loading="lazy">
         <div class="tag">Columna firmada · Seguridad · SESNSP</div>
         <h3>El peaje del Tren Maya</h3>
         <p>En la vía del Tren Maya el homicidio bajó 5.7%, pero el total de delitos subió 8.1%, empujado por la extorsión (+48%) y el narcomenudeo (+86%). No es guerra por la ruta: es cobro de piso sobre la economía que el tren creó.</p>
       </a>
-      <a class="card" href="https://45digitalnoticias.github.io/columnas/dos-cobradores-en-la-misma-via.html" target="_blank" rel="noopener" style="--cc:#fb923c">
+      <a class="card" href="https://45digitalnoticias.github.io/columnas/dos-cobradores-en-la-misma-via.html" target="_blank" rel="noopener" style="--cc:var(--naranja)">
         <img class="portada" src="portadas/dos-cobradores.webp" alt="Dos cobradores en la misma vía" loading="lazy">
         <div class="tag">Columna firmada · Istmo · SESNSP</div>
         <h3>Dos cobradores en la misma vía</h3>
         <p>El homicidio subió 72% en los municipios del Tren Interoceánico mientras el país bajaba. La violencia siguió a la ruta, no a la pobreza, y llegó con el tren.</p>
       </a>
-      <a class="card" href="https://45digitalnoticias.github.io/columnas/cuatro-cifras-y-un-relevo.html" target="_blank" rel="noopener" style="--cc:#fb923c">
+      <a class="card" href="https://45digitalnoticias.github.io/columnas/cuatro-cifras-y-un-relevo.html" target="_blank" rel="noopener" style="--cc:var(--naranja)">
         <img class="portada" src="portadas/cuatro-cifras.webp" alt="Cuatro cifras y un relevo" loading="lazy">
         <div class="tag">Columna firmada · Morelos · SESNSP</div>
         <h3>Cuatro cifras y un relevo</h3>
         <p>Morelos relevó a su jefe de seguridad por el alza de violencia y, cinco semanas después, presumió −62.8%. La misma baja, contada de cuatro formas, y un relevo que la contradice.</p>
       </a>
-      <a class="card" href="https://45digitalnoticias.github.io/columnas/el-gotham-que-no-cuadra.html" target="_blank" rel="noopener" style="--cc:#fb923c">
+      <a class="card" href="https://45digitalnoticias.github.io/columnas/el-gotham-que-no-cuadra.html" target="_blank" rel="noopener" style="--cc:var(--naranja)">
         <img class="portada" src="portadas/gotham.webp" alt="El Gotham que no cuadra" loading="lazy">
         <div class="tag">Columna firmada · nacional · SESNSP</div>
         <h3>El Gotham que no cuadra</h3>
         <p>El gobierno presume que el homicidio cayó 46%. Con los propios datos del SESNSP, cuatro palancas explican por qué la cifra es verdadera en su aritmética y falsa en lo que esconde. La baja real, según México Evalúa: 8.6%.</p>
       </a>
-      <a class="card" href="../morelos/columnas/angulo_conveniente.html" style="--cc:#fb923c">
+      <a class="card" href="../morelos/columnas/angulo_conveniente.html" style="--cc:var(--naranja)">
         <img class="portada" src="portadas/angulo.webp" alt="El Ángulo Conveniente" loading="lazy">
         <div class="tag">Columna firmada · Morelos</div>
         <h3>El Ángulo Conveniente</h3>
         <p>Anatomía de una narrativa numérica: cuando el homicidio baja, esto sube. La columna que abrió la línea editorial del expediente.</p>
       </a>
-      <a class="card" href="../morelos/columnas/aritmetica.html" style="--cc:#fb923c">
+      <a class="card" href="../morelos/columnas/aritmetica.html" style="--cc:var(--naranja)">
         <img class="portada" src="portadas/aritmetica.webp" alt="La aritmética que reduce sin encontrar" loading="lazy">
         <div class="tag">Columna firmada · Morelos</div>
         <h3>La aritmética que reduce sin encontrar</h3>
@@ -161,21 +166,21 @@ if(/github\.io$/.test(location.hostname)){
       </a>
     </div>
 
-    <div class="sec" style="--sc:#f85149"><em>Comunicados auditados</em> · el anuncio vs. el archivo</div>
+    <div class="sec" style="--sc:var(--rojo)"><em>Comunicados auditados</em> · el anuncio vs. el archivo</div>
     <div class="grid">
-      <a class="card" href="../morelos/comunicados/figueroa-40-12may2026.html" style="--cc:#f85149">
+      <a class="card" href="../morelos/comunicados/figueroa-40-12may2026.html" style="--cc:var(--rojo)">
         <img class="portada" src="portadas/figueroa40.webp" alt="−40% homicidio doloso nacional" loading="lazy">
         <div class="tag">SESNSP · 12-may-2026</div>
         <h3>−40% homicidio doloso nacional</h3>
         <p>El anuncio del Secretariado sobre la baja del 40% en homicidios, cruzado contra las desapariciones del RNPDNO que corren en paralelo.</p>
       </a>
-      <a class="card" href="../morelos/comunicados/harfuch-62-27may2026.html" style="--cc:#f85149">
+      <a class="card" href="../morelos/comunicados/harfuch-62-27may2026.html" style="--cc:var(--rojo)">
         <img class="portada" src="portadas/harfuch62.webp" alt="El −62.8% de Morelos" loading="lazy">
         <div class="tag">SSPC federal · 27-may-2026</div>
         <h3>El −62.8% de Morelos</h3>
         <p>El anuncio del secretario Omar García Harfuch sobre Morelos, auditado metodológicamente con los archivos del SESNSP, INEGI y RNPDNO.</p>
       </a>
-      <a class="card" href="../morelos/comunicados/sheinbaum-rnpdno-27mar2026.html" style="--cc:#f85149">
+      <a class="card" href="../morelos/comunicados/sheinbaum-rnpdno-27mar2026.html" style="--cc:var(--rojo)">
         <img class="portada" src="portadas/rnpdno.webp" alt="Reactivación RNPDNO" loading="lazy">
         <div class="tag">Presidencia · 27-mar-2026</div>
         <h3>Reactivación RNPDNO</h3>
@@ -186,18 +191,18 @@ if(/github\.io$/.test(location.hostname)){
   <footer>45 Digital Noticias · Columnas · cifras trazables en <a href="../datos/cifras.csv">cifras.csv</a> · <a href="https://45digitalnoticias.github.io/columnas/privacidad.html" target="_blank" rel="noopener">aviso de privacidad</a></footer>
 <button class="shfab" onclick="document.getElementById('shpop').classList.toggle('open')" title="Compartir" aria-label="Compartir">⤴</button>
 <div class="shpop" id="shpop">
-  <a href="#" onclick="shGo('x');return false;" style="--sc:#e6edf3" title="X">𝕏</a>
+  <a href="#" onclick="shGo('x');return false;" style="--sc:var(--txt)" title="X">𝕏</a>
   <a href="#" onclick="shGo('fb');return false;" style="--sc:#1877f2" title="Facebook">f</a>
   <a href="#" onclick="shGo('wa');return false;" style="--sc:#25d366" title="WhatsApp">✆</a>
-  <button onclick="navigator.clipboard.writeText(location.href);this.textContent='✓';setTimeout(()=>this.textContent='⧉',1200);" style="--sc:#fbbf24" title="Copiar enlace">⧉</button>
+  <button onclick="navigator.clipboard.writeText(location.href);this.textContent='✓';setTimeout(()=>this.textContent='⧉',1200);" style="--sc:var(--oro)" title="Copiar enlace">⧉</button>
 </div>
 <style>
-.shfab{position:fixed;bottom:18px;right:18px;z-index:9400;width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,#fbbf24,#f59e0b);box-shadow:0 0 18px rgba(251,191,36,.5),0 3px 10px rgba(0,0,0,.5);color:#0d1117;font-size:21px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.shfab{position:fixed;bottom:18px;right:18px;z-index:9400;width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--oro),#f59e0b);box-shadow:0 0 18px color-mix(in srgb,var(--oro) 50%,transparent),0 3px 10px rgba(0,0,0,.5);color:var(--bg);font-size:21px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
 .shfab:hover{box-shadow:0 0 26px rgba(251,191,36,.75),0 3px 10px rgba(0,0,0,.5);}
 .shpop{position:fixed;bottom:80px;right:21px;z-index:9400;display:none;flex-direction:column;gap:9px;}
 .shpop.open{display:flex;}
-.shpop a,.shpop button{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;text-decoration:none;cursor:pointer;background:rgba(13,17,23,.92);color:var(--sc);border:1.5px solid var(--sc);box-shadow:0 0 11px color-mix(in srgb, var(--sc) 40%, transparent);}
-.shpop a:hover,.shpop button:hover{background:color-mix(in srgb, var(--sc) 18%, rgba(13,17,23,.92));}
+.shpop a,.shpop button{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;text-decoration:none;cursor:pointer;background:var(--panel);color:var(--sc);border:1.5px solid var(--sc);box-shadow:0 0 11px color-mix(in srgb, var(--sc) 40%, transparent);}
+.shpop a:hover,.shpop button:hover{background:color-mix(in srgb, var(--sc) 18%, var(--panel));}
 @media(max-width:680px){.shfab{bottom:74px;}.shpop{bottom:136px;}}
 </style>
 <script>
@@ -207,6 +212,8 @@ function shGo(n){
   window.open(m[n],'_blank','noopener');
 }
 </script>
+<script>function setT(t){document.documentElement.dataset.theme=t;document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));try{localStorage.setItem('imx-theme',t);}catch(e){}}
+(function(){var t=document.documentElement.dataset.theme||'dark';document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));})();</script>
 <!-- RED-45 start -->
 <nav aria-label="Red 45 Digital Noticias" style="max-width:1100px;margin:48px auto 22px;padding:18px 20px 4px;border-top:1px solid rgba(128,128,128,.28);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:13px;line-height:1.9;text-align:center;opacity:.85;"><div style="text-transform:uppercase;letter-spacing:2.5px;font-size:10.5px;opacity:.6;margin-bottom:7px;">Red 45 Digital Noticias</div><div><a href="https://45digitalnoticias.github.io/columnas/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Columnas</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/Inseguridad-Mexico/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Inseguridad México</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/Expediente-Hantavirus/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Expediente Brotes</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/cementerio-transparencia/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Cementerio de la Transparencia</a></div></nav>
 <!-- RED-45 end -->
