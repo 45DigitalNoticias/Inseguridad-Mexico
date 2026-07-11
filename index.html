@@ -393,7 +393,7 @@ if(/github\.io$/.test(location.hostname)){
           <span class="ml">Tasa</span><div class="mseg" id="segSmooth"><button data-s="ajustada" class="on">Ajustada</button><button data-s="cruda">Cruda</button></div>
           <div class="zoomctl" style="margin-left:auto;"><button onclick="zMapa(1.3)" title="Acercar">+</button><button onclick="zMapa(.77)" title="Alejar">&#8722;</button><button onclick="zMapa(0)" title="Restablecer" style="font-size:11px;">&#10227;</button></div>
         </div>
-        <div class="zoomwrap" id="mapaWrap" style="margin-top:4px;overflow:hidden;border-radius:8px;">
+        <div class="zoomwrap" id="mapaWrap" style="margin-top:4px;overflow:hidden;border-radius:8px;max-height:none;">
           <canvas id="mapa"></canvas>
         </div>
         <div id="gradbar2" style="height:11px;border-radius:6px;margin-top:10px;"></div>
@@ -549,10 +549,18 @@ const hitC=document.createElement('canvas');hitC.width=CW;hitC.height=CH;const h
 function mkp(f){const p=new Path2D();f.geometry.coordinates.forEach(poly=>poly.forEach(ring=>{ring.forEach(([x,y],i)=>{i?p.lineTo(PX(x),PY(y)):p.moveTo(PX(x),PY(y));});p.closePath();}));return p;}
 const Mp=F.map(f=>({k:f.properties.k,n:f.properties.n,e:f.properties.e,p:mkp(f),fill:tc('--nores')}));
 const byC={};Mp.forEach(o=>byC[o.k]=o);
-const SP=MEXICO_ESTADOS_GEOJSON.features.map(f=>{const p=new Path2D();const P=f.geometry.type==='Polygon'?[f.geometry.coordinates]:f.geometry.coordinates;P.forEach(poly=>poly.forEach(ring=>{ring.forEach(([x,y],i)=>{i?p.lineTo(PX(x),PY(y)):p.moveTo(PX(x),PY(y));});p.closePath();}));return p;});
+/* contorno de estados derivado de los PROPIOS municipios (calza exacto): un borde
+   compartido por municipios del mismo estado se ve 2 veces (interno, no se traza);
+   un borde exterior (1 vez) o entre estados distintos → se traza. */
+const SP=[];  // (ya no se usa el geojson de estados para el mapa)
+const borderPath=(function(){
+  const em=new Map();
+  F.forEach(f=>{const st=(f.properties.k/1000)|0;f.geometry.coordinates.forEach(poly=>poly.forEach(ring=>{for(let i=0;i+1<ring.length;i++){const a=ring[i],b=ring[i+1];const ka=a[0].toFixed(4)+','+a[1].toFixed(4),kb=b[0].toFixed(4)+','+b[1].toFixed(4);const k=ka<kb?ka+'|'+kb:kb+'|'+ka;let e=em.get(k);if(!e){e={n:0,s:st,d:false,a,b};em.set(k,e);}e.n++;if(e.s!==st)e.d=true;}}));});
+  const p=new Path2D();em.forEach(e=>{if(e.n===1||e.d){p.moveTo(PX(e.a[0]),PY(e.a[1]));p.lineTo(PX(e.b[0]),PY(e.b[1]));}});return p;
+})();
 let sc=1,tx=0,ty=0;
 function clampp(){const mx=CW*(1-sc),my=CH*(1-sc);tx=Math.max(mx,Math.min(0,tx));ty=Math.max(my,Math.min(0,ty));}
-function draw(){cx.setTransform(1,0,0,1,0,0);cx.clearRect(0,0,CW,CH);cx.setTransform(sc,0,0,sc,tx,ty);Mp.forEach(o=>{cx.fillStyle=o.fill;cx.fill(o.p);});if(sc>2.2){cx.strokeStyle=tc('--line2');cx.lineWidth=.5/sc;Mp.forEach(o=>cx.stroke(o.p));}cx.strokeStyle=tc('--stroke');cx.lineWidth=1.1/sc;cx.lineJoin='round';SP.forEach(p=>cx.stroke(p));}
+function draw(){cx.setTransform(1,0,0,1,0,0);cx.clearRect(0,0,CW,CH);cx.setTransform(sc,0,0,sc,tx,ty);Mp.forEach(o=>{cx.fillStyle=o.fill;cx.fill(o.p);});if(sc>2.2){cx.strokeStyle=tc('--line2');cx.lineWidth=.5/sc;Mp.forEach(o=>cx.stroke(o.p));}cx.strokeStyle=tc('--stroke');cx.lineWidth=1.8/sc;cx.lineJoin='round';cx.stroke(borderPath);}
 let hd=true;
 function drawHit(){hc.setTransform(1,0,0,1,0,0);hc.clearRect(0,0,CW,CH);hc.setTransform(sc,0,0,sc,tx,ty);Mp.forEach(o=>{const r=(o.k>>8)&255,g=o.k&255;hc.fillStyle='rgb('+r+','+g+',200)';hc.fill(o.p);});hd=false;}
 function classify(){const nz=Mp.map(o=>valOf(o.k)).filter(v=>v>0).sort((a,b)=>a-b);const K=5,br=[];for(let j=1;j<K;j++)br.push(nz[Math.min(nz.length-1,Math.floor(j/K*nz.length))]);return{K,br,min:nz[0]||0,max:nz[nz.length-1]||1};}

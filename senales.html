@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,14 +8,18 @@
 <script src="panorama_estatal.js"></script>
 <script src="series_completo.js"></script>
 <style>
-  :root{
-    --bg:#0d1117; --panel:rgba(22,27,34,.78); --line:rgba(48,54,61,.7);
-    --txt:#e6edf3; --mut:#8b949e; --dim:#6b7480;
-    --purple:#a78bfa; --cyan:#22d3ee; --red:#f85149; --amber:#fbbf24;
-  }
+  :root[data-theme="dark"]{--bg:#0e0c0b;--panel:#17130d;--panel2:#1b1712;--line:rgba(120,110,95,.18);--line2:rgba(120,110,95,.36);--txt:#f2ede3;--mut:#b8ad9a;--dim:#8a8072;--oro:#efb03a;--cian:#49c2d0;--rojo:#e8573f;--sello:#cf5440;--verde:#6fae5f;--morado:#a78bfa;--grain:.05;--gridop:.5;--glow:.5}
+  :root[data-theme="light"]{--bg:#f1eadb;--panel:#faf6ec;--panel2:#efe7d6;--line:rgba(40,34,26,.16);--line2:rgba(40,34,26,.34);--txt:#191510;--mut:#4a4238;--dim:#7a7061;--oro:#a86a12;--cian:#0f6f7c;--rojo:#a52c1f;--sello:#9a3324;--verde:#3f7a30;--morado:#6b4fc4;--grain:.028;--gridop:.7;--glow:.25}
+  :root{--amber:var(--oro);--purple:var(--morado);--cyan:var(--cian);--red:var(--rojo)}
   *{box-sizing:border-box;}
-  body{background:#0d1117 url(assets/fondo_vector.svg) center bottom/cover fixed no-repeat;color:var(--txt);font-family:'Hanken Grotesk',system-ui,sans-serif;margin:0;}
-  .topbar{display:flex;align-items:center;justify-content:space-between;padding:13px 26px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(13,17,23,.93);backdrop-filter:blur(8px);z-index:50;}
+  body{background:var(--bg);color:var(--txt);font-family:'Hanken Grotesk',system-ui,sans-serif;margin:0;font-weight:500;transition:background .3s,color .3s;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:var(--grain);mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(90% 55% at 50% -8%,color-mix(in srgb,var(--morado) calc(var(--glow)*14%),transparent),transparent 70%);}
+  .gridbg{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:var(--gridop);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:radial-gradient(130% 100% at 50% 0%,#000,transparent 72%);mask-image:radial-gradient(130% 100% at 50% 0%,#000,transparent 72%);}
+  .tog{display:inline-flex;border:1px solid var(--line2);border-radius:999px;overflow:hidden;font-family:'Spline Sans Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+  .tog button{background:transparent;color:var(--mut);border:none;padding:6px 11px;cursor:pointer;font-weight:700;}
+  .tog button.on{background:var(--oro);color:var(--bg);}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:13px 26px;border-bottom:1px solid var(--line);position:sticky;top:0;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);z-index:50;}
   .brand{display:flex;align-items:center;gap:11px;}
   .brand .n{font-weight:800;font-size:13px;display:block;}
   .brand .s{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:2.5px;color:var(--purple);text-transform:uppercase;}
@@ -27,7 +31,7 @@
   .hero .eyebrow{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:3.5px;color:var(--purple);text-transform:uppercase;font-weight:700;margin-bottom:14px;}
   .hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:52px;font-weight:700;line-height:1.05;letter-spacing:-1.4px;margin:0 auto 18px;max-width:880px;}
   .hero h1 em{color:var(--purple);font-style:italic;}
-  .hero .lead{max-width:760px;margin:0 auto;font-size:15.5px;line-height:1.65;color:#c9d1d9;text-align:justify;}
+  .hero .lead{max-width:760px;margin:0 auto;font-size:15.5px;line-height:1.65;color:var(--mut);text-align:justify;}
   .hero .lead strong{color:var(--txt);}
 
   .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin:34px 0 24px;}
@@ -38,8 +42,8 @@
   .filtros{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:22px;}
   .filtros .lbl{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;}
   .fbtn{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;padding:8px 13px;border-radius:8px;cursor:pointer;border:1px solid var(--line);color:var(--mut);background:transparent;}
-  .fbtn.act{border-color:var(--purple);color:var(--purple);background:rgba(167,139,250,.08);}
-  .filtros select{background:#161b22;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-family:'Hanken Grotesk';font-size:12.5px;}
+  .fbtn.act{border-color:var(--purple);color:var(--purple);background:color-mix(in srgb,var(--morado) 12%,transparent);}
+  .filtros select{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-family:'Hanken Grotesk';font-size:12.5px;}
 
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:40px;}
   .scard{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--purple);border-radius:13px;padding:20px 22px;}
@@ -48,7 +52,7 @@
   .scard .tag{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.4px;color:var(--purple);text-transform:uppercase;font-weight:700;}
   .scard .par{font-size:12.5px;color:var(--mut);margin-bottom:12px;line-height:1.4;}
   .scard .pinza{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
-  .lado{background:rgba(13,17,23,.65);border-radius:8px;padding:10px 12px;}
+  .lado{background:var(--panel2);border-radius:8px;padding:10px 12px;}
   .lado .l{font-size:9px;color:var(--dim);font-family:'Spline Sans Mono',monospace;text-transform:uppercase;letter-spacing:.6px;line-height:1.4;}
   .lado .v{font-family:'Bricolage Grotesque',sans-serif;font-size:24px;font-weight:800;}
   .lado.down .v{color:var(--cyan);} .lado.up .v{color:var(--red);}
@@ -71,6 +75,7 @@ if(/github\.io$/.test(location.hostname)){
 </script>
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
 <style id="noital">em,i{font-style:normal !important}</style>
+<script>/* anti-flash */(function(){var t=null;try{t=localStorage.getItem('imx-theme');}catch(e){}if(location.hash==='#light')t='light';else if(location.hash==='#dark')t='dark';if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;})();</script>
 <!-- SEO-AUTO start -->
 <link rel="canonical" href="https://45digitalnoticias.github.io/Inseguridad-Mexico/senales.html">
 <meta property="og:url" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/senales.html">
@@ -103,12 +108,13 @@ if(/github\.io$/.test(location.hostname)){
 <!-- SEO-AUTO end -->
 </head>
 <body>
+  <div class="gridbg"></div>
   <header class="topbar">
     <div class="brand">
       <img src="assets/logo45.webp" style="height:44px;border-radius:9px;display:block;" alt="45 Digital Noticias">
       <div><span class="n">45 DIGITAL NOTICIAS</span><span class="s">Señales de reclasificación</span></div>
     </div>
-    <nav class="topnav"><a href="index.html">← Portal</a><a href="estado.html?estado=5">Dashboard estatal</a></nav>
+    <nav class="topnav"><a href="index.html">← Portal</a><a href="estado.html?estado=5">Dashboard estatal</a></nav><div class="tog" style="margin-left:16px"><button data-t="dark" class="on" onclick="setT('dark')">Oscuro</button><button data-t="light" onclick="setT('light')">Claro</button></div>
   </header>
 
   <main class="wrap">
@@ -127,26 +133,26 @@ if(/github\.io$/.test(location.hostname)){
       <div id="heatmap" style="overflow-x:auto;"></div>
       <div style="display:flex;justify-content:space-between;font-family:'Spline Sans Mono',monospace;font-size:9px;color:var(--dim);margin-top:8px;text-transform:uppercase;letter-spacing:.8px;">
         <span>filas ordenadas por opacidad 2025 · Δ = cambio 2015→2025 en puntos</span>
-        <span>escala: <span style="color:#8b949e">0%</span> → <span style="color:var(--purple)">púrpura intenso = mayor opacidad</span></span>
+        <span>escala: <span style="color:var(--mut)">0%</span> → <span style="color:var(--purple)">púrpura intenso = mayor opacidad</span></span>
       </div>
 
       <!-- GUÍA DE LECTURA · pedagogía integrada -->
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:18px;" id="guia">
-        <div style="background:rgba(13,17,23,.6);border:1px solid var(--line);border-radius:10px;padding:14px 16px;">
+        <div style="background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;">
           <div style="font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--purple);text-transform:uppercase;font-weight:700;margin-bottom:6px;">① La celda</div>
-          <div style="font-size:12px;color:#c9d1d9;line-height:1.55;">De cada 100 carpetas del estado ese año, las que terminaron en una bolsa "Otros…". Un 34 significa que <b style="color:var(--txt)">una de cada tres es inauditable</b>.</div>
+          <div style="font-size:12px;color:var(--mut);line-height:1.55;">De cada 100 carpetas del estado ese año, las que terminaron en una bolsa "Otros…". Un 34 significa que <b style="color:var(--txt)">una de cada tres es inauditable</b>.</div>
         </div>
-        <div style="background:rgba(13,17,23,.6);border:1px solid var(--line);border-radius:10px;padding:14px 16px;">
+        <div style="background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;">
           <div style="font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--purple);text-transform:uppercase;font-weight:700;margin-bottom:6px;">② La fila</div>
-          <div style="font-size:12px;color:#c9d1d9;line-height:1.55;">La trayectoria del estado. Púrpura que se intensifica: más carpetas migran a las bolsas. <b style="color:var(--txt)">Los quiebres bruscos son cambios de criterio</b> — y merecen explicación pública.</div>
+          <div style="font-size:12px;color:var(--mut);line-height:1.55;">La trayectoria del estado. Púrpura que se intensifica: más carpetas migran a las bolsas. <b style="color:var(--txt)">Los quiebres bruscos son cambios de criterio</b> — y merecen explicación pública.</div>
         </div>
-        <div style="background:rgba(13,17,23,.6);border:1px solid var(--line);border-radius:10px;padding:14px 16px;">
+        <div style="background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;">
           <div style="font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--purple);text-transform:uppercase;font-weight:700;margin-bottom:6px;">③ El Δ</div>
-          <div style="font-size:12px;color:#c9d1d9;line-height:1.55;">El saldo de la década. <b style="color:var(--red)">Rojo: se opacó</b>. <b style="color:var(--cyan)">Cyan: se transparentó</b>. El monitor registra en ambas direcciones.</div>
+          <div style="font-size:12px;color:var(--mut);line-height:1.55;">El saldo de la década. <b style="color:var(--red)">Rojo: se opacó</b>. <b style="color:var(--cyan)">Cyan: se transparentó</b>. El monitor registra en ambas direcciones.</div>
         </div>
-        <div style="background:rgba(13,17,23,.6);border:1px solid var(--line);border-radius:10px;padding:14px 16px;">
+        <div style="background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px 16px;">
           <div style="font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--amber);text-transform:uppercase;font-weight:700;margin-bottom:6px;">④ El límite</div>
-          <div style="font-size:12px;color:#c9d1d9;line-height:1.55;">Opacidad no es culpa: parte del uso de "Otros" es legítimo. Lo que la matriz vuelve innegable es <b style="color:var(--txt)">cuánto del delito no se puede auditar — y hacia dónde va</b>.</div>
+          <div style="font-size:12px;color:var(--mut);line-height:1.55;">Opacidad no es culpa: parte del uso de "Otros" es legítimo. Lo que la matriz vuelve innegable es <b style="color:var(--txt)">cuánto del delito no se puede auditar — y hacia dónde va</b>.</div>
         </div>
       </div>
     </div>
@@ -217,7 +223,7 @@ function renderHeatmap(){
     OPA.map(o=>{
       const celdas = o.fila.map((v,i)=>{
         const t=v/mx;
-        return `<div title="${o.edo} ${SERIES_ANIOS[i]}: ${v.toFixed(1)}% en bolsas Otros" style="height:22px;border-radius:4px;background:rgba(167,139,250,${(0.06+t*0.85).toFixed(2)});display:flex;align-items:center;justify-content:center;font-family:'Spline Sans Mono',monospace;font-size:8.5px;color:${t>0.45?'#0d1117':'rgba(230,237,243,.55)'};font-weight:700;">${v>=10?Math.round(v):''}</div>`;
+        return `<div title="${o.edo} ${SERIES_ANIOS[i]}: ${v.toFixed(1)}% en bolsas Otros" style="height:22px;border-radius:4px;background:rgba(167,139,250,${(0.06+t*0.85).toFixed(2)});display:flex;align-items:center;justify-content:center;font-family:'Spline Sans Mono',monospace;font-size:8.5px;color:${t>0.45?'var(--bg)':'rgba(230,237,243,.55)'};font-weight:700;">${v>=10?Math.round(v):''}</div>`;
       }).join('');
       const dc = o.delta>2?'var(--red)':(o.delta<-2?'var(--cyan)':'var(--dim)');
       return `<div onclick="edoAct='${o.edo}';renderFiltros();renderGrid();document.getElementById('grid').scrollIntoView({behavior:'smooth'})" style="cursor:pointer;font-size:11px;font-weight:600;display:flex;align-items:center;">${o.edo}</div>`+celdas+
@@ -257,9 +263,9 @@ function dualChart(se,so){
     const pts=arr.map((v,i)=>`${p+i*(w-2*p)/(arr.length-1)},${h-p-(v/mx)*(h-2*p)}`).join(' ');
     return `<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round"/>`;
   };
-  const yr=(i)=>`<text x="${p+i*(w-2*p)/(se.length-1)}" y="${h-2}" font-size="8" fill="#6b7480" font-family="Spline Sans Mono" text-anchor="middle">${SERIES_ANIOS[i]}</text>`;
+  const yr=(i)=>`<text x="${p+i*(w-2*p)/(se.length-1)}" y="${h-2}" font-size="8" fill="var(--dim)" font-family="Spline Sans Mono" text-anchor="middle">${SERIES_ANIOS[i]}</text>`;
   return `<svg width="100%" viewBox="0 0 ${w} ${h}">
-    <line x1="${p}" y1="${h-p}" x2="${w-p}" y2="${h-p}" stroke="rgba(48,54,61,.5)"/>
+    <line x1="${p}" y1="${h-p}" x2="${w-p}" y2="${h-p}" stroke="var(--line)"/>
     ${line(se,'#22d3ee')}${line(so,'#f85149')}
     ${yr(0)}${yr(I18)}${yr(se.length-1)}
   </svg>`;
@@ -283,18 +289,18 @@ renderFiltros(); renderGrid();
 </script>
 <button class="shfab" onclick="document.getElementById('shpop').classList.toggle('open')" title="Compartir" aria-label="Compartir">⤴</button>
 <div class="shpop" id="shpop">
-  <a href="#" onclick="shGo('x');return false;" style="--sc:#e6edf3" title="X">𝕏</a>
+  <a href="#" onclick="shGo('x');return false;" style="--sc:var(--txt)" title="X">𝕏</a>
   <a href="#" onclick="shGo('fb');return false;" style="--sc:#1877f2" title="Facebook">f</a>
   <a href="#" onclick="shGo('wa');return false;" style="--sc:#25d366" title="WhatsApp">✆</a>
-  <button onclick="navigator.clipboard.writeText(location.href);this.textContent='✓';setTimeout(()=>this.textContent='⧉',1200);" style="--sc:#fbbf24" title="Copiar enlace">⧉</button>
+  <button onclick="navigator.clipboard.writeText(location.href);this.textContent='✓';setTimeout(()=>this.textContent='⧉',1200);" style="--sc:var(--oro)" title="Copiar enlace">⧉</button>
 </div>
 <style>
-.shfab{position:fixed;bottom:18px;right:18px;z-index:9400;width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,#fbbf24,#f59e0b);box-shadow:0 0 18px rgba(251,191,36,.5),0 3px 10px rgba(0,0,0,.5);color:#0d1117;font-size:21px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
-.shfab:hover{box-shadow:0 0 26px rgba(251,191,36,.75),0 3px 10px rgba(0,0,0,.5);}
+.shfab{position:fixed;bottom:18px;right:18px;z-index:9400;width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--oro),#f59e0b);box-shadow:0 0 18px color-mix(in srgb,var(--oro) 50%,transparent),0 3px 10px rgba(0,0,0,.5);color:var(--bg);font-size:21px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.shfab:hover{box-shadow:0 0 26px color-mix(in srgb,var(--oro) 75%,transparent),0 3px 10px rgba(0,0,0,.5);}
 .shpop{position:fixed;bottom:80px;right:21px;z-index:9400;display:none;flex-direction:column;gap:9px;}
 .shpop.open{display:flex;}
-.shpop a,.shpop button{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;text-decoration:none;cursor:pointer;background:rgba(13,17,23,.92);color:var(--sc);border:1.5px solid var(--sc);box-shadow:0 0 11px color-mix(in srgb, var(--sc) 40%, transparent);}
-.shpop a:hover,.shpop button:hover{background:color-mix(in srgb, var(--sc) 18%, rgba(13,17,23,.92));}
+.shpop a,.shpop button{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;text-decoration:none;cursor:pointer;background:color-mix(in srgb,var(--bg) 88%,transparent);color:var(--sc);border:1.5px solid var(--sc);box-shadow:0 0 11px color-mix(in srgb, var(--sc) 40%, transparent);}
+.shpop a:hover,.shpop button:hover{background:color-mix(in srgb, var(--sc) 18%, color-mix(in srgb,var(--bg) 88%,transparent));}
 @media(max-width:680px){.shfab{bottom:74px;}.shpop{bottom:136px;}}
 </style>
 <script>
@@ -304,6 +310,8 @@ function shGo(n){
   window.open(m[n],'_blank','noopener');
 }
 </script>
+<script>function setT(t){document.documentElement.dataset.theme=t;document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));try{localStorage.setItem('imx-theme',t);}catch(e){}}
+(function(){var t=document.documentElement.dataset.theme||'dark';document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));})();</script>
 <!-- RED-45 start -->
 <nav aria-label="Red 45 Digital Noticias" style="max-width:1100px;margin:48px auto 22px;padding:18px 20px 4px;border-top:1px solid rgba(128,128,128,.28);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:13px;line-height:1.9;text-align:center;opacity:.85;"><div style="text-transform:uppercase;letter-spacing:2.5px;font-size:10.5px;opacity:.6;margin-bottom:7px;">Red 45 Digital Noticias</div><div><a href="https://45digitalnoticias.github.io/columnas/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Columnas</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/Inseguridad-Mexico/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Inseguridad México</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/Expediente-Hantavirus/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Expediente Brotes</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/cementerio-transparencia/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Cementerio de la Transparencia</a></div></nav>
 <!-- RED-45 end -->
