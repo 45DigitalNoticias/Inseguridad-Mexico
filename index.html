@@ -49,15 +49,15 @@
 }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="mexico_estados.geojson.js"></script>
-<script src="panorama_estatal.js"></script>
-<script src="series_completo.js"></script>
-<script src="delitos_completo.js"></script>
-<script src="series_2026.js"></script>
-<script src="_nac_muni_geo.js"></script>
-<script src="_nac_muni_data.js"></script>
-<script src="_nac_muni_pop.js"></script>
-<script src="_nac_estados_borde.js"></script>
+<script defer src="mexico_estados.geojson.js"></script>
+<script defer src="panorama_estatal.js"></script>
+<script defer src="series_completo.js"></script>
+<script defer src="delitos_completo.js"></script>
+<script defer src="series_2026.js"></script>
+<script defer src="_nac_muni_geo.js"></script>
+<script defer src="_nac_muni_data.js"></script>
+<script defer src="_nac_muni_pop.js"></script>
+<script defer src="_nac_estados_borde.js"></script>
 <style>
   /* ===== SISTEMA DE DISEÑO · Expediente forense · claro/oscuro ===== */
   :root[data-theme="dark"]{
@@ -539,6 +539,7 @@ if(/github\.io$/.test(location.hostname)){
   </script>
 
 <script>
+document.addEventListener('DOMContentLoaded',function(){
 /* ===== MAPA MUNICIPAL HONESTO · reemplaza el campo IDW (armonizado con estado/municipio) ===== */
 (function(){
 const DATA=NAC_MUNI_DATA, POB=NAC_MUNI_POP, MG=NAC_MUNI_GEO, F=MG.features;
@@ -667,8 +668,10 @@ document.getElementById('gridEstados').innerHTML = PANORAMA_ESTATAL.slice()
     <span class="mt"><span>tasa HD</span><b>${Number(r.tasa_hd_100k_2025).toFixed(1)}</b></span>
     <span class="mt"><span>desap. activos</span><b>${Number(r.rnpdno_activos_total).toLocaleString('es-MX')}</b></span>
   </a>`).join('');
+});
 </script>
 <script>
+document.addEventListener('DOMContentLoaded',function(){
 // ===== RADIOGRAFIA NACIONAL 55 DELITOS · ranking menor a mayor =====
 (function(){
   const CAT = DELITOS_COMPLETO_2025['17'].map(r=>({bj:r.bj, s:r.s}));
@@ -712,6 +715,7 @@ document.getElementById('gridEstados').innerHTML = PANORAMA_ESTATAL.slice()
   }
   render55();
 })();
+});
 </script>
 <button class="shfab" onclick="document.getElementById('shpop').classList.toggle('open')" title="Compartir" aria-label="Compartir">⤴</button>
 <div class="shpop" id="shpop">
