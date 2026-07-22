@@ -190,7 +190,7 @@ function layout(){
   <div class="bc"><a href="index.html">Nacional</a> › <a href="estado.html?estado=${D.ent}">${D.estado}</a> › <b>${D.nom}</b> (municipio)</div>
   <div class="hero">
     <div>
-      <div class="kick">CLAVE INEGI ${D.clave} · POBLACIÓN 2020: ${D.pobYr?fmt(D.pobYr[D.anios.indexOf('2020')]):'s/d'} · SESNSP CORTE MAY-2026</div>
+      <div class="kick">CLAVE INEGI ${D.clave} · POBLACIÓN 2020: ${D.pobYr?fmt(D.pobYr[D.anios.indexOf('2020')]):'s/d'} · SESNSP CORTE JUN-2026</div>
       <h1>${D.nom}</h1>
       <div class="sub">Tu municipio, año por año. Mueve el tiempo y mira cómo cambia el panorama. El dato del SESNSP llega a nivel municipio (no por colonia), así que aquí respondemos lo que sí podemos con rigor: cómo te comparas, cuándo ocurre y qué delitos pesan.</div>
       <div class="diag" id="diag"></div>
@@ -216,7 +216,7 @@ function layout(){
   <div class="sec">La radiografía · escalada de ${D.subs.length} delitos</div>
   <div class="escTop"><span class="lg" id="escLg">ordenado por carpetas · año en pantalla · clic para ver en el tablero</span><button class="fixbtn" id="fix">fijar orden</button></div>
   <div class="esc" id="esc"></div>
-  <footer>Fuente: SESNSP, incidencia delictiva municipal (corte may-2026) · Población: INEGI Censo 2020 ajustada por año con crecimiento estatal CONAPO · Tasa nacional de homicidio por año (CONAPO+SESNSP) · El mapa compara municipios entre sí; no representa concentración por colonia.<br>45 Digital Noticias · Atlas ciudadano de inseguridad · cada cifra trazable a su fuente.</footer>`;
+  <footer>Fuente: SESNSP, incidencia delictiva municipal (corte jun-2026) · Población: INEGI Censo 2020 ajustada por año con crecimiento estatal CONAPO · Tasa nacional de homicidio por año (CONAPO+SESNSP) · El mapa compara municipios entre sí; no representa concentración por colonia.<br>45 Digital Noticias · Atlas ciudadano de inseguridad · cada cifra trazable a su fuente.</footer>`;
   // selector
   const delMap=document.getElementById('delMap');
   let o0=document.createElement('option');o0.value='__TOTAL__';o0.textContent='Todos los delitos (total)';delMap.appendChild(o0);
