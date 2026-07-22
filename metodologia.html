@@ -98,11 +98,11 @@ if(/github\.io$/.test(location.hostname)){
     <h2>1 · Fuentes primarias y cortes</h2>
     <table>
       <tr><th>Dato</th><th>Fuente</th><th>Corte</th></tr>
-      <tr><td>Incidencia estatal 2015-2025</td><td>SESNSP · base estatal de carpetas de investigación del fuero común (55 subtipos del catálogo oficial)</td><td>mayo 2026</td></tr>
-      <tr><td>Incidencia estatal 2026</td><td>SESNSP · RNID estatal, enero-mayo 2026</td><td>mayo 2026</td></tr>
-      <tr><td>Incidencia municipal 2016-2024</td><td>SESNSP · bases municipales anuales</td><td>mayo 2026</td></tr>
-      <tr><td>Incidencia municipal 2025</td><td>SESNSP · base municipal 2015-2025 (unificada al corte de mayo 2026)</td><td>mayo 2026</td></tr>
-      <tr><td>Incidencia municipal 2026</td><td>SESNSP · RNID municipal, enero-mayo 2026</td><td>mayo 2026</td></tr>
+      <tr><td>Incidencia estatal 2015-2025</td><td>SESNSP · base estatal de carpetas de investigación del fuero común (55 subtipos del catálogo oficial)</td><td>junio 2026</td></tr>
+      <tr><td>Incidencia estatal 2026</td><td>SESNSP · RNID estatal, enero-junio 2026</td><td>junio 2026</td></tr>
+      <tr><td>Incidencia municipal 2016-2024</td><td>SESNSP · bases municipales anuales</td><td>junio 2026</td></tr>
+      <tr><td>Incidencia municipal 2025</td><td>SESNSP · base municipal 2015-2025 (unificada al corte de junio 2026)</td><td>junio 2026</td></tr>
+      <tr><td>Incidencia municipal 2026</td><td>SESNSP · RNID municipal, enero-junio 2026</td><td>junio 2026</td></tr>
       <tr><td>Personas desaparecidas</td><td>RNPDNO · consulta pública del registro nacional (estatus activo)</td><td>3 junio 2026</td></tr>
       <tr><td>Población para tasas</td><td>CONAPO · proyecciones de población 2025</td><td>proyección vigente</td></tr>
       <tr><td>Geometrías municipales</td><td>INEGI · marco geoestadístico 2023 (claves oficiales CVE_MUN)</td><td>2023</td></tr>
@@ -112,7 +112,7 @@ if(/github\.io$/.test(location.hostname)){
     <ul>
       <li><strong>Tasas por 100 mil habitantes:</strong> carpetas del periodo ÷ población CONAPO del estado × 100,000. Es la única forma honesta de comparar estados de tamaños distintos.</li>
       <li><strong>Catálogo completo:</strong> publicamos los 55 subtipos delictivos oficiales, incluidas las categorías "Otros…". La selección de delitos "importantes" es una decisión editorial que preferimos no tomar por el lector.</li>
-      <li><strong>Catálogo municipal completo:</strong> el mapa municipal —nacional y de cada estado— pinta los <strong>55 subtipos</strong> del catálogo, por clave oficial de municipio (no por nombre), de 2016 a mayo 2026. El calendario mensual del atlas de cada municipio ("cuándo ocurre") cubre los indicadores clave con desglose mes a mes.</li>
+      <li><strong>Catálogo municipal completo:</strong> el mapa municipal —nacional y de cada estado— pinta los <strong>55 subtipos</strong> del catálogo, por clave oficial de municipio (no por nombre), de 2016 a junio 2026. El calendario mensual del atlas de cada municipio ("cuándo ocurre") cubre los indicadores clave con desglose mes a mes.</li>
       <li><strong>Detector de espejo:</strong> 4 pares específico/espejo del mismo bien jurídico. Una señal se enciende cuando el delito específico cae ≥25% y su espejo sube ≥25% entre 2018 y 2025. Las señales se ordenan por carpetas desplazadas, no por porcentaje.</li>
       <li><strong>Monitor de Opacidad:</strong> para cada estado y año, porcentaje de todas sus carpetas registradas en subtipos "Otros…". Sin umbrales ni selección: la matriz completa, 32 estados × 11 años.</li>
     </ul>
@@ -120,7 +120,7 @@ if(/github\.io$/.test(location.hostname)){
     <h2>3 · Validaciones cruzadas</h2>
     <p>Antes de publicar, el pipeline verifica que las fuentes se certifiquen entre sí:</p>
     <ul>
-      <li><strong>Estatal vs. municipal:</strong> la suma municipal de homicidio doloso y del total de carpetas de cada estado debe coincidir con la cifra estatal del mismo año. Con el corte de mayo 2026 la coincidencia es <strong>exacta en los 32 estados</strong>, tanto en 2024 como en 2025: al unificar todas las fuentes al mismo corte se resolvieron las diferencias menores (de 1 a 70 carpetas en 4 estados) que antes aparecían por provenir de publicaciones oficiales distintas.</li>
+      <li><strong>Estatal vs. municipal:</strong> la suma municipal de homicidio doloso y del total de carpetas de cada estado debe coincidir con la cifra estatal del mismo año. Con el corte de junio 2026 la coincidencia es <strong>exacta en los 32 estados</strong>, tanto en 2024 como en 2025: al unificar todas las fuentes al mismo corte se resolvieron las diferencias menores (de 1 a 70 carpetas en 4 estados) que antes aparecían por provenir de publicaciones oficiales distintas.</li>
       <li><strong>Geometrías:</strong> el conteo de municipios con geometría coincide con el padrón SESNSP en 30 de 32 estados; los 3 municipios faltantes (Villa de Pozos, SLP; Eldorado y Juan José Ríos, Sinaloa) fueron creados en 2024, después del marco geoestadístico 2023.</li>
     </ul>
 

@@ -311,7 +311,11 @@ if(/github\.io$/.test(location.hostname)){
   <div class="wrap">
     <!-- HERO -->
     <section class="hero">
-      <div class="eyebrow">México · Seguridad · 32 estados · catálogo completo de 55 delitos · cortes may-jun 2026</div>
+      <div class="eyebrow">México · Seguridad · 32 estados · catálogo completo de 55 delitos · datos al corte de junio 2026</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;margin:12px 0 4px;padding:5px 13px;border:1px solid rgba(52,211,153,.38);background:rgba(52,211,153,.10);border-radius:999px;font-family:'Spline Sans Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.6px;color:#34d399;text-transform:uppercase;">
+        <span style="width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 9px #34d399;"></span>
+        Actualizado · corte SESNSP junio 2026
+      </div>
       <h1>El país completo, <em>delito por delito</em>, sin categorías que escondan</h1>
       <p class="lead">Auditamos las cinco fuentes oficiales — SESNSP, RNPDNO, ENVIPE, CONAPO, INEGI — con el <strong>catálogo completo de 55 delitos</strong> y su serie 2015-2025, estado por estado. Incluidas las categorías "Otros…", donde la reclasificación se esconde. Cada cifra es trazable a su archivo fuente.</p>
       <p class="lead" style="margin-top:20px;padding:16px 20px;border-left:3px solid var(--amber);background:var(--panel);border-radius:0 10px 10px 0;">
@@ -334,7 +338,7 @@ if(/github\.io$/.test(location.hostname)){
 
     <!-- TABLERO NACIONAL -->
     <section class="natboard">
-      <div class="nb-head"><span class="nb-eye">◉ México 2025 · el tamaño del problema</span><span class="nb-src">SESNSP · RNPDNO · INEGI · cortes may-jun 2026</span></div>
+      <div class="nb-head"><span class="nb-eye">◉ México 2025 · el tamaño del problema</span><span class="nb-src">SESNSP · RNPDNO · INEGI · datos al corte de junio 2026</span></div>
       <div class="nb-row">
         <div class="nb-cell">
           <div class="nb-lab">Carpetas · fuero común</div>
@@ -356,9 +360,9 @@ if(/github\.io$/.test(location.hostname)){
         </div>
         <div class="nb-cell">
           <div class="nb-lab">2026 · ritmo corriente</div>
-          <div class="nb-num">826,759</div>
-          <div class="nb-flat">ene-may · proyección ×2.4 ≈ 1.98M</div>
-          <div class="nb-sub">con desglose · corte may-2026</div>
+          <div class="nb-num">999,903</div>
+          <div class="nb-flat">ene-jun · proyección ×2 ≈ 2.0M</div>
+          <div class="nb-sub">con desglose · corte jun-2026</div>
         </div>
       </div>
     </section>
@@ -675,7 +679,7 @@ document.addEventListener('DOMContentLoaded',function(){
 // ===== RADIOGRAFIA NACIONAL 55 DELITOS · ranking menor a mayor =====
 (function(){
   const CAT = DELITOS_COMPLETO_2025['17'].map(r=>({bj:r.bj, s:r.s}));
-  const anios = SERIES_ANIOS.concat(['2026 ene-may']);
+  const anios = SERIES_ANIOS.concat(['2026 ene-jun']);
   const I26 = anios.length-1;
   let anioSel = I26-1; // default 2025 (ultimo completo)
   const METEO=['#00808a','#4ba3a3','#9fc7a6','#e2dd9a','#f4c04e','#e67e39','#d64a3a','#b42222'];
@@ -711,7 +715,7 @@ document.addEventListener('DOMContentLoaded',function(){
         '<span class="val">'+r.v.toLocaleString('en-US')+'</span></div>';
     });
     document.getElementById('tabla55').innerHTML=html;
-    document.getElementById('t55foot').textContent=CAT.length+' subtipos · total nacional '+anio+(ai===I26?' (PARCIAL · ene-may)':'')+': '+total.toLocaleString('en-US')+' carpetas · suma de los 32 estados · SESNSP corte may-2026 · cifras.csv'+(ai===I26?' · +'+EXTRA_2026.total.toLocaleString('en-US')+' carpetas en subtipos nuevos del RNID 2026 sin equivalente en el catálogo histórico (no mostradas)':'');
+    document.getElementById('t55foot').textContent=CAT.length+' subtipos · total nacional '+anio+(ai===I26?' (PARCIAL · ene-jun)':'')+': '+total.toLocaleString('en-US')+' carpetas · suma de los 32 estados · SESNSP corte jun-2026 · cifras.csv'+(ai===I26?' · +'+EXTRA_2026.total.toLocaleString('en-US')+' carpetas en subtipos nuevos del RNID 2026 sin equivalente en el catálogo histórico (no mostradas)':'');
   }
   render55();
 })();
