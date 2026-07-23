@@ -58,6 +58,7 @@
 <script defer src="_nac_muni_data.js"></script>
 <script defer src="_nac_muni_pop.js"></script>
 <script defer src="_nac_estados_borde.js"></script>
+<script defer src="casos_personas.js"></script>
 <style>
   /* ===== SISTEMA DE DISEÑO · Expediente forense · claro/oscuro ===== */
   :root[data-theme="dark"]{
@@ -369,6 +370,103 @@ if(/github\.io$/.test(location.hostname)){
         <strong style="color:var(--amber);">Nota metodológica · 2026.</strong> Desde 2026 el SESNSP publica bajo una <strong>metodología nueva</strong> (Registro Nacional de Incidencia Delictiva, RNID, aprobada en septiembre de 2025); la serie 2015-2025 sigue la metodología anterior (manual CNSP/38/15). Son dos metodologías distintas: comparar 2026 con años previos cruza ese cambio, y así debe leerse. El reacomodo de categorías es también donde una baja puede esconderse. No afirmamos manipulación: señalamos que el cambio de método coincide con parte del descenso y que eso merece explicación pública. <a href="metodologia.html" style="color:var(--amber);white-space:nowrap;">Cómo lo tratamos →</a>
       </p>
     </section>
+
+    <!-- ============ CASOS ≠ PERSONAS ============ -->
+    <section class="casos">
+      <style>
+        .casos{max-width:1180px;margin:34px auto 0;padding:26px 24px;background:var(--panel);border:1px solid var(--line);border-radius:16px}
+        .casos .ck{font-family:'Spline Sans Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--cian);font-weight:700}
+        .casos h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:30px;line-height:1.1;color:var(--txt);margin:10px 0 0}
+        .casos h2 em{font-style:normal;color:var(--oro)}
+        .casos .lede{font-size:16px;line-height:1.5;color:var(--mut);margin:12px 0 0;max-width:820px}
+        .casos .lede b{color:var(--txt)}
+        .casos .ctrl{display:flex;gap:8px;align-items:center;margin:18px 0 6px;font-family:'Spline Sans Mono',monospace;font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
+        .casos .ctrl button{font-family:'Spline Sans Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.5px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--dim);cursor:pointer}
+        .casos .ctrl button.on{background:var(--cian);color:#08222b;border-color:var(--cian)}
+        .casos .grid{margin:14px 0 0}
+        .casos .row{display:grid;grid-template-columns:170px 1fr 116px;align-items:center;gap:12px;padding:7px 0;border-top:1px solid var(--line)}
+        .casos .row .dl{font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;color:var(--txt);text-align:right}
+        .casos .row.fem .dl{color:var(--rojo);font-weight:800}
+        .casos .bars{position:relative;height:30px}
+        .casos .bar{position:absolute;height:12px;border-radius:3px}
+        .casos .bar.c{top:2px;background:#5b6b7a}
+        .casos .bar.v{top:16px;background:var(--cian)}
+        .casos .row.fem .bar.v{background:var(--rojo)}
+        .casos .vals{font-family:'Spline Sans Mono',monospace;font-size:12px;color:var(--dim);text-align:right;line-height:1.35}
+        .casos .vals b{color:var(--txt);font-size:13px}
+        .casos .lg{display:flex;gap:18px;font-family:'Spline Sans Mono',monospace;font-size:11.5px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin:12px 0 0}
+        .casos .lg i{display:inline-block;width:12px;height:8px;border-radius:2px;margin-right:5px;vertical-align:middle}
+        .casos .fem{margin:22px 0 0;padding:18px 18px 4px;background:rgba(232,87,63,.06);border-left:3px solid var(--rojo);border-radius:0 10px 10px 0}
+        .casos .fem h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;color:var(--txt);margin:0}
+        .casos .fem p{font-size:15px;line-height:1.5;color:var(--mut);margin:10px 0 0}
+        .casos .fem p b{color:var(--txt)}
+        .casos .frange{display:flex;align-items:center;gap:10px;margin:14px 0;font-family:'Spline Sans Mono',monospace;font-size:12px;color:var(--dim)}
+        .casos .frange .track{position:relative;flex:1;height:10px;background:linear-gradient(90deg,#5b6b7a,var(--rojo));border-radius:5px}
+        .casos .frange .pin{position:absolute;top:-4px;width:2px;height:18px;background:var(--txt)}
+        .casos .frange .pin span{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:10px;color:var(--txt);white-space:nowrap}
+        .casos .nota{font-size:13px;color:var(--dim);line-height:1.5;margin:6px 0 0}
+        .casos .nota a{color:var(--oro)}
+        .casos .src{font-family:'Spline Sans Mono',monospace;font-size:11.5px;color:var(--dim);margin:18px 0 0;line-height:1.5}
+        @media(max-width:640px){.casos .row{grid-template-columns:110px 1fr 92px}.casos h2{font-size:24px}}
+      </style>
+      <div class="ck">🇲🇽 Casos ≠ personas · el hueco entre expedientes y víctimas</div>
+      <h2>El número que presumen cuenta <em>casos</em>, no <em>personas</em>.</h2>
+      <p class="lede" id="cpLede"></p>
+      <div class="ctrl"><span>Periodo:</span>
+        <button data-yr="10" class="on">2025 · año cerrado</button>
+        <button data-yr="11">2026 ene-jun *</button>
+      </div>
+      <div class="grid" id="cpGrid"></div>
+      <div class="lg"><span><i class="bar-c" style="background:#5b6b7a"></i>Carpetas (casos)</span><span><i style="background:var(--cian)"></i>Víctimas (personas)</span></div>
+      <div class="fem">
+        <h3>¿Feminicidio u homicidio? Depende del estado</h3>
+        <p id="cpFem"></p>
+        <div class="frange" id="cpRange"></div>
+        <p class="nota"><b>La ley obliga a investigar todas.</b> Desde 2015 la SCJN (Amparo en Revisión 554/2013, caso Mariana Lima Buendía) ordena investigar <b>toda</b> muerte violenta de mujer como feminicidio, con perspectiva de género; reclasificarla a homicidio solo es válido tras descartar el móvil de género. Que un mismo hecho se cuente del 3% al 73% según el estado no mide la realidad: mide si se cumple ese estándar. <a href="metodologia.html">Metodología →</a></p>
+      </div>
+      <div class="src" id="cpSrc"></div>
+    </section>
+
+    <script>
+    (function(){
+      function boot(){
+      if(typeof CASOS_PERSONAS==='undefined'){setTimeout(boot,60);return;}
+      var D=CASOS_PERSONAS, yr=10;
+      var fmt=function(n){return n.toLocaleString('en-US')};
+      function render(){
+        var del=D.delitos, nac=D.nac;
+        // ordenar por hueco (victimas-carpetas) del año seleccionado
+        var rows=del.map(function(d){var c=nac[d].carpetas[yr]||0,v=nac[d].victimas[yr]||0;return{d:d,c:c,v:v,g:v-c}});
+        rows.sort(function(a,b){return b.g-a.g});
+        var maxv=Math.max.apply(null,rows.map(function(r){return Math.max(r.c,r.v)}))||1;
+        var g=document.getElementById('cpGrid');g.innerHTML='';
+        rows.forEach(function(r){
+          var el=document.createElement('div');el.className='row'+(r.d==='Feminicidio'?' fem':'');
+          el.innerHTML='<div class="dl">'+r.d+'</div>'+
+            '<div class="bars"><div class="bar c" style="width:'+(100*r.c/maxv)+'%"></div><div class="bar v" style="width:'+(100*r.v/maxv)+'%"></div></div>'+
+            '<div class="vals"><b>'+fmt(r.v)+'</b> personas<br>'+fmt(r.c)+' casos · +'+fmt(r.g)+'</div>';
+          g.appendChild(el);
+        });
+        var tc=rows.reduce(function(s,r){return s+r.c},0), tv=rows.reduce(function(s,r){return s+r.v},0);
+        var per=(yr===11?'en el primer semestre de 2026':'en 2025');
+        document.getElementById('cpLede').innerHTML='El SESNSP publica <b>dos</b> conteos oficiales del mismo hecho: <b>carpetas</b> (expedientes) y <b>víctimas</b> (personas). Una carpeta puede tener varias víctimas. '+per.charAt(0).toUpperCase()+per.slice(1)+', en los delitos contra las personas, el país abrió <b>'+fmt(tc)+' carpetas</b> — pero fueron <b>'+fmt(tv)+' víctimas</b>. Son <b>'+fmt(tv-tc)+' personas</b> que el conteo de casos no nombra.';
+        // feminicidio
+        var femAll=D.feminicidio_estatal.map(function(x){var f=(yr===11?x.fem26:x.fem25),h=(yr===11?x.hdmuj26:x.hdmuj25),t=f+h;return{est:x.est,f:f,h:h,t:t,pct:t?100*f/t:0}});
+        var tf=femAll.reduce(function(s,x){return s+x.f},0), th=femAll.reduce(function(s,x){return s+x.h},0);
+        var fem=femAll.filter(function(x){return x.t>=(yr===11?10:20)});
+        document.getElementById('cpFem').innerHTML='De las <b>'+fmt(tf+th)+' mujeres asesinadas</b> '+per+', solo <b>'+fmt(tf)+'</b> se contaron como <b>feminicidio</b>; las otras <b>'+fmt(th)+'</b>, como homicidio doloso. Es <b>1 de cada '+Math.round((tf+th)/Math.max(tf,1))+'</b>.';
+        fem.sort(function(a,b){return a.pct-b.pct});
+        var lo=fem[0], hi=fem[fem.length-1];
+        var tr=document.getElementById('cpRange');
+        tr.innerHTML='<span>'+lo.est+' '+Math.round(lo.pct)+'%</span><div class="track"><div class="pin" style="left:0%"></div><div class="pin" style="left:100%"></div></div><span>'+hi.est+' '+Math.round(hi.pct)+'%</span>';
+        document.getElementById('cpSrc').textContent='Fuente: SESNSP — carpetas y víctimas, ambos conteos oficiales. 2015-2025 metodología CNSP/38/15; 2026 metodología nueva RNID (* no estrictamente comparable con años previos). Corte junio 2026.';
+      }
+      document.querySelectorAll('.casos .ctrl button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.casos .ctrl button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');yr=+b.dataset.yr;render()})});
+      render();
+      }
+      if(document.readyState!=='loading')boot();else document.addEventListener('DOMContentLoaded',boot);
+    })();
+    </script>
     <script>
     (function(){const S={tot:[1764179,1939495,1989928,2071181,1841191,2044255,2141989,2173524,2092189,2016724],hd:[20147,25031,29091,29499,28839,28278,26288,25311,25463,20191]};
       document.querySelectorAll('.natboard .spark').forEach(sv=>{const a=S[sv.dataset.series];if(!a)return;const c=sv.dataset.color,w=170,h=36,mn=Math.min(...a),mx=Math.max(...a),rg=(mx-mn)||1;
