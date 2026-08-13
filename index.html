@@ -50,6 +50,7 @@
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script defer src="mexico_estados.geojson.js"></script>
+<script defer src="_radar_data.js"></script>
 <script defer src="panorama_estatal.js"></script>
 <script defer src="series_completo.js"></script>
 <script defer src="delitos_completo.js"></script>
@@ -210,6 +211,37 @@
 
   /* Grid 32 estados · cards amplias (la portada respira, se puede dar el lujo) */
   .estados{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0 10px;}
+  /* ===== RADAR DE LA PAZ NARCA ===== */
+  .rd-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+  .rd-bar .lbl{font-family:'Spline Sans Mono',monospace;font-size:8.5px;letter-spacing:1.4px;color:var(--dim);text-transform:uppercase;}
+  .rd-tog{display:inline-flex;border:1px solid var(--line2);border-radius:9px;overflow:hidden;}
+  .rd-tog button{background:transparent;color:var(--mut);border:none;padding:7px 13px;font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;}
+  .rd-tog button.on{background:var(--purple);color:var(--bg);font-weight:700;}
+  .rd-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:15px;}
+  .rd-k{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px 15px;}
+  .rd-k .n{font-family:'Bricolage Grotesque',sans-serif;font-size:34px;font-weight:800;line-height:1;letter-spacing:-1px;}
+  .rd-k .l{font-family:'Spline Sans Mono',monospace;font-size:8.5px;letter-spacing:1.3px;color:var(--dim);text-transform:uppercase;margin-top:8px;line-height:1.55;}
+  .rd-wrap{position:relative;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:6px;}
+  #rdSvg{width:100%;height:auto;display:block;cursor:grab;touch-action:none;}
+  #rdSvg path{stroke:var(--bg);stroke-width:.8;cursor:pointer;vector-effect:non-scaling-stroke;}
+  #rdSvg path:hover{opacity:.72;}
+  .rd-z{position:absolute;top:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:3;}
+  .rd-z button{width:32px;height:32px;border-radius:9px;border:1px solid var(--line2);background:var(--bg);color:var(--txt);font-family:'Spline Sans Mono',monospace;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;}
+  .rd-z button:hover{background:var(--purple);color:var(--bg);border-color:var(--purple);}
+  .rd-hint{position:absolute;left:14px;top:14px;font-family:'Spline Sans Mono',monospace;font-size:8.5px;letter-spacing:1.1px;color:var(--mut);text-transform:uppercase;background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:4px 9px;pointer-events:none;}
+  .rd-tip{position:absolute;pointer-events:none;background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:8px 11px;font-size:12px;font-family:'Spline Sans Mono',monospace;display:none;z-index:5;white-space:nowrap;box-shadow:0 8px 30px rgba(0,0,0,.45);line-height:1.6;}
+  .rd-leg{display:flex;flex-wrap:wrap;gap:15px;margin-top:12px;font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:.8px;color:var(--dim);text-transform:uppercase;}
+  .rd-leg i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px;}
+  .rd-leg b{color:var(--txt);}
+  .rd-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px;padding-top:17px;border-top:1px solid var(--line);}
+  .rd-cols h5{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.9px;text-transform:uppercase;color:var(--purple);margin-bottom:9px;}
+  .rd-cols p{color:var(--mut);font-size:13.5px;line-height:1.62;text-align:justify;hyphens:auto;-webkit-hyphens:auto;margin-bottom:9px;}
+  .rd-cols p b{color:var(--txt);}
+  .rd-cta{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+  .rd-cta .nota{font-family:'Spline Sans Mono',monospace;font-size:8.5px;letter-spacing:.8px;color:var(--dim);text-transform:uppercase;line-height:1.7;}
+  .rd-cta a{color:var(--purple);text-decoration:none;font-weight:700;font-size:14.5px;border:1.5px solid color-mix(in srgb, var(--purple) 55%, transparent);border-radius:10px;padding:10px 17px;white-space:nowrap;transition:all .15s;}
+  .rd-cta a:hover{background:var(--purple);color:var(--bg);}
+  @media(max-width:900px){.rd-kpis{grid-template-columns:repeat(2,1fr);}.rd-cols{grid-template-columns:1fr;}}
   .ecard{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:9px;transition:transform .12s,border-color .12s;}
   .ecard:hover{transform:translateY(-3px);border-color:rgba(251,191,36,.45);}
   .ecard{align-items:center;text-align:center;}
@@ -583,16 +615,6 @@ if(/github\.io$/.test(location.hostname)){
       <p>22 señales detectadas en el cruce 2018→2024: el delito específico cae mientras su categoría espejo "Otros…" sube. Cada señal se publica con su serie completa — puede ser cambio de criterio de captura, reforma legal o reclasificación. El lector audita.</p>
     </section>
     <div class="signals">
-      <a class="sig sig-radar" href="radar.html" style="text-decoration:none;color:inherit;display:block;position:relative;">
-        <div class="tag">◉ Nuevo · radar de la paz narca</div>
-        <h4>Y cuando no cambia de etiqueta, cambia de negocio</h4>
-        <div class="par">
-          <div class="lado down"><div class="l">Homicidio doloso · ene-jun 2019→2026*</div><div class="v">−47%</div></div>
-          <div class="lado up"><div class="l">Extorsión + narcomenudeo</div><div class="v">+50%</div></div>
-        </div>
-        <p>Las otras señales de esta sección rastrean el delito que se mudó de casilla. El radar rastrea otra cosa: los territorios donde los muertos bajan <b>de verdad</b> y lo que sube es el cobro. Le llamamos <b>paz narca</b>: hay calma, pero tiene dueño y tiene tarifa. Ocurre en <b>23 de los 32 estados</b> y en <b>129 de 205 municipios</b> con base suficiente. <span style="color:var(--purple);font-weight:700;white-space:nowrap">Abrir el radar →</span></p>
-        <div style="font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:.6px;color:var(--dim);margin-top:8px">* 2026 = RNID, cifra preliminar · carpetas SESNSP, corte junio 2026</div>
-      </a>
       <div class="sig">
         <div class="tag">Coahuila · libertad personal</div>
         <h4>Secuestro a cero, el espejo crece ×6</h4>
@@ -619,6 +641,63 @@ if(/github\.io$/.test(location.hostname)){
           <div class="lado up"><div class="l">"Otros vs la vida"</div><div class="v">+10,733%</div></div>
         </div>
         <p>3 → 325 carpetas en la categoría espejo, en el mismo periodo en que el HD oficial desciende.</p>
+      </div>
+    </div>
+
+
+    <!-- RADAR DE LA PAZ NARCA -->
+    <section class="sec-head">
+      <div class="eyebrow" style="color:var(--purple);">Indicador propio · radar de la paz narca</div>
+      <h2>Y cuando no cambia de etiqueta, <em style="color:var(--purple);">cambia de negocio</em></h2>
+      <p>Las señales de arriba rastrean el delito que se mudó de casilla. Este indicador rastrea otra cosa: los lugares donde los muertos bajan <b>de verdad</b> y lo que sube es el cobro. Eso no describe a un Estado que ganó, sino a un mercado que dejó de pelearse y empezó a cobrarse. Le llamamos <b>paz narca</b>: hay calma, pero tiene dueño y tiene tarifa.</p>
+    </section>
+    <div class="panel" style="margin:18px 0 26px;">
+      <div class="rd-bar">
+        <span class="lbl">Ventana</span>
+        <div class="rd-tog">
+          <button id="rdW19" class="on" data-v="2019-2025">2019 → 2025</button>
+          <button id="rdW23" data-v="2023-2025">2023 → 2025</button>
+          <button id="rdW26" data-v="2019s1-2026s1">ene-jun 2019 → 2026*</button>
+        </div>
+        <span class="lbl" style="margin-left:auto;">Tasas por 100 mil habitantes</span>
+      </div>
+      <div class="rd-kpis" id="rdKpis"></div>
+      <div class="rd-wrap">
+        <div class="rd-z">
+          <button id="rdMas" title="Acercar" aria-label="Acercar">+</button>
+          <button id="rdMenos" title="Alejar" aria-label="Alejar">−</button>
+          <button id="rdReset" title="Volver al inicio" aria-label="Volver al inicio" style="font-size:12px;">⟲</button>
+        </div>
+        <div class="rd-hint">rueda para acercar · arrastra para mover</div>
+        <svg id="rdSvg"></svg>
+        <div class="rd-tip" id="rdTip"></div>
+      </div>
+      <div class="rd-leg">
+        <span><i style="background:#a78bfa;"></i><b>Paz narca</b> · menos muertos, más cobro</span>
+        <span><i style="background:#e8573f;"></i><b>Plaza en disputa</b> · más muertos y más cobro</span>
+        <span><i style="background:#efb03a;"></i><b>Guerra abierta</b> · más muertos, menos cobro</span>
+        <span><i style="background:#49c2d0;"></i><b>Paz o silencio</b> · bajan las dos</span>
+      </div>
+      <div class="rd-cols">
+        <div>
+          <h5>Qué se cruza</h5>
+          <p><b>Los muertos:</b> homicidio doloso, el delito que menos se puede esconder, porque aparece el cuerpo y hay un acta.</p>
+          <p><b>El cobro:</b> extorsión más narcomenudeo. No son delitos de pleito, son de administración: se cobran cuando alguien ya manda en la calle.</p>
+        </div>
+        <div>
+          <h5>De dónde sale</h5>
+          <p>Carpetas de investigación del <b>SESNSP</b> y población <b>CONAPO</b>, sin contar tentativas. Se compara la <b>tasa</b> del primer año contra la del último, nunca los números crudos.</p>
+          <p>La ventana de 2026 compara enero-junio contra enero-junio y es <b>preliminar</b>: sus meses todavía se revisan al alza.</p>
+        </div>
+        <div>
+          <h5>Por qué tiene lógica</h5>
+          <p>Matar es caro: atrae al Estado, a la prensa y a la venganza. Un grupo sin rival ya no necesita matar, necesita cobrar.</p>
+          <p><b>La prueba que no elegimos:</b> al modelo nadie le dijo qué pasa en Sinaloa, y aun así lo manda a <b>guerra abierta</b>, el único escenario donde el cobro se derrumba.</p>
+        </div>
+      </div>
+      <div class="rd-cta">
+        <div class="nota">Es un radar, no un veredicto: señala territorios cuyo comportamiento estadístico es compatible con un mercado consolidado.<br>No prueba pactos, no acredita responsabilidades y no nombra a nadie.</div>
+        <a href="radar.html">Abrir el radar completo · escala municipal, dispersión y método →</a>
       </div>
     </div>
 
@@ -865,5 +944,108 @@ function setT(t){document.documentElement.dataset.theme=t;document.querySelector
 <!-- RED-45 start -->
 <nav aria-label="Red 45 Digital Noticias" style="max-width:1100px;margin:48px auto 22px;padding:18px 20px 4px;border-top:1px solid rgba(128,128,128,.28);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:13px;line-height:1.9;text-align:center;opacity:.85;"><div style="text-transform:uppercase;letter-spacing:2.5px;font-size:10.5px;opacity:.6;margin-bottom:7px;">Red 45 Digital Noticias</div><div><a href="https://45digitalnoticias.github.io/columnas/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Columnas</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/Inseguridad-Mexico/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Inseguridad México</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/Expediente-Hantavirus/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Expediente Brotes</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/cementerio-transparencia/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Cementerio de la Transparencia</a></div></nav>
 <!-- RED-45 end -->
+
+<script>
+/* ===== RADAR DE LA PAZ NARCA · todo encapsulado: la pagina comparte ambito global ===== */
+(function(){
+  var QC={Q1:'#49c2d0',Q2:'#a78bfa',Q3:'#e8573f',Q4:'#efb03a'};
+  var QN={Q1:'paz o silencio',Q2:'paz narca',Q3:'plaza en disputa',Q4:'guerra abierta'};
+  var ven='2019-2025', Z=1, TX=0, TY=0, MW=620, MH=420, BB=null;
+  var svg, tip;
+  function datos(){ return (typeof RADAR_DATA!=='undefined' && RADAR_DATA.ventanas[ven]) || []; }
+  function pct(n){ return (n>0?'+':'')+n.toFixed(0)+'%'; }
+  function anillos(g){ return g.type==='Polygon'?[g.coordinates]:g.coordinates; }
+
+  function kpis(){
+    var d=datos(); if(!d.length) return;
+    var q2=d.filter(function(r){return r.cuadrante==='Q2';}).sort(function(a,b){return b.score-a.score;});
+    var q3=d.filter(function(r){return r.cuadrante==='Q3';}).length;
+    var q1=d.filter(function(r){return r.cuadrante==='Q1';}).length;
+    var top=q2[0]||d[0];
+    document.getElementById('rdKpis').innerHTML=
+      '<div class="rd-k"><div class="n" style="color:#a78bfa">'+q2.length+'<span style="font-size:17px;color:var(--dim)"> / '+d.length+'</span></div><div class="l">estados en paz narca<br>menos muertos, más cobro</div></div>'+
+      '<div class="rd-k"><div class="n" style="font-size:23px;line-height:1.15;color:var(--txt)">'+top.estado+'</div><div class="l">el caso más marcado<br>'+pct(top.dH_pct)+' muertos · '+pct(top.dC_pct)+' cobro</div></div>'+
+      '<div class="rd-k"><div class="n" style="color:#e8573f">'+q3+'</div><div class="l">plaza en disputa<br>más muertos y más cobro</div></div>'+
+      '<div class="rd-k"><div class="n" style="color:#49c2d0">'+q1+'</div><div class="l">paz o silencio<br>bajan las dos</div></div>';
+  }
+
+  function mapa(){
+    var gj=(typeof MEXICO_ESTADOS_GEOJSON!=='undefined')?MEXICO_ESTADOS_GEOJSON:null;
+    if(!gj||!svg) return;
+    var d=datos(); if(!d.length) return;
+    var porClave={}; d.forEach(function(r){ porClave[r.cve]=r; });
+    if(!BB){ var a=1e9,b=1e9,c=-1e9,e=-1e9;
+      gj.features.forEach(function(f){ anillos(f.geometry).forEach(function(p){ p.forEach(function(r){ r.forEach(function(xy){
+        if(xy[0]<a)a=xy[0]; if(xy[0]>c)c=xy[0]; if(xy[1]<b)b=xy[1]; if(xy[1]>e)e=xy[1]; }); }); }); });
+      BB={a:a,b:b,c:c,d:e}; }
+    var W=620, sc=W/(BB.c-BB.a), H=(BB.d-BB.b)*sc;
+    MW=W; MH=H;
+    svg.setAttribute('viewBox','0 0 '+W+' '+H); svg.innerHTML='';
+    var ns='http://www.w3.org/2000/svg';
+    var G=document.createElementNS(ns,'g'); G.setAttribute('id','rdG');
+    var maxS=Math.max.apply(null,d.filter(function(r){return r.cuadrante==='Q2';}).map(function(r){return r.score;}).concat([1]));
+    gj.features.forEach(function(f){
+      var s='';
+      anillos(f.geometry).forEach(function(p){ p.forEach(function(r){
+        r.forEach(function(xy,i){ s+=(i?'L':'M')+((xy[0]-BB.a)*sc).toFixed(1)+' '+((BB.d-xy[1])*sc).toFixed(1); }); s+='Z'; }); });
+      var rec=porClave[f.properties.clave_ent]; if(!rec) return;
+      var path=document.createElementNS(ns,'path');
+      path.setAttribute('d',s);
+      path.setAttribute('fill',QC[rec.cuadrante]);
+      path.setAttribute('fill-opacity', rec.cuadrante==='Q2' ? (.42+.58*Math.min(1,rec.score/Math.max(1,maxS*.55))).toFixed(2) : '0.72');
+      path.addEventListener('mousemove',function(ev){
+        var R=svg.getBoundingClientRect();
+        tip.style.display='block';
+        tip.style.left=Math.min(R.width-250,ev.clientX-R.left+14)+'px';
+        tip.style.top=(ev.clientY-R.top+14)+'px';
+        tip.innerHTML='<b>'+rec.estado+'</b><br>muertos '+pct(rec.dH_pct)+' · cobro '+pct(rec.dC_pct)+
+          '<br><b style="color:'+QC[rec.cuadrante]+'">'+QN[rec.cuadrante].toUpperCase()+'</b>';
+      });
+      path.addEventListener('mouseleave',function(){ tip.style.display='none'; });
+      G.appendChild(path);
+    });
+    svg.appendChild(G); aplica();
+  }
+
+  function limita(){ var mx=MW-MW*Z, my=MH-MH*Z;
+    TX=Math.min(0,Math.max(mx,TX)); TY=Math.min(0,Math.max(my,TY)); }
+  function aplica(){ var g=document.getElementById('rdG'); if(!g) return;
+    g.setAttribute('transform','translate('+TX.toFixed(1)+' '+TY.toFixed(1)+') scale('+Z.toFixed(3)+')'); }
+  function zoom(f,cx,cy){ var nz=Math.max(1,Math.min(10,Z*f));
+    if(cx===undefined){ cx=MW/2; cy=MH/2; }
+    TX=cx-(cx-TX)*(nz/Z); TY=cy-(cy-TY)*(nz/Z); Z=nz; limita(); aplica(); }
+
+  function arranca(){
+    svg=document.getElementById('rdSvg'); tip=document.getElementById('rdTip');
+    if(!svg) return;
+    kpis(); mapa();
+    var botones=[['rdW19','2019-2025'],['rdW23','2023-2025'],['rdW26','2019s1-2026s1']];
+    botones.forEach(function(par){
+      var b=document.getElementById(par[0]); if(!b) return;
+      b.addEventListener('click',function(){
+        ven=par[1];
+        botones.forEach(function(o){ var x=document.getElementById(o[0]); if(x) x.classList.toggle('on',o[1]===ven); });
+        Z=1; TX=0; TY=0; kpis(); mapa();
+      });
+    });
+    document.getElementById('rdMas').addEventListener('click',function(){ zoom(1.45); });
+    document.getElementById('rdMenos').addEventListener('click',function(){ zoom(1/1.45); });
+    document.getElementById('rdReset').addEventListener('click',function(){ Z=1; TX=0; TY=0; aplica(); });
+    var esc=function(){ return MW/(svg.getBoundingClientRect().width||MW); };
+    svg.addEventListener('wheel',function(e){ e.preventDefault();
+      var R=svg.getBoundingClientRect(), k=esc();
+      zoom(e.deltaY<0?1.16:1/1.16,(e.clientX-R.left)*k,(e.clientY-R.top)*k); },{passive:false});
+    var arr=false, px=0, py=0;
+    svg.addEventListener('pointerdown',function(e){ if(Z<=1) return;
+      arr=true; px=e.clientX; py=e.clientY; svg.setPointerCapture(e.pointerId); svg.style.cursor='grabbing'; });
+    svg.addEventListener('pointermove',function(e){ if(!arr) return; var k=esc();
+      TX+=(e.clientX-px)*k; TY+=(e.clientY-py)*k; px=e.clientX; py=e.clientY; limita(); aplica(); });
+    ['pointerup','pointercancel'].forEach(function(ev){
+      svg.addEventListener(ev,function(){ arr=false; svg.style.cursor=''; }); });
+    addEventListener('resize',function(){ mapa(); });
+  }
+  if(document.readyState==='loading') addEventListener('DOMContentLoaded',arranca); else arranca();
+})();
+</script>
 </body>
 </html>
