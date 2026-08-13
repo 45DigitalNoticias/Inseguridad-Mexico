@@ -196,6 +196,8 @@
   .sec-head h2 em{color:var(--purple);font-style:italic;}
   .sec-head p{max-width:720px;margin:0 auto;color:var(--mut);font-size:14.5px;line-height:1.6;}
   .signals{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0;}
+  .sig-radar{border-left-width:4px;box-shadow:0 0 0 1px rgba(167,139,250,.22), 0 10px 34px rgba(167,139,250,.10);transition:transform .18s,box-shadow .18s;}
+  .sig-radar:hover{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(167,139,250,.45), 0 16px 44px rgba(167,139,250,.18);}
   .sig{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--purple);border-radius:12px;padding:20px;}
   .sig .tag{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1.6px;color:var(--purple);text-transform:uppercase;font-weight:700;margin-bottom:8px;}
   .sig h4{font-family:'Bricolage Grotesque',sans-serif;font-size:19px;margin:0 0 10px;font-weight:700;}
@@ -332,8 +334,8 @@ if(/github\.io$/.test(location.hostname)){
       <div class="gb-info">
         <div class="gb-kick">Empieza aquí · qué puedes encontrar</div>
         <h2 class="gb-h">Del mapa del país hasta tu municipio.</h2>
-        <p class="gb-p">El expediente baja por niveles: el <strong>país</strong> por tasa, cada <strong>estado</strong> con sus 55 delitos, y ahora <strong>cada uno de los 2,469 municipios</strong> con su radiografía propia. Más el <strong>ranking nacional</strong> y el <strong>monitor de reclasificación</strong>. Todo oficial, todo trazable.</p>
-        <div class="gb-links"><a href="estado.html">⌖ Estados</a><a href="municipios.html">📍 Municipios</a><a href="ranking-nacional.html">🏆 Ranking</a><a href="como_leer.html">✦ Cómo leer (guía)</a></div>
+        <p class="gb-p">El expediente baja por niveles: el <strong>país</strong> por tasa, cada <strong>estado</strong> con sus 55 delitos, y ahora <strong>cada uno de los 2,469 municipios</strong> con su radiografía propia. Más el <strong>ranking nacional</strong>, el <strong>monitor de reclasificación</strong> y el <strong>radar de la paz narca</strong>. Todo oficial, todo trazable.</p>
+        <div class="gb-links"><a href="estado.html">⌖ Estados</a><a href="municipios.html">📍 Municipios</a><a href="ranking-nacional.html">🏆 Ranking</a><a href="radar.html">◉ Radar de la paz narca</a><a href="como_leer.html">✦ Cómo leer (guía)</a></div>
       </div>
     </section>
 
@@ -581,6 +583,16 @@ if(/github\.io$/.test(location.hostname)){
       <p>22 señales detectadas en el cruce 2018→2024: el delito específico cae mientras su categoría espejo "Otros…" sube. Cada señal se publica con su serie completa — puede ser cambio de criterio de captura, reforma legal o reclasificación. El lector audita.</p>
     </section>
     <div class="signals">
+      <a class="sig sig-radar" href="radar.html" style="text-decoration:none;color:inherit;display:block;position:relative;">
+        <div class="tag">◉ Nuevo · radar de la paz narca</div>
+        <h4>Y cuando no cambia de etiqueta, cambia de negocio</h4>
+        <div class="par">
+          <div class="lado down"><div class="l">Homicidio doloso · ene-jun 2019→2026*</div><div class="v">−47%</div></div>
+          <div class="lado up"><div class="l">Extorsión + narcomenudeo</div><div class="v">+50%</div></div>
+        </div>
+        <p>Las otras señales de esta sección rastrean el delito que se mudó de casilla. El radar rastrea otra cosa: los territorios donde los muertos bajan <b>de verdad</b> y lo que sube es el cobro. Le llamamos <b>paz narca</b>: hay calma, pero tiene dueño y tiene tarifa. Ocurre en <b>23 de los 32 estados</b> y en <b>129 de 205 municipios</b> con base suficiente. <span style="color:var(--purple);font-weight:700;white-space:nowrap">Abrir el radar →</span></p>
+        <div style="font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:.6px;color:var(--dim);margin-top:8px">* 2026 = RNID, cifra preliminar · carpetas SESNSP, corte junio 2026</div>
+      </a>
       <div class="sig">
         <div class="tag">Coahuila · libertad personal</div>
         <h4>Secuestro a cero, el espejo crece ×6</h4>
