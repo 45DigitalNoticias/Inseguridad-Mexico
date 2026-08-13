@@ -14,7 +14,7 @@
 <meta name="version" content="2.8">
 <meta name="generated" content="2026-05-13">
 <meta name="changelog" content="v2.8: nueva seccion sNAC7 'Opacidad RNPDNO · Nacional · las dos cifras que viajan en direcciones opuestas' - cruza la cifra oficial -40% homicidio doloso sep24-abr26 (SESNSP, Marcela Figueroa Franco, mananera 12-may-2026) contra +34% desapariciones registradas RNPDNO sep24-nov25, 32 estados completos. Hallazgos: Morelos #12 en opacidad RNPDNO (40.7% confidencial), Jalisco #1 (67%), promedio nacional 37.4%. Bifurcacion por estado: Quintana Roo (HD oficial -60.3% vs desap +63.6%) y SLP (HD -80.8% vs desap +12%) en patron desacople; Zacatecas (HD -61.8% vs desap -60.4%) en patron coherente. Calculo del trasvase: 25.6% de los 48,418 confidenciales bastaria para anular la baja del 40%. Voz editorial: pregunta auditora, no acusacion - opacidad impide auditar. Dataset nuevo morelos_opacidad.js con 32 estados. Cross-link bidireccional con sI. Branding social: favicon.svg, apple-touch-icon.png, og-image.png 1200x630, meta Open Graph + Twitter Card. v2.7: auditoria integral cifras + ranking nacional T1 2026 (sNAC6) - Morelos #1 nacional en tasa per capita anualizada de extorsion, feminicidio y robo de vehiculo; #2 en homicidio doloso solo debajo de Colima. Cobertura completa 36 munis con T1 2026 (se anaden Cuernavaca, Ayala, Yautepec, Atlatlahucan, Tlaltizapan, Tlayacapan). Correcciones graves: Jojutla HD 2024 61->47 y HD 2025 43->31 tabla letal reescrita, Tlalnepantla HC 2024 4->2 cambio +100->+300%, Tepalcingo 95 homicidios decada->104 muertes violentas. Nomenclatura 14 ZM->14 munis de 2 ZM oficiales. Records.json historicos extraidos desde SESNSP corte dic-2025 para Jojutla, Tepalcingo, Tlalnepantla, Tepoztan y 32 munis mas. Nuevo regiones_ped_aggregates_2025.json reproduce cifras sZE al 100%. v2.6: expansion 21 analisis municipales completos + reestructura regional al Plan Estatal de Desarrollo Morelos 2025-2030 (7 regiones PED), eliminadas secciones meta SEDATU. v2.5: seccion sTep10 Q1 2026 La Respuesta - confrontacion editorial con datos al alcalde de Tepoztlan tras declaracion publica del 28-abr-2026. 5 charts especificos: comparativa Q1 25 vs Q1 26 los 36 delitos, lesiones doloso vs culposo, lesiones culposas mes a mes, violencia sexual emergente x4.5, narcomenudeo decenal 2016-2026. Botones de zoom in/out con scrollbars en modo expandido. v2.4: seccion Decada Nacional (sNAC1-5). v2.3: actualización SESNSP corte mar-2026 (Q1 2026 parcial). v2.2: charts ZM con sobreproporción + ZM Cuautla agregada (sZMC1-3). v2.1: hub interactivo de municipios Morelos al inicio, nueva seccion El detalle mensual, matriz homicidio x desaparicion, glosario, explicaciones en palabras simples. v2.0: seccion Desapariciones (RNPDNO), correcciones numericas, conclusion matizada.">
-<title>Morelos: Seguridad municipal — Hub de investigación (v2.8)</title>
+<title>Morelos: Seguridad municipal · Hub de investigación (v2.8)</title>
 
 <!-- ============ FAVICON · marca 45 Digital Noticias ============ -->
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -30,7 +30,7 @@
 <!-- ============ OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Telegram) ============ -->
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="45 Digital Noticias">
-<meta property="og:title" content="Morelos: Seguridad municipal — Hub de investigación">
+<meta property="og:title" content="Morelos: Seguridad municipal · Hub de investigación">
 <meta property="og:description" content="Radiografía de los 36 municipios de Morelos. SESNSP, RNPDNO y ENSU. Ranking nacional T1 2026 con Morelos #1 en extorsión, feminicidio y robo de vehículo per cápita.">
 <meta property="og:image" content="og-image.png">
 <meta property="og:image:type" content="image/png">
@@ -53,7 +53,7 @@
 
 <!-- ============ TWITTER / X CARD ============ -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Morelos: Seguridad municipal — Hub de investigación">
+<meta name="twitter:title" content="Morelos: Seguridad municipal · Hub de investigación">
 <meta name="twitter:description" content="Radiografía de los 36 municipios de Morelos. SESNSP, RNPDNO y ENSU. Morelos #1 nacional en extorsión, feminicidio y robo de vehículo per cápita (T1 2026).">
 <meta name="twitter:image" content="og-image.png">
 <meta name="twitter:image:alt" content="45 Digital Noticias · Morelos: Seguridad municipal">
@@ -4864,7 +4864,7 @@
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Morelos: Seguridad municipal — Hub de investigación (v2.8)",
+  "name": "Morelos: Seguridad municipal · Hub de investigación (v2.8)",
   "description": "Investigación de 45 Digital Noticias: radiografía de seguridad en los 36 municipios de Morelos con SESNSP, RNPDNO y ENSU. Décadas, ritmos, percepción y ranking nacional T1 2026.",
   "url": "https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/",
   "inLanguage": "es-MX",
@@ -30143,7 +30143,7 @@ function renderMorelosMap() {
     const regionClass = meta.region ? ` region-${meta.region}` : "";
     const zmInfo = meta.zm === "cuernavaca" ? " · ZM Cuernavaca" : (meta.zm === "cuautla" ? " · ZM Cuautla" : "");
     const ariaLabel = `${name} · ${meta.pop} mil habitantes · ${statusLabel(meta.status)}${zmInfo}${meta.target ? ' · Enter para abrir análisis' : ''}`;
-    pathsHTML += `<path class="mun-region status-${meta.status}${zmClass}${regionClass}" d="${d}" data-n="${name}" data-cve="${cve}" data-pop="${meta.pop}" data-status="${meta.status}" ${targetAttr} tabindex="0" role="button" aria-label="${ariaLabel.replace(/"/g, '&quot;')}"><title>${name} — ${meta.pop}K hab · ${statusLabel(meta.status)}${zmInfo}</title></path>`;
+    pathsHTML += `<path class="mun-region status-${meta.status}${zmClass}${regionClass}" d="${d}" data-n="${name}" data-cve="${cve}" data-pop="${meta.pop}" data-status="${meta.status}" ${targetAttr} tabindex="0" role="button" aria-label="${ariaLabel.replace(/"/g, '&quot;')}"><title>${name} · ${meta.pop}K hab · ${statusLabel(meta.status)}${zmInfo}</title></path>`;
   });
 
   // Labels solo para municipios con status o suficientemente grandes
