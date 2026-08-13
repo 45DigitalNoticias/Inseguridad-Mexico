@@ -1,0 +1,423 @@
+<!DOCTYPE html><html lang="es" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Radar de consolidación criminal · 45 Digital Noticias</title>
+<meta name="description" content="Paz narca: los territorios donde bajan los muertos y sube el cobro. Indicador propio de 45 Digital Noticias sobre datos del SESNSP. 32 estados y 315 municipios, tres ventanas, método abierto y refutable.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root[data-theme="dark"]{--bg:#0e0c0b;--panel:#17130d;--panel2:#1b1712;--line:rgba(120,110,95,.18);--line2:rgba(120,110,95,.36);--txt:#f2ede3;--mut:#b8ad9a;--dim:#8a8072;--oro:#efb03a;--cian:#49c2d0;--rojo:#e8573f;--sello:#cf5440;--verde:#6fae5f;--morado:#a78bfa;--grain:.05;--gridop:.5;--glow:.5}
+:root[data-theme="light"]{--bg:#f1eadb;--panel:#faf6ec;--panel2:#efe7d6;--line:rgba(40,34,26,.16);--line2:rgba(40,34,26,.34);--txt:#191510;--mut:#4a4238;--dim:#7a7061;--oro:#a86a12;--cian:#0f6f7c;--rojo:#a52c1f;--sello:#9a3324;--verde:#3f7a30;--morado:#6b4fc4;--grain:.028;--gridop:.7;--glow:.25}
+:root{--card:var(--panel);--acc:#a78bfa;--amber:var(--oro);--cyan:var(--cian)}
+*{margin:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:'Hanken Grotesk',system-ui,sans-serif;overflow-x:hidden;font-weight:500;transition:background .3s,color .3s}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:var(--grain);mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.gridbg{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:var(--gridop);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:46px 46px;-webkit-mask-image:radial-gradient(130% 100% at 50% 0%,#000,transparent 72%);mask-image:radial-gradient(130% 100% at 50% 0%,#000,transparent 72%)}
+.wrap{max-width:1100px;margin:0 auto;padding:18px 20px 60px}
+.top{display:flex;align-items:center;gap:12px;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--mut)}
+.top a{color:var(--mut);text-decoration:none}.top a:hover{color:var(--acc)}
+.tog{display:inline-flex;border:1px solid var(--line2);border-radius:999px;overflow:hidden;font-family:'Spline Sans Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.tog button{background:transparent;color:var(--mut);border:none;padding:5px 11px;cursor:pointer;font:inherit}
+.tog button.on{background:var(--acc);color:var(--bg)}
+.kick{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:2.4px;color:var(--acc);text-transform:uppercase;font-weight:700;margin-top:20px}
+h1{font-family:'Bricolage Grotesque',sans-serif;font-size:58px;letter-spacing:-1.8px;line-height:.95;margin:8px 0 0}
+.lead{color:var(--mut);font-size:17px;line-height:1.55;max-width:760px;margin-top:14px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.lead b{color:var(--txt)}
+.sec{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2.6px;color:var(--acc);text-transform:uppercase;font-weight:700;margin:38px 0 14px;display:flex;gap:12px;align-items:center}
+.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:22px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.kpi .n{font-family:'Bricolage Grotesque',sans-serif;font-size:40px;font-weight:800;line-height:1;letter-spacing:-1px}
+.kpi .l{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.4px;color:var(--dim);text-transform:uppercase;margin-top:8px;line-height:1.5}
+.ctrls{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:18px 0 6px}
+.modo{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+.modo button{background:transparent;color:var(--mut);border:none;padding:9px 15px;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+.modo button.on{background:var(--acc);color:var(--bg);font-weight:700}
+.ctrls label{font-family:'Spline Sans Mono',monospace;font-size:8.5px;letter-spacing:1.4px;color:var(--dim);text-transform:uppercase}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:880px){.grid2{grid-template-columns:1fr}h1{font-size:40px}}
+.mapwrap{position:relative}
+.zoomb{position:absolute;top:14px;right:14px;display:flex;flex-direction:column;gap:6px;z-index:4}
+.zoomb button{width:34px;height:34px;border-radius:9px;border:1px solid var(--line2);background:var(--bg);color:var(--txt);
+  font-family:'Spline Sans Mono',monospace;font-size:16px;font-weight:700;cursor:pointer;line-height:1;
+  display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s,opacity .15s}
+.zoomb button:hover{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+#mapsvg{cursor:grab;touch-action:none}
+.zhint{position:absolute;left:16px;top:18px;font-family:'Spline Sans Mono',monospace;font-size:8.5px;
+  letter-spacing:1.1px;color:var(--mut);text-transform:uppercase;pointer-events:none;
+  background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:5px 9px}
+.expl{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:26px}
+.expl h4{font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--acc);font-weight:700;margin-bottom:11px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.expl p{color:var(--mut);font-size:14px;line-height:1.6;margin-bottom:11px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.expl p b{color:var(--txt)}
+.cierre{margin-top:20px;padding-top:14px;border-top:1px solid var(--line);color:var(--mut);font-size:14px;line-height:1.6;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.cierre b{color:var(--txt)}
+#mapsvg path{stroke:var(--bg);stroke-width:.8;cursor:pointer;transition:opacity .15s;vector-effect:non-scaling-stroke}
+#mapsvg path:hover{opacity:.75}
+.tip{position:absolute;pointer-events:none;background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:7px 11px;font-size:12px;font-family:'Spline Sans Mono',monospace;display:none;z-index:5;white-space:nowrap;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.leg{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:.8px;color:var(--dim);text-transform:uppercase}
+.leg i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+#scatsvg text{font-family:'Spline Sans Mono',monospace}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+th{font-family:'Spline Sans Mono',monospace;font-size:9px;letter-spacing:1.2px;color:var(--dim);text-transform:uppercase;text-align:right;padding:8px 10px;border-bottom:1px solid var(--line2);cursor:pointer;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th:hover{color:var(--acc)}
+td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+tr:hover td{background:var(--panel2)}
+.q{font-family:'Spline Sans Mono',monospace;font-size:9.5px;font-weight:700;padding:3px 8px;border-radius:999px;letter-spacing:.5px}
+.met{color:var(--mut);font-size:14.5px;line-height:1.62;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.met b{color:var(--txt)}
+.met ul{margin:10px 0 0 18px;padding:0}.met li{margin-bottom:7px}
+.warn{border-left:3px solid var(--acc);padding-left:14px;margin-top:14px;color:var(--mut);font-size:14.5px;line-height:1.6;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+footer{color:var(--dim);font-size:12px;line-height:1.7;margin-top:34px;border-top:1px solid var(--line);padding-top:16px}
+</style>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
+<!-- SEO-AUTO start -->
+<link rel="canonical" href="https://45digitalnoticias.github.io/Inseguridad-Mexico/radar.html">
+<meta property="og:url" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/radar.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Radar de la paz narca: donde bajan los muertos y sube el cobro",
+  "description": "Paz narca: los territorios donde bajan los muertos y sube el cobro. Indicador propio de 45 Digital Noticias sobre datos del SESNSP. 32 estados y 315 municipios, tres ventanas, método abierto y refutable.",
+  "url": "https://45digitalnoticias.github.io/Inseguridad-Mexico/radar.html",
+  "inLanguage": "es-MX",
+  "author": {
+    "@type": "Person",
+    "name": "SRVO",
+    "url": "https://45digitalnoticias.github.io/columnas/acerca.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "45 Digital Noticias",
+    "sameAs": [
+      "https://facebook.com/45DigitalMx"
+    ]
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://45digitalnoticias.github.io/Inseguridad-Mexico/radar.html"
+  }
+}
+</script>
+<!-- SEO-AUTO end -->
+</head><body>
+<div class="gridbg"></div>
+<div class="wrap">
+<div class="top"><a href="index.html">◉ 45 DIGITAL NOTICIAS · ATLAS CIUDADANO</a><a href="index.html">‹ dashboard</a><div class="tog" style="margin-left:12px"><button data-t="dark" class="on" onclick="setT('dark')">Oscuro</button><button data-t="light" onclick="setT('light')">Claro</button></div></div>
+
+<div class="kick">Indicador propio · 45 Digital Noticias</div>
+<h1>Radar de la<br>paz narca</h1>
+<div style="font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.8px;color:var(--dim);text-transform:uppercase;margin-top:11px">nombre técnico: patrón de consolidación criminal</div>
+<div class="lead">Cuando un lugar se pacifica de verdad, <b>todas</b> las violencias ceden. Este radar busca lo contrario: los territorios donde <b>bajan los muertos y sube el cobro</b>. Eso no describe a un Estado que ganó: describe un mercado que dejó de pelearse y empezó a cobrarse. A ese patrón le llamamos <b>paz narca</b>: hay calma, pero tiene dueño y tiene tarifa.</div>
+
+<div class="kpis" id="kpis"></div>
+
+<div class="ctrls">
+  <label>Escala</label>
+  <div class="modo"><button id="sEdo" class="on" onclick="setE('edo')">32 estados</button><button id="sMun" onclick="setE('mun')"><span id="nMun">315</span> municipios</button></div>
+  <label>Ventana</label>
+  <div class="modo"><button id="w19" class="on" onclick="setV('2019-2025')">2019 → 2025</button><button id="w23" onclick="setV('2023-2025')">2023 → 2025</button><button id="w26" onclick="setV('2019s1-2026s1')">ene-jun 2019 → 2026*</button></div>
+  <input id="q" placeholder="Buscar municipio o estado…" style="display:none;background:var(--bg);color:var(--txt);border:1px solid var(--line2);border-radius:9px;padding:9px 13px;font-family:'Hanken Grotesk';font-weight:600;font-size:14px;min-width:230px">
+  <span style="font-family:'Spline Sans Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1px">TASAS POR 100 MIL HABITANTES · LA VENTANA 2026 ES PRELIMINAR</span>
+</div>
+<div id="avPrelim" style="display:none;color:#efb03a;font-size:13.5px;line-height:1.5;margin:8px 0 0;max-width:840px;border-left:3px solid #efb03a;padding-left:12px;text-align:justify"><b>Ventana preliminar.</b> Compara <b>enero-junio de 2019 contra enero-junio de 2026</b>, semestre real contra semestre real (sin anualizar). Los meses de 2026 aún no cierran y el SESNSP suele revisarlos al alza, así que la caída del homicidio que aquí se ve es la versión <b>más favorable</b> posible; el alza del control, la más conservadora.</div>
+<div id="notaMun" style="display:none;color:var(--dim);font-size:13px;line-height:1.55;margin:2px 0 0;max-width:820px;text-align:justify">
+  Solo municipios con <b>50 mil habitantes o más</b> y un mínimo de eventos en ambos ejes: en poblaciones chicas un solo caso dispara los porcentajes y el indicador dejaría de significar algo. Quedan <b><span id="nMun2">315</span></b> de los 2,478 municipios y demarcaciones del país.
+</div>
+
+<div class="sec">El mapa, estado por estado</div>
+<div class="panel mapwrap">
+  <div class="zoomb">
+    <button onclick="zoomEn(1.45)" title="Acercar" aria-label="Acercar">+</button>
+    <button onclick="zoomEn(1/1.45)" title="Alejar" aria-label="Alejar">−</button>
+    <button id="zreset" onclick="zreset()" title="Volver al inicio" aria-label="Volver al inicio" style="font-size:13px">⟲</button>
+  </div>
+  <div class="zhint">rueda para acercar · arrastra para mover</div>
+  <svg id="mapsvg" style="width:100%;height:auto;display:block"></svg>
+  <div class="tip" id="tip"></div>
+  <div class="leg" id="legEdo">
+    <span><i style="background:#a78bfa"></i><b style="color:var(--txt)">Paz narca</b> · menos muertos, más cobro</span>
+    <span><i style="background:#e8573f"></i><b style="color:var(--txt)">Plaza en disputa</b> · más muertos y más cobro</span>
+    <span><i style="background:#efb03a"></i><b style="color:var(--txt)">Guerra abierta</b> · más muertos, menos cobro</span>
+    <span><i style="background:#49c2d0"></i><b style="color:var(--txt)">Paz o silencio</b> · bajan las dos</span>
+  </div>
+  <div class="leg" id="legMun" style="display:none">
+    <span>Intensidad del violeta = <b style="color:var(--txt)">qué tanto del estado está en paz narca</b></span>
+    <span><i style="background:#a78bfa;opacity:.2"></i>pocos</span>
+    <span><i style="background:#a78bfa;opacity:.9"></i>todos</span>
+  </div>
+</div>
+
+
+<div class="sec">Qué estás viendo</div>
+<div class="panel">
+<div class="expl">
+  <div>
+    <h4>Las dos cosas que se cruzan</h4>
+    <p><b>Los muertos.</b> Homicidio doloso: matar con intención. Es el delito que menos se puede esconder, porque aparece el cuerpo y hay un acta. Por eso sirve de termómetro.</p>
+    <p><b>El cobro.</b> Extorsión más narcomenudeo. No son delitos de pleito, son de administración: se cobran cuando alguien ya manda en la calle. En la tabla van juntos como cobro.</p>
+    <p><b>Tasa por 100 mil habitantes.</b> Casos entre población, por 100 mil. Sin eso, el estado más poblado siempre parecería el más violento.</p>
+    <p><b>Índice.</b> Cuánto bajaron los muertos más cuánto subió el cobro. Entre más alto, más marcado el patrón.</p>
+  </div>
+  <div>
+    <h4>De dónde salen los números</h4>
+    <p>Carpetas de investigación del <b>SESNSP</b> (catálogo CNSP/38/15 para 2015-2025 y RNID para 2026) y población <b>CONAPO</b>. Se excluyen las tentativas.</p>
+    <p>Se compara la <b>tasa</b> del primer año contra la del último de cada ventana. Nunca los números crudos: eso castigaría a los estados grandes por ser grandes.</p>
+    <p>A escala municipal solo entran municipios de <b>50 mil habitantes o más</b>, con al menos 12 eventos por eje y 5 en el año inicial. Sin ese piso, pasar de 1 a 40 casos daría +3,900% y no significaría nada.</p>
+    <p>Quedan <b>315 municipios</b>: 12.7% de las unidades, pero <b>70% de la población</b>, 76.7% de los homicidios y 89.4% de la extorsión y el narcomenudeo del país.</p>
+    <p>La ventana de 2026 compara <b>enero-junio contra enero-junio</b>, semestre real contra semestre real.</p>
+  </div>
+  <div>
+    <h4>Por qué tiene lógica</h4>
+    <p><b>El mecanismo.</b> Matar es caro: atrae al Estado, a la prensa y a la venganza. Un grupo sin rival ya no necesita matar, necesita cobrar. Diego Gambetta (<i>The Sicilian Mafia: The Business of Private Protection</i>, Harvard, 1993) lo planteó al revés de como suele contarse: la mafia no vende droga, vende protección, y para vender protección necesita orden. La violencia es el costo de entrar al mercado, no el de operarlo.</p>
+    <p><b>La prueba que no elegimos.</b> Al modelo nadie le dijo qué pasa en Sinaloa. Aun así lo manda a <b>guerra abierta</b>, el único de los cuatro escenarios donde el cobro se derrumba: muertos +58.6% y cobro −30.2% entre 2019 y 2025, con Culiacán en +76.3% y −23.1%. Si esto fuera ruido, el estado que el país entero sabe en guerra no caería justo donde la teoría dice que debe caer.</p>
+    <p><b>Lo que lo tumbaría.</b> Si el alza del cobro viene de más denuncia, o de más operativos, el patrón dice otra cosa. Las tres pruebas que lo refutarían están abajo, en <i>Qué mide y qué no</i>.</p>
+  </div>
+</div>
+<div class="cierre"><b>El nombre es la lectura; el dato es el par de flechas.</b> Los porcentajes de cada estado se pueden verificar uno por uno contra la fuente oficial. Que a ese patrón se le llame paz narca es cómo lo leemos nosotros, y esa lectura se discute.</div>
+</div>
+
+<div class="sec">Todo el país en un solo golpe de vista</div>
+<div class="grid2">
+  <div class="panel" style="min-height:420px"><svg id="scatsvg" style="width:100%;height:400px;display:block"></svg></div>
+  <div class="panel met">
+    <b style="font-family:'Bricolage Grotesque';font-size:17px;display:block;margin-bottom:8px">Cómo se lee</b>
+    El eje horizontal es el cambio de los <b>muertos</b> (homicidio doloso). El vertical, el del <b>cobro</b> (extorsión más narcomenudeo). Cada punto es un estado.
+    <ul>
+      <li><b style="color:#a78bfa">Arriba a la izquierda · paz narca:</b> bajan los muertos y sube el cobro. Es la firma de un solo dueño: ya no tiene rival a quién matar y sí un mercado a quién cobrar.</li>
+      <li><b style="color:#e8573f">Arriba a la derecha · plaza en disputa:</b> suben las dos. Se pelean el territorio y, mientras se pelean, cobran.</li>
+      <li><b style="color:#49c2d0">Abajo a la izquierda · paz o silencio:</b> bajan las dos. Puede ser paz de verdad, o que ya nadie denuncia: el dominio perfecto tampoco deja huella.</li>
+      <li><b style="color:#efb03a">Abajo a la derecha · guerra abierta:</b> suben los muertos y se cae el cobro. La guerra rompe el negocio: no se cobra en una plaza que arde.</li>
+    </ul>
+    <div class="warn">El sustento teórico no es nuestro: Angélica Durán-Martínez (<i>The Politics of Drug Violence</i>, Oxford, 2018) demostró que la violencia se vuelve <b>menos visible</b> cuando el mercado criminal está monopolizado y el Estado ausente o coludido; Guillermo Trejo y Sandra Ley (<i>Votes, Drugs, and Violence</i>, Cambridge, 2020) documentaron cómo la ruptura y el restablecimiento de acuerdos de protección encienden y apagan las guerras criminales. Lo que aquí se hace es <b>medirlo</b>.</div>
+  </div>
+</div>
+
+<div class="sec" id="secTabla">Los 32 estados</div>
+<div class="panel" style="overflow-x:auto">
+  <table id="tbl"><thead><tr>
+    <th id="thNom" onclick="sortBy('estado')">Estado</th>
+    <th onclick="sortBy('dH_pct')">Δ muertos</th>
+    <th onclick="sortBy('dC_pct')">Δ cobro</th>
+    <th onclick="sortBy('h_fin')">Homicidio hoy</th>
+    <th onclick="sortBy('c_fin')">Cobro hoy</th>
+    <th onclick="sortBy('score')">Índice</th>
+    <th onclick="sortBy('cuadrante')">Qué pasa ahí</th>
+  </tr></thead><tbody id="tb"></tbody></table>
+</div>
+
+<div class="sec">Qué mide y qué no</div>
+<div class="panel met">
+  <b style="font-family:'Bricolage Grotesque';font-size:17px;display:block;margin-bottom:8px">Método abierto</b>
+  Se comparan <b>tasas por cada 100 mil habitantes</b> entre el año inicial y el final de cada ventana, usando las series armonizadas de la casa y población CONAPO. El <b>índice</b> es la suma de la caída de los muertos y el alza del cobro: entre más alto, más marcado el patrón. La ventana de 2026 se muestra aparte y señalada, porque sus meses todavía se revisan al alza.
+  <ul>
+    <li><b>Es un radar, no un veredicto.</b> Señala territorios cuyo comportamiento estadístico es <b>consistente con</b> consolidación criminal. No prueba pactos, no acredita responsabilidades y no nombra a nadie.</li>
+    <li><b>El narcomenudeo depende del operativo.</b> Más carpetas puede significar más venta… o más policía haciendo detenciones. Por eso nunca se usa solo.</li>
+    <li><b>Lo que se ve es la punta.</b> El INEGI estimó <b>33.5 millones de delitos</b> en 2024 y calculó que <b>93.2% no se investigó</b> (ENVIPE 2025, comunicado de prensa 127/25 del 18 de septiembre de 2025). Con la tasa de extorsión de esa misma encuesta, 5,971 por cada 100 mil adultos, el país habría tenido cerca de <b>5.7 millones de extorsiones</b> ese año; el SESNSP registró <b>10,240 carpetas</b>. Una carpeta por cada 558 hechos estimados. La encuesta y el registro no miden lo mismo, porque la encuesta cuenta también el intento telefónico, pero el orden de magnitud dice el tamaño de lo que no se ve.</li>
+    <li><b>Paz o silencio es ambiguo a propósito.</b> Que bajen las dos puede ser la mejor noticia o la peor de todas, y con estos datos no se puede distinguir.</li>
+    <li><b>Qué tumbaría esta lectura.</b> Tres cosas, y las tres se pueden probar con estos mismos datos: que el alza del cobro venga de <b>más denuncia</b> y no de más cobro; que venga de <b>más operativos</b> policiales; o que el salto de 2026 sea efecto del <b>cambio de catálogo</b> del RNID, que abrió modalidades nuevas de extorsión.</li>
+    <li><b>Se puede refutar.</b> Los datos están abiertos. Si el patrón se explica mejor por otra causa, aquí está el dato para demostrarlo.</li>
+  </ul>
+</div>
+
+<footer>
+  Fuente: SESNSP, incidencia delictiva (series mensuales armonizadas, corte 2025 cerrado) · Población: CONAPO · Cálculo y diseño: 45 Digital Noticias, cotejo propio.<br>
+  Dataset completo: <code>datos/radar_consolidacion.csv</code> · cada cifra trazable en la bitácora de verificación de la casa.<br>
+  45 Digital Noticias · Atlas ciudadano de inseguridad.
+</footer>
+</div>
+
+<script src="mexico_estados.geojson.js"></script>
+<script src="_radar_data.js"></script>
+<script src="_radar_muni_data.js"></script>
+<script>
+const QC={Q1:'#49c2d0',Q2:'#a78bfa',Q3:'#e8573f',Q4:'#efb03a'};
+const QN={Q1:'paz o silencio',Q2:'paz narca',Q3:'plaza en disputa',Q4:'guerra abierta'};
+const QD={Q1:'bajan las dos',Q2:'menos muertos, más cobro',Q3:'más muertos y más cobro',Q4:'más muertos, menos cobro'};
+let VEN='2019-2025', ESC='edo', SORT='score', DIR=-1;
+let Z=1,TX=0,TY=0,MAPW=620,MAPH=420;
+const esMun=()=>ESC==='mun';
+const D=()=> esMun()? RADAR_MUNI.ventanas[VEN] : RADAR_DATA.ventanas[VEN];
+const NOM=r=> esMun()? r.mun : r.estado;
+function setT(t){document.documentElement.dataset.theme=t;document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));}
+function setV(v){VEN=v;
+  document.getElementById('w19').classList.toggle('on',v==='2019-2025');
+  document.getElementById('w23').classList.toggle('on',v==='2023-2025');
+  document.getElementById('w26').classList.toggle('on',v==='2019s1-2026s1');
+  document.getElementById('avPrelim').style.display=(v==='2019s1-2026s1')?'':'none';
+  render();}
+function setE(e){ESC=e;
+  document.getElementById('sEdo').classList.toggle('on',e==='edo');
+  document.getElementById('sMun').classList.toggle('on',e==='mun');
+  document.getElementById('q').style.display=esMun()?'':'none';
+  document.getElementById('notaMun').style.display=esMun()?'':'none';
+  document.getElementById('secTabla').textContent=esMun()?('Los '+D().length+' municipios'):'Los 32 estados';
+  document.getElementById('thNom').textContent=esMun()?'Municipio':'Estado';
+  SORT='score';DIR=-1;render();}
+const pct=n=>(n>0?'+':'')+n.toFixed(0)+'%';
+const rings=g=>g.type==='Polygon'?[g.coordinates]:g.coordinates;
+
+function kpis(){
+  const d=D(), q2=d.filter(r=>r.cuadrante==='Q2').sort((a,b)=>b.score-a.score);
+  const q3=d.filter(r=>r.cuadrante==='Q3').length, q1=d.filter(r=>r.cuadrante==='Q1').length;
+  const top=q2[0], U=esMun()?'municipios':'estados', N=d.length;
+  const nom=esMun()? top.mun+' <span style="font-size:15px;color:var(--dim)">'+top.edo+'</span>' : top.estado;
+  document.getElementById('kpis').innerHTML=`
+   <div class="kpi"><div class="n" style="color:#a78bfa">${q2.length}<span style="font-size:19px;color:var(--dim)"> / ${N}</span></div><div class="l">${U} en paz narca<br>menos muertos, más cobro</div></div>
+   <div class="kpi"><div class="n" style="color:var(--txt);font-size:26px;line-height:1.15">${nom}</div><div class="l">el caso más marcado<br>${pct(top.dH_pct)} muertos · ${pct(top.dC_pct)} cobro</div></div>
+   <div class="kpi"><div class="n" style="color:#e8573f">${q3}</div><div class="l">plaza en disputa<br>más muertos y más cobro</div></div>
+   <div class="kpi"><div class="n" style="color:#49c2d0">${q1}</div><div class="l">paz o silencio<br>bajan las dos</div></div>`;
+}
+
+function mapa(){
+  const gj=(typeof MEXICO_ESTADOS_GEOJSON!=='undefined')?MEXICO_ESTADOS_GEOJSON:null;
+  const svg=document.getElementById('mapsvg'); if(!gj||!svg)return;
+  svg.innerHTML='';
+  let a=1e9,b=1e9,c=-1e9,d2=-1e9;
+  gj.features.forEach(f=>rings(f.geometry).forEach(p=>p.forEach(r=>r.forEach(([x,y])=>{if(x<a)a=x;if(x>c)c=x;if(y<b)b=y;if(y>d2)d2=y;}))));
+  const W=620,sc=W/(c-a),H=(d2-b)*sc;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  const ns='http://www.w3.org/2000/svg', tip=document.getElementById('tip');
+  const G=document.createElementNS(ns,'g'); G.setAttribute('id','mapg');
+  // estatal: cuadrante del estado · municipal: proporción de municipios Q2 del estado
+  const byC={}, agg={};
+  if(esMun()){ D().forEach(r=>{const k=r.cve_ent; agg[k]=agg[k]||{q2:0,tot:0,top:null};
+      agg[k].tot++; if(r.cuadrante==='Q2'){agg[k].q2++; if(!agg[k].top||r.score>agg[k].top.score)agg[k].top=r;} }); }
+  else { RADAR_DATA.ventanas[VEN].forEach(r=>byC[r.cve]=r); }
+  const maxScore=Math.max(...RADAR_DATA.ventanas[VEN].filter(r=>r.cuadrante==='Q2').map(r=>r.score));
+  gj.features.forEach(f=>{
+    let s='';rings(f.geometry).forEach(p=>p.forEach(r=>{r.forEach(([x,y],i)=>{s+=(i?'L':'M')+((x-a)*sc).toFixed(1)+' '+((d2-y)*sc).toFixed(1);});s+='Z';}));
+    const ent=f.properties.clave_ent;
+    const path=document.createElementNS(ns,'path');
+    path.setAttribute('d',s);
+    let fill, op, txt;
+    if(esMun()){
+      const g=agg[ent];
+      if(!g||!g.tot){ fill='#8a8072'; op=.14; txt='<b>'+f.properties.nombre_corto+'</b><br><span style="color:var(--dim)">sin municipios en la muestra</span>'; }
+      else { const sh=g.q2/g.tot; fill='#a78bfa'; op=.14+.76*sh;
+        txt='<b>'+f.properties.nombre_corto+'</b><br>'+g.q2+' de '+g.tot+' municipios en paz narca ('+Math.round(sh*100)+'%)'+(g.top?'<br><span style="color:#a78bfa">más pronunciado: '+g.top.mun+'</span>':''); }
+    } else {
+      const rec=byC[ent]; fill=QC[rec.cuadrante];
+      op=rec.cuadrante==='Q2'?(.42+.58*Math.min(1,rec.score/Math.max(1,maxScore*.55))):.72;
+      txt='<b>'+rec.estado+'</b><br>muertos '+pct(rec.dH_pct)+' · cobro '+pct(rec.dC_pct)+'<br><b style="color:'+QC[rec.cuadrante]+'">'+QN[rec.cuadrante].toUpperCase()+'</b>';
+    }
+    path.setAttribute('fill',fill); path.setAttribute('fill-opacity',op.toFixed(2));
+    path.onmousemove=e=>{const R=svg.getBoundingClientRect();
+      tip.style.display='block';
+      tip.style.left=Math.min(R.width-240,e.clientX-R.left+14)+'px';
+      tip.style.top=(e.clientY-R.top+14)+'px'; tip.innerHTML=txt;};
+    path.onmouseleave=()=>tip.style.display='none';
+    G.appendChild(path);
+  });
+  svg.appendChild(G); MAPW=W; MAPH=H; aplicaZoom();
+  document.getElementById('legEdo').style.display=esMun()?'none':'';
+  document.getElementById('legMun').style.display=esMun()?'':'none';
+}
+
+function scatter(){
+  const svg=document.getElementById('scatsvg'); if(!svg)return;
+  const W=svg.clientWidth||520,H=400;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML='';
+  const ns='http://www.w3.org/2000/svg', d=D(), TOPE=esMun()?600:400, TOPEX=esMun()?200:400;
+  const PL=52,PR=18,PT=18,PB=38;
+  const cx_=r=>Math.max(-100,Math.min(TOPEX,r.dH_pct));
+  const xs=d.map(cx_), ys=d.map(r=>Math.min(TOPE,r.dC_pct));
+  const x0=Math.min(-100,Math.min(...xs)-8), x1=Math.max(80,Math.max(...xs)+8);
+  const y0=Math.min(-60,Math.min(...ys)-10), y1=Math.max(esMun()?TOPE:260,Math.max(...ys)+10);
+  const X=v=>PL+((v-x0)/(x1-x0))*(W-PL-PR), Y=v=>H-PB-((v-y0)/(y1-y0))*(H-PT-PB);
+  const add=(t,at)=>{const e=document.createElementNS(ns,t);for(const k in at)e.setAttribute(k,at[k]);svg.appendChild(e);return e;};
+  add('rect',{x:X(x0),y:Y(y1),width:X(0)-X(x0),height:Y(0)-Y(y1),fill:'#a78bfa','fill-opacity':.09});
+  add('line',{x1:X(x0),y1:Y(0),x2:X(x1),y2:Y(0),stroke:'currentColor','stroke-opacity':.35,'stroke-dasharray':'4 5'});
+  add('line',{x1:X(0),y1:Y(y0),x2:X(0),y2:Y(y1),stroke:'currentColor','stroke-opacity':.35,'stroke-dasharray':'4 5'});
+  const lb=(x,y,t,col,anch,sz)=>{const e=add('text',{x,y,fill:col||'currentColor','font-size':sz||9.5,'text-anchor':anch||'start'});e.textContent=t;return e;};
+  lb(X(x0)+8,Y(y1)+16,'PAZ NARCA','#a78bfa','start',9.5);
+  lb(X(x1)-6,Y(y1)+16,'PLAZA EN DISPUTA','#e8573f','end',9.5);
+  lb(X(x0)+8,Y(y0)-8,'PAZ O SILENCIO','#49c2d0','start',9.5);
+  lb(X(x1)-6,Y(y0)-8,'GUERRA ABIERTA','#efb03a','end',9.5);
+  lb(W/2,H-8,'← menos muertos      ·      más muertos →','currentColor','middle',9.5);
+  const yl=add('text',{x:14,y:H/2,fill:'currentColor','font-size':9.5,'text-anchor':'middle',transform:`rotate(-90 14 ${H/2})`});yl.textContent='← menos cobro      ·      más cobro →';
+  const filtro=(document.getElementById('q').value||'').toLowerCase();
+  const cand=[];
+  d.forEach(r=>{
+    const cy=Math.min(TOPE,r.dC_pct);
+    const hit=esMun()&&filtro&&((r.mun+' '+r.edo).toLowerCase().includes(filtro));
+    const esM=!esMun()&&r.estado==='Morelos';
+    const marca=hit||esM;
+    add('circle',{cx:X(cx_(r)),cy:Y(cy),r:marca?7:(esMun()?3.6:5.5),fill:QC[r.cuadrante],
+      'fill-opacity':esMun()?(marca?1:.62):.9,stroke:marca?'#fff':'none','stroke-width':marca?1.6:0});
+    if(marca||(!esMun()&&(Math.abs(r.score)>110||r.cuadrante==='Q4')))
+      cand.push({r:r,px:X(cx_(r)),py:Y(cy),marca:marca?1:0});
+  });
+  // etiquetas: se prueban ocho posiciones alrededor del punto y, si ninguna cabe, no se pinta.
+  // los marcados eligen primero, para que el punto que buscas nunca se pierda.
+  const ocup=[];
+  const libre=(x,y,w,h)=>!ocup.some(b=>!(x+w<b.x-2||b.x+b.w<x-2||y+h<b.y-1.5||b.y+b.h<y-1.5));
+  cand.sort((a,b)=>(b.marca-a.marca)||(Math.abs(b.r.score)-Math.abs(a.r.score)));
+  cand.forEach(e=>{
+    const n=NOM(e.r), txt=n.length>15?n.slice(0,14)+'…':n;
+    const w=txt.length*5.15+4, h=10;
+    const pos=[[9,3.5],[9,-7.5],[9,14.5],[-(w+9),3.5],[-(w+9),-7.5],[-(w+9),14.5],[9,-18.5],[9,25.5]];
+    for(let i=0;i<pos.length;i++){
+      const dx=pos[i][0], dy=pos[i][1], x=e.px+dx, y=e.py+dy-7.5;
+      if(x<3||x+w>W-3||y<PT-4||y+h>H-PB+10) continue;
+      if(libre(x,y,w,h)){ocup.push({x:x,y:y,w:w,h:h});
+        const el=lb(e.px+dx,e.py+dy,txt,'currentColor','start',9);
+        if(e.marca)el.setAttribute('font-weight','700');
+        break;}
+    }
+  });
+  if(esMun()) lb(W-20,PT+2,'ejes recortados a +'+TOPEX+'% / +'+TOPE+'%','var(--dim)','end',8.5);
+}
+
+function tabla(){
+  const filtro=(document.getElementById('q').value||'').toLowerCase();
+  let d=[...D()];
+  if(esMun()&&filtro) d=d.filter(r=>(r.mun+' '+r.edo).toLowerCase().includes(filtro));
+  d.sort((a,b)=>{const A=SORT==='estado'?NOM(a):a[SORT],B=SORT==='estado'?NOM(b):b[SORT];
+    return (typeof A==='string')?DIR*A.localeCompare(B):DIR*(A-B);});
+  document.getElementById('tb').innerHTML=d.slice(0,esMun()?400:40).map(r=>`<tr>
+    <td><b>${NOM(r)}</b>${esMun()?' <span style="color:var(--dim);font-size:12px">'+r.edo+'</span>':''}</td>
+    <td style="color:${r.dH_pct<0?'#49c2d0':'#e8573f'}">${pct(r.dH_pct)}</td>
+    <td style="color:${r.dC_pct>0?'#a78bfa':'var(--mut)'}">${pct(r.dC_pct)}</td>
+    <td>${r.h_fin.toFixed(1)}</td><td>${r.c_fin.toFixed(1)}</td>
+    <td><b>${r.score.toFixed(0)}</b></td>
+    <td style="text-align:right"><span class="q" style="background:${QC[r.cuadrante]}22;color:${QC[r.cuadrante]}">${QN[r.cuadrante]}</span></td></tr>`).join('');
+}
+function sortBy(k){DIR=(SORT===k)?-DIR:-1;SORT=k;tabla();}
+
+// ---- zoom y arrastre del mapa ----
+function limitaPan(){const minX=MAPW-MAPW*Z, minY=MAPH-MAPH*Z;
+  TX=Math.min(0,Math.max(minX,TX)); TY=Math.min(0,Math.max(minY,TY));}
+function aplicaZoom(){const g=document.getElementById('mapg'); if(!g)return;
+  g.setAttribute('transform','translate('+TX.toFixed(1)+' '+TY.toFixed(1)+') scale('+Z.toFixed(3)+')');
+  const b=document.getElementById('zreset'); if(b) b.style.opacity=(Z===1)?'.35':'1';}
+function zoomEn(f,cx,cy){const nz=Math.max(1,Math.min(10,Z*f));
+  if(cx===undefined){cx=MAPW/2;cy=MAPH/2;}
+  TX=cx-(cx-TX)*(nz/Z); TY=cy-(cy-TY)*(nz/Z); Z=nz; limitaPan(); aplicaZoom();}
+function zreset(){Z=1;TX=0;TY=0;aplicaZoom();}
+(function(){const svg=document.getElementById('mapsvg'); if(!svg)return;
+  const esc=()=>MAPW/(svg.getBoundingClientRect().width||MAPW);
+  svg.addEventListener('wheel',e=>{e.preventDefault();const R=svg.getBoundingClientRect(),k=esc();
+    zoomEn(e.deltaY<0?1.16:1/1.16,(e.clientX-R.left)*k,(e.clientY-R.top)*k);},{passive:false});
+  let arr=false,px=0,py=0;
+  svg.addEventListener('pointerdown',e=>{if(Z<=1)return;arr=true;px=e.clientX;py=e.clientY;
+    svg.setPointerCapture(e.pointerId);svg.style.cursor='grabbing';});
+  svg.addEventListener('pointermove',e=>{if(!arr)return;const k=esc();
+    TX+=(e.clientX-px)*k;TY+=(e.clientY-py)*k;px=e.clientX;py=e.clientY;limitaPan();aplicaZoom();});
+  ['pointerup','pointercancel'].forEach(ev=>svg.addEventListener(ev,()=>{arr=false;svg.style.cursor='';}));
+  addEventListener('keydown',e=>{if(e.key==='+'||e.key==='=')zoomEn(1.45);
+    if(e.key==='-')zoomEn(1/1.45); if(e.key==='0')zreset();});
+})();
+
+function render(){kpis();mapa();scatter();tabla();}
+(function(){const n=RADAR_MUNI.ventanas['2019-2025'].length;
+  document.getElementById('nMun').textContent=n;document.getElementById('nMun2').textContent=n;})();
+document.getElementById('q').addEventListener('input',()=>{scatter();tabla();});
+render();
+addEventListener('resize',()=>{mapa();scatter();});
+</script>
+<nav aria-label="Red 45 Digital Noticias" style="max-width:1100px;margin:48px auto 22px;padding:18px 20px 4px;border-top:1px solid rgba(128,128,128,.28);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:13px;line-height:1.9;text-align:center;opacity:.85;"><div style="text-transform:uppercase;letter-spacing:2.5px;font-size:10.5px;opacity:.6;margin-bottom:7px;">Red 45 Digital Noticias</div><div><a href="https://45digitalnoticias.github.io/columnas/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Columnas</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/Inseguridad-Mexico/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Inseguridad México</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/Expediente-Hantavirus/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Expediente Brotes</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/cementerio-transparencia/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Cementerio de la Transparencia</a></div></nav>
+<!-- RED-45 end -->
+</body></html>
