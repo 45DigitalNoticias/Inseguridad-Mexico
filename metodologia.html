@@ -1,11 +1,484 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es" class="dark" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Metodología · Inseguridad México · 45 Digital Noticias</title>
-<meta name="description" content="Fuentes, cortes, métodos de cálculo, validaciones cruzadas y límites declarados del expediente Inseguridad México.">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Spline+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metodología y trazabilidad · Inseguridad México</title>
+<meta name="description" content="De qué archivo oficial sale cada cifra del tablero, cómo se calcula cada tasa y cómo cotejarla contra cifras.csv. Cinco fuentes, todas nombradas.">
+<link rel="canonical" href="https://45digitalnoticias.github.io/Inseguridad-Mexico/metodologia.html">
+<meta name="theme-color" content="#0E0C0B">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="45 Digital Noticias">
+<meta property="og:title" content="Metodología y trazabilidad">
+<meta property="og:description" content="Cada número del tablero es trazable a su archivo fuente. Aquí está el mapa completo.">
+<meta property="og:url" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/metodologia.html">
+<meta property="og:image" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/assets/video/guia-poster.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Metodología y trazabilidad">
+<meta name="twitter:description" content="Cada número del tablero es trazable a su archivo fuente. Aquí está el mapa completo.">
+<meta name="twitter:image" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/assets/video/guia-poster.webp">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Metodología y trazabilidad", "description": "Cada número del tablero es trazable a su archivo fuente. Aquí está el mapa completo.", "url": "https://45digitalnoticias.github.io/Inseguridad-Mexico/metodologia.html", "isAccessibleForFree": true, "creator": {"@type": "NewsMediaOrganization", "name": "45 Digital Noticias"}, "license": "https://creativecommons.org/licenses/by/4.0/", "spatialCoverage": {"@type": "Country", "name": "México"}, "temporalCoverage": "2015/2026", "isPartOf": {"@type": "Dataset", "name": "Inseguridad México", "url": "https://45digitalnoticias.github.io/Inseguridad-Mexico/"}}</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
+<script>if(/github[.]io$/.test(location.hostname)){var _g=document.createElement('script');_g.async=1;_g.src='https://www.googletagmanager.com/gtag/js?id=G-R64XZVCF6F';document.head.appendChild(_g);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-R64XZVCF6F');}</script>
+
+<!-- GENERADO POR EL TALLER DEL REDISENO. Construido por _REDISENO/_construir_consulta.py
+     Para cambiar esta pagina, editar su builder y regenerar: editar este archivo a mano se pierde.
+     Marco y menu: taller comun (_piezas.py). Contenido, graficas y datos: codigo vivo del sitio. -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = { corePlugins: { preflight: false },
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-high": "#2c2928",
+                        "surface-tint": "#f9bd22",
+                        "on-tertiary-fixed-variant": "#8d1505",
+                        "on-primary-container": "#6c4f00",
+                        "primary": "#ffe1a7",
+                        "surface-variant": "#373433",
+                        "outline": "#9c8f79",
+                        "on-secondary-container": "#cdd7ff",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed": "#3f0300",
+                        "surface-container": "#221f1e",
+                        "primary-fixed-dim": "#f9bd22",
+                        "on-primary-fixed-variant": "#5c4300",
+                        "primary-container": "#fbbf24",
+                        "on-secondary": "#002a78",
+                        "tertiary-fixed-dim": "#ffb4a6",
+                        "surface-highlight": "#1D1C16",
+                        "on-tertiary": "#660700",
+                        "border-subtle": "#2D3139",
+                        "text-muted": "#B8AD9A",
+                        "on-background": "#e8e1df",
+                        "on-surface-variant": "#d3c5ac",
+                        "tertiary-container": "#ffb7aa",
+                        "surface": "#151312",
+                        "surface-container-low": "#1d1b1a",
+                        "on-error": "#690005",
+                        "on-primary-fixed": "#261a00",
+                        "text-primary": "#F2EDE3",
+                        "secondary-container": "#0053db",
+                        "secondary": "#b4c5ff",
+                        "primary-fixed": "#ffdf9f",
+                        "inverse-on-surface": "#33302e",
+                        "background": "#151312",
+                        "tertiary": "#ffddd7",
+                        "tertiary-fixed": "#ffdad4",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-container": "#a02412",
+                        "inverse-primary": "#795900",
+                        "error-container": "#93000a",
+                        "secondary-fixed": "#dbe1ff",
+                        "surface-container-highest": "#373433",
+                        "surface-bright": "#3c3837",
+                        "inverse-surface": "#e8e1df",
+                        "surface-elevated": "#15130E",
+                        "surface-dim": "#151312",
+                        "surface-container-lowest": "#100e0d",
+                        "outline-variant": "#4f4633",
+                        "on-primary": "#402d00",
+                        "on-surface": "#e8e1df",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "on-secondary-fixed": "#00174b"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "margin": "24px",
+                        "block-gap": "32px",
+                        "columns": "12",
+                        "group-gap": "8px",
+                        "max-width": "1280px",
+                        "gutter": "16px"
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "data-label": ["Spline Sans Mono"],
+                        "data-metric": ["Spline Sans Mono"],
+                        "headline-xl": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    fontSize: {
+                        "body-md": ["16px", { lineHeight: "1.5", fontWeight: "400" }],
+                        "headline-lg": ["32px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "data-label": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "data-metric": ["14px", { lineHeight: "1", fontWeight: "600" }],
+                        "headline-xl": ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "800" }],
+                        "body-sm": ["14px", { lineHeight: "1.4", fontWeight: "400" }],
+                        "headline-md": ["24px", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>:root{
+    --bg:#0e0c0b;--panel:#17130d;--panel2:#1b1712;--line:rgba(120,110,95,.18);--line2:rgba(120,110,95,.36);
+    --txt:#f2ede3;--mut:#b8ad9a;--dim:#8a8072;--oro:#efb03a;--cian:#49c2d0;--rojo:#e8573f;--sello:#cf5440;
+    --tinta:#000;--verde:#6fae5f;--morado:#a78bfa;
+    --s0:#00808a;--s1:#4ba3a3;--s2:#9fc7a6;--s3:#e2dd9a;--s4:#f4c04e;--s5:#e67e39;--s6:#d64a3a;--s7:#b42222;
+    --grain:.05;--gridop:.5;--glow:.5;--nores:#20262e;--stroke:rgba(255,255,255,.6);--sline:rgba(255,255,255,1);--slinec:rgba(0,0,0,.68);--munline:rgba(0,0,0,.34);--sw:3.2;--scw:6.4;
+  }
+body { background-color: #0E0C0B; color: #F2EDE3; }
+        .hairline-border { border: 1px solid #2D3139; }
+        .hairline-border-b { border-bottom: 1px solid #2D3139; }
+        .hairline-border-t { border-top: 1px solid #2D3139; }
+        .hairline-border-r { border-right: 1px solid #2D3139; }
+        .hairline-border-l { border-left: 1px solid #2D3139; }
+        
+        /* Map specific styles */
+        .map-bg { background-color: #0E0C0B; }
+        .map-overlay { mix-blend-mode: overlay; }
+        
+        /* Custom scrollbar for tables */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0E0C0B; }
+        ::-webkit-scrollbar-thumb { background: #2D3139; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #4f4633; }
+html,body{background:#0E0C0B;color:#F2EDE3;}
+body{font-family:'Inter',system-ui,sans-serif;}
+h1,h2,h3,h4{font-family:'Hanken Grotesk',system-ui,sans-serif;}
+.mono,.tnum{font-family:'Spline Sans Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums;}
+/* toda cifra alinea al digito */
+.cifra{font-family:'Spline Sans Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;font-weight:600;letter-spacing:-.02em;}
+canvas#mapa{width:100%;display:block;}
+/* --- componentes vivos que el markup injertado necesita --- */
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;}
+.panel h3{font-family:'Spline Sans Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--mut);text-transform:uppercase;font-weight:700;margin:0 0 14px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;}
+.panel h3 em{color:var(--amber);font-style:normal;}
+.zoomwrap{overflow:auto;max-height:640px;border-radius:8px;}
+.zoomctl{display:flex;gap:6px;}
+.zoomctl button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--mut);font-size:15px;font-weight:700;cursor:pointer;}
+.zoomctl button:hover{border-color:rgba(251,191,36,.55);color:var(--amber);}
+.ley{display:flex;gap:13px;align-items:center;margin-top:12px;font-size:10.5px;color:var(--dim);font-family:'Spline Sans Mono',monospace;flex-wrap:wrap;}
+.mapafull{margin:24px 0 16px;}
+/* el panel del mapa se adapta al lienzo nuevo: sin caja propia */
+#panelMapa.panel{background:transparent;border:0;border-radius:0;padding:16px 0 0;margin:0;}
+#panelMapa h3{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.05em;
+  text-transform:uppercase;color:#B8AD9A;font-weight:500;display:flex;justify-content:space-between;
+  align-items:baseline;gap:10px;margin:0 0 14px;}
+#panelMapa h3 em{color:#FBBF24;font-style:normal;}
+/* El video llena su caja: si se centra deja bandas negras arriba y abajo,
+   y entonces las dos mitades del encabezado dejan de estar alineadas. */
+.gb-vbox{height:100%;display:block;background:#000;}
+.gb-vbox video{width:100%;height:100%;object-fit:contain;display:block;background:#000;}
+/* Recorte del gancho de cada columna: las tres tarjetas quedan a la misma
+   altura y la pagina no se hace kilometrica. */
+.hook-corto{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;
+  overflow:hidden;text-overflow:ellipsis;}
+
+:root{--amber:var(--oro);--rose:var(--sello);--cyan:var(--cian);--green:var(--verde);--purple:var(--morado);--red:var(--rojo);}
+
+/* --- MENU DE CAJONES --- */
+.nav-caj{position:relative;}
+.nav-flecha{font-size:8px;opacity:.55;margin-left:2px;}
+.nav-caj.abierto .nav-flecha{opacity:1;}
+.nav-panel{position:absolute;top:calc(100% + 9px);left:-14px;min-width:352px;z-index:60;
+  background:#15130E;border:1px solid #2D3139;padding:6px;display:none;}
+.nav-caj.abierto .nav-panel{display:block;}
+/* la punta que amarra el panel con su boton */
+.nav-caj.abierto .nav-panel::before{content:"";position:absolute;top:-5px;left:20px;width:8px;height:8px;
+  background:#15130E;border-left:1px solid #2D3139;border-top:1px solid #2D3139;transform:rotate(45deg);}
+.nav-panel a{display:block;padding:11px 13px;text-decoration:none;transition:background .12s;}
+.nav-panel a:hover,.nav-panel a:focus-visible{background:rgba(251,191,36,.08);outline:none;}
+.nav-panel a + a{border-top:1px solid rgba(45,49,57,.6);}
+.nav-t{display:block;font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:14.5px;font-weight:700;
+  letter-spacing:-.01em;color:#F2EDE3;line-height:1.25;}
+.nav-panel a:hover .nav-t{color:#FBBF24;}
+.nav-d{display:block;font-family:'Inter',system-ui,sans-serif;font-size:11.5px;line-height:1.5;
+  color:#8a8072;margin-top:3px;}
+.nav-sello{display:inline-block;margin-left:8px;vertical-align:2px;background:#FBBF24;color:#14110c;
+  font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:8px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;}
+
+/* --- FRANJA DE SECCIONES · el menu sirve para navegar, esto para descubrir --- */
+.franja{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#2D3139;border:1px solid #2D3139;}
+@media(max-width:900px){.franja{grid-template-columns:1fr;}}
+.fcard{background:#15130E;padding:20px 22px 18px;text-decoration:none;display:flex;flex-direction:column;
+  gap:7px;transition:background .12s;border-left:3px solid transparent;}
+.fcard:hover{background:#1d1b16;border-left-color:#FBBF24;}
+.fcard .fk{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:#8a8072;}
+/* El icono va EN LA LINEA del kicker, no encima: la tarjeta no crece un pixel
+   y el ojo agarra la seccion antes de leer. Hereda color de .fh, asi la regla
+   de .propio y la de hover pintan icono y kicker de una sola vez. */
+.fcard .fh{display:flex;align-items:center;gap:8px;color:#8a8072;}
+.fcard .fh .fk{color:inherit;}
+.fcard .ficon{width:17px;height:17px;flex:0 0 17px;display:block;}
+.fcard:hover .fh{color:#FBBF24;}
+.fcard .ft{font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;font-weight:700;
+  letter-spacing:-.02em;color:#F2EDE3;line-height:1.18;}
+.fcard:hover .ft{color:#FBBF24;}
+.fcard .fd{font-family:'Inter',system-ui,sans-serif;font-size:12.5px;line-height:1.58;color:#B8AD9A;
+  text-align:justify;hyphens:auto;-webkit-hyphens:auto;margin:0;}
+.fcard .fgo{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:#FBBF24;margin-top:auto;padding-top:8px;}
+.fcard.propio{border-left-color:var(--purple);}
+.fcard.propio .fk{color:var(--purple);}
+.fcard.propio .fh{color:var(--purple);}
+.fcard.propio:hover .fh{color:var(--purple);}
+.fcard.propio:hover{border-left-color:var(--purple);}
+.fcard.propio:hover .ft{color:var(--purple);}
+.fcard.propio .fgo{color:var(--purple);}
+
+/* --- FOCOS ROJOS · lista que llena el mismo JS del mapa (top 10) --- */
+.rank-list{display:grid;grid-template-columns:1fr;gap:0;}
+@media(min-width:900px){.rank-list{grid-template-columns:1fr 1fr;column-gap:28px;}}
+.rrow{display:grid;grid-template-columns:26px 1fr auto;gap:12px;align-items:center;
+  padding:11px 2px;border:0;border-bottom:1px solid #2D3139;border-radius:0;background:transparent;
+  text-decoration:none;color:inherit;transition:background .12s,padding .12s;}
+.rrow:hover{background:rgba(251,191,36,.05);border-color:rgba(251,191,36,.45);}
+.rrow .pos{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:11px;color:#8a8072;font-weight:600;}
+.rrow .nom{font-family:'Inter',system-ui,sans-serif;font-size:13.5px;font-weight:600;color:#F2EDE3;}
+.rrow .nom small{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:10.5px;}
+.rrow .bar{height:3px;border-radius:0;margin-top:7px;}
+.rrow .val{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:17px;font-weight:600;
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:#F2EDE3;}
+
+/* --- LOS 55 DELITOS · chips de año + lista con barra de calor --- */
+.achip{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:.14em;
+  font-weight:600;padding:7px 13px;border-radius:0;border:1px solid #2D3139;color:#B8AD9A;
+  cursor:pointer;background:transparent;transition:all .12s;}
+.achip:hover{border-color:rgba(251,191,36,.5);color:#FBBF24;}
+.achip.act{background:#FBBF24;border-color:#FBBF24;color:#14110c;}
+.rk55{display:grid;grid-template-columns:34px minmax(200px,300px) 1fr 84px;gap:14px;align-items:center;
+  padding:7px 6px;border-radius:0;border-bottom:1px solid rgba(45,49,57,.55);}
+.rk55:hover{background:rgba(251,191,36,.05);}
+.rk55 .num{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:10px;color:#8a8072;font-weight:600;}
+.rk55 .nm{font-family:'Inter',system-ui,sans-serif;font-size:13px;font-weight:500;line-height:1.35;color:#F2EDE3;}
+.rk55 .nm.esp{color:var(--purple);}
+.rk55 .etag{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:8.5px;letter-spacing:.1em;
+  text-transform:uppercase;font-weight:600;color:var(--purple);}
+.rk55 .track{height:10px;border-radius:0;background:#1b1712;overflow:hidden;}
+.rk55 .fill{height:100%;border-radius:0;min-width:4px;}
+.rk55 .val{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:12.5px;font-weight:600;
+  text-align:right;font-variant-numeric:tabular-nums;color:#F2EDE3;}
+@media(max-width:820px){.rk55{grid-template-columns:30px 1fr 74px;}.rk55 .track{grid-column:1/-1;}}
+
+/* --- SEÑALES · tres tarjetas, acento violeta --- */
+.signals{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media(max-width:900px){.signals{grid-template-columns:1fr;}}
+.sig{background:#15130E;border:1px solid #2D3139;border-left:3px solid var(--purple);
+  border-radius:0;padding:20px 22px;}
+.sig .tag{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.16em;
+  color:var(--purple);text-transform:uppercase;font-weight:600;margin-bottom:10px;}
+.sig h4{font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:18px;line-height:1.15;
+  letter-spacing:-.02em;margin:0 0 12px;font-weight:700;color:#F2EDE3;}
+.sig .par{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin:12px 0;background:#2D3139;border:1px solid #2D3139;}
+.sig .lado{background:#0E0C0B;border-radius:0;padding:11px 13px;}
+.sig .lado .l{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:9.5px;color:#8a8072;
+  letter-spacing:.1em;text-transform:uppercase;line-height:1.5;}
+.sig .lado .v{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:21px;font-weight:600;
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin-top:5px;}
+.sig .lado.down .v{color:var(--cyan);}
+.sig .lado.up .v{color:var(--red);}
+.sig p{font-family:'Inter',system-ui,sans-serif;font-size:12.5px;color:#B8AD9A;line-height:1.6;
+  margin:10px 0 0;text-align:justify;hyphens:auto;-webkit-hyphens:auto;}
+
+/* --- RADAR DE LA PAZ NARCA --- */
+.rd-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;}
+.rd-bar .lbl{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.16em;
+  color:#8a8072;text-transform:uppercase;}
+.rd-tog{display:inline-flex;border:1px solid #2D3139;border-radius:0;overflow:hidden;}
+.rd-tog button{background:transparent;color:#B8AD9A;border:none;padding:8px 14px;
+  font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;cursor:pointer;transition:all .12s;}
+.rd-tog button:hover{color:#F2EDE3;}
+.rd-tog button.on{background:var(--purple);color:#14110c;font-weight:700;}
+.rd-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-bottom:18px;background:#2D3139;border:1px solid #2D3139;}
+@media(max-width:820px){.rd-kpis{grid-template-columns:repeat(2,1fr);}}
+.rd-k{background:#0E0C0B;border:0;border-radius:0;padding:16px 17px;}
+.rd-k .n{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:30px;font-weight:600;
+  line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;}
+.rd-k .l{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:8.5px;letter-spacing:.14em;
+  color:#8a8072;text-transform:uppercase;margin-top:10px;line-height:1.6;}
+.rd-wrap{position:relative;background:#0E0C0B;border:1px solid #2D3139;border-radius:0;padding:6px;}
+.rd-z{position:absolute;top:12px;right:12px;display:flex;flex-direction:column;gap:1px;z-index:3;
+  border:1px solid #2D3139;background:#2D3139;}
+.rd-z button{width:31px;height:31px;border-radius:0;border:0;background:#0E0C0B;color:#F2EDE3;
+  font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:14px;font-weight:600;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;line-height:1;transition:all .12s;}
+.rd-z button:hover{background:var(--purple);color:#14110c;}
+.rd-hint{position:absolute;left:14px;top:14px;font-family:'Spline Sans Mono',ui-monospace,monospace;
+  font-size:8.5px;letter-spacing:.12em;color:#B8AD9A;text-transform:uppercase;background:#0E0C0B;
+  border:1px solid #2D3139;border-radius:0;padding:5px 10px;pointer-events:none;}
+.rd-tip{position:absolute;pointer-events:none;background:#0E0C0B;border:1px solid #2D3139;border-radius:0;
+  padding:9px 12px;font-size:11.5px;font-family:'Spline Sans Mono',ui-monospace,monospace;display:none;
+  z-index:5;white-space:nowrap;line-height:1.65;}
+.rd-leg{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;font-family:'Spline Sans Mono',ui-monospace,monospace;
+  font-size:9px;letter-spacing:.1em;color:#8a8072;text-transform:uppercase;}
+.rd-leg i{display:inline-block;width:10px;height:10px;border-radius:0;margin-right:7px;vertical-align:-1px;}
+.rd-leg b{color:#F2EDE3;}
+.rd-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:22px;padding-top:18px;
+  border-top:1px solid #2D3139;}
+@media(max-width:900px){.rd-cols{grid-template-columns:1fr;gap:18px;}}
+.rd-cols h5{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--purple);margin:0 0 10px;}
+.rd-cols p{font-family:'Inter',system-ui,sans-serif;color:#B8AD9A;font-size:13px;line-height:1.65;
+  text-align:justify;hyphens:auto;-webkit-hyphens:auto;margin:0 0 10px;}
+.rd-cols p b{color:#F2EDE3;}
+.rd-cta{margin-top:18px;padding-top:16px;border-top:1px solid #2D3139;display:flex;align-items:center;
+  justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.rd-cta .nota{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:8.5px;letter-spacing:.1em;
+  color:#8a8072;text-transform:uppercase;line-height:1.8;}
+.rd-cta a{color:var(--purple);text-decoration:none;font-weight:600;font-size:13px;border:1px solid var(--purple);
+  border-radius:0;padding:11px 18px;white-space:nowrap;transition:all .12s;
+  font-family:'Spline Sans Mono',ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em;}
+.rd-cta a:hover{background:var(--purple);color:#14110c;}
+
+/* --- LOS 32 ESTADOS · silueta real de cada estado --- */
+.estados{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#2D3139;border:1px solid #2D3139;}
+@media(max-width:1000px){.estados{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:680px){.estados{grid-template-columns:repeat(2,1fr);}}
+.ecard{background:#15130E;border:0;border-radius:0;padding:22px 16px;text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;gap:11px;align-items:center;text-align:center;transition:background .12s;}
+.ecard:hover{background:#1d1b16;}
+.ecard .nm{font-family:'Hanken Grotesk',system-ui,sans-serif;font-weight:700;font-size:14px;
+  letter-spacing:.08em;text-transform:uppercase;color:#F2EDE3;display:flex;flex-direction:column;
+  align-items:center;gap:13px;line-height:1.25;}
+.ecard .silueta{width:76px;height:76px;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:6px;}
+.ecard .silueta svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 9px var(--glow,rgba(251,191,36,.4)));}
+.ecard .mt{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:10.5px;color:#8a8072;
+  display:flex;justify-content:center;gap:8px;letter-spacing:.04em;}
+.ecard .mt b{color:#F2EDE3;font-size:12px;font-variant-numeric:tabular-nums;}
+
+/* --- CASOS != PERSONAS · la parte viva que se habia quedado fuera --- */
+.casos{max-width:none;margin:0;padding:0;background:transparent;border:0;border-radius:0;}
+.casos .lede{font-family:'Inter',system-ui,sans-serif;font-size:13.5px;line-height:1.62;color:#B8AD9A;
+  margin:0;max-width:none;text-align:justify;hyphens:auto;-webkit-hyphens:auto;}
+.casos .lede b{color:#F2EDE3;}
+.casos .ctrl{display:flex;gap:8px;align-items:center;margin:18px 0 4px;
+  font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:9.5px;color:#8a8072;
+  text-transform:uppercase;letter-spacing:.16em;}
+.casos .ctrl button{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:10px;font-weight:600;
+  letter-spacing:.1em;padding:7px 13px;border-radius:0;border:1px solid #2D3139;background:transparent;
+  color:#B8AD9A;cursor:pointer;text-transform:uppercase;transition:all .12s;}
+.casos .ctrl button:hover{border-color:rgba(251,191,36,.5);color:#FBBF24;}
+.casos .ctrl button.on{background:#FBBF24;color:#14110c;border-color:#FBBF24;}
+.casos .row{display:grid;grid-template-columns:180px 1fr 130px;align-items:center;gap:14px;
+  padding:8px 0;border-top:1px solid rgba(45,49,57,.55);}
+.casos .row .dl{font-family:'Inter',system-ui,sans-serif;font-weight:600;font-size:13px;color:#F2EDE3;text-align:right;}
+.casos .row.fem .dl{color:var(--red);font-weight:700;}
+.casos .bars{position:relative;height:26px;}
+.casos .bar{position:absolute;height:10px;border-radius:0;}
+.casos .bar.c{top:2px;background:#4a4640;}
+.casos .bar.v{top:14px;background:var(--cyan);}
+.casos .row.fem .bar.v{background:var(--red);}
+.casos .vals{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:10.5px;color:#8a8072;
+  text-align:right;line-height:1.45;font-variant-numeric:tabular-nums;}
+.casos .vals b{color:#F2EDE3;font-size:12px;}
+.casos .lg{display:flex;gap:20px;font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:9.5px;
+  color:#8a8072;text-transform:uppercase;letter-spacing:.14em;margin:14px 0 0;}
+.casos .lg i{display:inline-block;width:11px;height:7px;border-radius:0;margin-right:6px;vertical-align:middle;}
+.casos .fem{margin:24px 0 0;padding:18px 20px 6px;background:rgba(232,87,63,.06);
+  border:1px solid #2D3139;border-left:3px solid var(--red);border-radius:0;}
+.casos .fem h3{font-family:'Hanken Grotesk',system-ui,sans-serif;font-weight:700;font-size:18px;
+  letter-spacing:-.02em;color:#F2EDE3;margin:0;}
+.casos .fem p{font-family:'Inter',system-ui,sans-serif;font-size:13.5px;line-height:1.62;color:#B8AD9A;
+  margin:10px 0 0;text-align:justify;hyphens:auto;-webkit-hyphens:auto;}
+.casos .fem p b{color:#F2EDE3;}
+.casos .frange{display:flex;align-items:center;gap:12px;margin:20px 0 14px;
+  font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:10px;color:#8a8072;
+  text-transform:uppercase;letter-spacing:.08em;}
+.casos .frange .track{position:relative;flex:1;height:8px;border-radius:0;
+  background:linear-gradient(90deg,#4a4640,var(--red));}
+.casos .frange .pin{position:absolute;top:-5px;width:1px;height:18px;background:#F2EDE3;}
+.casos .frange .pin span{position:absolute;top:-15px;left:50%;transform:translateX(-50%);
+  font-size:9.5px;color:#F2EDE3;white-space:nowrap;}
+.casos .nota{font-family:'Inter',system-ui,sans-serif;font-size:12.5px;color:#8a8072;line-height:1.6;
+  margin:6px 0 0;text-align:justify;hyphens:auto;-webkit-hyphens:auto;}
+.casos .nota a{color:#FBBF24;text-decoration:none;}
+.casos .nota a:hover{text-decoration:underline;}
+/* La seccion ya trae arriba su linea de fuente, escrita a mano y sin guion
+   largo. El #cpSrc que rellena el JS dice exactamente lo mismo. Se oculta el
+   duplicado, no la atribucion: la fuente sigue a la vista, una sola vez. */
+.casos .src{display:none;}
+@media(max-width:680px){.casos .row{grid-template-columns:104px 1fr 96px;}}
+
+
+/* --- MENU EN MOVIL --- */
+.nav-burger{display:none;width:40px;height:40px;border:1px solid #2D3139;background:transparent;
+  cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;}
+.nav-burger span{display:block;width:18px;height:1.5px;background:#F2EDE3;transition:transform .18s,opacity .18s;}
+body.nav-abierto .nav-burger span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+body.nav-abierto .nav-burger span:nth-child(2){opacity:0;}
+body.nav-abierto .nav-burger span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.nav-movil{display:none;position:fixed;inset:57px 0 0;z-index:55;background:#0E0C0B;
+  overflow-y:auto;padding:8px 0 40px;}
+body.nav-abierto .nav-movil{display:block;}
+body.nav-abierto{overflow:hidden;}
+.nav-movil .nm-mapa,.nav-movil .nm-col{display:block;padding:15px 24px;text-decoration:none;
+  font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:12px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid #2D3139;}
+.nav-movil .nm-mapa{color:#FBBF24;}
+.nav-movil .nm-col{color:#14110c;background:#FBBF24;border:0;margin-top:14px;}
+.nm-grupo{border-bottom:1px solid #2D3139;padding:16px 0 6px;}
+.nm-tit{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:9.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:#8a8072;padding:0 24px 10px;}
+.nav-movil .nm-grupo a{display:block;padding:11px 24px;text-decoration:none;}
+.nav-movil .nm-grupo a:active{background:rgba(251,191,36,.08);}
+.nm-redes{display:flex;gap:18px;padding:20px 24px 0;}
+.nm-redes a{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:10.5px;
+  letter-spacing:.14em;text-transform:uppercase;color:#8a8072;text-decoration:none;}
+.nm-redes a:active{color:#FBBF24;}
+@media(max-width:1023px){.nav-burger{display:flex;}}
+/* --- ANCHO EN PANTALLA CHICA --- */
+/* Medido con una sonda dentro de un iframe de 390px: el documento salia en
+   502px contra 384 de ventana, o sea 118px de desborde, y el culpable era un
+   <select>. El de delitos se dimensiona a su opcion mas larga ("Otros delitos
+   que atentan contra la vida y la integridad corporal") y estiraba la pagina
+   entera, cortando el titular y el texto a la derecha.
+   Chrome headless en Windows no baja de ~498px de ventana, asi que esto NO se
+   ve con --window-size=390: hay que medirlo dentro de un iframe. */
+#panelMapa select{max-width:100%;min-width:0;text-overflow:ellipsis;}
+#panelMapa .mrow{min-width:0;}
+/* En flex y grid el minimo por defecto es el contenido, no cero: sin esto un
+   hijo ancho manda sobre el contenedor aunque el contenedor tenga su ancho. */
+main,main > section,main > header{min-width:0;}
+@media(max-width:640px){
+  #panelMapa select{flex:1 1 100%;width:100%;}
+  #panelMapa .mrow{gap:6px 8px;}
+  .rd-kpis{grid-template-columns:1fr 1fr;}
+  .rd-cols{grid-template-columns:1fr;}
+}
+
+
+.ecard.aqui{background:#1d1b16;box-shadow:inset 3px 0 0 #FBBF24;}
+.ecard.aqui .nm{color:#FBBF24;}
+
+/* --- COMPARTIR (v3) --- */
+.shfab3{position:fixed;bottom:18px;right:18px;z-index:9400;width:46px;height:46px;
+  border:1px solid #2D3139;background:#15130E;color:#FBBF24;font-size:17px;font-weight:700;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .12s;}
+.shfab3:hover{border-color:#FBBF24;}
+.shpop3{position:fixed;bottom:72px;right:18px;z-index:9400;display:none;flex-direction:column;
+  gap:1px;border:1px solid #2D3139;background:#2D3139;}
+.shpop3.open{display:flex;}
+.shpop3 a,.shpop3 button{width:44px;height:44px;border:0;display:flex;align-items:center;
+  justify-content:center;font-size:16px;font-weight:700;background:#0E0C0B;color:#F2EDE3;
+  text-decoration:none;cursor:pointer;transition:all .12s;}
+.shpop3 a:hover,.shpop3 button:hover{background:#FBBF24;color:#14110c;}
+@media(max-width:680px){.shfab3{bottom:16px;}.shpop3{bottom:70px;}}
+
+/* La herramienta de difusion reinyecta el bloque RED-45 en cada corrida
+   (visto el 13-ago-2026: reescribio hasta las copias del archivo). El
+   rediseno ya lleva esos destinos en el pie; si el bloque vuelve a
+   aparecer, se queda invisible en vez de romper el diseno. */
+nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
+</style>
 <style>
   :root[data-theme="dark"]{--bg:#0e0c0b;--panel:#17130d;--panel2:#1b1712;--line:rgba(120,110,95,.18);--line2:rgba(120,110,95,.36);--txt:#f2ede3;--mut:#b8ad9a;--dim:#8a8072;--oro:#efb03a;--cian:#49c2d0;--rojo:#e8573f;--sello:#cf5440;--verde:#6fae5f;--morado:#a78bfa;--grain:.05;--gridop:.5;--glow:.5}
   :root[data-theme="light"]{--bg:#f1eadb;--panel:#faf6ec;--panel2:#efe7d6;--line:rgba(40,34,26,.16);--line2:rgba(40,34,26,.34);--txt:#191510;--mut:#4a4238;--dim:#7a7061;--oro:#a86a12;--cian:#0f6f7c;--rojo:#a52c1f;--sello:#9a3324;--verde:#3f7a30;--morado:#6b4fc4;--grain:.028;--gridop:.7;--glow:.25}
@@ -22,9 +495,9 @@
   .topbar a.volver:hover{background:color-mix(in srgb,var(--oro) 14%,transparent);border-color:var(--oro);}
   .wrap{max-width:820px;margin:0 auto;padding:46px 26px 80px;}
   .eyebrow{font-family:'Spline Sans Mono',monospace;font-size:10.5px;letter-spacing:3.5px;color:#3fb950;text-transform:uppercase;font-weight:700;margin-bottom:12px;}
-  h1{font-family:'Bricolage Grotesque',sans-serif;font-size:44px;letter-spacing:-1.2px;line-height:1.1;margin:0 0 12px;}
+  h1{font-family:'Hanken Grotesk',sans-serif;font-size:44px;letter-spacing:-1.2px;line-height:1.1;margin:0 0 12px;}
   h1 em{color:#3fb950;font-style:italic;}
-  h2{font-family:'Bricolage Grotesque',sans-serif;font-size:23px;letter-spacing:-.4px;margin:36px 0 10px;color:#3fb950;}
+  h2{font-family:'Hanken Grotesk',sans-serif;font-size:23px;letter-spacing:-.4px;margin:36px 0 10px;color:#3fb950;}
   p,li{font-size:14.5px;line-height:1.8;color:var(--mut);text-align:justify;}
   strong{color:var(--txt);}
   ul{padding-left:22px;}
@@ -40,57 +513,44 @@
   footer{border-top:1px solid var(--line);padding:20px;text-align:center;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.4px;color:var(--dim);text-transform:uppercase;}
   footer a{color:var(--dim);}
   @media(max-width:680px){h1{font-size:32px;}td:first-child{white-space:normal;}}
+em,i{font-style:normal !important}</style>
+<style>
+/* Sin preflight, estos tres defaults corren por cuenta del marco. */
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;}
+nav a,.nav-panel a,.nav-movil a,footer a,.fcard,.shpop3 a{text-decoration:none;}
+:root,:root[data-theme="dark"]{
+  --bg:#0E0C0B;--panel:#15130E;--panel2:#1b1917;
+  --line:#2D3139;--line2:#3a4048;
+}
+body{background:#0E0C0B !important;}
+.gridbg{display:none !important;}
+/* El interruptor claro/oscuro viejo tambien lo DIBUJA el JS de municipio y
+   ranking dentro de su propio encabezado, no solo la barra estatica que se
+   recorta. El rediseno no trae tema claro y su setT ya no se emite: un boton
+   visible que llama a una funcion inexistente es un error de consola esperando
+   el clic. Se oculta por clase, venga de donde venga. */
+.tog{display:none !important;}
+/* El v3 no redondea nada: esquinas rectas tambien en lo que el JS dibuja con
+   estilos inline (el !important de hoja gana al inline sin !important). */
+*{border-radius:0 !important;}
+.wrap{max-width:1280px !important;}
+/* Un <select> se dimensiona a su opcion mas larga y arrastra el documento:
+   medido en la portada (384 -> 502px). Guardas para todas las paginas. */
+select,input{max-width:100%;min-width:0;}
+main,.wrap,.bgwrap{min-width:0;}
 </style>
-<script>
-/* GA4 · solo en produccion (mismo flujo que /morelos/) */
-if(/github\.io$/.test(location.hostname)){
-  var _g=document.createElement('script');_g.async=1;_g.src='https://www.googletagmanager.com/gtag/js?id=G-R64XZVCF6F';document.head.appendChild(_g);
-  window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-  gtag('js',new Date());gtag('config','G-R64XZVCF6F');
-}
-</script>
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
-<style id="noital">em,i{font-style:normal !important}</style>
-<script>/* anti-flash */(function(){var t=null;try{t=localStorage.getItem('imx-theme');}catch(e){}if(location.hash==='#light')t='light';else if(location.hash==='#dark')t='dark';if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;})();</script>
-<!-- SEO-AUTO start -->
-<link rel="canonical" href="https://45digitalnoticias.github.io/Inseguridad-Mexico/metodologia.html">
-<meta property="og:url" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/metodologia.html">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Metodología · Inseguridad México",
-  "description": "Fuentes, cortes, métodos de cálculo, validaciones cruzadas y límites declarados del expediente Inseguridad México.",
-  "url": "https://45digitalnoticias.github.io/Inseguridad-Mexico/metodologia.html",
-  "inLanguage": "es-MX",
-  "author": {
-    "@type": "Person",
-    "name": "SRVO",
-    "url": "https://45digitalnoticias.github.io/columnas/acerca.html"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "45 Digital Noticias",
-    "sameAs": [
-      "https://facebook.com/45DigitalMx"
-    ]
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://45digitalnoticias.github.io/Inseguridad-Mexico/metodologia.html"
-  }
-}
-</script>
-<!-- SEO-AUTO end -->
+<style></style>
 </head>
-<body>
-  <div class="gridbg"></div>
-  <header class="topbar">
-    <img src="assets/logo45.webp" style="height:44px;border-radius:9px;" alt="45 Digital Noticias">
-    <div><span style="font-weight:800;font-size:13px;display:block;">45 DIGITAL NOTICIAS</span><span style="font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:2.5px;color:#3fb950;text-transform:uppercase;">Metodología</span></div>
-    <a class="volver" href="./">⌂ Portal nacional</a><div class="tog" style="margin-left:12px"><button data-t="dark" class="on" onclick="setT('dark')">Oscuro</button><button data-t="light" onclick="setT('light')">Claro</button></div>
-  </header>
-  <main class="wrap">
+<body class="antialiased min-h-screen flex flex-col">
+<nav class="border-b border-border-subtle sticky top-0 z-50 bg-[#0E0C0B]/92 backdrop-blur"><div class="flex justify-between items-center gap-6 px-margin py-3 w-full max-w-max-width mx-auto"><a href="index.html" class="font-extrabold text-[15px] uppercase tracking-[.06em] text-text-primary shrink-0">Inseguridad México</a><div class="hidden lg:flex gap-4 items-center"><a href="index.html" class="mono text-[12px] font-semibold uppercase tracking-[.1em] pb-1 whitespace-nowrap border-b-2 transition-colors text-[#FBBF24] border-[#FBBF24]">Mapa</a>
+<div class="nav-caj" data-caj="donde"><button type="button" class="mono text-[12px] font-semibold uppercase tracking-[.1em] pb-1 whitespace-nowrap border-b-2 transition-colors text-[#E4DCCE] border-transparent hover:text-[#FBBF24] hover:border-[#FBBF24]/50 bg-transparent cursor-pointer" aria-expanded="false" aria-controls="cj-donde">Dónde <span class="nav-flecha">&#9662;</span></button><div class="nav-panel" id="cj-donde" role="menu"><a href="ranking-nacional.html"><span class="nav-t">El país</span><span class="nav-d">Los 32 estados y los municipios que encabezan, delito por delito</span></a><a href="estado.html"><span class="nav-t">Estados</span><span class="nav-d">Radiografía completa de un estado: 55 delitos, serie y panel RNPDNO</span></a><a href="municipios.html"><span class="nav-t">Municipios</span><span class="nav-d">Busca tu municipio entre los 2,475 y compáralo con su estado</span></a></div></div>
+<div class="nav-caj" data-caj="esconden"><button type="button" class="mono text-[12px] font-semibold uppercase tracking-[.1em] pb-1 whitespace-nowrap border-b-2 transition-colors text-[#E4DCCE] border-transparent hover:text-[#FBBF24] hover:border-[#FBBF24]/50 bg-transparent cursor-pointer" aria-expanded="false" aria-controls="cj-esconden">Lo que esconden <span class="nav-flecha">&#9662;</span></button><div class="nav-panel" id="cj-esconden" role="menu"><a href="radar.html"><span class="nav-t">Radar de la paz narca<span class="nav-sello">Nuevo</span></span><span class="nav-d">Territorios donde bajan los muertos y sube el cobro. Indicador propio</span></a><a href="senales.html"><span class="nav-t">Señales del espejo</span><span class="nav-d">22 delitos que caen mientras su categoría Otros sube en el mismo periodo</span></a><a href="conteo.html"><span class="nav-t">El país que no se cuenta</span><span class="nav-d">Dos conteos oficiales del mismo hecho, y un catálogo con bolsas donde el registro deja de ser auditable</span></a></div></div>
+<div class="nav-caj" data-caj="expedientes"><button type="button" class="mono text-[12px] font-semibold uppercase tracking-[.1em] pb-1 whitespace-nowrap border-b-2 transition-colors text-[#E4DCCE] border-transparent hover:text-[#FBBF24] hover:border-[#FBBF24]/50 bg-transparent cursor-pointer" aria-expanded="false" aria-controls="cj-expedientes">Expedientes <span class="nav-flecha">&#9662;</span></button><div class="nav-panel" id="cj-expedientes" role="menu"><a href="corredores-sureste.html"><span class="nav-t">Corredores ferroviarios</span><span class="nav-d">Istmo y Tren Maya: qué pasa con el delito a lo largo de la vía</span></a><a href="morelos/index.html"><span class="nav-t">Morelos</span><span class="nav-d">Los cinco datos duros de la seguridad en el estado</span></a><a href="expedientes.html"><span class="nav-t">Todos los expedientes</span><span class="nav-d">Las investigaciones abiertas de 45 Digital Noticias</span></a></div></div>
+<div class="nav-caj" data-caj="metodo"><button type="button" class="mono text-[12px] font-semibold uppercase tracking-[.1em] pb-1 whitespace-nowrap border-b-2 transition-colors text-[#E4DCCE] border-transparent hover:text-[#FBBF24] hover:border-[#FBBF24]/50 bg-transparent cursor-pointer" aria-expanded="false" aria-controls="cj-metodo">Cómo se hizo <span class="nav-flecha">&#9662;</span></button><div class="nav-panel" id="cj-metodo" role="menu"><a href="metodologia.html"><span class="nav-t">Metodología</span><span class="nav-d">De qué archivo sale cada cifra y cómo se calcula</span></a><a href="glosario.html"><span class="nav-t">Glosario</span><span class="nav-d">Qué significa cada término del catálogo oficial</span></a><a href="como_leer.html"><span class="nav-t">Cómo leer</span><span class="nav-d">Guía de lectura del sitio y por qué se construyó así</span></a></div></div></div><div class="flex items-center gap-2 shrink-0"><button type="button" class="nav-burger lg:hidden" id="navBurger" aria-expanded="false" aria-controls="navMovil" aria-label="Menú"><span></span><span></span><span></span></button><a href="columnas/" class="hidden lg:inline-block mono text-[12px] font-semibold uppercase tracking-[.1em] text-[#14110c] bg-[#FBBF24] px-3 py-[7px] whitespace-nowrap hover:bg-[#ffd35c] transition-colors">Columnas</a></div></div></nav>
+<div class="nav-movil" id="navMovil"><a class="nm-mapa" href="index.html">Mapa</a><div class="nm-grupo"><div class="nm-tit">Dónde</div><a href="ranking-nacional.html"><span class="nav-t">El país</span><span class="nav-d">Los 32 estados y los municipios que encabezan, delito por delito</span></a><a href="estado.html"><span class="nav-t">Estados</span><span class="nav-d">Radiografía completa de un estado: 55 delitos, serie y panel RNPDNO</span></a><a href="municipios.html"><span class="nav-t">Municipios</span><span class="nav-d">Busca tu municipio entre los 2,475 y compáralo con su estado</span></a></div><div class="nm-grupo"><div class="nm-tit">Lo que esconden</div><a href="radar.html"><span class="nav-t">Radar de la paz narca<span class="nav-sello">Nuevo</span></span><span class="nav-d">Territorios donde bajan los muertos y sube el cobro. Indicador propio</span></a><a href="senales.html"><span class="nav-t">Señales del espejo</span><span class="nav-d">22 delitos que caen mientras su categoría Otros sube en el mismo periodo</span></a><a href="conteo.html"><span class="nav-t">El país que no se cuenta</span><span class="nav-d">Dos conteos oficiales del mismo hecho, y un catálogo con bolsas donde el registro deja de ser auditable</span></a></div><div class="nm-grupo"><div class="nm-tit">Expedientes</div><a href="corredores-sureste.html"><span class="nav-t">Corredores ferroviarios</span><span class="nav-d">Istmo y Tren Maya: qué pasa con el delito a lo largo de la vía</span></a><a href="morelos/index.html"><span class="nav-t">Morelos</span><span class="nav-d">Los cinco datos duros de la seguridad en el estado</span></a><a href="expedientes.html"><span class="nav-t">Todos los expedientes</span><span class="nav-d">Las investigaciones abiertas de 45 Digital Noticias</span></a></div><div class="nm-grupo"><div class="nm-tit">Cómo se hizo</div><a href="metodologia.html"><span class="nav-t">Metodología</span><span class="nav-d">De qué archivo sale cada cifra y cómo se calcula</span></a><a href="glosario.html"><span class="nav-t">Glosario</span><span class="nav-d">Qué significa cada término del catálogo oficial</span></a><a href="como_leer.html"><span class="nav-t">Cómo leer</span><span class="nav-d">Guía de lectura del sitio y por qué se construyó así</span></a></div><a class="nm-col" href="columnas/">Columnas y auditorías</a><div class="nm-redes"><a href="https://www.facebook.com/45DigitalMx" target="_blank" rel="noopener">Facebook</a><a href="https://www.youtube.com/@45digitalnoticias56" target="_blank" rel="noopener">YouTube</a></div></div>
+<div class="flex-grow">
+<main class="wrap">
     <div class="eyebrow">Cómo se construye este expediente</div>
     <h1>Metodología y <em>trazabilidad</em></h1>
     <p>Este expediente se sostiene sobre una regla única: <strong>toda cifra publicada debe poder rastrearse hasta un archivo oficial y reproducirse por cualquier persona</strong>. Esta página documenta las fuentes, los cortes, los métodos de cálculo, las validaciones cruzadas y, con el mismo peso, los límites de lo que mostramos.</p>
@@ -153,33 +613,105 @@ if(/github\.io$/.test(location.hostname)){
 <p style="font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--dim);margin-top:36px;">Última actualización: julio 2026 · contacto: mevo@mevo.com.mx</p>
   </main>
   <footer>45 Digital Noticias · Metodología · <a href="https://45digitalnoticias.github.io/columnas/privacidad.html" target="_blank" rel="noopener">aviso de privacidad</a></footer>
-<button class="shfab" onclick="document.getElementById('shpop').classList.toggle('open')" title="Compartir" aria-label="Compartir">⤴</button>
-<div class="shpop" id="shpop">
-  <a href="#" onclick="shGo('x');return false;" style="--sc:var(--txt)" title="X">𝕏</a>
-  <a href="#" onclick="shGo('fb');return false;" style="--sc:#1877f2" title="Facebook">f</a>
-  <a href="#" onclick="shGo('wa');return false;" style="--sc:#25d366" title="WhatsApp">✆</a>
-  <button onclick="navigator.clipboard.writeText(location.href);this.textContent='✓';setTimeout(()=>this.textContent='⧉',1200);" style="--sc:var(--oro)" title="Copiar enlace">⧉</button>
+
 </div>
-<style>
-.shfab{position:fixed;bottom:18px;right:18px;z-index:9400;width:52px;height:52px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--oro),#f59e0b);box-shadow:0 0 18px color-mix(in srgb,var(--oro) 50%,transparent),0 3px 10px rgba(0,0,0,.5);color:var(--bg);font-size:21px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;}
-.shfab:hover{box-shadow:0 0 26px color-mix(in srgb,var(--oro) 75%,transparent),0 3px 10px rgba(0,0,0,.5);}
-.shpop{position:fixed;bottom:80px;right:21px;z-index:9400;display:none;flex-direction:column;gap:9px;}
-.shpop.open{display:flex;}
-.shpop a,.shpop button{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;text-decoration:none;cursor:pointer;background:color-mix(in srgb,var(--bg) 88%,transparent);color:var(--sc);border:1.5px solid var(--sc);box-shadow:0 0 11px color-mix(in srgb, var(--sc) 40%, transparent);}
-.shpop a:hover,.shpop button:hover{background:color-mix(in srgb, var(--sc) 18%, color-mix(in srgb,var(--bg) 88%,transparent));}
-@media(max-width:680px){.shfab{bottom:74px;}.shpop{bottom:136px;}}
-</style>
+<footer class="border-t border-border-subtle mt-auto">
+  <div class="w-full max-w-max-width mx-auto px-margin py-block-gap">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+<div><div class="mono text-[9.5px] uppercase tracking-[.2em] text-[#8a8072] mb-3">Dónde</div><a href="ranking-nacional.html" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">El país</a><a href="estado.html" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">Estados</a><a href="municipios.html" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">Municipios</a></div>
+<div><div class="mono text-[9.5px] uppercase tracking-[.2em] text-[#8a8072] mb-3">Lo que esconden</div><a href="radar.html" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">Radar de la paz narca</a><a href="senales.html" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">Señales del espejo</a><a href="conteo.html" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">El país que no se cuenta</a></div>
+<div><div class="mono text-[9.5px] uppercase tracking-[.2em] text-[#8a8072] mb-3">Expedientes</div><a href="corredores-sureste.html" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">Corredores ferroviarios</a><a href="morelos/index.html" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">Morelos</a><a href="expedientes.html" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">Todos los expedientes</a></div>
+<div><div class="mono text-[9.5px] uppercase tracking-[.2em] text-[#8a8072] mb-3">Cómo se hizo</div><a href="metodologia.html" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">Metodología</a><a href="glosario.html" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">Glosario</a><a href="como_leer.html" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">Cómo leer</a></div>
+<div><div class="mono text-[9.5px] uppercase tracking-[.2em] text-[#8a8072] mb-3">Editorial</div><a href="columnas/" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">Columnas y auditorías</a><a href="https://www.facebook.com/45DigitalMx" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">Facebook</a><a href="https://www.youtube.com/@45digitalnoticias56" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">YouTube</a></div>
+<div><div class="mono text-[9.5px] uppercase tracking-[.2em] text-[#8a8072] mb-3">Red 45 Digital</div><a href="https://45digitalnoticias.github.io/Expediente-Hantavirus/" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">Expediente Brotes</a><a href="https://45digitalnoticias.github.io/cementerio-transparencia/" class="block text-[12px] leading-[1.9] text-text-muted hover:text-[#FBBF24] transition-colors">Cementerio de la Transparencia</a></div>
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3
+                mt-10 pt-6 border-t border-border-subtle">
+      <div class="flex flex-col gap-1">
+        <span class="font-bold text-[13px] tracking-tight text-text-primary">INSEGURIDAD MÉXICO</span>
+        <span class="mono text-[10.5px] text-[#8a8072]">
+          45 Digital Noticias · datos oficiales SESNSP, RNPDNO, INEGI, CONAPO · corte junio 2026
+        </span>
+      </div>
+      <a href="https://45digitalnoticias.github.io/columnas/privacidad.html" target="_blank"
+         rel="noopener" class="mono text-[10px] uppercase tracking-[.12em] text-[#8a8072]
+         hover:text-[#FBBF24] transition-colors">Aviso de privacidad</a>
+    </div>
+  </div>
+</footer>
+<button type="button" class="shfab3" id="shfab3" aria-label="Compartir" aria-expanded="false" title="Compartir">&#10548;</button><div class="shpop3" id="shpop3"><a href="#" data-red="x" title="X">&#120143;</a><a href="#" data-red="fb" title="Facebook">f</a><a href="#" data-red="wa" title="WhatsApp">&#9990;</a><button type="button" id="shcopy3" title="Copiar enlace">&#10697;</button></div>
 <script>
-function shGo(n){
-  const u=encodeURIComponent(location.href), t=encodeURIComponent(document.title);
-  const m={x:'https://twitter.com/intent/tweet?text='+t+'&url='+u, fb:'https://www.facebook.com/sharer/sharer.php?u='+u, wa:'https://wa.me/?text='+t+'%20'+u};
-  window.open(m[n],'_blank','noopener');
-}
+(function(){
+  var cajones=[].slice.call(document.querySelectorAll('.nav-caj'));
+  if(!cajones.length) return;
+  function cerrar(menos){
+    cajones.forEach(function(c){
+      if(c===menos) return;
+      c.classList.remove('abierto');
+      c.querySelector('button').setAttribute('aria-expanded','false');
+    });
+  }
+  cajones.forEach(function(c){
+    var b=c.querySelector('button');
+    b.addEventListener('click',function(e){
+      e.stopPropagation();
+      var abre=!c.classList.contains('abierto');
+      cerrar(c); c.classList.toggle('abierto',abre);
+      b.setAttribute('aria-expanded',abre?'true':'false');
+    });
+    if(window.matchMedia('(hover:hover)').matches){
+      c.addEventListener('mouseenter',function(){
+        cerrar(c); c.classList.add('abierto'); b.setAttribute('aria-expanded','true');
+      });
+      c.addEventListener('mouseleave',function(){
+        c.classList.remove('abierto'); b.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+  document.addEventListener('click',function(){ cerrar(null); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') cerrar(null); });
+})();
+
+(function(){
+  var b=document.getElementById('navBurger'), p=document.getElementById('navMovil');
+  if(!b||!p) return;
+  function pon(abre){
+    document.body.classList.toggle('nav-abierto',abre);
+    b.setAttribute('aria-expanded',abre?'true':'false');
+  }
+  b.addEventListener('click',function(){ pon(!document.body.classList.contains('nav-abierto')); });
+  p.addEventListener('click',function(e){ if(e.target.tagName==='A') pon(false); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') pon(false); });
+  // Si se agranda la ventana con el panel abierto, se cierra: arriba de 1024px
+  // manda el menu de cajones y quedarian los dos encima.
+  addEventListener('resize',function(){ if(innerWidth>=1024) pon(false); });
+})();
+
+(function(){
+  var b=document.getElementById('shfab3'), p=document.getElementById('shpop3');
+  if(!b||!p) return;
+  b.addEventListener('click',function(){
+    var abre=!p.classList.contains('open');
+    p.classList.toggle('open',abre); b.setAttribute('aria-expanded',abre?'true':'false');
+  });
+  p.querySelectorAll('a[data-red]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var u=encodeURIComponent(location.href), t=encodeURIComponent(document.title);
+      var m={x:'https://twitter.com/intent/tweet?text='+t+'&url='+u,
+             fb:'https://www.facebook.com/sharer/sharer.php?u='+u,
+             wa:'https://wa.me/?text='+t+'%20'+u};
+      window.open(m[a.dataset.red],'_blank','noopener');
+    });
+  });
+  var c=document.getElementById('shcopy3');
+  c.addEventListener('click',function(){
+    navigator.clipboard.writeText(location.href);
+    c.textContent='\u2713'; setTimeout(function(){ c.textContent='\u2949'; },1200);
+  });
+})();
 </script>
-<script>function setT(t){document.documentElement.dataset.theme=t;document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));try{localStorage.setItem('imx-theme',t);}catch(e){}}
-(function(){var t=document.documentElement.dataset.theme||'dark';document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));})();</script>
-<!-- RED-45 start -->
-<nav aria-label="Red 45 Digital Noticias" style="max-width:1100px;margin:48px auto 22px;padding:18px 20px 4px;border-top:1px solid rgba(128,128,128,.28);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:13px;line-height:1.9;text-align:center;opacity:.85;"><div style="text-transform:uppercase;letter-spacing:2.5px;font-size:10.5px;opacity:.6;margin-bottom:7px;">Red 45 Digital Noticias</div><div><a href="https://45digitalnoticias.github.io/columnas/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Columnas</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/Inseguridad-Mexico/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Inseguridad México</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/Expediente-Hantavirus/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Expediente Brotes</a> &nbsp;·&nbsp; <a href="https://45digitalnoticias.github.io/cementerio-transparencia/" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(128,128,128,.45);">Cementerio de la Transparencia</a></div></nav>
-<!-- RED-45 end -->
+
+
 </body>
 </html>
