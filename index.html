@@ -186,6 +186,10 @@ canvas#mapa{width:100%;display:block;}
 .nav-caj.abierto .nav-flecha{opacity:1;}
 .nav-panel{position:absolute;top:calc(100% + 9px);left:-14px;min-width:352px;z-index:60;
   background:#15130E;border:1px solid #2D3139;padding:6px;display:none;}
+/* Puente invisible sobre el hueco de 9px entre boton y panel. Sin el, al
+   cruzar hacia el panel el puntero "salia" del contenedor y el mouseleave
+   cerraba el menu antes del clic. Reportado por el usuario el 13-ago-2026. */
+.nav-caj.abierto::after{content:"";position:absolute;top:100%;left:-14px;right:-14px;height:12px;}
 .nav-caj.abierto .nav-panel{display:block;}
 /* la punta que amarra el panel con su boton */
 .nav-caj.abierto .nav-panel::before{content:"";position:absolute;top:-5px;left:20px;width:8px;height:8px;
@@ -706,30 +710,15 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
       <a href="columnas/" class="mono text-[10.5px] uppercase tracking-[.14em] text-[#FBBF24] hover:underline shrink-0">Ver todas</a>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-group-gap items-stretch">
-      <a href="https://45digitalnoticias.github.io/columnas/el-robo-que-se-llama-vandalismo.html" target="_blank" rel="noopener"
+      <a href="https://45digitalnoticias.github.io/columnas/el-pais-que-no-se-cuenta.html" target="_blank" rel="noopener"
          class="relative flex flex-col h-full border border-[#FBBF24]/45 bg-surface-elevated overflow-hidden
                 hover:border-[#FBBF24] transition-colors group">
         <span class="absolute top-3 left-3 z-10 mono text-[9px] font-bold uppercase tracking-[.12em] bg-[#FBBF24] text-[#14110c] px-3 py-[5px] rounded-full">Nueva</span>
-        <img src="columnas/portadas/el-robo-que-se-llama-vandalismo.webp" alt="El robo que se llama vandalismo" loading="lazy"
-             class="w-full aspect-[1344/620] object-cover">
-        <div class="flex flex-col gap-2 p-5 flex-grow">
-          <span class="mono text-[9.5px] uppercase tracking-[.18em] text-[#FBBF24]">
-            Columna más reciente
-          </span>
-          <h3 class="text-[19px] font-bold leading-[1.12] tracking-[-.02em] text-text-primary">El robo que se llama vandalismo</h3>
-          <p class="text-[12.5px] leading-[1.55] text-text-muted text-justify hyphens-auto hook-corto m-0">El robo al tren de carga no bajó: cambió de casilla. La ARTF registra 7 de cada 10 asaltos como vandalismo, y ese vandalismo (cerrar los angulares para frenar el tren) es el método del hurto. En Aguascalientes: 470 robos al tren en 2025 según la ARTF, 0 según el SESNSP. Con la legibilidad de James C. Scott.</p>
-          <span class="mono text-[10px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-2">Leer la columna</span>
-        </div>
-      </a>
-      <a href="https://45digitalnoticias.github.io/columnas/el-pais-que-no-se-cuenta.html" target="_blank" rel="noopener"
-         class="relative flex flex-col h-full border border-border-subtle bg-surface-elevated overflow-hidden
-                hover:border-[#FBBF24] transition-colors group">
-        
         <img src="columnas/portadas/el-pais-que-no-se-cuenta.webp" alt="El país que no se cuenta" loading="lazy"
              class="w-full aspect-[1344/620] object-cover">
         <div class="flex flex-col gap-2 p-5 flex-grow">
           <span class="mono text-[9.5px] uppercase tracking-[.18em] text-[#FBBF24]">
-            Columna firmada
+            Columna más reciente
           </span>
           <h3 class="text-[19px] font-bold leading-[1.12] tracking-[-.02em] text-text-primary">El país que no se cuenta</h3>
           <p class="text-[12.5px] leading-[1.55] text-text-muted text-justify hyphens-auto hook-corto m-0">Esta mañana, desde la conferencia matutina, la presidenta Claudia Sheinbaum presumió que el homicidio doloso cayó 51 por ciento en 22 meses. La baja es real, y el INEGI la confirma con actas de defunción. Pero la cifra es un acertijo: el homicidio es apenas el 1 por ciento de todos los delitos del país, y el total no bajó, subió 21.7 por ciento en la década y lleva plano desde 2018. El delito se recompuso, cayó el robo en la calle y se dispararon la violencia familiar, más 109 por ciento, y los delitos sexuales. Y la forma de la baja delata su origen, el homicidio cede mientras la extorsión y el narcomenudeo suben, la huella de un crimen que se consolidó y no de un Estado que pacificó, según Gambetta, Trejo y Ley, y Durán-Martínez. Todo esto ocurre sobre el 6 por ciento de la realidad, porque el INEGI estima 33.5 millones de delitos al año, de los que el 93 por ciento nunca se denuncia. Con la ley de Goodhart, que popularizó Marilyn Strathern: cuando una medida se convierte en objetivo, deja de ser una buena medida.</p>
@@ -748,6 +737,21 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
           </span>
           <h3 class="text-[19px] font-bold leading-[1.12] tracking-[-.02em] text-text-primary">El semestre que subió</h3>
           <p class="text-[12.5px] leading-[1.55] text-text-muted text-justify hyphens-auto hook-corto m-0">En la mañanera del 24 de julio, desde Cuernavaca, el gabinete de seguridad presentó una fila de delitos de Morelos a la baja. Fuimos a la misma fuente oficial que ellos citan, el SESNSP con corte a junio, y lo que dejaron fuera de cuadro cuenta otra historia: la delincuencia total del semestre no bajó, subió 7.3 por ciento; la extorsión se duplicó en un año, más 112.8 por ciento, y la narraron como más confianza para denunciar; el homicidio sí bajó, pero todo el 54 por ciento cuelga de dos meses recientes y aún preliminares, mayo y junio, en pleno Mundial, mientras abril, cuando arranca su Plan Morelos, fue un pico; y el feminicidio bajó como etiqueta, no como cuerpos, porque las mujeres asesinadas siguen planas y solo una de cada cuatro se clasifica como feminicidio. Con el concepto de Darrell Huff, How to Lie with Statistics: para engañar con una estadística no hace falta falsear un número, basta escoger cuál se muestra, contra qué base y en qué formato.</p>
+          <span class="mono text-[10px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-2">Leer la columna</span>
+        </div>
+      </a>
+      <a href="https://45digitalnoticias.github.io/columnas/el-arresto-y-la-marea.html" target="_blank" rel="noopener"
+         class="relative flex flex-col h-full border border-border-subtle bg-surface-elevated overflow-hidden
+                hover:border-[#FBBF24] transition-colors group">
+        
+        <img src="columnas/portadas/el-arresto-y-la-marea.webp" alt="El arresto y la marea" loading="lazy"
+             class="w-full aspect-[1344/620] object-cover">
+        <div class="flex flex-col gap-2 p-5 flex-grow">
+          <span class="mono text-[9.5px] uppercase tracking-[.18em] text-[#FBBF24]">
+            Columna firmada
+          </span>
+          <h3 class="text-[19px] font-bold leading-[1.12] tracking-[-.02em] text-text-primary">El arresto y la marea</h3>
+          <p class="text-[12.5px] leading-[1.55] text-text-muted text-justify hyphens-auto hook-corto m-0">La presidenta presume que, gracias a la detención del alcalde de Cuautla, los homicidios de Morelos bajaron de 3.7 a 1.9 al día. Pero la causa no cuadra: Cuautla aporta cerca del 10% de los homicidios del estado, al alcalde lo acusan de extorsión y delincuencia organizada, no de homicidios, la extorsión de Cuautla sigue subiendo, y el 1.9 es de junio, el mes del Mundial. Con el concepto de regresión a la media de Daniel Kahneman: tras un pico extraordinario, la cifra vuelve sola hacia el promedio, y el error clásico es atribuir ese regreso a la intervención que llegó en medio.</p>
           <span class="mono text-[10px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-2">Leer la columna</span>
         </div>
       </a>
@@ -801,11 +805,14 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
       b.setAttribute('aria-expanded',abre?'true':'false');
     });
     if(window.matchMedia('(hover:hover)').matches){
+      var t=null;
       c.addEventListener('mouseenter',function(){
-        cerrar(c); c.classList.add('abierto'); b.setAttribute('aria-expanded','true');
+        clearTimeout(t); cerrar(c); c.classList.add('abierto'); b.setAttribute('aria-expanded','true');
       });
+      /* 260ms de gracia: cruzar en diagonal hacia el panel no lo cierra */
       c.addEventListener('mouseleave',function(){
-        c.classList.remove('abierto'); b.setAttribute('aria-expanded','false');
+        clearTimeout(t);
+        t=setTimeout(function(){ c.classList.remove('abierto'); b.setAttribute('aria-expanded','false'); },260);
       });
     }
   });
