@@ -184,7 +184,11 @@ canvas#mapa{width:100%;display:block;}
 .nav-caj{position:relative;}
 .nav-flecha{font-size:8px;opacity:.55;margin-left:2px;}
 .nav-caj.abierto .nav-flecha{opacity:1;}
-.nav-panel{position:absolute;top:calc(100% + 9px);left:-14px;min-width:352px;z-index:60;
+/* z-index 2000: Leaflet usa 400-1000 en sus panes y controles, y los paneles
+   flotantes de corredores llegan a 1000. Con 60, el menu abierto quedaba
+   ENTERRADO bajo el mapa de trenes: se veian las teselas a traves del panel.
+   Reportado por el usuario el 13-ago-2026. */
+.nav-panel{position:absolute;top:calc(100% + 9px);left:-14px;min-width:352px;z-index:2000;
   background:#15130E;border:1px solid #2D3139;padding:6px;display:none;}
 /* Puente invisible sobre el hueco de 9px entre boton y panel. Sin el, al
    cruzar hacia el panel el puntero "salia" del contenedor y el mouseleave
@@ -418,7 +422,7 @@ canvas#mapa{width:100%;display:block;}
 body.nav-abierto .nav-burger span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
 body.nav-abierto .nav-burger span:nth-child(2){opacity:0;}
 body.nav-abierto .nav-burger span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
-.nav-movil{display:none;position:fixed;inset:57px 0 0;z-index:55;background:#0E0C0B;
+.nav-movil{display:none;position:fixed;inset:57px 0 0;z-index:1900;background:#0E0C0B;
   overflow-y:auto;padding:8px 0 40px;}
 body.nav-abierto .nav-movil{display:block;}
 body.nav-abierto{overflow:hidden;}
@@ -484,7 +488,7 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
 </head>
 <body class="antialiased min-h-screen flex flex-col">
 
-<nav class="border-b border-border-subtle sticky top-0 z-50 bg-[#0E0C0B]/92 backdrop-blur">
+<nav class="border-b border-border-subtle sticky top-0 z-[1500] bg-[#0E0C0B]/92 backdrop-blur">
   <div class="flex justify-between items-center gap-6 px-margin py-3 w-full max-w-max-width mx-auto">
     <a href="index.html" class="font-extrabold text-[15px] uppercase tracking-[.06em] text-text-primary shrink-0">
       Inseguridad México
