@@ -188,6 +188,10 @@ canvas#mapa{width:100%;display:block;}
 .nav-caj.abierto .nav-flecha{opacity:1;}
 .nav-panel{position:absolute;top:calc(100% + 9px);left:-14px;min-width:352px;z-index:60;
   background:#15130E;border:1px solid #2D3139;padding:6px;display:none;}
+/* Puente invisible sobre el hueco de 9px entre boton y panel. Sin el, al
+   cruzar hacia el panel el puntero "salia" del contenedor y el mouseleave
+   cerraba el menu antes del clic. Reportado por el usuario el 13-ago-2026. */
+.nav-caj.abierto::after{content:"";position:absolute;top:100%;left:-14px;right:-14px;height:12px;}
 .nav-caj.abierto .nav-panel{display:block;}
 /* la punta que amarra el panel con su boton */
 .nav-caj.abierto .nav-panel::before{content:"";position:absolute;top:-5px;left:20px;width:8px;height:8px;
@@ -751,11 +755,14 @@ main,.wrap,.bgwrap{min-width:0;}
       b.setAttribute('aria-expanded',abre?'true':'false');
     });
     if(window.matchMedia('(hover:hover)').matches){
+      var t=null;
       c.addEventListener('mouseenter',function(){
-        cerrar(c); c.classList.add('abierto'); b.setAttribute('aria-expanded','true');
+        clearTimeout(t); cerrar(c); c.classList.add('abierto'); b.setAttribute('aria-expanded','true');
       });
+      /* 260ms de gracia: cruzar en diagonal hacia el panel no lo cierra */
       c.addEventListener('mouseleave',function(){
-        c.classList.remove('abierto'); b.setAttribute('aria-expanded','false');
+        clearTimeout(t);
+        t=setTimeout(function(){ c.classList.remove('abierto'); b.setAttribute('aria-expanded','false'); },260);
       });
     }
   });
