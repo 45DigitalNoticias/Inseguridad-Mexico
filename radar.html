@@ -612,7 +612,7 @@ main,.wrap,.bgwrap{min-width:0;}
   Solo municipios con <b>50 mil habitantes o más</b> y un mínimo de eventos en ambos ejes: en poblaciones chicas un solo caso dispara los porcentajes y el indicador dejaría de significar algo. Quedan <b><span id="nMun2">315</span></b> de los 2,478 municipios y demarcaciones del país.
 </div>
 
-<div class="sec">El mapa, estado por estado</div>
+<div class="sec" id="secMapa">El mapa, estado por estado</div>
 <div class="panel mapwrap">
   <div class="zoomb">
     <button onclick="zoomEn(1.45)" title="Acercar" aria-label="Acercar">+</button>
@@ -939,8 +939,7 @@ function mapa(){
   });
   }
   svg.appendChild(G); MAPW=W; MAPH=H; aplicaZoom();
-  document.getElementById('legEdo').style.display=esMun()?'none':'';
-  document.getElementById('legMun').style.display=esMun()?'':'none';
+  document.getElementById('legEdo').style.display='';document.getElementById('legMun').style.display='none';var _sm=document.getElementById('secMapa');if(_sm)_sm.textContent=esMun()?'El mapa, municipio por municipio':'El mapa, estado por estado';
 }
 
 function scatter(){
