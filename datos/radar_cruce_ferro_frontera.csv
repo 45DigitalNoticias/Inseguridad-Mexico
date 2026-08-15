@@ -1,0 +1,343 @@
+cve_mun,municipio,estado,cuadrante,score,delta_homicidio_pct,delta_control_pct,km_a_via_ferrea,km_a_frontera_norte
+01001,"Aguascalientes","Aguascalientes",Q2,81.2,-37.5,43.7,3.6,613.2
+01005,"Jesús María","Aguascalientes",Q3,9.9,73.9,83.7,16.6,603.9
+01011,"San Francisco de los Romo","Aguascalientes",Q1,29.7,-50.5,-20.7,3.8,588.7
+02001,"Ensenada","Baja California",Q2,81.7,-64,17.7,115.1,43.1
+02002,"Mexicali","Baja California",Q4,-80.3,22.5,-57.9,23.6,40.7
+02003,"Tecate","Baja California",Q2,1622.4,-27.1,1595.3,27.8,18.7
+02004,"Tijuana","Baja California",Q1,21.5,-52.3,-30.9,6,19.5
+02005,"Playas de Rosarito","Baja California",Q2,2014.7,-69.2,1945.4,21.3,1.4
+03001,"Comondú","Baja California Sur",Q3,-721.6,748.4,26.8,259.3,234
+03002,"Mulegé","Baja California Sur",Q4,-160.5,137.8,-22.7,244,204.7
+03003,"La Paz","Baja California Sur",Q1,40.6,-55.7,-15.1,224.7,293.5
+03008,"Los Cabos","Baja California Sur",Q2,173.6,-55.8,117.7,265.9,357.8
+04002,"Campeche","Campeche",Q3,263.1,134.4,397.5,11.9,1002.7
+04003,"Carmen","Campeche",Q2,256.6,-20.9,235.7,59.1,1014.7
+04004,"Champotón","Campeche",Q3,-309.5,319,9.5,1.3,1027.9
+04009,"Escárcega","Campeche",Q1,6.9,-45.9,-39,2.5,1077.7
+05017,"Matamoros","Coahuila",Q1,81.1,-86.1,-5,16.6,342.9
+05018,"Monclova","Coahuila",Q1,-27.2,-51.6,-78.8,24.3,168.7
+05020,"Múzquiz","Coahuila",Q1,-3.6,-39,-42.6,69.2,138.1
+05025,"Piedras Negras","Coahuila",Q1,-21,-14.6,-35.6,13.7,11.5
+05030,"Saltillo","Coahuila",Q1,-17,-49.1,-66.1,7.2,262.5
+05035,"Torreón","Coahuila",Q2,103.2,-83.2,20,0.5,357.9
+06002,"Colima","Colima",Q4,-91.7,33.1,-58.6,13,796.2
+06007,"Manzanillo","Colima",Q2,164.3,-12.6,151.7,6.9,767.8
+06009,"Tecomán","Colima",Q2,235.5,-89.7,145.8,11,812.3
+06010,"Villa de Álvarez","Colima",Q3,10901.6,127.5,11029.1,9.5,767.5
+07012,"Berriozábal","Chiapas",Q1,-24.9,-17,-41.9,78.4,1085.7
+07019,"Comitán de Domínguez","Chiapas",Q2,303.2,-59,244.1,119.5,1193.3
+07034,"Frontera Comalapa","Chiapas",Q3,545.1,64.8,609.8,80,1251.6
+07040,"Huixtla","Chiapas",Q3,0,98.7,98.7,7.2,1300.2
+07059,"Ocosingo","Chiapas",Q2,141.9,-77.4,64.6,82,1195.9
+07061,"Ocozocoautla de Espinosa","Chiapas",Q2,110.8,-19.1,91.7,78.9,1083.3
+07065,"Palenque","Chiapas",Q1,42.1,-73.1,-30.9,11.2,1098.1
+07078,"San Cristóbal de las Casas","Chiapas",Q2,323.6,-24,299.6,98.7,1134.9
+07089,"Tapachula","Chiapas",Q1,34.1,-35.6,-1.5,6.2,1327
+07101,"Tuxtla Gutiérrez","Chiapas",Q2,53.9,-44.7,9.2,89.6,1106.2
+07108,"Villaflores","Chiapas",Q2,260,-52,208,49.8,1137.9
+08017,"Cuauhtémoc","Chihuahua",Q2,208,-40.7,167.3,30.3,195.8
+08019,"Chihuahua","Chihuahua",Q2,131,-22.1,108.9,8.1,183.8
+08021,"Delicias","Chihuahua",Q4,-91.8,30,-61.9,8.2,193.5
+08032,"Hidalgo del Parral","Chihuahua",Q2,266.2,-70.7,195.5,15.4,151.1
+08037,"Juárez","Chihuahua",Q1,-30.6,-44.9,-75.5,6.4,31.9
+08050,"Nuevo Casas Grandes","Chihuahua",Q2,439.8,-12.6,427.2,17.4,75.1
+09002,"Azcapotzalco","Ciudad de México",Q2,49.5,-24.8,24.8,1.4,732.2
+09003,"Coyoacán","Ciudad de México",Q1,29.6,-58.1,-28.5,5.8,748.6
+09004,"Cuajimalpa de Morelos","Ciudad de México",Q2,54.7,-11.4,43.3,1.4,752.8
+09005,"Gustavo A. Madero","Ciudad de México",Q2,74.7,-63.5,11.2,2.2,728.5
+09006,"Iztacalco","Ciudad de México",Q2,67.6,-33.2,34.3,4.5,739.6
+09007,"Iztapalapa","Ciudad de México",Q2,58.9,-44.5,14.4,9.8,744
+09008,"La Magdalena Contreras","Ciudad de México",Q1,-15,-21.5,-36.6,3.4,757.7
+09009,"Milpa Alta","Ciudad de México",Q3,440.7,20.2,460.9,11.7,766.6
+09010,"Álvaro Obregón","Ciudad de México",Q1,49.4,-54,-4.6,3.9,749.9
+09011,"Tláhuac","Ciudad de México",Q2,211.2,-53.9,157.2,5.8,750.6
+09012,"Tlalpan","Ciudad de México",Q2,63.9,-58.8,5.2,5.6,763.8
+09013,"Xochimilco","Ciudad de México",Q2,40,-11.9,28,11.1,756
+09014,"Benito Juárez","Ciudad de México",Q1,55.6,-56,-0.5,3.8,743
+09015,"Cuauhtémoc","Ciudad de México",Q2,104.2,-37.2,67,2.3,737.2
+09016,"Miguel Hidalgo","Ciudad de México",Q2,32.2,-32.1,0,0.3,738.9
+09017,"Venustiano Carranza","Ciudad de México",Q1,-5.9,-40.1,-46,1.8,735.9
+10005,"Durango","Durango",Q1,-13.3,-47.5,-60.7,4.9,267.1
+10007,"Gómez Palacio","Durango",Q2,198.4,-61.2,137.2,8.5,312.7
+10012,"Lerdo","Durango",Q2,230.6,-85.6,145,3.3,298.4
+10023,"Pueblo Nuevo","Durango",Q1,-2.7,-62.1,-64.8,36.3,288.2
+11001,"Abasolo","Guanajuato",Q2,184.3,-83.5,100.8,12.1,703.7
+11002,"Acámbaro","Guanajuato",Q2,861.8,-67.4,794.4,2.2,718.6
+11003,"San Miguel de Allende","Guanajuato",Q2,317.2,-17.2,300,4.8,627.8
+11004,"Apaseo el Alto","Guanajuato",Q2,3883.8,-48.8,3834.9,15.6,673.5
+11005,"Apaseo el Grande","Guanajuato",Q2,674.5,-30.3,644.1,2.6,659.3
+11007,"Celaya","Guanajuato",Q3,73.7,12.6,86.4,1.3,669.7
+11009,"Comonfort","Guanajuato",Q3,114.1,35.2,149.2,3.1,648.9
+11011,"Cortazar","Guanajuato",Q2,266.2,-40.8,225.4,10,687
+11014,"Dolores Hidalgo Cuna de la Independencia Nacional","Guanajuato",Q2,860.5,-0.6,859.8,6.3,614
+11015,"Guanajuato","Guanajuato",Q2,284,-44.2,239.9,9,641.2
+11017,"Irapuato","Guanajuato",Q2,189.3,-36.2,153.1,2.2,679.1
+11019,"Jerécuaro","Guanajuato",Q2,336.5,-25.2,311.3,20.8,694.7
+11020,"León","Guanajuato",Q2,115.5,-15.9,99.5,6.9,646.6
+11023,"Pénjamo","Guanajuato",Q1,-8.2,-36.9,-45.1,2.9,728.6
+11025,"Purísima del Rincón","Guanajuato",Q2,239.3,-27.2,212.1,14.2,680.3
+11026,"Romita","Guanajuato",Q2,468,-83.5,384.5,20.9,676
+11027,"Salamanca","Guanajuato",Q2,446.8,-31.5,415.2,6.5,677
+11028,"Salvatierra","Guanajuato",Q2,287.3,-14.2,273,4.1,708.8
+11030,"San Felipe","Guanajuato",Q3,642.4,18.8,661.2,37.8,591.6
+11031,"San Francisco del Rincón","Guanajuato",Q2,100.6,-43.5,57.1,13.1,674.7
+11032,"San José Iturbide","Guanajuato",Q3,251.5,3.4,254.9,3.8,606.1
+11033,"San Luis de la Paz","Guanajuato",Q2,329.8,-62,267.8,12.5,568.5
+11035,"Santa Cruz de Juventino Rosas","Guanajuato",Q3,6.3,158.7,165,18,664.4
+11037,"Silao de la Victoria","Guanajuato",Q2,459.5,-73.7,385.8,3.2,655.4
+11041,"Uriangato","Guanajuato",Q2,528.9,-56.9,472,27.6,727.6
+11042,"Valle de Santiago","Guanajuato",Q2,233.7,-3.2,230.5,8.7,706.6
+11044,"Villagrán","Guanajuato",Q3,383.2,69.7,452.9,5.3,677.7
+11046,"Yuriria","Guanajuato",Q2,939.6,-46.1,893.5,23,724.3
+12001,"Acapulco de Juárez","Guerrero",Q2,28.9,-17.7,11.2,119.3,1018.9
+12021,"Coyuca de Benítez","Guerrero",Q2,103.3,-31.1,72.2,104.4,1008
+12029,"Chilpancingo de los Bravo","Guerrero",Q2,63.1,-37.2,25.9,71.3,971.5
+12035,"Iguala de la Independencia","Guerrero",Q2,77.8,-18.5,59.3,7.3,878.2
+12038,"Zihuatanejo de Azueta","Guerrero",Q1,5.2,-32.9,-27.7,68.9,977.2
+12046,"Ometepec","Guerrero",Q2,146.8,-27.1,119.7,164.9,1028.2
+12055,"Taxco de Alarcón","Guerrero",Q1,54.7,-100,-45.3,14.1,847.1
+12057,"Técpan de Galeana","Guerrero",Q1,-46.5,-53.5,-100,127.2,999
+12066,"Tlapa de Comonfort","Guerrero",Q2,118.4,-32.3,86.1,102.3,931.7
+12075,"Eduardo Neri","Guerrero",Q2,265.3,-50.9,214.4,29,924.9
+13013,"Atotonilco de Tula","Hidalgo",Q2,124.4,-60.5,63.9,5.6,680.9
+13016,"Cuautepec de Hinojosa","Hidalgo",Q2,376.9,-27.8,349.1,5.3,660.4
+13028,"Huejutla de Reyes","Hidalgo",Q2,50.1,-12.3,37.9,68.8,537.6
+13030,"Ixmiquilpan","Hidalgo",Q1,53.2,-96,-42.8,42.2,620.2
+13041,"Mixquiahuala de Juárez","Hidalgo",Q1,24.6,-42.7,-18.1,14.4,652.7
+13048,"Pachuca de Soto","Hidalgo",Q2,129.1,-40,89.1,4.8,656
+13051,"Mineral de la Reforma","Hidalgo",Q3,-396,438.7,42.7,4.2,659.5
+13063,"Tepeji del Río de Ocampo","Hidalgo",Q3,29.7,19,48.7,10.1,692.3
+13069,"Tizayuca","Hidalgo",Q3,0,61.1,61.1,6.1,687.1
+13076,"Tula de Allende","Hidalgo",Q3,26,40.9,66.9,0.9,675.5
+13077,"Tulancingo de Bravo","Hidalgo",Q3,24.8,8,32.8,1.8,646
+14006,"Ameca","Jalisco",Q1,-22,-26.5,-48.6,2.8,631.7
+14023,"Zapotlán el Grande","Jalisco",Q1,-8.4,-57.4,-65.7,4.8,741.4
+14030,"Chapala","Jalisco",Q1,8.9,-91.7,-82.8,17.4,703.8
+14035,"Encarnación de Díaz","Jalisco",Q2,100.7,-79.9,20.8,4.6,631.7
+14039,"Guadalajara","Jalisco",Q1,55.9,-58,-2.2,2.9,655.9
+14044,"Ixtlahuacán de los Membrillos","Jalisco",Q1,63.8,-69.8,-6,6.1,690.1
+14050,"Jocotepec","Jalisco",Q1,24.3,-87.3,-63,16.3,686.4
+14053,"Lagos de Moreno","Jalisco",Q1,52.4,-80.5,-28.1,14.7,621.6
+14063,"Ocotlán","Jalisco",Q1,48.4,-80.6,-32.2,4.6,717.3
+14066,"Poncitlán","Jalisco",Q1,2,-65,-63,13.9,719.2
+14067,"Puerto Vallarta","Jalisco",Q1,31.4,-56.9,-25.5,56,574.9
+14070,"El Salto","Jalisco",Q1,56.7,-62.9,-6.2,7.4,673.9
+14073,"San Juan de los Lagos","Jalisco",Q1,-23.3,-61.5,-84.8,17.5,664.7
+14083,"Tala","Jalisco",Q2,321.2,-71.9,249.3,7.8,644.2
+14093,"Tepatitlán de Morelos","Jalisco",Q1,5.2,-73.8,-68.6,36.2,679.5
+14097,"Tlajomulco de Zúñiga","Jalisco",Q2,215.7,-53.6,162.1,1.1,670.5
+14098,"San Pedro Tlaquepaque","Jalisco",Q2,98.7,-36,62.7,1.3,663.3
+14101,"Tonalá","Jalisco",Q2,71.8,-52,19.8,8.9,668
+14120,"Zapopan","Jalisco",Q2,98.7,-60.2,38.5,7.7,635.9
+14124,"Zapotlanejo","Jalisco",Q1,55.5,-68.1,-12.6,25.9,676
+15002,"Acolman","México",Q2,64.2,-51.4,12.8,2.3,709.9
+15005,"Almoloya de Juárez","México",Q2,46.8,-24.9,22,8.2,759.4
+15013,"Atizapán de Zaragoza","México",Q2,67.9,-47.8,20.1,8,726
+15020,"Coacalco de Berriozábal","México",Q1,52.1,-58.3,-6.2,8.4,715
+15024,"Cuautitlán","México",Q1,52.6,-67.3,-14.7,3,707.6
+15025,"Chalco","México",Q1,-7.1,-21.3,-28.5,8.7,749.5
+15029,"Chicoloapan","México",Q3,25.6,10.2,35.8,4.4,733.8
+15031,"Chimalhuacán","México",Q2,188.8,-51.3,137.5,4.4,734.2
+15033,"Ecatepec de Morelos","México",Q1,17.6,-56.3,-38.7,1,719.4
+15035,"Huehuetoca","México",Q2,137.9,-75.4,62.5,5.5,697.8
+15037,"Huixquilucan","México",Q1,-19.6,-64.6,-84.2,4.1,747.3
+15039,"Ixtapaluca","México",Q2,87.8,-66.4,21.4,15.2,738.8
+15045,"Jilotepec","México",Q2,25.3,-24,1.3,13.2,687.2
+15047,"Jiquipilco","México",Q3,-22.7,36.5,13.7,16.5,734.5
+15051,"Lerma","México",Q1,32.8,-64.7,-31.9,7,755.2
+15054,"Metepec","México",Q1,-3.2,-31.8,-35,7.1,768.9
+15057,"Naucalpan de Juárez","México",Q1,-21.1,-48.6,-69.8,5.8,736.6
+15058,"Nezahualcóyotl","México",Q2,192.3,-72.2,120.1,3.1,735.2
+15059,"Nextlalpan","México",Q3,208.7,19.3,228,2.1,703.1
+15060,"Nicolás Romero","México",Q1,41.1,-43.7,-2.7,20.9,722.8
+15062,"Ocoyoacac","México",Q2,247.1,-39.8,207.2,3.2,762.4
+15070,"La Paz","México",Q2,115,-67.1,47.9,1.8,740.2
+15081,"Tecámac","México",Q1,26.5,-53.4,-26.9,3.4,703.6
+15087,"Temoaya","México",Q2,89,-38.1,50.8,15.5,744
+15088,"Tenancingo","México",Q1,-41.1,-31.9,-73.1,33.5,797.4
+15090,"Tenango del Valle","México",Q1,61.5,-70.8,-9.3,20.9,787.9
+15091,"Teoloyucan","México",Q2,116.8,-53.6,63.2,1.7,702
+15092,"Teotihuacán","México",Q1,2,-34.6,-32.6,3,703.2
+15095,"Tepotzotlán","México",Q1,10.7,-21.7,-10.9,13.6,709.7
+15099,"Texcoco","México",Q1,48.9,-52,-3.1,7.4,725.7
+15100,"Tezoyuca","México",Q1,33.8,-72.9,-39.1,2,714.2
+15101,"Tianguistenco","México",Q1,68.6,-91.4,-22.7,12.9,773.6
+15103,"Tlalmanalco","México",Q2,46.8,-15.8,31,2.6,752.6
+15104,"Tlalnepantla de Baz","México",Q2,114.7,-50.1,64.6,0.8,726
+15106,"Toluca","México",Q1,61.7,-65.1,-3.4,3.1,766.1
+15108,"Tultepec","México",Q3,34.6,41.4,76,6,709.7
+15109,"Tultitlán","México",Q2,111.1,-41.5,69.6,2.5,717.6
+15113,"Villa Guerrero","México",Q1,30.3,-73.4,-43,32.9,801.2
+15118,"Zinacantepec","México",Q2,63,-28.3,34.7,12.9,778.9
+15120,"Zumpango","México",Q1,25.3,-67.2,-42,9.4,694.5
+15121,"Cuautitlán Izcalli","México",Q1,-10.5,-5.2,-15.7,5.3,715
+15122,"Valle de Chalco Solidaridad","México",Q1,5.2,-49.5,-44.3,1.6,749.5
+16006,"Apatzingán","Michoacán",Q3,-3.8,85.6,81.8,17.3,872.4
+16034,"Hidalgo","Michoacán",Q1,2.8,-64.2,-61.5,25.9,762.1
+16043,"Jacona","Michoacán",Q2,97.8,-42,55.8,7.8,784.6
+16052,"Lázaro Cárdenas","Michoacán",Q1,61.6,-65.7,-4.1,14.7,958
+16053,"Morelia","Michoacán",Q2,167.2,-44.9,122.3,5,779.3
+16066,"Pátzcuaro","Michoacán",Q2,145.9,-6.6,139.2,6,810.7
+16069,"La Piedad","Michoacán",Q1,44,-68.2,-24.1,8.2,749.4
+16071,"Puruándiro","Michoacán",Q1,-15,-54.5,-69.5,12.6,744.9
+16075,"Los Reyes","Michoacán",Q1,19.7,-31,-11.3,8.8,806
+16076,"Sahuayo","Michoacán",Q1,21.8,-98.7,-76.9,26.2,746.7
+16079,"Salvador Escalante","Michoacán",Q2,88.2,-77.4,10.8,9.7,826.1
+16082,"Tacámbaro","Michoacán",Q2,839.3,-63.1,776.2,32.7,828.8
+16088,"Tarímbaro","Michoacán",Q4,-44.2,18.8,-25.3,9.4,758.9
+16102,"Uruapan","Michoacán",Q2,52.6,-47.5,5,6.6,839
+16108,"Zamora","Michoacán",Q4,-29.9,0.1,-29.8,4.4,778.8
+16112,"Zitácuaro","Michoacán",Q1,-25.7,-34.4,-60,2,769.6
+17004,"Ayala","Morelos",Q2,51.8,-15.9,36,4.4,811.2
+17006,"Cuautla","Morelos",Q3,55.1,77.9,133,0.9,798.7
+17007,"Cuernavaca","Morelos",Q1,5.7,-26.9,-21.2,3.6,793.3
+17008,"Emiliano Zapata","Morelos",Q3,43.2,30.2,73.5,2.5,804.9
+17011,"Jiutepec","Morelos",Q2,45.8,-10.3,35.5,0.1,796.8
+17012,"Jojutla","Morelos",Q1,-7,-3,-10,6.7,830.8
+17018,"Temixco","Morelos",Q3,-10.5,53.1,42.6,9.7,803.9
+17020,"Tepoztlán","Morelos",Q3,868.9,82.9,951.8,3.6,785
+17024,"Tlaltizapán de Zapata","Morelos",Q1,-11.7,-16.9,-28.5,1.5,815.1
+17028,"Xochitepec","Morelos",Q1,18.4,-34.5,-16.1,4.6,811.8
+17029,"Yautepec","Morelos",Q3,160.6,17.6,178.2,3.3,795.6
+17030,"Yecapixtla","Morelos",Q3,-76,181.7,105.7,5.3,793.9
+18004,"Compostela","Nayarit",Q2,533.1,-60.2,472.9,20,532.1
+18008,"Xalisco","Nayarit",Q2,2262.3,-79.3,2183,11.8,508.5
+18017,"Tepic","Nayarit",Q2,64.9,-48.9,16,1.1,489
+18020,"Bahía de Banderas","Nayarit",Q3,2751.7,4.6,2756.2,54.3,555.4
+19006,"Apodaca","Nuevo León",Q2,79.8,-14.2,65.6,3.7,135.4
+19009,"Cadereyta Jiménez","Nuevo León",Q1,46.8,-78.1,-31.3,7.3,134.5
+19010,"El Carmen","Nuevo León",Q2,261.3,-47.1,214.2,0.9,143.1
+19012,"Ciénega de Flores","Nuevo León",Q2,83.2,-70.6,12.6,9.9,124
+19018,"García","Nuevo León",Q2,371.9,-7.7,364.2,1.5,174.8
+19021,"General Escobedo","Nuevo León",Q2,45.8,-20.8,25,4.1,147.5
+19025,"General Zuazua","Nuevo León",Q2,120.7,-38.1,82.6,15.2,123.5
+19026,"Guadalupe","Nuevo León",Q2,91.1,-26.4,64.8,3.9,145.2
+19031,"Juárez","Nuevo León",Q2,241.5,-45.5,196,8.2,142.9
+19033,"Linares","Nuevo León",Q3,-931.7,1000.2,68.6,1.5,180.8
+19038,"Montemorelos","Nuevo León",Q4,-293.6,251.6,-42,1.2,164.1
+19039,"Monterrey","Nuevo León",Q2,194.5,-30.7,163.8,4.5,155.4
+19041,"Pesquería","Nuevo León",Q2,95.4,-41.6,53.8,7.1,123.1
+19045,"Salinas Victoria","Nuevo León",Q2,157.7,-81,76.7,6.5,123.3
+19046,"San Nicolás de los Garza","Nuevo León",Q3,361.8,0.3,362.1,1.2,145.9
+19048,"Santa Catarina","Nuevo León",Q2,161.1,-11.2,149.9,11.9,173.9
+20039,"Heroica Ciudad de Huajuapan de León","Oaxaca",Q3,17.5,6,23.5,75.8,893.6
+20043,"Juchitán de Zaragoza","Oaxaca",Q3,341.5,50,391.4,10.6,1087.4
+20059,"Miahuatlán de Porfirio Díaz","Oaxaca",Q1,-75.1,-8.8,-83.9,41.6,1062.8
+20067,"Oaxaca de Juárez","Oaxaca",Q1,31.5,-56.9,-25.4,4.6,978.8
+20079,"Salina Cruz","Oaxaca",Q3,-4,12,8,2.3,1101.9
+20184,"San Juan Bautista Tuxtepec","Oaxaca",Q2,169.7,-87.7,82.1,5.6,885
+20318,"San Pedro Mixtepec","Oaxaca",Q4,-32.5,29.9,-2.6,99.3,1104.2
+20385,"Santa Cruz Xoxocotlán","Oaxaca",Q2,250.8,-43.2,207.6,4,987.9
+20482,"Santiago Pinotepa Nacional","Oaxaca",Q3,280.7,112.6,393.3,154.8,1067.2
+20515,"Santo Domingo Tehuantepec","Oaxaca",Q2,28.8,-26.7,2.2,17.7,1097.1
+21004,"Acatzingo","Puebla",Q2,309.3,-40.3,269,12.8,762.2
+21015,"Amozoc","Puebla",Q2,24.7,-12.3,12.4,0.9,761.5
+21019,"Atlixco","Puebla",Q2,121.8,-67.5,54.3,1,782.2
+21034,"Coronango","Puebla",Q3,667.1,90,757.1,3.8,754.2
+21041,"Cuautlancingo","Puebla",Q3,585.3,9.1,594.4,4,755.8
+21071,"Huauchinango","Puebla",Q2,84.6,-63.9,20.8,12.1,637.7
+21074,"Huejotzingo","Puebla",Q2,299.9,-35.7,264.2,10.9,752.6
+21085,"Izúcar de Matamoros","Puebla",Q2,175.3,-7.7,167.7,11.4,825.9
+21114,"Puebla","Puebla",Q2,128.7,-16.4,112.3,6,767.1
+21119,"San Andrés Cholula","Puebla",Q2,222.8,-12.2,210.5,4.2,766.4
+21132,"San Martín Texmelucan","Puebla",Q3,566.4,1.8,568.2,2.7,741.1
+21140,"San Pedro Cholula","Puebla",Q2,197.1,-75.2,121.9,4.5,761.7
+21154,"Tecamachalco","Puebla",Q2,584.6,-63.5,521,2.6,780.6
+21156,"Tehuacán","Puebla",Q2,493.2,-40.8,452.4,5.4,824.4
+21164,"Tepeaca","Puebla",Q1,58.6,-71.6,-13,4,764.3
+21197,"Xicotepec","Puebla",Q1,-17.3,-53.4,-70.7,33.7,618.8
+21208,"Zacatlán","Puebla",Q2,501.6,-28.3,473.3,18.3,659.6
+22006,"Corregidora","Querétaro",Q4,-67.4,36.1,-31.3,12.9,662
+22011,"El Marqués","Querétaro",Q2,59.3,-37.5,21.7,5.4,631.8
+22014,"Querétaro","Querétaro",Q2,85.4,-40.4,45,9.8,637
+22016,"San Juan del Río","Querétaro",Q1,41.1,-42.4,-1.3,0.5,660.2
+23002,"Felipe Carrillo Puerto","Quintana Roo",Q2,660.9,-6.8,654.1,6.7,1174.8
+23004,"Othón P. Blanco","Quintana Roo",Q1,-4.2,-41.7,-45.9,2.2,1227.9
+23005,"Benito Juárez","Quintana Roo",Q2,162,-70.5,91.5,7.8,1183.3
+23008,"Solidaridad","Quintana Roo",Q2,210.4,-83.3,127.1,14.1,1171.1
+23009,"Tulum","Quintana Roo",Q2,497.6,-12.3,485.3,15.4,1165.4
+24013,"Ciudad Valles","San Luis Potosí",Q2,1308.1,-90.2,1217.8,8.6,449
+24020,"Matehuala","San Luis Potosí",Q2,2093.6,-69.8,2023.8,18.1,360
+24021,"Mexquitic de Carmona","San Luis Potosí",Q2,292.3,-29.7,262.7,10.8,511.4
+24024,"Rioverde","San Luis Potosí",Q2,3355.3,-65.1,3290.2,5.1,493.1
+24028,"San Luis Potosí","San Luis Potosí",Q2,858.3,-58.7,799.6,10.8,501.9
+24035,"Soledad de Graciano Sánchez","San Luis Potosí",Q2,1948.3,-59.7,1888.6,13.8,497.4
+24050,"Villa de Reyes","San Luis Potosí",Q2,445.6,-74.6,370.9,3.8,545.7
+25001,"Ahome","Sinaloa",Q1,-4.9,-61.3,-66.2,22.3,62.4
+25006,"Culiacán","Sinaloa",Q4,-99.4,76.3,-23.1,14.1,119.5
+25011,"Guasave","Sinaloa",Q2,95.4,-75.7,19.7,9.7,110.3
+25012,"Mazatlán","Sinaloa",Q4,-21.8,18.8,-3,23.5,246.4
+25014,"Rosario","Sinaloa",Q1,-41.6,-25.2,-66.7,12.5,304.4
+25015,"Salvador Alvarado","Sinaloa",Q2,129.7,-44.6,85.1,3.3,90.2
+26017,"Caborca","Sonora",Q4,-62.6,5.4,-57.2,3.6,49.9
+26018,"Cajeme","Sonora",Q3,473.5,9.9,483.4,19.1,70.8
+26025,"Empalme","Sonora",Q1,44.6,-89.7,-45.1,6.8,11.3
+26029,"Guaymas","Sonora",Q2,145.7,-86.1,59.6,12.9,26.8
+26030,"Hermosillo","Sonora",Q3,298,3.2,301.2,45.6,54.1
+26042,"Navojoa","Sonora",Q2,930.5,-30.8,899.7,3.7,36.7
+26043,"Nogales","Sonora",Q2,632,-26.8,605.2,2.8,17.2
+26048,"Puerto Peñasco","Sonora",Q2,3121.1,-73.4,3047.7,23.1,29.8
+26055,"San Luis Río Colorado","Sonora",Q3,61.2,77.6,138.8,28.1,36.7
+27002,"Cárdenas","Tabasco",Q4,-46.3,42,-4.3,47.3,937.7
+27003,"Centla","Tabasco",Q3,238,70,307.9,79.4,967.7
+27004,"Centro","Tabasco",Q3,377.8,29.4,407.2,48.5,989
+27005,"Comalcalco","Tabasco",Q3,88.3,104.4,192.7,68.7,939
+27006,"Cunduacán","Tabasco",Q3,-37.6,73.4,35.8,50.3,965.5
+27008,"Huimanguillo","Tabasco",Q2,196.5,-51.5,145,10.5,971.1
+27010,"Jalpa de Méndez","Tabasco",Q3,489.8,291.9,781.7,67.8,957.9
+27012,"Macuspana","Tabasco",Q2,499.1,-15.4,483.7,20.9,1025.1
+27013,"Nacajuca","Tabasco",Q4,-267,233.4,-33.5,67.3,966.9
+27014,"Paraíso","Tabasco",Q3,148.7,255.1,403.8,83.3,935.6
+27016,"Teapa","Tabasco",Q3,-152.3,217.8,65.5,6.4,1023.6
+27017,"Tenosique","Tabasco",Q4,-116.4,31,-85.4,14.7,1128.8
+28003,"Altamira","Tamaulipas",Q2,107.1,-54.1,52.9,9.7,376.2
+28021,"El Mante","Tamaulipas",Q2,508.6,-97.6,411,9.9,392.7
+28022,"Matamoros","Tamaulipas",Q2,130.7,-44.2,86.5,28.3,30.8
+28027,"Nuevo Laredo","Tamaulipas",Q2,87.8,-85.1,2.7,3.7,19.7
+28032,"Reynosa","Tamaulipas",Q2,190.2,-66.8,123.4,32.9,33.3
+28033,"Río Bravo","Tamaulipas",Q2,582.3,-53.4,528.9,28.3,36
+28038,"Tampico","Tamaulipas",Q1,23.9,-76.9,-53,6.1,402.8
+28041,"Victoria","Tamaulipas",Q1,72.7,-75.8,-3.1,2.2,281.2
+29005,"Apizaco","Tlaxcala",Q2,97,-64.5,32.5,1.3,720.6
+29010,"Chiautempan","Tlaxcala",Q4,-113.6,34.5,-79.1,7.2,735.3
+29033,"Tlaxcala","Tlaxcala",Q1,26.2,-71.5,-45.3,5.7,734.3
+30003,"Acayucan","Veracruz",Q2,107.1,-59.7,47.4,23.1,905.5
+30010,"Altotonga","Veracruz",Q2,297.9,-80.5,217.4,14.4,679.6
+30028,"Boca del Río","Veracruz",Q1,10.8,-30.8,-20,3.6,765.3
+30038,"Coatepec","Veracruz",Q1,18.5,-50.6,-32,5.1,717.4
+30039,"Coatzacoalcos","Veracruz",Q2,336.7,-55.4,281.3,2.6,913.8
+30044,"Córdoba","Veracruz",Q2,320.5,-47.5,273,5.7,774.3
+30045,"Cosamaloapan de Carpio","Veracruz",Q2,783,-33.6,749.3,2.4,857.3
+30048,"Cosoleacaque","Veracruz",Q2,237.3,-73.8,163.5,4.7,920.8
+30061,"Las Choapas","Veracruz",Q2,942,-79,863,30.9,991.9
+30065,"Emiliano Zapata","Veracruz",Q2,199.5,-20.5,179,4.3,720.3
+30068,"Fortín","Veracruz",Q2,190.5,-82.4,108.1,0.6,777.3
+30085,"Ixtaczoquitlán","Veracruz",Q2,97.5,-51.2,46.3,4.4,782.8
+30087,"Xalapa","Veracruz",Q2,171.2,-70.7,100.5,1.9,707.1
+30102,"Martínez de la Torre","Veracruz",Q3,72.9,1.6,74.4,48.9,640.5
+30105,"Medellín de Bravo","Veracruz",Q3,187.9,114.7,302.6,5.7,778.7
+30108,"Minatitlán","Veracruz",Q2,337.9,-68.5,269.3,30.1,958.9
+30109,"Misantla","Veracruz",Q2,134.9,-65,69.9,38.5,660.9
+30118,"Orizaba","Veracruz",Q2,120.7,-34,86.7,2.3,781.7
+30123,"Pánuco","Veracruz",Q2,308.6,-95.3,213.3,18,426.1
+30124,"Papantla","Veracruz",Q2,216.7,-38,178.7,67.5,608.4
+30128,"Perote","Veracruz",Q3,1215.8,36.6,1252.4,3.8,706.3
+30131,"Poza Rica de Hidalgo","Veracruz",Q2,88.6,-30.4,58.2,80.5,594.8
+30141,"San Andrés Tuxtla","Veracruz",Q2,189.6,-28.7,160.9,2.1,854.2
+30143,"Santiago Tuxtla","Veracruz",Q2,66.6,-54.8,11.8,9.8,857.5
+30155,"Tantoyuca","Veracruz",Q3,232.6,132.6,365.2,27.7,504.2
+30160,"Álamo Temapache","Veracruz",Q3,209.1,7.7,216.8,71.6,546.2
+30174,"Tierra Blanca","Veracruz",Q2,323,-90.9,232.1,4.3,824.5
+30175,"Tihuatlán","Veracruz",Q2,247.5,-89.7,157.8,84.9,580.3
+30183,"Tlapacoyan","Veracruz",Q3,-402.8,542.7,139.9,31.3,651.9
+30189,"Tuxpan","Veracruz",Q3,103.5,130.7,234.3,91.5,549.9
+30193,"Veracruz","Veracruz",Q2,195,-74,121,2.6,755.9
+31050,"Mérida","Yucatán",Q1,-12.1,-28.7,-40.8,0.9,950
+32010,"Fresnillo","Zacatecas",Q1,33,-79.7,-46.6,20.7,464.9
+32017,"Guadalupe","Zacatecas",Q2,114.7,-88.7,26,12.7,533
+32024,"Loreto","Zacatecas",Q1,-11.4,-59.3,-70.7,7.2,549.7
+32038,"Pinos","Zacatecas",Q2,247.7,-23.2,224.5,31.2,528.1
+32039,"Río Grande","Zacatecas",Q1,17.8,-100,-82.2,3.5,427.8
+32042,"Sombrerete","Zacatecas",Q1,-41.6,-51.1,-92.8,1.1,386.7
+32056,"Zacatecas","Zacatecas",Q2,108.7,-87.4,21.4,7.1,525.5

@@ -1,0 +1,23 @@
+# ============================================================
+# REGLA DE CASA: la cocina interna NUNCA viaja al repo público.
+# Este repo es público (GitHub Pages): todo lo pushado lo puede
+# navegar cualquiera. Aquí solo sube el sitio y sus builders.
+# ============================================================
+
+# --- Cocina interna / material editorial en proceso ---
+_difusion/
+_reportaje-arco-ferroviario/
+MAÑANERA*/
+DECLARACIONES*/
+REEL YT*/
+HALLAZGO*
+
+# Datos de hallazgos aún no publicados
+*espejo_rnid*
+
+# --- Respaldos y archivo muerto ---
+*BACKUP*
+_ARCHIVO_*/
+
+# --- Scratch temporal ---
+_seg.txt
