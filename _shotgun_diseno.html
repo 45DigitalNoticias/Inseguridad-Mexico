@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design shotgun · Inseguridad México</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@500;600;700;800&family=Spline+Sans+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root[data-theme="dark"]{
+  --bg:#0e0c0b; --panel:#17130d; --panel2:#1b1712; --line:rgba(120,110,95,.18); --line2:rgba(120,110,95,.36);
+  --txt:#f2ede3; --mut:#b8ad9a; --dim:#8a8072;
+  --oro:#efb03a; --cian:#49c2d0; --rojo:#e8573f; --sello:#cf5440; --tinta:#000;
+  --s0:#00808a;--s1:#4ba3a3;--s2:#9fc7a6;--s3:#e2dd9a;--s4:#f4c04e;--s5:#e67e39;--s6:#d64a3a;--s7:#b42222;
+  --grain:.05;
+}
+:root[data-theme="light"]{
+  --bg:#f1eadb; --panel:#faf6ec; --panel2:#efe7d6; --line:rgba(40,34,26,.16); --line2:rgba(40,34,26,.34);
+  --txt:#191510; --mut:#4a4238; --dim:#7a7061;
+  --oro:#a86a12; --cian:#0f6f7c; --rojo:#a52c1f; --sello:#9a3324; --tinta:#191510;
+  --s0:#0d6d75;--s1:#4a9a96;--s2:#8fbf98;--s3:#d8cf7f;--s4:#e9ab34;--s5:#dd6a26;--s6:#c73a2c;--s7:#9e1a1a;
+  --grain:.028;
+}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--txt);font-family:'Hanken Grotesk',system-ui,sans-serif;font-weight:500;transition:background .3s,color .3s}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:var(--grain);mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:16px;padding:14px 30px;background:var(--panel);border-bottom:1px solid var(--line2)}
+.bar b{font-family:'Bricolage Grotesque';font-weight:800;font-size:15px;letter-spacing:-.3px}
+.bar .m{font-family:'Spline Sans Mono';font-size:10px;letter-spacing:2px;color:var(--mut);text-transform:uppercase;font-weight:700}
+.tog{margin-left:auto;display:flex;border:1px solid var(--line2);border-radius:999px;overflow:hidden;font-family:'Spline Sans Mono';font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.tog button{background:transparent;color:var(--mut);border:none;padding:8px 16px;cursor:pointer;font-weight:700}
+.tog button.on{background:var(--oro);color:var(--bg)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 30px}
+.dirhead{display:flex;align-items:baseline;gap:14px;margin:52px 0 20px;padding-bottom:12px;border-bottom:1.5px solid var(--line2)}
+.dirhead .n{font-family:'Spline Sans Mono';font-size:11px;letter-spacing:3px;color:var(--oro);font-weight:700;text-transform:uppercase}
+.dirhead .t{font-family:'Bricolage Grotesque';font-weight:800;font-size:26px;letter-spacing:-.6px}
+.dirhead .p{margin-left:auto;font-size:12.5px;color:var(--mut);max-width:360px;text-align:right;font-weight:600}
+.card{border:1px solid var(--line2);border-radius:14px;overflow:hidden;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:1.12fr 1fr;gap:0}
+.mapbox{position:relative;background:var(--panel);padding:22px 24px}
+.side{background:var(--panel2);padding:22px 24px;border-left:1px solid var(--line);display:flex;flex-direction:column}
+.mono{font-family:'Spline Sans Mono',monospace}
+.tnum{font-variant-numeric:tabular-nums}
+.scale{height:12px;border-radius:5px;background:linear-gradient(90deg,var(--s0),var(--s1),var(--s2),var(--s3),var(--s4),var(--s5),var(--s6),var(--s7))}
+.maparea{aspect-ratio:16/10;border-radius:8px;position:relative;overflow:hidden;
+  background:radial-gradient(120% 120% at 30% 20%,color-mix(in srgb,var(--s7) 32%,var(--panel)),var(--panel) 60%),
+             radial-gradient(90% 90% at 80% 90%,color-mix(in srgb,var(--s0) 28%,transparent),transparent 60%)}
+.ctxbar{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);display:flex;gap:16px;flex-wrap:wrap}
+.ctxbar .b{display:flex;flex-direction:column;gap:2px}
+.ctxbar .v{font-family:'Bricolage Grotesque';font-weight:800;font-size:20px;line-height:1}
+.ctxbar .l{font-family:'Spline Sans Mono';font-size:8.5px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;font-weight:700}
+
+/* ---------- A · FORENSE ---------- */
+.forense .kick{font-family:'Spline Sans Mono';font-size:10px;letter-spacing:2.4px;color:var(--mut);text-transform:uppercase;font-weight:700}
+.forense h2{font-family:'Bricolage Grotesque';font-weight:800;font-size:34px;line-height:1;letter-spacing:-1px;margin:6px 0 2px}
+.forense .lead{font-size:13px;line-height:1.55;color:var(--mut);margin-top:12px;text-align:justify;hyphens:auto;font-weight:600;max-width:46ch}
+.forense .kpi{font-family:'Bricolage Grotesque';font-weight:800;font-size:58px;line-height:1;letter-spacing:-2px;margin-top:14px}
+.forense .kpi small{font-size:15px;color:var(--rojo);font-weight:800;letter-spacing:0}
+.forense .ticks span{position:absolute;font-family:'Spline Sans Mono';font-size:8px;color:var(--dim);letter-spacing:1px;font-weight:700}
+.forense .maparea{border:1px solid var(--line2);margin-top:14px}
+.forense .corner{position:absolute;width:14px;height:14px;border:1.5px solid var(--oro)}
+.forense .sello{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--sello);color:var(--sello);
+  font-family:'Spline Sans Mono';font-size:9.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 11px;border-radius:3px;transform:rotate(-2.5deg)}
+.forense .rk{display:flex;flex-direction:column;gap:11px;margin-top:12px}
+.forense .rrow{display:grid;grid-template-columns:20px 1fr auto;gap:10px;align-items:center}
+.forense .rrow .p{font-family:'Spline Sans Mono';font-size:10px;color:var(--dim);font-weight:700}
+.forense .rrow .n{font-size:13.5px;font-weight:700}
+.forense .redact{height:11px;background:var(--tinta);margin-top:5px;position:relative}
+.forense .redact i{position:absolute;right:6px;top:0;line-height:11px;font-family:'Spline Sans Mono';font-size:8.5px;color:var(--panel);font-style:normal;font-weight:700}
+.forense .rrow .v{font-family:'Bricolage Grotesque';font-weight:800;font-size:19px}
+.forense .ledger{font-family:'Spline Sans Mono';font-size:9px;letter-spacing:.8px;color:var(--dim);text-transform:uppercase;font-weight:700;
+  padding:10px 24px;border-top:1px dashed var(--line2);background:var(--panel);display:flex;gap:18px;flex-wrap:wrap}
+
+/* ---------- B · BROADSHEET ---------- */
+.broad .card{border:none;border-top:5px solid var(--txt);border-radius:0}
+.broad .grid{border-bottom:1.5px solid var(--line2)}
+.broad .mapbox,.broad .side{background:transparent}
+.broad .side{border-left:1.5px solid var(--line2)}
+.broad .kick{font-family:'Spline Sans Mono';font-size:10px;letter-spacing:3px;color:var(--rojo);text-transform:uppercase;font-weight:700}
+.broad h2{font-family:'Bricolage Grotesque';font-weight:800;font-size:40px;line-height:.98;letter-spacing:-1.4px;margin:8px 0 10px;max-width:12ch}
+.broad .lead{font-size:14px;line-height:1.55;color:var(--txt);max-width:44ch;text-align:justify;hyphens:auto;font-weight:500}
+.broad .lead::first-letter{font-family:'Bricolage Grotesque';font-weight:800;font-size:46px;float:left;line-height:.8;margin:4px 8px 0 0;color:var(--txt)}
+.broad .maparea{margin-top:14px;border-radius:0}
+.broad .kpi{font-family:'Bricolage Grotesque';font-weight:800;font-size:64px;line-height:1;letter-spacing:-2px;border-bottom:2.5px solid var(--txt);padding-bottom:6px}
+.broad .kpi small{font-size:14px;color:var(--rojo);letter-spacing:0;font-weight:800}
+.broad .cap{font-family:'Spline Sans Mono';font-size:9.5px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;margin-top:6px;font-weight:700}
+.broad table{width:100%;border-collapse:collapse;margin-top:16px}
+.broad th{font-family:'Spline Sans Mono';font-size:9px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;text-align:left;padding:0 0 7px;border-bottom:2px solid var(--txt);font-weight:700}
+.broad td{padding:8px 0;border-bottom:1px solid var(--line);font-size:14px;font-weight:600}
+.broad td.v{font-family:'Bricolage Grotesque';font-weight:800;text-align:right}
+.broad .foot{font-family:'Spline Sans Mono';font-size:10px;color:var(--dim);letter-spacing:.5px;padding:12px 0 0;text-transform:uppercase;font-weight:700}
+
+/* ---------- C · TERMINAL ---------- */
+.term .card{border:1px solid var(--cian);border-radius:6px;background:var(--panel);
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:26px 26px}
+.term *{font-family:'Spline Sans Mono',monospace!important}
+.term .mapbox,.term .side{background:color-mix(in srgb,var(--panel) 82%,transparent)}
+.term .kick{font-size:10px;letter-spacing:2px;color:var(--cian);text-transform:uppercase;font-weight:700}
+.term .kick::before{content:"▸ "}
+.term h2{font-size:16px;font-weight:700;letter-spacing:1px;margin:6px 0;text-transform:uppercase}
+.term .kpi{font-size:52px;font-weight:700;letter-spacing:-1px;color:var(--oro);line-height:1;margin-top:10px}
+.term .kpi small{font-size:13px;color:var(--rojo)}
+.term .kpi .cur{display:inline-block;width:14px;height:40px;background:var(--cian);vertical-align:-4px;margin-left:6px;animation:bl 1s steps(2) infinite}
+@keyframes bl{50%{opacity:0}}
+.term .maparea{border:1px solid var(--cian);margin-top:12px;border-radius:2px}
+.term .read{font-size:9px;color:var(--mut);letter-spacing:1px;margin-top:8px;text-transform:uppercase;font-weight:700}
+.term .rrow{display:grid;grid-template-columns:28px 1fr 70px auto;gap:8px;align-items:center;padding:6px 0;border-bottom:1px dashed var(--line)}
+.term .rrow .n{font-size:12px;font-weight:700}
+.term .spark{height:9px;background:var(--line2);position:relative}
+.term .spark i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--s4),var(--s7))}
+.term .rrow .v{font-size:14px;font-weight:700;color:var(--oro);text-align:right}
+.term .foot{font-size:9px;color:var(--cian);letter-spacing:1px;padding:10px 24px;border-top:1px solid var(--cian);text-transform:uppercase;font-weight:700}
+.term .foot::before{content:"● LIVE  "}
+</style>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
+<!-- SEO-AUTO start -->
+<link rel="canonical" href="https://45digitalnoticias.github.io/Inseguridad-Mexico/_shotgun_diseno.html">
+<meta property="og:url" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/_shotgun_diseno.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Design shotgun · Inseguridad México",
+  "description": "Design shotgun · Inseguridad México",
+  "url": "https://45digitalnoticias.github.io/Inseguridad-Mexico/_shotgun_diseno.html",
+  "inLanguage": "es-MX",
+  "author": {
+    "@type": "Person",
+    "name": "SRVO",
+    "url": "https://45digitalnoticias.github.io/columnas/acerca.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "45 Digital Noticias",
+    "sameAs": [
+      "https://facebook.com/45DigitalMx"
+    ]
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://45digitalnoticias.github.io/Inseguridad-Mexico/_shotgun_diseno.html"
+  }
+}
+</script>
+<!-- SEO-AUTO end -->
+</head>
+<body>
+  <div class="bar">
+    <b>Design shotgun</b><span class="m">Inseguridad México · v2 · más peso, justificado, sin huecos</span>
+    <div class="tog"><button data-t="dark" class="on" onclick="setT('dark')">Oscuro</button><button data-t="light" onclick="setT('light')">Claro</button></div>
+  </div>
+  <div class="wrap">
+
+    <!-- A · FORENSE -->
+    <section class="forense">
+      <div class="dirhead"><span class="n">Dirección A</span><span class="t">Expediente forense</span><span class="p">Dossier declasificado: sellos, retícula de atlas, barras de redacción, ledger con SHA.</span></div>
+      <div class="card"><div class="grid">
+        <div class="mapbox">
+          <span class="kick">México · Homicidio doloso · corte may-2026</span>
+          <h2>El país completo,<br>delito por delito</h2>
+          <div class="kpi tnum">20,191 <small>▼ 20.7%</small></div>
+          <p class="lead">La tasa municipal ajustada corrige los pueblos chicos donde pocos casos inflan la cifra. Cada municipio es un valor real, cotejable a su archivo fuente del SESNSP, sin categorías que escondan.</p>
+          <div class="maparea">
+            <div class="ticks">
+              <span style="top:6px;left:8px">17°N</span><span style="top:6px;right:8px">32°N</span>
+              <span style="bottom:6px;left:8px">−117°</span><span style="bottom:6px;right:8px">−86°</span>
+            </div>
+            <div class="corner" style="top:6px;left:6px;border-right:0;border-bottom:0"></div>
+            <div class="corner" style="top:6px;right:6px;border-left:0;border-bottom:0"></div>
+            <div class="corner" style="bottom:6px;left:6px;border-right:0;border-top:0"></div>
+            <div class="corner" style="bottom:6px;right:6px;border-left:0;border-top:0"></div>
+          </div>
+          <div class="scale" style="margin-top:11px"></div>
+          <div class="mono" style="display:flex;justify-content:space-between;font-size:9px;color:var(--dim);margin-top:5px;font-weight:700"><span>0 /100 mil</span><span>tasa ajustada · semáforo accesible</span><span>119 →</span></div>
+        </div>
+        <div class="side">
+          <div style="display:flex;justify-content:space-between;align-items:start"><span class="kick">Focos rojos · tasa /100 mil</span><span class="sello">◈ Verificado · SESNSP</span></div>
+          <div class="rk" id="rkA"></div>
+          <div class="ctxbar">
+            <div class="b"><span class="v tnum">15.1</span><span class="l">media nacional /100 mil</span></div>
+            <div class="b"><span class="v tnum">1,402</span><span class="l">de 2,475 municipios con registro</span></div>
+            <div class="b"><span class="v tnum">≥50k</span><span class="l">umbral de población</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ledger"><span>SHA-256 b878a88b…95ee</span><span>SESNSP · corte may-2026</span><span>CONAPO pry23</span><span>cada cifra → su archivo fuente</span></div>
+      </div>
+    </section>
+
+    <!-- B · BROADSHEET -->
+    <section class="broad">
+      <div class="dirhead"><span class="n">Dirección B</span><span class="t">Broadsheet editorial</span><span class="p">Página de datos de un diario serio: jerarquía tipográfica, filetes gruesos, capitular.</span></div>
+      <div class="card"><div class="grid">
+        <div class="mapbox">
+          <span class="kick">Análisis · Seguridad</span>
+          <h2>El país completo, delito por delito</h2>
+          <p class="lead">En 2025 México registró 20,191 homicidios dolosos, 20.7% menos que en 2024. El mapa municipal muestra dónde se concentra la violencia, sin categorías que la escondan. Cada cifra es trazable a su archivo fuente del SESNSP, cotejable municipio por municipio.</p>
+          <div class="maparea"></div>
+          <div class="scale" style="margin-top:12px"></div>
+        </div>
+        <div class="side">
+          <div class="kpi tnum">20,191 <small>▼20.7%</small></div>
+          <div class="cap">Homicidios dolosos · 2025 · corte may-2026</div>
+          <table id="tblB"><tr><th>Municipio</th><th>Estado</th><th style="text-align:right">/100 mil</th></tr></table>
+          <div class="ctxbar" style="margin-top:16px">
+            <div class="b"><span class="v tnum">15.1</span><span class="l">media nacional</span></div>
+            <div class="b"><span class="v tnum">1,402/2,475</span><span class="l">municipios con registro</span></div>
+          </div>
+          <div class="foot">45 Digital Noticias · SESNSP · CONAPO</div>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- C · TERMINAL -->
+    <section class="term">
+      <div class="dirhead"><span class="n">Dirección C</span><span class="t">Instrumento / terminal</span><span class="p">Consola tipo Bloomberg: mono total, rejilla, coordenadas, cursor. Frío y preciso.</span></div>
+      <div class="card"><div class="grid">
+        <div class="mapbox">
+          <span class="kick">MEX · HD · 2025 · CORTE=MAY26</span>
+          <h2>Homicidio doloso /nacional</h2>
+          <div class="kpi tnum">20,191<span class="cur"></span></div>
+          <div class="read">Δ vs 2024: −20.7% · fuente=SESNSP · unidad=carpetas · media_nal=15.1</div>
+          <div class="maparea"></div>
+          <div class="scale" style="margin-top:10px"></div>
+          <div class="read">scale=semaforo_cb · min=0 · max=119 · ajuste=bayes · n=2475 · con_registro=1402</div>
+        </div>
+        <div class="side">
+          <div class="kick">focos_rojos.sort(desc) · /100k</div>
+          <div id="rkC" style="margin-top:8px"></div>
+        </div>
+      </div>
+      <div class="foot">SHA b878a88b · rows=2475 · umbral=50k · trazable=true</div>
+      </div>
+    </section>
+    <div style="height:60px"></div>
+  </div>
+<script>
+const DATA=[['Manzanillo','Colima',117],['Guadalupe y Calvo','Chihuahua',96.0],['Navolato','Sinaloa',93.5],['Apatzingán','Michoacán',92.5],['San Luis Río Colorado','Sonora',84.8],['Colima','Colima',81.9],['Cajeme','Sonora',80.3],['Culiacán','Sinaloa',79.6]];
+const mx=DATA[0][2];
+document.getElementById('rkA').innerHTML=DATA.map((d,i)=>`<div class="rrow"><span class="p">${String(i+1).padStart(2,'0')}</span><span><span class="n">${d[0]}</span> <span class="mono" style="font-size:10px;color:var(--dim);font-weight:700">· ${d[1]}</span><div class="redact" style="width:${Math.round(d[2]/mx*100)}%"><i>${d[2]}</i></div></span><span class="v tnum">${d[2]}</span></div>`).join('');
+document.getElementById('tblB').innerHTML+=DATA.map(d=>`<tr><td>${d[0]}</td><td class="mono" style="color:var(--mut);font-weight:600">${d[1]}</td><td class="v tnum">${d[2]}</td></tr>`).join('');
+document.getElementById('rkC').innerHTML=DATA.map((d,i)=>`<div class="rrow"><span>[${String(i+1).padStart(2,'0')}]</span><span class="n">${d[0].toUpperCase().replace(/Á/g,'A').replace(/Í/g,'I').replace(/É/g,'E').replace(/Ó/g,'O').replace(/Ú/g,'U')}</span><span class="spark"><i style="width:${Math.round(d[2]/mx*100)}%"></i></span><span class="v tnum">${d[2]}</span></div>`).join('');
+function setT(t){document.documentElement.dataset.theme=t;document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));}
+if(location.hash==='#light')setT('light');
+</script>
+</body>
+</html>

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/</loc><priority>1.0</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/aviso_privacidad.html</loc><priority>0.8</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/columnas/</loc><priority>1.0</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/como_leer.html</loc><priority>0.8</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/conteo.html</loc><priority>0.8</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/corredor-istmo.html</loc><priority>0.8</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/corredores-sureste.html</loc><priority>0.8</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/estado.html</loc><priority>0.8</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/expedientes.html</loc><priority>0.6</priority></url>

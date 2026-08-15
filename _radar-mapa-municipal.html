@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="es" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>INTERNO · Radar municipal, mapa de trabajo</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;600;700;800&family=Spline+Sans+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0e0c0b;--panel:#17130d;--line:rgba(120,110,95,.2);--line2:rgba(120,110,95,.4);--txt:#f2ede3;--mut:#b8ad9a;--dim:#8a8072;
+--q1:#49c2d0;--q2:#a78bfa;--q3:#e8573f;--q4:#efb03a;--na:#2a2521}
+*{margin:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:'Hanken Grotesk',system-ui,sans-serif;font-weight:500}
+.wrap{max-width:1500px;margin:0 auto;padding:16px 20px 40px}
+.kick{font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:2.4px;color:#e8573f;text-transform:uppercase;font-weight:700}
+h1{font-family:'Bricolage Grotesque',sans-serif;font-size:34px;letter-spacing:-1px;margin:4px 0 2px}
+.sub{color:var(--mut);font-size:14px;max-width:900px;line-height:1.55;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.quien{margin-top:22px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.quien h3{font-family:'Bricolage Grotesque',sans-serif;font-size:19px;letter-spacing:-.4px;margin-bottom:10px}
+.quien p{color:var(--mut);font-size:14px;line-height:1.62;text-align:justify;hyphens:auto;-webkit-hyphens:auto;margin-bottom:12px;max-width:1000px}
+.quien p b{color:var(--txt)}
+.quien table{width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0 14px}
+.quien th{font-family:'Spline Sans Mono',monospace;font-size:8.5px;letter-spacing:1.2px;color:var(--dim);
+  text-transform:uppercase;text-align:right;padding:7px 9px;border-bottom:1px solid var(--line2);white-space:nowrap}
+.quien th:first-child,.quien td:first-child{text-align:left}
+.quien td{padding:8px 9px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums;color:var(--mut)}
+.quien tr.dentro td{color:var(--txt);font-weight:700;background:rgba(167,139,250,.08)}
+.quien .ojo{border-left:3px solid var(--q4);padding-left:13px;color:var(--mut);font-size:14px;line-height:1.6;text-align:justify}
+.quien .ojo b{color:var(--txt)}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0 10px}
+.chip{border:1px solid var(--line2);border-radius:999px;padding:7px 13px;font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;color:var(--mut);background:transparent;user-select:none}
+.chip.on{color:#0e0c0b;font-weight:700}
+.chip[data-q="Q2"].on{background:var(--q2)} .chip[data-q="Q3"].on{background:var(--q3)}
+.chip[data-q="Q4"].on{background:var(--q4)} .chip[data-q="Q1"].on{background:var(--q1)}
+.chip[data-q="NA"].on{background:#6b6155;color:#f2ede3}
+input,select{background:var(--bg);color:var(--txt);border:1px solid var(--line2);border-radius:9px;padding:8px 12px;font-family:'Hanken Grotesk';font-weight:600;font-size:14px}
+.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:8px}
+.zoomb{position:absolute;top:14px;right:14px;display:flex;flex-direction:column;gap:6px;z-index:4}
+.zoomb button{width:34px;height:34px;border-radius:9px;border:1px solid var(--line2);background:var(--bg);color:var(--txt);
+  font-family:'Spline Sans Mono',monospace;font-size:16px;font-weight:700;cursor:pointer;line-height:1;
+  display:flex;align-items:center;justify-content:center}
+.zoomb button:hover{background:var(--q2);color:#0e0c0b;border-color:var(--q2)}
+#map{cursor:grab;touch-action:none}
+.zhint{position:absolute;left:16px;top:16px;font-family:'Spline Sans Mono',monospace;font-size:8.5px;
+  letter-spacing:1.1px;color:var(--mut);text-transform:uppercase;pointer-events:none;
+  background:var(--bg);border:1px solid var(--line2);border-radius:7px;padding:5px 9px}
+svg{width:100%;height:auto;display:block}
+path.mun{stroke:#0e0c0b;stroke-width:.22;cursor:pointer;vector-effect:non-scaling-stroke}
+path.mun.dim{opacity:.10}
+path.mun.hit{stroke:#fff;stroke-width:1.1}
+path.edo{fill:none;stroke:rgba(255,255,255,.30);stroke-width:.75;pointer-events:none;vector-effect:non-scaling-stroke}
+.tip{position:absolute;pointer-events:none;background:#0b0f0c;border:1px solid var(--line2);border-radius:9px;padding:9px 12px;font-size:12.5px;font-family:'Spline Sans Mono',monospace;display:none;z-index:9;white-space:nowrap;box-shadow:0 10px 40px rgba(0,0,0,.7);line-height:1.6}
+.leg{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:.8px;color:var(--dim);text-transform:uppercase}
+.leg i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.stats{display:flex;gap:22px;flex-wrap:wrap;margin-top:12px;font-family:'Spline Sans Mono',monospace;font-size:11px;color:var(--mut)}
+.stats b{font-family:'Bricolage Grotesque';font-size:19px;color:var(--txt)}
+</style>
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
+<!-- SEO-AUTO start -->
+<link rel="canonical" href="https://45digitalnoticias.github.io/Inseguridad-Mexico/_radar-mapa-municipal.html">
+<meta property="og:url" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/_radar-mapa-municipal.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "INTERNO · Radar municipal, mapa de trabajo",
+  "description": "INTERNO · Radar municipal, mapa de trabajo",
+  "url": "https://45digitalnoticias.github.io/Inseguridad-Mexico/_radar-mapa-municipal.html",
+  "inLanguage": "es-MX",
+  "author": {
+    "@type": "Person",
+    "name": "SRVO",
+    "url": "https://45digitalnoticias.github.io/columnas/acerca.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "45 Digital Noticias",
+    "sameAs": [
+      "https://facebook.com/45DigitalMx"
+    ]
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://45digitalnoticias.github.io/Inseguridad-Mexico/_radar-mapa-municipal.html"
+  }
+}
+</script>
+<!-- SEO-AUTO end -->
+</head><body><div class="wrap">
+<div class="kick">Documento interno de trabajo · no publicado</div>
+<h1>Radar municipal · paz narca</h1>
+<div class="sub">El mapa dibuja los 2,475 municipios y demarcaciones con geometría. En color, los <b id="nAn">315</b> con base suficiente, pintados según lo que pasa ahí; en gris, los que no se pueden medir. Pasa el cursor para ver las cifras; usa los filtros para aislar un patrón o buscar un municipio.</div>
+
+
+<div class="quien">
+  <h3>Quiénes entran a este mapa y quiénes no</h3>
+  <p>De los <b>2,489</b> municipios y demarcaciones con registro en la matriz, el radar mide <b>315</b>. No es un recorte editorial: es el piso estadístico que hace que un porcentaje signifique algo. En un municipio de 8 mil habitantes, pasar de 1 homicidio a 3 es un alza de 200% y no dice nada del mundo. Cada criterio elimina un grupo, en este orden:</p>
+  <table>
+    <thead><tr><th>Grupo</th><th>Municipios</th><th>Población</th><th>Homicidios</th><th>Cobro</th></tr></thead>
+    <tbody>
+      <tr class="dentro"><td>Entran al radar</td><td>315</td><td>70.0%</td><td>76.7%</td><td>89.4%</td></tr>
+      <tr><td>Menos de 50 mil habitantes</td><td>2,007</td><td>20.6%</td><td>17.0%</td><td>6.8%</td></tr>
+      <tr><td>Muy pocos casos: menos de 12 en un eje, sumando 2019 y 2025</td><td>124</td><td>7.3%</td><td>3.4%</td><td>2.5%</td></tr>
+      <tr><td>Base de 2019 demasiado chica: menos de 5 casos</td><td>29</td><td>2.1%</td><td>2.8%</td><td>0.9%</td></tr>
+      <tr><td>Sin geometría en el mapa</td><td>14</td><td>0.0%</td><td>0.1%</td><td>0.4%</td></tr>
+    </tbody>
+  </table>
+  <p><b>Lo que se queda fuera pesa poco justo donde importa.</b> Los 2,007 municipios chicos son una quinta parte de la población del país, pero solo <b>6.8%</b> de la extorsión y el narcomenudeo. El fenómeno que este mapa busca vive en ciudades, y las ciudades están todas adentro: los 315 concentran <b>70% de la población</b>, <b>76.7% de los homicidios</b> y <b>89.4% del cobro</b> nacional.</p>
+  <p><b>Por qué la base de 2019 y no solo el total.</b> Sin ese quinto criterio aparecían saltos falsos que se veían enormes en el mapa: Villa de Álvarez con +11,029% y Apaseo el Alto con +3,835%, ambos por pasar de un puñado de casos a unas decenas. Son 29 municipios y valía la pena perderlos.</p>
+  <div class="ojo"><b>Quedar fuera no significa estar en paz.</b> Significa que ahí, con estos datos, este indicador no se puede calcular. Un municipio en gris puede estar peor que uno pintado; lo que no puede es demostrarlo con esta serie.</div>
+</div>
+
+<div class="bar">
+  <span class="chip on" data-q="Q2" onclick="tog('Q2')">paz narca</span>
+  <span class="chip on" data-q="Q3" onclick="tog('Q3')">plaza en disputa</span>
+  <span class="chip on" data-q="Q4" onclick="tog('Q4')">guerra abierta</span>
+  <span class="chip on" data-q="Q1" onclick="tog('Q1')">paz o silencio</span>
+  <span class="chip on" data-q="NA" onclick="tog('NA')">sin medir</span>
+  <select id="ven" onchange="draw()"><option value="2019-2025">2019 → 2025</option><option value="2023-2025">2023 → 2025</option><option value="2019s1-2026s1">ene-jun 2019 → 2026 (preliminar)</option></select>
+  <input id="q" placeholder="Buscar municipio o estado…" oninput="draw()" style="min-width:240px">
+  <select id="edo" onchange="draw()"><option value="">Todos los estados</option></select>
+</div>
+
+<div class="stage">
+  <div class="zoomb">
+    <button onclick="zoomEn(1.5)" title="Acercar">+</button>
+    <button onclick="zoomEn(1/1.5)" title="Alejar">−</button>
+    <button onclick="zreset()" title="Volver al inicio" style="font-size:13px">⟲</button>
+  </div>
+  <div class="zhint">rueda para acercar · arrastra para mover</div>
+  <svg id="map"></svg>
+  <div class="tip" id="tip"></div>
+</div>
+<div class="leg">
+  <span><i style="background:#a78bfa"></i>paz narca · menos muertos, más cobro</span>
+  <span><i style="background:#e8573f"></i>plaza en disputa · más muertos y más cobro</span>
+  <span><i style="background:#efb03a"></i>guerra abierta · más muertos, menos cobro</span>
+  <span><i style="background:#49c2d0"></i>paz o silencio · bajan las dos</span>
+  <span><i style="background:#2a2521"></i>sin base para medir</span>
+  <span>· entre más fuerte el violeta, más marcado el patrón</span>
+</div>
+<div class="stats" id="stats"></div>
+</div>
+
+<script src="_nac_muni_geo.js"></script>
+<script src="_nac_estados_borde.js"></script>
+<script src="_radar_muni_data.js"></script>
+<script>
+const QC={Q1:'#49c2d0',Q2:'#a78bfa',Q3:'#e8573f',Q4:'#efb03a'};
+const QN={Q1:'paz o silencio',Q2:'paz narca',Q3:'plaza en disputa',Q4:'guerra abierta'};
+const ON={Q1:1,Q2:1,Q3:1,Q4:1,NA:1};
+const ns='http://www.w3.org/2000/svg';
+const rings=g=>g.type==='Polygon'?[g.coordinates]:g.coordinates;
+let BB=null;
+let Z=1,TX=0,TY=0,MAPW=1440,MAPH=900;
+function bbox(){let a=1e9,b=1e9,c=-1e9,d=-1e9;
+  NAC_MUNI_GEO.features.forEach(f=>rings(f.geometry).forEach(p=>p[0].forEach(([x,y])=>{if(x<a)a=x;if(x>c)c=x;if(y<b)b=y;if(y>d)d=y;})));
+  return {a,b,c,d};}
+function tog(q){ON[q]=!ON[q];document.querySelector('.chip[data-q="'+q+'"]').classList.toggle('on',ON[q]);draw();}
+
+function draw(){
+  const VEN=document.getElementById('ven').value;
+  const D=RADAR_MUNI.ventanas[VEN];
+  const byC={}; D.forEach(r=>byC[r.cve]=r);
+  const filtro=(document.getElementById('q').value||'').toLowerCase().trim();
+  const edoSel=document.getElementById('edo').value;
+  const maxS=Math.max(...D.filter(r=>r.cuadrante==='Q2').map(r=>r.score));
+  if(!BB)BB=bbox();
+  const W=1440,sc=W/(BB.c-BB.a),H=(BB.d-BB.b)*sc;
+  const svg=document.getElementById('map'); svg.setAttribute('viewBox','0 0 '+W+' '+H); svg.innerHTML='';
+  const X=x=>((x-BB.a)*sc).toFixed(1), Y=y=>((BB.d-y)*sc).toFixed(1);
+  const tip=document.getElementById('tip');
+  const frag=document.createDocumentFragment();
+  const G=document.createElementNS(ns,'g'); G.setAttribute('id','mapg');
+  let vis=0;
+  NAC_MUNI_GEO.features.forEach(f=>{
+    const k=String(f.properties.k).padStart(5,'0'), r=byC[k];
+    const q = r? r.cuadrante : 'NA';
+    if(!ON[q]) return;
+    if(edoSel && (r? r.edo : (f.properties.e||''))!==edoSel) return;
+    let d='';rings(f.geometry).forEach(p=>{const ring=p[0];ring.forEach(([x,y],i)=>{d+=(i?'L':'M')+X(x)+' '+Y(y);});d+='Z';});
+    const path=document.createElementNS(ns,'path'); path.setAttribute('class','mun'); path.setAttribute('d',d);
+    let fill='var(--na)', op=1;
+    if(r){ fill=QC[q];
+      op = q==='Q2' ? (0.30+0.70*Math.min(1,r.score/(maxS*0.35))) : 0.85; }
+    path.setAttribute('fill',fill); path.setAttribute('fill-opacity',op);
+    const hay = filtro && r && ((r.mun+' '+r.edo).toLowerCase().includes(filtro));
+    if(filtro){ if(hay){path.classList.add('hit');} else {path.classList.add('dim');} }
+    if(r){ vis++;
+      path.onmousemove=e=>{const R=svg.getBoundingClientRect();
+        tip.style.display='block';
+        tip.style.left=Math.min(R.width-270,e.clientX-R.left+16)+'px';
+        tip.style.top=(e.clientY-R.top+16)+'px';
+        tip.innerHTML='<b style="font-size:13.5px">'+r.mun+'</b> <span style="color:var(--dim)">'+r.edo+'</span><br>'
+          +'homicidio <b style="color:'+(r.dH_pct<0?'#49c2d0':'#e8573f')+'">'+(r.dH_pct>0?'+':'')+r.dH_pct.toFixed(0)+'%</b>'
+          +' · control <b style="color:'+(r.dC_pct>0?'#a78bfa':'#b8ad9a')+'">'+(r.dC_pct>0?'+':'')+r.dC_pct.toFixed(0)+'%</b><br>'
+          +'tasas hoy: hom '+r.h_fin.toFixed(1)+' · control '+r.c_fin.toFixed(1)+' /100k<br>'
+          +'<span style="color:'+QC[q]+'">'+q+' · '+QN[q]+'</span> · índice '+Math.round(r.score);};
+      path.onmouseleave=()=>tip.style.display='none';
+    }
+    frag.appendChild(path);
+  });
+  G.appendChild(frag);
+  // bordes estatales encima
+  if(typeof NAC_ESTADOS_BORDE!=='undefined'){
+    NAC_ESTADOS_BORDE.forEach(seg=>{let d='';seg.forEach(([x,y],i)=>{d+=(i?'L':'M')+X(x)+' '+Y(y);});
+      const p=document.createElementNS(ns,'path');p.setAttribute('class','edo');p.setAttribute('d',d);G.appendChild(p);});
+  }
+  svg.appendChild(G); MAPW=W; MAPH=H; aplicaZoom();
+  // stats
+  const c={Q1:0,Q2:0,Q3:0,Q4:0}; D.forEach(r=>c[r.cuadrante]++);
+  document.getElementById('nAn').textContent=D.length;
+  document.getElementById('stats').innerHTML=
+    '<span><b style="color:#a78bfa">'+c.Q2+'</b> consolidación</span>'+
+    '<span><b style="color:#e8573f">'+c.Q3+'</b> disputa</span>'+
+    '<span><b style="color:#efb03a">'+c.Q4+'</b> guerra</span>'+
+    '<span><b style="color:#49c2d0">'+c.Q1+'</b> todo baja</span>'+
+    '<span>de <b>'+D.length+'</b> medibles · '+(2475-D.length)+' sin base</span>';
+}
+// ---- zoom y arrastre ----
+function limitaPan(){const minX=MAPW-MAPW*Z,minY=MAPH-MAPH*Z;
+  TX=Math.min(0,Math.max(minX,TX));TY=Math.min(0,Math.max(minY,TY));}
+function aplicaZoom(){const g=document.getElementById('mapg');if(!g)return;
+  g.setAttribute('transform','translate('+TX.toFixed(1)+' '+TY.toFixed(1)+') scale('+Z.toFixed(3)+')');}
+function zoomEn(f,cx,cy){const nz=Math.max(1,Math.min(14,Z*f));
+  if(cx===undefined){cx=MAPW/2;cy=MAPH/2;}
+  TX=cx-(cx-TX)*(nz/Z);TY=cy-(cy-TY)*(nz/Z);Z=nz;limitaPan();aplicaZoom();}
+function zreset(){Z=1;TX=0;TY=0;aplicaZoom();}
+(function(){const svg=document.getElementById('map');
+  const esc=()=>MAPW/(svg.getBoundingClientRect().width||MAPW);
+  svg.addEventListener('wheel',e=>{e.preventDefault();const R=svg.getBoundingClientRect(),k=esc();
+    zoomEn(e.deltaY<0?1.18:1/1.18,(e.clientX-R.left)*k,(e.clientY-R.top)*k);},{passive:false});
+  let arr=false,px=0,py=0;
+  svg.addEventListener('pointerdown',e=>{if(Z<=1)return;arr=true;px=e.clientX;py=e.clientY;
+    svg.setPointerCapture(e.pointerId);svg.style.cursor='grabbing';});
+  svg.addEventListener('pointermove',e=>{if(!arr)return;const k=esc();
+    TX+=(e.clientX-px)*k;TY+=(e.clientY-py)*k;px=e.clientX;py=e.clientY;limitaPan();aplicaZoom();});
+  ['pointerup','pointercancel'].forEach(ev=>svg.addEventListener(ev,()=>{arr=false;svg.style.cursor='';}));
+})();
+
+// llenar selector de estados
+(function(){const s=new Set();RADAR_MUNI.ventanas['2019-2025'].forEach(r=>s.add(r.edo));
+  const sel=document.getElementById('edo');[...s].sort().forEach(e=>{const o=document.createElement('option');o.value=e;o.textContent=e;sel.appendChild(o);});})();
+draw();
+</script>
+</body></html>
