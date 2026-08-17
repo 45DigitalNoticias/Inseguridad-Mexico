@@ -38,6 +38,13 @@ Cada uno tiene la ruta/mes/etiqueta HARDCODEADA adentro: **ajustar antes de corr
 ## Cotejos obligatorios (deben cuadrar antes de publicar)
 - HD nacional == mismo número en casos_personas (carpetas) == suma municipal (paso 4 dry) == estatal. (jun = **7,842**)
 - Feminicidio nacional (jun = **300**).
+- **Catálogo RNID sin sorpresas**: `python _verificar_catalogo_rnid.py "<RNID-Delitos_Estatal-...csv>"`
+  debe salir OK (79 subtipos, 12 huérfanos conocidos fuera de las 55: suplantación,
+  retención de menores, privación ilegal, ley Olimpia, admón. de justicia, discriminación,
+  tortura, pornografía infantil y las 4 tentativas; ~3.3% del total, jun-2026 = 32,776
+  carpetas). Si aparece un subtipo nuevo, DECIDIR a dónde va antes de correr los pasos:
+  mapear a un delito de las 55, abrirle serie propia, o dejarlo solo en el total, pero
+  nunca dejar que caiga en silencio.
 - `_actualizar_corte.py --validar` = 0 diferencias en histórico.
 - `grep -l "2026 ene-jun" series_mun/sma_*.js | wc -l` == 32; `grep -l "<último-mes>" series_mun/smun_*.js` == 32.
 
