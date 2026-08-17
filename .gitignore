@@ -28,3 +28,18 @@ _ARCHIVO_*/
 
 # --- Scratch temporal ---
 _seg.txt
+
+# --- Builders con rutas locales: cocina, no sitio ---
+_actualizar_corte.py
+_cobertura_radar_muni.js
+_cruce_radar_ferro_frontera.js
+_gen_combo_*.js
+_gen_radar_*.js
+_gen_radar_*.py
+_generar_casos_personas.py
+_generar_matriz_55.py
+_geografia_radar.js
+_manifest_*.txt
+_porque_entran_muni.js
+_refrescar_muni_2026.py
+datos/panorama_estatal_README.md
