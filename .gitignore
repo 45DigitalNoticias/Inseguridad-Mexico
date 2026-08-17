@@ -15,6 +15,13 @@ HALLAZGO*
 # Datos de hallazgos aún no publicados
 *espejo_rnid*
 
+# --- Expediente metodológico y prompts de producción (cocina) ---
+# El expediente trae rutas locales absolutas, la ubicación de las bases crudas
+# (1.35 GB fuera de este repo), los límites del método y los pendientes internos.
+# Los prompts son material de producción. Ninguno de los dos es del sitio.
+EXPEDIENTE METODOLOGICO.md
+prompt-*.txt
+
 # --- Respaldos y archivo muerto ---
 *BACKUP*
 _ARCHIVO_*/
