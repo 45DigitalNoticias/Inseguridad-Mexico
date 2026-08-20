@@ -29,13 +29,50 @@ Cada uno tiene la ruta/mes/etiqueta HARDCODEADA adentro: **ajustar antes de corr
 > ⚠️ `series_mensuales/` (estatal, paso 2) ≠ `series_mun/` (municipal, paso 4). Son distintos y por eso
 > se desincronizaron. El paso 4 es quirúrgico: solo el punto 2026, conserva 2015-2025.
 
+## 5. Radar (los DOS niveles, cada uno con su script)
+- Municipal: `python _gen_radar_2026.py` (ajustar RNID al mes). ⚠️ APPENDEA la frase a la
+  `nota` de `_radar_muni_data.js`: borrar la frase del corte anterior a mano o queda doble
+  (pasó en jul-2026).
+- Estatal: `python _gen_radar_estatal_s1.py --validar` (debe reproducir la ventana vigente
+  celda a celda) y luego `--apply`. Convención confirmada: crudos estatales, pop fin 2026.
+
+## 6. que-mide.html + espejo (números CONTADOS del crudo, no etiquetas)
+`python _gen_quemide.py --validar` (reproduce los números publicados) y luego `--apply`:
+reescribe los 3 SVG (huérfanos, espejo 2025-vs-2026, composición), el KPI de huérfanos y
+`datos/espejo_rnid_2026.csv`. Ajustar MES/N_MESES dentro. Revisar a mano tras el apply:
+la meta description y el KPI "carpetas que caen a cero" (suma DESAPARECE del CSV espejo).
+
+## 7. Cifras y JS hardcodeados en páginas (no las cubre ningún script)
+- `index.html`: KPI "Delitos, total" y "Homicidio doloso" (2026 parcial) + la tarjeta
+  de conteo.html ("hay N personas de diferencia").
+- `conteo.html`: KPIs carpetas/víctimas/diferencia y % (suman los delitos QUE REPORTAN de
+  casos_personas.js, 2026), botón de periodo, concat `SERIES_ANIOS.concat([...])`, t55foot.
+  La referencia 2025 (249,644/291,653) NO cambia: es año cerrado.
+- `estado.html`: `ritmo26 = Math.round(total*12/N)`, etiqueta del KPI y "ritmo ×N.NN",
+  y en PERIODOS_R el `{label:'2026 ene-XXX', len:N}`.
+- `radar.html`: texto del botón `w26` ("ene-XXX 2019 → 2026*"), y `_radar-mapa-municipal.html`
+  el `<option>` equivalente.
+- `index.html`: el SELLO de portada (`sello-corte` + `sello-fecha`): mes del corte y
+  FECHA de actualización — se edita la fecha el día del push.
+- `corte_sitio.js`: el CHIP flotante "Corte SESNSP · <mes>" de TODAS las páginas
+  interiores (portada no: ahí va el sello). UNA edición: `mes`, `corto`, `actualizado`.
+  morelos/ NO lo carga a propósito (track aparte con su propio corte).
+
 ## Etiquetas del corte (hardcodeadas, sin constante central — editar a mano)
-`grep -rniE "jun-2026|ene-jun|CORTE JUN|corte de junio"` y actualizar en:
+`grep -rniE "jun-2026|ene-jun|CORTE JUN|corte de junio|junio 2026|enero a junio"` y actualizar en:
 `index.html`, `estado.html`, `municipio.html`, `municipios.html`, `ranking-nacional.html`,
-`corredores-sureste.html`, `senales.html`, `columnas/index.html`, `metodologia.html`.
+`corredores-sureste.html`, `senales.html`, `columnas/index.html`, `metodologia.html`,
+`conteo.html`, `que-mide.html`, `radar.html`, `como_leer.html`, `glosario.html`, `expedientes.html`.
 (Mejora futura: centralizar en `constantes_sitio.js`.)
+⚠️ NO tocar: fechas RNPDNO ("3-jun-2026", "RNPDNO, junio 2026"), la firma editorial de
+`como_leer.html` ("Columna editorial · junio 2026") y `_difusion/flyer-junio-2026/` (histórico).
+Morelos (`morelos/`) es track SEPARADO: sus menciones de "junio" son texto editorial fechado.
 
 ## Cotejos obligatorios (deben cuadrar antes de publicar)
+- ⚠️ El cotejo de casos_personas NO es opcional: en jul-2026 el paso 3 corrió con los CSV
+  nuevos pero la rebanada de 6 meses (`r[cm:cm+6]`) y la etiqueta vieja → HD salía 7,845 en
+  vez de 8,994 CON el `corte` diciendo "ene-jul". El corte declarado NO prueba nada: probar
+  el NÚMERO contra la matriz. (El script ya usa N_MESES; ajustarlo cada corte.)
 - HD nacional == mismo número en casos_personas (carpetas) == suma municipal (paso 4 dry) == estatal. (jun = **7,842**)
 - Feminicidio nacional (jun = **300**).
 - **Catálogo RNID sin sorpresas**: `python _verificar_catalogo_rnid.py "<RNID-Delitos_Estatal-...csv>"`
@@ -51,6 +88,14 @@ Cada uno tiene la ruta/mes/etiqueta HARDCODEADA adentro: **ajustar antes de corr
 ## Verificar (server local, headless)
 `python -m http.server 8899` → cargar `index.html`, `estado.html?estado=17`, `municipio.html?cve=17007`,
 `ranking-nacional.html`, `corredores-sureste.html`. Consola limpia + etiqueta del corte correcta + 2026 presente.
+
+## ⚠️ Builders del rediseño (_REDISENO/, en 45 DIGITAL NOTICIAS/)
+Los `_construir_*.py` parten del ARCHIVO CONGELADO pre-rediseño y de textos propios:
+REGENERAR una página revive cifras/etiquetas del corte viejo. Tras cualquier regeneración,
+repetir el pase de corte de esta página sobre lo regenerado. `_piezas.py` (pie + marco,
+ya emite el include de corte_sitio.js) y `_construir_v3.py` (sello + etiquetas de portada)
+quedaron sincronizados a jul-2026 el 20-ago-2026; el resto de builders NO — el que se
+corra, se coteja.
 
 ## Publicar
 `git add` (solo los .js de datos + los .html tocados) + commit + **push SOLO con orden literal "publica"**.

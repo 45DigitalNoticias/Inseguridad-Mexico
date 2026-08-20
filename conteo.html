@@ -537,13 +537,13 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
       <div class="mono text-[10px] uppercase tracking-[.2em] text-[#8a8072]">
         La diferencia entre los dos conteos
       </div>
-      <div class="cifra text-[54px] leading-none mt-3 text-[#E8573F]">19,280</div>
+      <div class="cifra text-[54px] leading-none mt-3 text-[#E8573F]">22,415</div>
       <div class="text-[13px] leading-[1.55] text-text-muted mt-3">
         personas que aparecen como víctimas en los expedientes de 2026 y que el conteo de carpetas
-        no nombra. Es 15.4% más que las carpetas.
+        no nombra. Es 15.3% más que las carpetas.
       </div>
       <div class="mono text-[10px] text-[#8a8072] mt-4 pt-4 hairline-border-t leading-[1.7]">
-        SESNSP · enero a junio 2026 · ambos conteos oficiales
+        SESNSP · enero a julio 2026 · ambos conteos oficiales
       </div>
     </aside>
   </header>
@@ -563,20 +563,20 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
          comparten eje optico dentro de su celda. -->
     <div class="grid grid-cols-1 md:grid-cols-3">
       <div class="p-6 text-center md:border-r border-border-subtle">
-        <div class="mono text-[10px] uppercase tracking-[.16em] text-[#8a8072]">Carpetas · 2026 ene-jun</div>
-        <div class="cifra text-[38px] leading-none mt-3 text-text-primary">125,030</div>
+        <div class="mono text-[10px] uppercase tracking-[.16em] text-[#8a8072]">Carpetas · 2026 ene-jul</div>
+        <div class="cifra text-[38px] leading-none mt-3 text-text-primary">146,129</div>
         <div class="text-[12px] text-text-muted mt-2">expedientes abiertos · delitos contra las personas</div>
       </div>
       <div class="p-6 text-center md:border-r border-border-subtle">
-        <div class="mono text-[10px] uppercase tracking-[.16em] text-[#8a8072]">Víctimas · 2026 ene-jun</div>
-        <div class="cifra text-[38px] leading-none mt-3 text-text-primary">144,310</div>
+        <div class="mono text-[10px] uppercase tracking-[.16em] text-[#8a8072]">Víctimas · 2026 ene-jul</div>
+        <div class="cifra text-[38px] leading-none mt-3 text-text-primary">168,544</div>
         <div class="text-[12px] text-text-muted mt-2">personas nombradas en esos mismos expedientes</div>
       </div>
       <div class="p-6 text-center">
         <div class="mono text-[10px] uppercase tracking-[.16em] text-[#8a8072]">La diferencia</div>
-        <div class="cifra text-[38px] leading-none mt-3 text-[#E8573F]">19,280</div>
+        <div class="cifra text-[38px] leading-none mt-3 text-[#E8573F]">22,415</div>
         <div class="text-[12px] text-text-muted mt-2">
-          personas que el conteo de casos no nombra · 15.4% más que las carpetas
+          personas que el conteo de casos no nombra · 15.3% más que las carpetas
         </div>
       </div>
     </div>
@@ -597,7 +597,7 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
       porque todavía no se publican, no porque hayan desaparecido. Por eso la referencia de 2025 suma
       esos mismos 5 delitos y no los ocho: comparar contra el total cerrado inflaría la caída.
       <span class="mono text-[11px] block mt-2 text-[#8a8072] text-left">
-        Fuente: SESNSP, carpetas y víctimas, ambos conteos oficiales · 2026 metodología RNID, 2015-2025 metodología CNSP/38/15 · corte junio 2026.
+        Fuente: SESNSP, carpetas y víctimas, ambos conteos oficiales · 2026 metodología RNID, 2015-2025 metodología CNSP/38/15 · corte julio 2026.
       </span>
     </div>
 
@@ -611,7 +611,7 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
 
       <div class="ctrl"><span>Periodo:</span>
         <button data-yr="10" class="on">2025 · año cerrado</button>
-        <button data-yr="11">2026 ene-jun *</button>
+        <button data-yr="11">2026 ene-jul *</button>
       </div>
       <div class="grid" id="cpGrid"></div>
       <div class="lg"><span><i class="bar-c" style="background:#5b6b7a"></i>Carpetas (casos)</span><span><i style="background:var(--cian)"></i>Víctimas (personas)</span></div>
@@ -677,7 +677,7 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
       <div class="flex flex-col gap-1">
         <span class="font-bold text-[13px] tracking-tight text-text-primary">INSEGURIDAD MÉXICO</span>
         <span class="mono text-[10.5px] text-[#8a8072]">
-          45 Digital Noticias · datos oficiales SESNSP, RNPDNO, INEGI, CONAPO · corte junio 2026
+          45 Digital Noticias · datos oficiales SESNSP, RNPDNO, INEGI, CONAPO · corte julio 2026
         </span>
       </div>
       <a href="https://45digitalnoticias.github.io/columnas/privacidad.html" target="_blank"
@@ -798,7 +798,7 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
         var lo=fem[0], hi=fem[fem.length-1];
         var tr=document.getElementById('cpRange');
         tr.innerHTML='<span>'+lo.est+' '+Math.round(lo.pct)+'%</span><div class="track"><div class="pin" style="left:0%"></div><div class="pin" style="left:100%"></div></div><span>'+hi.est+' '+Math.round(hi.pct)+'%</span>';
-        gid_cp('cpSrc').textContent='Fuente: SESNSP — carpetas y víctimas, ambos conteos oficiales. 2015-2025 metodología CNSP/38/15; 2026 metodología nueva RNID (* no estrictamente comparable con años previos). Corte junio 2026.';
+        gid_cp('cpSrc').textContent='Fuente: SESNSP — carpetas y víctimas, ambos conteos oficiales. 2015-2025 metodología CNSP/38/15; 2026 metodología nueva RNID (* no estrictamente comparable con años previos). Corte julio 2026.';
       }
       document.querySelectorAll('.casos .ctrl button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.casos .ctrl button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');yr=+b.dataset.yr;render()})});
       render();
@@ -811,7 +811,7 @@ document.addEventListener('DOMContentLoaded',function(){
 // ===== RADIOGRAFIA NACIONAL 55 DELITOS · ranking menor a mayor =====
 (function(){
   const CAT = DELITOS_COMPLETO_2025['17'].map(r=>({bj:r.bj, s:r.s}));
-  const anios = SERIES_ANIOS.concat(['2026 ene-jun']);
+  const anios = SERIES_ANIOS.concat(['2026 ene-jul']);
   const I26 = anios.length-1;
   let anioSel = I26-1; // default 2025 (ultimo completo)
   const METEO=['#00808a','#4ba3a3','#9fc7a6','#e2dd9a','#f4c04e','#e67e39','#d64a3a','#b42222'];
@@ -847,11 +847,12 @@ document.addEventListener('DOMContentLoaded',function(){
         '<span class="val">'+r.v.toLocaleString('en-US')+'</span></div>';
     });
     document.getElementById('tabla55').innerHTML=html;
-    document.getElementById('t55foot').textContent=CAT.length+' subtipos · total nacional '+anio+(ai===I26?' (PARCIAL · ene-jun)':'')+': '+total.toLocaleString('en-US')+' carpetas · suma de los 32 estados · SESNSP corte jun-2026 · cifras.csv';
+    document.getElementById('t55foot').textContent=CAT.length+' subtipos · total nacional '+anio+(ai===I26?' (PARCIAL · ene-jul)':'')+': '+total.toLocaleString('en-US')+' carpetas · suma de los 32 estados · SESNSP corte jul-2026 · cifras.csv';
   }
   render55();
 })();
 });
 </script>
+<script defer src="corte_sitio.js"></script>
 </body>
 </html>

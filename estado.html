@@ -759,7 +759,7 @@ select{max-width:100% !important;min-width:0;}
 
     <!-- HISTÓRICO CON FILTROS -->
     <div class="panel" style="margin-top:16px;">
-      <h3><span>Histórico · <em>cualquier delito · 2015 a jun-2026</em></span><span id="histInfo"></span></h3>
+      <h3><span>Histórico · <em>cualquier delito · 2015 a jul-2026</em></span><span id="histInfo"></span></h3>
       <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px;">
         <span style="font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--acc);text-transform:uppercase;font-weight:700;">▾ Seleccionar delito</span>
         <select id="selDelito" style="background:var(--panel2);color:var(--txt);border:1px solid var(--acc);border-radius:8px;padding:9px 12px;font-family:'Hanken Grotesk';font-size:12.5px;max-width:440px;"></select>
@@ -779,7 +779,7 @@ select{max-width:100% !important;min-width:0;}
       <div id="chartRank"></div>
       <div style="display:flex;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-family:'Spline Sans Mono',monospace;font-size:9.5px;letter-spacing:1px;color:var(--dim);text-transform:uppercase;">
         <span id="rankFooterIzq"></span>
-        <span>45 Digital Noticias · SESNSP corte jun-2026 · cifras.csv</span>
+        <span>45 Digital Noticias · SESNSP corte jul-2026 · cifras.csv</span>
       </div>
     </div>
 
@@ -823,7 +823,7 @@ select{max-width:100% !important;min-width:0;}
        Se queda en la pagina, no en el pie compartido, porque el dato es de esta
        pagina y cambia con el estado que se este viendo. -->
   <p class="mono text-[10.5px] leading-[1.8] text-[#8a8072] mt-6 mb-0">
-    Fuentes: SESNSP base estatal corte jun-2026 · RNPDNO 3-jun-2026 · CONAPO pry23 ·
+    Fuentes: SESNSP base estatal corte jul-2026 · RNPDNO 3-jun-2026 · CONAPO pry23 ·
     cifras trazables en cifras.csv, filas E<span id="footClave"></span>-001..031 ·
     la serie por delito es dato oficial sin interpolación.
   </p>
@@ -844,7 +844,7 @@ select{max-width:100% !important;min-width:0;}
       <div class="flex flex-col gap-1">
         <span class="font-bold text-[13px] tracking-tight text-text-primary">INSEGURIDAD MÉXICO</span>
         <span class="mono text-[10.5px] text-[#8a8072]">
-          45 Digital Noticias · datos oficiales SESNSP, RNPDNO, INEGI, CONAPO · corte junio 2026
+          45 Digital Noticias · datos oficiales SESNSP, RNPDNO, INEGI, CONAPO · corte julio 2026
         </span>
       </div>
       <a href="https://45digitalnoticias.github.io/columnas/privacidad.html" target="_blank"
@@ -1051,7 +1051,7 @@ function render(){
   document.getElementById('silueta').innerHTML =
     `<svg viewBox="${(a-pad).toFixed(3)} ${(-d-pad).toFixed(3)} ${(c-a+2*pad).toFixed(3)} ${(d-b+2*pad).toFixed(3)}"><path d="${pathDe(feat)}" fill="${ACC}" opacity=".93"/></svg>`;
   document.getElementById('eyebrow').textContent =
-    `Clave INEGI ${String(CLAVE).padStart(2,'0')} · población 2025: ${fmtN(P.poblacion_2025)} · SESNSP corte jun-2026 · catálogo completo`;
+    `Clave INEGI ${String(CLAVE).padStart(2,'0')} · población 2025: ${fmtN(P.poblacion_2025)} · SESNSP corte jul-2026 · catálogo completo`;
   document.getElementById('nombre').textContent = nombreC;
   document.getElementById('brandSub').textContent = `Radiografía · ${nombreC}`;
   document.getElementById('footClave').textContent = String(CLAVE).padStart(2,'0');
@@ -1066,7 +1066,7 @@ function render(){
   // KPIs
   const nacTot = PANORAMA_ESTATAL.reduce((s,r)=>s+r.sesnsp_2025_total,0);
   const rkOf = campo => PANORAMA_ESTATAL.filter(r=>r[campo]>P[campo]).length+1;
-  const ritmo26 = P.sesnsp_2026_parcial_total*12/6;
+  const ritmo26 = Math.round(P.sesnsp_2026_parcial_total*12/7);
   const var26 = (ritmo26-P.sesnsp_2025_total)/P.sesnsp_2025_total*100;
   document.getElementById('kpis').innerHTML = [
     {l:'Total carpetas 2025', n:fmtN(P.sesnsp_2025_total), s:`<b>${(P.sesnsp_2025_total/nacTot*100).toFixed(2)}%</b> del nacional · #${rkOf('sesnsp_2025_total')} de 32`},
@@ -1074,7 +1074,7 @@ function render(){
     {l:'Feminicidio', n:fmtN(P.sesnsp_2025_feminicidio), s:`tasa <b>${P.tasa_feminicidio_100k_2025}</b> · #${rkOf('tasa_feminicidio_100k_2025')} por tasa`},
     {l:'Extorsión', n:fmtN(P.sesnsp_2025_extorsion), s:`tasa <b>${P.tasa_extorsion_100k_2025}</b> · #${rkOf('tasa_extorsion_100k_2025')} por tasa`},
     {l:'Desaparecidos activos', n:fmtN(P.rnpdno_activos_total), s:`tasa <b>${P.tasa_rnpdno_activos_100k}</b> · #${rkOf('tasa_rnpdno_activos_100k')} por tasa`},
-    {l:'2026 ene-jun', n:fmtN(P.sesnsp_2026_parcial_total), s:`ritmo ×2 = ${fmtN(ritmo26)} · <b>${var26>0?'+':''}${var26.toFixed(1)}%</b> vs 2025`},
+    {l:'2026 ene-jul', n:fmtN(P.sesnsp_2026_parcial_total), s:`ritmo ×1.71 = ${fmtN(ritmo26)} · <b>${var26>0?'+':''}${var26.toFixed(1)}%</b> vs 2025`},
   ].map(k=>`<div class="kpi"><div class="lab">${k.l}</div><div class="num">${k.n}</div><div class="sub">${k.s}</div></div>`).join('');
 
   // SEÑALES del estado
@@ -1264,7 +1264,7 @@ function poblarSelDelito(){
 const PERIODOS_R = (()=>{ const a=[];
   for(let y=2015;y<=2025;y++) a.push({label:String(y), ini:(y-2015)*12, len:12, parcial:false});
   a.push({label:'2026 T1', ini:132, len:3, parcial:false});
-  a.push({label:'2026 ene-jun', ini:132, len:6, parcial:true});
+  a.push({label:'2026 ene-jul', ini:132, len:7, parcial:true});
   return a; })();
 let periodoR = 10; // default: 2025 (último año completo estatal)
 const METEO_R = ['#1a2db0','#2e6fde','#35b5e8','#3dbb6e','#8bc63f','#f3e13a','#fbb03b','#f4711f','#e02f1f','#a31212','#6e0b0b'];
@@ -1458,5 +1458,6 @@ function shGo(n){
 function setT(t){document.documentElement.dataset.theme=t;document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));try{localStorage.setItem('imx-theme',t);}catch(e){}if(document.getElementById('mapaMun')&&window.renderMapaMun){try{renderMapaMun();}catch(e){}}}
 (function(){var t=document.documentElement.dataset.theme||'dark';document.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));})();
 </script>
+<script defer src="corte_sitio.js"></script>
 </body>
 </html>

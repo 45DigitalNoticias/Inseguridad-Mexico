@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ranking nacional de la inseguridad · estados y municipios · Inseguridad México</title>
-<meta name="description" content="Los 32 estados y los municipios que encabezan, ordenados para el delito y el año que elijas, con tasa por 100 mil habitantes y dispersión completa. Datos SESNSP con corte junio 2026.">
+<meta name="description" content="Los 32 estados y los municipios que encabezan, ordenados para el delito y el año que elijas, con tasa por 100 mil habitantes y dispersión completa. Datos SESNSP con corte julio 2026.">
 <link rel="canonical" href="https://45digitalnoticias.github.io/Inseguridad-Mexico/ranking-nacional.html">
 <meta name="theme-color" content="#0E0C0B">
 <meta property="og:type" content="website">
@@ -614,7 +614,7 @@ main,.wrap,.bgwrap{min-width:0;}
       <div class="flex flex-col gap-1">
         <span class="font-bold text-[13px] tracking-tight text-text-primary">INSEGURIDAD MÉXICO</span>
         <span class="mono text-[10.5px] text-[#8a8072]">
-          45 Digital Noticias · datos oficiales SESNSP, RNPDNO, INEGI, CONAPO · corte junio 2026
+          45 Digital Noticias · datos oficiales SESNSP, RNPDNO, INEGI, CONAPO · corte julio 2026
         </span>
       </div>
       <a href="https://45digitalnoticias.github.io/columnas/privacidad.html" target="_blank"
@@ -760,7 +760,7 @@ function layout(){
   </div>
   <div class="sec">Los municipios que encabezan</div>
   <div class="panel"><input class="search" id="search" placeholder="🔍 busca tu municipio (de los 2,469)…"><div class="esc muni-rk" id="escMun"></div></div>
-  <footer>Fuente: SESNSP, incidencia delictiva municipal (corte jun-2026) · Población: INEGI Censo 2020 ajustada por año (CONAPO) · La tasa nivela municipios chicos y grandes; los absolutos no.<br>45 Digital Noticias · Atlas ciudadano de inseguridad · cada cifra trazable a su fuente.</footer>`;
+  <footer>Fuente: SESNSP, incidencia delictiva municipal (corte jul-2026) · Población: INEGI Censo 2020 ajustada por año (CONAPO) · La tasa nivela municipios chicos y grandes; los absolutos no.<br>45 Digital Noticias · Atlas ciudadano de inseguridad · cada cifra trazable a su fuente.</footer>`;
   const ds=document.getElementById('delsel');
   let o0=document.createElement('option');o0.value='__TOTAL__';o0.textContent='Todos los delitos (total)';ds.appendChild(o0);
   SUBS.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;ds.appendChild(o);});
@@ -840,5 +840,6 @@ function render(){
   scatter(edo);
 }
 </script>
+<script defer src="corte_sitio.js"></script>
 </body>
 </html>

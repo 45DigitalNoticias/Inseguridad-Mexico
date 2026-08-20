@@ -36,6 +36,8 @@ _cruce_radar_ferro_frontera.js
 _gen_combo_*.js
 _gen_radar_*.js
 _gen_radar_*.py
+_gen_quemide.py
+_verificar_catalogo_rnid.py
 _generar_casos_personas.py
 _generar_matriz_55.py
 _geografia_radar.js
@@ -43,3 +45,7 @@ _manifest_*.txt
 _porque_entran_muni.js
 _refrescar_muni_2026.py
 datos/panorama_estatal_README.md
+
+# temporales de builders
+__pycache__/
+_tmp_pop.json

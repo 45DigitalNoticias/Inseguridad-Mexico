@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Radiografía municipal · 55 delitos de tu municipio · Inseguridad México</title>
-<meta name="description" content="La ficha completa de un municipio: sus 55 delitos, su lugar en el estado, la estacionalidad del delito y las señales de reclasificación. Datos SESNSP municipales con corte junio 2026.">
+<meta name="description" content="La ficha completa de un municipio: sus 55 delitos, su lugar en el estado, la estacionalidad del delito y las señales de reclasificación. Datos SESNSP municipales con corte julio 2026.">
 <link rel="canonical" href="https://45digitalnoticias.github.io/Inseguridad-Mexico/municipio.html">
 <meta name="theme-color" content="#0E0C0B">
 <meta property="og:type" content="website">
@@ -632,7 +632,7 @@ main,.wrap,.bgwrap{min-width:0;}
       <div class="flex flex-col gap-1">
         <span class="font-bold text-[13px] tracking-tight text-text-primary">INSEGURIDAD MÉXICO</span>
         <span class="mono text-[10.5px] text-[#8a8072]">
-          45 Digital Noticias · datos oficiales SESNSP, RNPDNO, INEGI, CONAPO · corte junio 2026
+          45 Digital Noticias · datos oficiales SESNSP, RNPDNO, INEGI, CONAPO · corte julio 2026
         </span>
       </div>
       <a href="https://45digitalnoticias.github.io/columnas/privacidad.html" target="_blank"
@@ -784,7 +784,7 @@ function layout(){
   <div class="bc"><a href="index.html">Nacional</a> › <a href="estado.html?estado=${D.ent}">${D.estado}</a> › <b>${D.nom}</b> (municipio)</div>
   <div class="hero">
     <div>
-      <div class="kick">CLAVE INEGI ${D.clave} · POBLACIÓN 2020: ${D.pobYr?fmt(D.pobYr[D.anios.indexOf('2020')]):'s/d'} · SESNSP CORTE JUN-2026</div>
+      <div class="kick">CLAVE INEGI ${D.clave} · POBLACIÓN 2020: ${D.pobYr?fmt(D.pobYr[D.anios.indexOf('2020')]):'s/d'} · SESNSP CORTE JUL-2026</div>
       <h1>${D.nom}</h1>
       <div class="sub">Tu municipio, año por año. Mueve el tiempo y mira cómo cambia el panorama. El dato del SESNSP llega a nivel municipio (no por colonia), así que aquí respondemos lo que sí podemos con rigor: cómo te comparas, cuándo ocurre y qué delitos pesan.</div>
       <div class="diag" id="diag"></div>
@@ -810,7 +810,7 @@ function layout(){
   <div class="sec">La radiografía · escalada de ${D.subs.length} delitos</div>
   <div class="escTop"><span class="lg" id="escLg">ordenado por carpetas · año en pantalla · clic para ver en el tablero</span><button class="fixbtn" id="fix">fijar orden</button></div>
   <div class="esc" id="esc"></div>
-  <footer>Fuente: SESNSP, incidencia delictiva municipal (corte jun-2026) · Población: INEGI Censo 2020 ajustada por año con crecimiento estatal CONAPO · Tasa nacional de homicidio por año (CONAPO+SESNSP) · El mapa compara municipios entre sí; no representa concentración por colonia.<br>45 Digital Noticias · Atlas ciudadano de inseguridad · cada cifra trazable a su fuente.</footer>`;
+  <footer>Fuente: SESNSP, incidencia delictiva municipal (corte jul-2026) · Población: INEGI Censo 2020 ajustada por año con crecimiento estatal CONAPO · Tasa nacional de homicidio por año (CONAPO+SESNSP) · El mapa compara municipios entre sí; no representa concentración por colonia.<br>45 Digital Noticias · Atlas ciudadano de inseguridad · cada cifra trazable a su fuente.</footer>`;
   // selector
   const delMap=document.getElementById('delMap');
   let o0=document.createElement('option');o0.value='__TOTAL__';o0.textContent='Todos los delitos (total)';delMap.appendChild(o0);
@@ -902,5 +902,6 @@ function render(){
 }
 boot();
 </script>
+<script defer src="corte_sitio.js"></script>
 </body>
 </html>
