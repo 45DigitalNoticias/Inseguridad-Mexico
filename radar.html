@@ -603,7 +603,7 @@ main,.wrap,.bgwrap{min-width:0;}
   <label>Escala</label>
   <div class="modo"><button id="sEdo" class="on" onclick="setE('edo')">32 estados</button><button id="sMun" onclick="setE('mun')"><span id="nMun">315</span> municipios</button></div>
   <label>Ventana</label>
-  <div class="modo"><button id="w19" class="on" onclick="setV('2019-2025')">2019 → 2025</button><button id="w23" onclick="setV('2023-2025')">2023 → 2025</button><button id="w26" onclick="setV('2019s1-2026s1')">ene-jun 2019 → 2026*</button></div>
+  <div class="modo"><button id="w19" class="on" onclick="setV('2019-2025')">2019 → 2025</button><button id="w23" onclick="setV('2023-2025')">2023 → 2025</button><button id="w26" onclick="setV('2019s1-2026s1')">ene-jul 2019 → 2026*</button></div>
   <input id="q" placeholder="Buscar municipio o estado…" style="display:none;background:var(--bg);color:var(--txt);border:1px solid var(--line2);border-radius:9px;padding:9px 13px;font-family:'Hanken Grotesk';font-weight:600;font-size:14px;min-width:230px">
   <span style="font-family:'Spline Sans Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1px">TASAS POR 100 MIL HABITANTES · LA VENTANA 2026 ES PRELIMINAR</span>
 </div>
@@ -729,7 +729,7 @@ main,.wrap,.bgwrap{min-width:0;}
       <div class="flex flex-col gap-1">
         <span class="font-bold text-[13px] tracking-tight text-text-primary">INSEGURIDAD MÉXICO</span>
         <span class="mono text-[10.5px] text-[#8a8072]">
-          45 Digital Noticias · datos oficiales SESNSP, RNPDNO, INEGI, CONAPO · corte junio 2026
+          45 Digital Noticias · datos oficiales SESNSP, RNPDNO, INEGI, CONAPO · corte julio 2026
         </span>
       </div>
       <a href="https://45digitalnoticias.github.io/columnas/privacidad.html" target="_blank"
@@ -1044,5 +1044,6 @@ document.getElementById('q').addEventListener('input',()=>{scatter();tabla();});
 render();
 addEventListener('resize',()=>{mapa();scatter();});
 </script>
+<script defer src="corte_sitio.js"></script>
 </body>
 </html>

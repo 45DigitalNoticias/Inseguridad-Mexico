@@ -13,11 +13,11 @@
 <meta property="og:title" content="El país completo, delito por delito, sin categorías que escondan">
 <meta property="og:description" content="En 2025 México registró 20,191 homicidios dolosos, 20.7% menos que en 2024. Pero en 22 series el delito específico cae mientras su categoría espejo Otros sube.">
 <meta property="og:url" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/">
-<meta property="og:image" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/assets/og-inseguridad-mexico.jpg">
+<meta property="og:image" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/assets/video/guia-poster.webp">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="El país completo, delito por delito, sin categorías que escondan">
 <meta name="twitter:description" content="En 2025 México registró 20,191 homicidios dolosos, 20.7% menos que en 2024. Pero en 22 series el delito específico cae mientras su categoría espejo Otros sube.">
-<meta name="twitter:image" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/assets/og-inseguridad-mexico.jpg">
+<meta name="twitter:image" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/assets/video/guia-poster.webp">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "El país completo, delito por delito, sin categorías que escondan", "description": "En 2025 México registró 20,191 homicidios dolosos, 20.7% menos que en 2024. Pero en 22 series el delito específico cae mientras su categoría espejo Otros sube.", "url": "https://45digitalnoticias.github.io/Inseguridad-Mexico/", "isAccessibleForFree": true, "creator": {"@type": "NewsMediaOrganization", "name": "45 Digital Noticias"}, "license": "https://creativecommons.org/licenses/by/4.0/", "spatialCoverage": {"@type": "Country", "name": "México"}, "temporalCoverage": "2015/2026", "isPartOf": {"@type": "Dataset", "name": "Inseguridad México", "url": "https://45digitalnoticias.github.io/Inseguridad-Mexico/"}}</script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
 <script>if(/github[.]io$/.test(location.hostname)){var _g=document.createElement('script');_g.async=1;_g.src='https://www.googletagmanager.com/gtag/js?id=G-R64XZVCF6F';document.head.appendChild(_g);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-R64XZVCF6F');}</script>
@@ -177,6 +177,23 @@ canvas#mapa{width:100%;display:block;}
    altura y la pagina no se hace kilometrica. */
 .hook-corto{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;
   overflow:hidden;text-overflow:ellipsis;}
+/* Carrusel de columnas: tarjetas apiladas en la misma celda; solo la activa
+   se ve. La seccion mide una tarjeta y no crece con cada columna nueva.
+   Sin auto-avance: se navega con flechas y puntos. */
+.carcol{display:grid;}
+.carcol>a{grid-area:1/1;opacity:0;pointer-events:none;transition:opacity .55s ease;}
+.carcol>a.act{opacity:1;pointer-events:auto;}
+.hook-carrusel{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;
+  overflow:hidden;text-overflow:ellipsis;}
+.carcol-dots button{width:32px;height:5px;border-radius:3px;background:#3a352c;
+  border:0;padding:0;cursor:pointer;transition:background .3s;}
+.carcol-dots button.act{background:#FBBF24;}
+.carcol-flecha{width:36px;height:36px;border-radius:999px;border:1px solid #3a352c;
+  background:transparent;color:#FBBF24;font-size:20px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color .3s,background .3s;}
+.carcol-flecha:hover{border-color:#FBBF24;background:rgba(251,191,36,.08);}
+@media (prefers-reduced-motion:reduce){.carcol>a{transition:none;}}
 
 :root{--amber:var(--oro);--rose:var(--sello);--cyan:var(--cian);--green:var(--verde);--purple:var(--morado);--red:var(--rojo);}
 
@@ -550,7 +567,17 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
          centrar, el aire se reparte arriba y abajo y las dos mitades leen a la
          misma altura optica. -->
     <div class="flex flex-col justify-center gap-group-gap border-l-4 border-[#FBBF24] pl-5">
-      <div class="mono text-[11px] uppercase tracking-[.3em] text-[#FBBF24]">Corte SESNSP · junio 2026</div>
+      <div class="flex items-center gap-3 flex-wrap">
+        <span class="sello-corte"><span class="pulso"></span>Corte SESNSP · julio 2026</span>
+        <span class="sello-fecha">actualizado el 20 · ago · 2026</span>
+      </div>
+      <style>
+      .sello-corte{display:inline-flex;align-items:center;gap:9px;font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#0E0C0B;background:#FBBF24;padding:7px 14px 6px;border-radius:999px;white-space:nowrap;}
+      .sello-corte .pulso{width:7px;height:7px;border-radius:50%;background:#0E0C0B;flex:none;animation:selloPulso 2.6s ease-in-out infinite;}
+      @keyframes selloPulso{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
+      @media (prefers-reduced-motion:reduce){.sello-corte .pulso{animation:none}}
+      .sello-fecha{font-family:'Spline Sans Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#B8AD9A;white-space:nowrap;}
+      </style>
       <h1 class="text-[clamp(34px,4.4vw,58px)] font-extrabold leading-[1.03] tracking-[-.035em] text-text-primary">
         El país completo, delito por delito, sin categorías que escondan
       </h1>
@@ -604,13 +631,13 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
         <div class="grid grid-cols-2 gap-4 text-center">
           <div>
             <div class="mono text-[9.5px] uppercase tracking-[.14em] text-[#8a8072]">Delitos, total</div>
-            <div class="cifra text-[26px] leading-none mt-1.5 text-text-primary">999,903</div>
-            <div class="mono text-[9.5px] text-[#8a8072] mt-1.5">enero a junio</div>
+            <div class="cifra text-[26px] leading-none mt-1.5 text-text-primary">1,173,444</div>
+            <div class="mono text-[9.5px] text-[#8a8072] mt-1.5">enero a julio</div>
           </div>
           <div>
             <div class="mono text-[9.5px] uppercase tracking-[.14em] text-[#8a8072]">Homicidio doloso</div>
-            <div class="cifra text-[26px] leading-none mt-1.5 text-[#E8573F]">7,842</div>
-            <div class="mono text-[9.5px] text-[#8a8072] mt-1.5">enero a junio</div>
+            <div class="cifra text-[26px] leading-none mt-1.5 text-[#E8573F]">8,994</div>
+            <div class="mono text-[9.5px] text-[#8a8072] mt-1.5">enero a julio</div>
           </div>
         </div>
         <p class="text-[11.5px] leading-[1.5] text-text-muted mt-4 text-justify hyphens-auto m-0">
@@ -684,6 +711,134 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
 
 
 
+  <!-- Ultimas columnas · CARRUSEL, como el rotador del sitio de columnas.
+       Va PEGADO al mapa, antes de la franja: es la vitrina editorial del
+       sitio y pidio protagonismo (20-ago-2026). Se leen de
+       columnas/index.html, en su orden canonico. Una sola tarjeta visible;
+       sin auto-avance: flechas y puntos, el lector navega. -->
+  <section>
+    <div class="flex items-baseline justify-between gap-4 border-t border-border-subtle pt-5 mb-5">
+      <h2 class="text-[26px] font-bold tracking-[-.02em] text-text-primary">Las últimas columnas</h2>
+      <a href="columnas/" class="mono text-[10.5px] uppercase tracking-[.14em] text-[#FBBF24] hover:underline shrink-0">Ver todas</a>
+    </div>
+    <div class="carcol border border-[#FBBF24]/30 bg-surface-elevated overflow-hidden" id="carcol">
+      <a href="https://45digitalnoticias.github.io/columnas/el-cobro-no-tiene-partido.html" target="_blank" rel="noopener"
+         class="act grid grid-cols-1 md:grid-cols-[minmax(0,48%)_1fr] group"
+         role="tabpanel" aria-label="El cobro no tiene partido">
+        <div class="relative">
+          <span class="absolute top-3 left-3 z-10 mono text-[9px] font-bold uppercase tracking-[.12em] bg-[#FBBF24] text-[#14110c] px-3 py-[5px] rounded-full">Nueva</span>
+          <img src="columnas/portadas/el-cobro-no-tiene-partido.webp" alt="El cobro no tiene partido" loading="lazy"
+               class="w-full h-full object-cover aspect-[1344/620]">
+        </div>
+        <div class="flex flex-col gap-3 p-6 md:p-8 min-w-0">
+          <span class="mono text-[10.5px] uppercase tracking-[.2em] text-[#FBBF24]">
+            Columna más reciente
+          </span>
+          <h3 class="text-[24px] md:text-[28px] font-bold leading-[1.1] tracking-[-.02em] text-text-primary group-hover:text-[#FBBF24] transition-colors">El cobro no tiene partido</h3>
+          <p class="text-[13.5px] leading-[1.6] text-text-muted text-justify hyphens-auto hook-carrusel m-0">Hay nueve estados donde Morena nunca ha gobernado y en los nueve ocurrió lo mismo que en el resto del país: bajaron los muertos y subió el cobro. De los 23 estados morenistas pasaron por ese patrón 19; de los 9 que nunca lo han tenido, pasaron los 9. En 11 de esos 19 el patrón ya estaba antes de la alternancia, y los dos primeros del país fueron Coahuila y Durango, ambos priistas. Medido por magnitud el resultado se sostiene: la extorsión creció una mediana de 29 por ciento donde nunca ha gobernado Morena y cayó 4 por ciento donde sí. El punto más bajo de la serie es septiembre de 2018, tres meses antes de que tomara posesión el gobierno al que suele atribuirse el fenómeno.</p>
+          <span class="mono text-[11px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-3">Leer la columna →</span>
+        </div>
+      </a>
+      <a href="https://45digitalnoticias.github.io/columnas/la-paz-que-se-cobra.html" target="_blank" rel="noopener"
+         class="grid grid-cols-1 md:grid-cols-[minmax(0,48%)_1fr] group"
+         role="tabpanel" aria-label="La paz que se cobra">
+        <div class="relative">
+          
+          <img src="columnas/portadas/la-paz-que-se-cobra.webp" alt="La paz que se cobra" loading="lazy"
+               class="w-full h-full object-cover aspect-[1344/620]">
+        </div>
+        <div class="flex flex-col gap-3 p-6 md:p-8 min-w-0">
+          <span class="mono text-[10.5px] uppercase tracking-[.2em] text-[#FBBF24]">
+            Columna firmada
+          </span>
+          <h3 class="text-[24px] md:text-[28px] font-bold leading-[1.1] tracking-[-.02em] text-text-primary group-hover:text-[#FBBF24] transition-colors">La paz que se cobra</h3>
+          <p class="text-[13.5px] leading-[1.6] text-text-muted text-justify hyphens-auto hook-carrusel m-0">De los 2,475 municipios del país, el que más extorsión registra por habitante es Cuautla: 133.6 carpetas por cada cien mil, más del doble que el segundo lugar nacional. Morelos encabeza la tabla estatal de extorsión y es segundo en homicidio. Entre 2023 y 2025 la ciudad cruzó de plaza en disputa a otra cosa: los homicidios cayeron 45.1 por ciento mientras el cobro subió 185.1. Y no es solo Cuautla: de los once municipios de Morelos que el radar alcanza a medir, nueve caen hoy en el mismo cuadrante. El radar de la paz narca, indicador propio de 45 Digital Noticias, encuentra ese patrón en 18 de los 32 estados y en 163 de 315 municipios.</p>
+          <span class="mono text-[11px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-3">Leer la columna →</span>
+        </div>
+      </a>
+      <a href="https://45digitalnoticias.github.io/columnas/el-pais-que-no-se-cuenta.html" target="_blank" rel="noopener"
+         class="grid grid-cols-1 md:grid-cols-[minmax(0,48%)_1fr] group"
+         role="tabpanel" aria-label="El país que no se cuenta">
+        <div class="relative">
+          
+          <img src="columnas/portadas/el-pais-que-no-se-cuenta.webp" alt="El país que no se cuenta" loading="lazy"
+               class="w-full h-full object-cover aspect-[1344/620]">
+        </div>
+        <div class="flex flex-col gap-3 p-6 md:p-8 min-w-0">
+          <span class="mono text-[10.5px] uppercase tracking-[.2em] text-[#FBBF24]">
+            Columna firmada
+          </span>
+          <h3 class="text-[24px] md:text-[28px] font-bold leading-[1.1] tracking-[-.02em] text-text-primary group-hover:text-[#FBBF24] transition-colors">El país que no se cuenta</h3>
+          <p class="text-[13.5px] leading-[1.6] text-text-muted text-justify hyphens-auto hook-carrusel m-0">Esta mañana, desde la conferencia matutina, la presidenta Claudia Sheinbaum presumió que el homicidio doloso cayó 51 por ciento en 22 meses. La baja es real, y el INEGI la confirma con actas de defunción. Pero la cifra es un acertijo: el homicidio es apenas el 1 por ciento de todos los delitos del país, y el total no bajó, subió 21.7 por ciento en la década y lleva plano desde 2018. El delito se recompuso, cayó el robo en la calle y se dispararon la violencia familiar, más 109 por ciento, y los delitos sexuales. Y la forma de la baja delata su origen, el homicidio cede mientras la extorsión y el narcomenudeo suben, la huella de un crimen que se consolidó y no de un Estado que pacificó, según Gambetta, Trejo y Ley, y Durán-Martínez. Todo esto ocurre sobre el 6 por ciento de la realidad, porque el INEGI estima 33.5 millones de delitos al año, de los que el 93 por ciento nunca se denuncia. Con la ley de Goodhart, que popularizó Marilyn Strathern: cuando una medida se convierte en objetivo, deja de ser una buena medida.</p>
+          <span class="mono text-[11px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-3">Leer la columna →</span>
+        </div>
+      </a>
+      <a href="https://45digitalnoticias.github.io/columnas/el-semestre-que-subio.html" target="_blank" rel="noopener"
+         class="grid grid-cols-1 md:grid-cols-[minmax(0,48%)_1fr] group"
+         role="tabpanel" aria-label="El semestre que subió">
+        <div class="relative">
+          
+          <img src="columnas/portadas/el-semestre-que-subio.webp" alt="El semestre que subió" loading="lazy"
+               class="w-full h-full object-cover aspect-[1344/620]">
+        </div>
+        <div class="flex flex-col gap-3 p-6 md:p-8 min-w-0">
+          <span class="mono text-[10.5px] uppercase tracking-[.2em] text-[#FBBF24]">
+            Columna firmada
+          </span>
+          <h3 class="text-[24px] md:text-[28px] font-bold leading-[1.1] tracking-[-.02em] text-text-primary group-hover:text-[#FBBF24] transition-colors">El semestre que subió</h3>
+          <p class="text-[13.5px] leading-[1.6] text-text-muted text-justify hyphens-auto hook-carrusel m-0">En la mañanera del 24 de julio, desde Cuernavaca, el gabinete de seguridad presentó una fila de delitos de Morelos a la baja. Fuimos a la misma fuente oficial que ellos citan, el SESNSP con corte a junio, y lo que dejaron fuera de cuadro cuenta otra historia: la delincuencia total del semestre no bajó, subió 7.3 por ciento; la extorsión se duplicó en un año, más 112.8 por ciento, y la narraron como más confianza para denunciar; el homicidio sí bajó, pero todo el 54 por ciento cuelga de dos meses recientes y aún preliminares, mayo y junio, en pleno Mundial, mientras abril, cuando arranca su Plan Morelos, fue un pico; y el feminicidio bajó como etiqueta, no como cuerpos, porque las mujeres asesinadas siguen planas y solo una de cada cuatro se clasifica como feminicidio. Con el concepto de Darrell Huff, How to Lie with Statistics: para engañar con una estadística no hace falta falsear un número, basta escoger cuál se muestra, contra qué base y en qué formato.</p>
+          <span class="mono text-[11px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-3">Leer la columna →</span>
+        </div>
+      </a>
+      <a href="https://45digitalnoticias.github.io/columnas/el-arresto-y-la-marea.html" target="_blank" rel="noopener"
+         class="grid grid-cols-1 md:grid-cols-[minmax(0,48%)_1fr] group"
+         role="tabpanel" aria-label="El arresto y la marea">
+        <div class="relative">
+          
+          <img src="columnas/portadas/el-arresto-y-la-marea.webp" alt="El arresto y la marea" loading="lazy"
+               class="w-full h-full object-cover aspect-[1344/620]">
+        </div>
+        <div class="flex flex-col gap-3 p-6 md:p-8 min-w-0">
+          <span class="mono text-[10.5px] uppercase tracking-[.2em] text-[#FBBF24]">
+            Columna firmada
+          </span>
+          <h3 class="text-[24px] md:text-[28px] font-bold leading-[1.1] tracking-[-.02em] text-text-primary group-hover:text-[#FBBF24] transition-colors">El arresto y la marea</h3>
+          <p class="text-[13.5px] leading-[1.6] text-text-muted text-justify hyphens-auto hook-carrusel m-0">La presidenta presume que, gracias a la detención del alcalde de Cuautla, los homicidios de Morelos bajaron de 3.7 a 1.9 al día. Pero la causa no cuadra: Cuautla aporta cerca del 10% de los homicidios del estado, al alcalde lo acusan de extorsión y delincuencia organizada, no de homicidios, la extorsión de Cuautla sigue subiendo, y el 1.9 es de junio, el mes del Mundial. Con el concepto de regresión a la media de Daniel Kahneman: tras un pico extraordinario, la cifra vuelve sola hacia el promedio, y el error clásico es atribuir ese regreso a la intervención que llegó en medio.</p>
+          <span class="mono text-[11px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-3">Leer la columna →</span>
+        </div>
+      </a>
+      <a href="https://45digitalnoticias.github.io/columnas/la-paz-prestada-del-mundial.html" target="_blank" rel="noopener"
+         class="grid grid-cols-1 md:grid-cols-[minmax(0,48%)_1fr] group"
+         role="tabpanel" aria-label="La paz prestada del Mundial">
+        <div class="relative">
+          
+          <img src="columnas/portadas/la-paz-prestada-del-mundial.webp" alt="La paz prestada del Mundial" loading="lazy"
+               class="w-full h-full object-cover aspect-[1344/620]">
+        </div>
+        <div class="flex flex-col gap-3 p-6 md:p-8 min-w-0">
+          <span class="mono text-[10.5px] uppercase tracking-[.2em] text-[#FBBF24]">
+            Columna firmada
+          </span>
+          <h3 class="text-[24px] md:text-[28px] font-bold leading-[1.1] tracking-[-.02em] text-text-primary group-hover:text-[#FBBF24] transition-colors">La paz prestada del Mundial</h3>
+          <p class="text-[13.5px] leading-[1.6] text-text-muted text-justify hyphens-auto hook-carrusel m-0">El gobierno presume que el homicidio doloso cayó 48%, pero cerró la cuenta en junio, el mes del Mundial. Con las sedes tomadas por la Guardia Nacional, la violencia sí cedió esas semanas: junio fue el mes menos violento del año, con una baja de 33.5% frente a junio de 2025. El problema es que fue un operativo, no una estrategia, y los operativos intensivos bajan el delito mientras duran y luego se desvanecen. Medida año contra año, la caída real ronda 21%, no 48%. El 48% junta dos extremos convenientes: el pico de septiembre de 2024 y el piso prestado del torneo. Con el concepto de disuasión residual de los crackdowns de Lawrence Sherman.</p>
+          <span class="mono text-[11px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-3">Leer la columna →</span>
+        </div>
+      </a>
+    </div>
+    <div class="flex items-center justify-center gap-5 mt-4">
+      <button type="button" id="carcolPrev" class="carcol-flecha" aria-label="Columna anterior">&#8249;</button>
+      <div class="carcol-dots flex gap-2" id="carcolDots" role="tablist" aria-label="Columnas recientes">
+      <button type="button" role="tab" class="act" aria-label="Ir a: El cobro no tiene partido"></button>
+      <button type="button" role="tab" aria-label="Ir a: La paz que se cobra"></button>
+      <button type="button" role="tab" aria-label="Ir a: El país que no se cuenta"></button>
+      <button type="button" role="tab" aria-label="Ir a: El semestre que subió"></button>
+      <button type="button" role="tab" aria-label="Ir a: El arresto y la marea"></button>
+      <button type="button" role="tab" aria-label="Ir a: La paz prestada del Mundial"></button>
+      </div>
+      <button type="button" id="carcolNext" class="carcol-flecha" aria-label="Columna siguiente">&#8250;</button>
+    </div>
+  </section>
+
   <!-- FRANJA DE SECCIONES · lo que sigue despues del mapa -->
   <section>
     <div class="flex items-baseline justify-between gap-4 border-t border-border-subtle pt-5 mb-5">
@@ -695,102 +850,13 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
     <div class="franja">
       <a class="fcard propio" href="radar.html"><span class="fh"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><path d="M12 12 18.5 7"/><circle cx="16.5" cy="8.5" r="1.3" fill="currentColor" stroke="none"/></svg><span class="fk">Indicador propio</span></span><span class="ft">Radar de la paz narca</span><p class="fd">Hay territorios donde los muertos bajan de verdad y lo que sube es el cobro. Eso no describe a un Estado que ganó, sino a un mercado que dejó de pelearse.</p><span class="fgo">Abrir</span></a>
       <a class="fcard propio" href="senales.html"><span class="fh"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 4.5v11.5"/><path d="M4.5 13l3 3 3-3"/><path d="M16.5 19.5V8"/><path d="M13.5 11l3-3 3 3"/></svg><span class="fk">Indicador propio</span></span><span class="ft">Señales del espejo</span><p class="fd">22 delitos que caen mientras su categoría Otros sube en el mismo periodo y el mismo estado. Cada señal con su serie completa, para que el lector audite.</p><span class="fgo">Abrir</span></a>
-      <a class="fcard propio" href="conteo.html"><span class="fh"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10h14"/><path d="M5 15h14"/><path d="M16 5.5 8 19.5"/></svg><span class="fk">Indicador propio</span></span><span class="ft">El país que no se cuenta</span><p class="fd">El SESNSP publica dos conteos oficiales del mismo hecho y entre ellos hay 19,280 personas de diferencia. Más el catálogo con sus bolsas.</p><span class="fgo">Abrir</span></a>
+      <a class="fcard propio" href="conteo.html"><span class="fh"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 10h14"/><path d="M5 15h14"/><path d="M16 5.5 8 19.5"/></svg><span class="fk">Indicador propio</span></span><span class="ft">El país que no se cuenta</span><p class="fd">El SESNSP publica dos conteos oficiales del mismo hecho y entre ellos hay 22,415 personas de diferencia. Más el catálogo con sus bolsas.</p><span class="fgo">Abrir</span></a>
       <a class="fcard" href="ranking-nacional.html"><span class="fh"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5h16"/><path d="M4 12.5h10.5"/><path d="M4 18.5h6"/></svg><span class="fk">Escala nacional</span></span><span class="ft">El país, de mayor a menor</span><p class="fd">Los 32 estados y los municipios que encabezan, para el delito y el año que elijas, con su tasa por 100 mil habitantes.</p><span class="fgo">Abrir</span></a>
       <a class="fcard" href="estado.html"><span class="fh"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.8"/><path d="M20 20l-4.7-4.7"/><path d="M8 12.4v-1.6"/><path d="M10.5 12.4V9"/><path d="M13 12.4v-2.6"/></svg><span class="fk">Escala estatal</span></span><span class="ft">Audita tu estado</span><p class="fd">Los 55 delitos completos de una entidad, su serie desde 2015, sus señales propias de reclasificación y el panel de personas desaparecidas.</p><span class="fgo">Abrir</span></a>
       <a class="fcard" href="municipios.html"><span class="fh"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.5s6.5-6 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 14.5 12 20.5 12 20.5z"/><circle cx="12" cy="10" r="2.4"/></svg><span class="fk">Escala municipal</span></span><span class="ft">Encuentra tu municipio</span><p class="fd">Los 2,475 municipios del país, buscables por nombre, cada uno comparado contra su estado y contra el promedio nacional.</p><span class="fgo">Abrir</span></a>
       <a class="fcard" href="corredores-sureste.html"><span class="fh"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5v17"/><path d="M17.5 3.5v17"/><path d="M4 8h16"/><path d="M4 12h16"/><path d="M4 16h16"/></svg><span class="fk">Expediente</span></span><span class="ft">Corredores ferroviarios</span><p class="fd">Istmo y Tren Maya. Qué pasa con el delito a lo largo de la vía, kilómetro por kilómetro, antes y después de la obra.</p><span class="fgo">Abrir</span></a>
       <a class="fcard" href="morelos/index.html"><span class="fh"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3.5 3.5 6v14.5L9 18l6 2.5 5.5-2.5V3.5L15 6 9 3.5z"/><path d="M9 3.5V18"/><path d="M15 6v14.5"/></svg><span class="fk">Expediente</span></span><span class="ft">Morelos, a detalle</span><p class="fd">Los cinco datos duros de la seguridad en el estado, con su serie mensual y el cruce contra lo que declara el gabinete.</p><span class="fgo">Abrir</span></a>
       <a class="fcard" href="expedientes.html"><span class="fh"><svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 7.2A1.7 1.7 0 0 1 5.2 5.5h3.9l2 2.6h7.7a1.7 1.7 0 0 1 1.7 1.7v8.5a1.7 1.7 0 0 1-1.7 1.7H5.2a1.7 1.7 0 0 1-1.7-1.7V7.2z"/><path d="M3.5 12.5h17"/></svg><span class="fk">Archivo</span></span><span class="ft">Todos los expedientes</span><p class="fd">Las investigaciones abiertas de 45 Digital Noticias, cada una con su corte de datos y sus fuentes a la vista.</p><span class="fgo">Abrir</span></a>
-    </div>
-  </section>
-
-  <!-- Ultimas columnas · reemplaza a la fila de tarjetas. Se leen de
-       columnas/index.html, en su orden canonico. h-full + line-clamp para que
-       las tres queden alineadas y la pagina no se haga kilometrica. -->
-  <section>
-    <div class="flex items-baseline justify-between gap-4 border-t border-border-subtle pt-5 mb-5">
-      <h2 class="text-[26px] font-bold tracking-[-.02em] text-text-primary">Las últimas columnas</h2>
-      <a href="columnas/" class="mono text-[10.5px] uppercase tracking-[.14em] text-[#FBBF24] hover:underline shrink-0">Ver todas</a>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-group-gap items-stretch">
-      <a href="https://45digitalnoticias.github.io/columnas/el-cobro-no-tiene-partido.html" target="_blank" rel="noopener"
-         class="relative flex flex-col h-full border border-[#FBBF24]/45] bg-surface-elevated overflow-hidden
-                hover:border-[#FBBF24] transition-colors group">
-        <span class="absolute top-3 left-3 z-10 mono text-[9px] font-bold uppercase tracking-[.12em] bg-[#FBBF24] text-[#14110c] px-3 py-[5px] rounded-full">Nueva</span>
-        <img src="columnas/portadas/el-cobro-no-tiene-partido.webp" alt="El cobro no tiene partido" loading="lazy"
-             class="w-full aspect-[1344/620] object-cover">
-        <div class="flex flex-col gap-2 p-5 flex-grow">
-          <span class="mono text-[9.5px] uppercase tracking-[.18em] text-[#FBBF24]">
-            Columna más reciente
-          </span>
-          <h3 class="text-[19px] font-bold leading-[1.12] tracking-[-.02em] text-text-primary">El cobro no tiene partido</h3>
-          <p class="text-[12.5px] leading-[1.55] text-text-muted text-justify hyphens-auto hook-corto m-0">Bajaron los muertos y subió el cobro en los nueve estados donde Morena nunca ha gobernado. En los nueve, sin una sola excepción.</p>
-          <span class="mono text-[10px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-2">Leer la columna</span>
-        </div>
-      </a>
-      <a href="https://45digitalnoticias.github.io/columnas/el-pais-que-no-se-cuenta.html" target="_blank" rel="noopener"
-         class="relative flex flex-col h-full border border-[border-subtle] bg-surface-elevated overflow-hidden
-                hover:border-[#FBBF24] transition-colors group">
-        
-        <img src="columnas/portadas/el-pais-que-no-se-cuenta.webp" alt="El país que no se cuenta" loading="lazy"
-             class="w-full aspect-[1344/620] object-cover">
-        <div class="flex flex-col gap-2 p-5 flex-grow">
-          <span class="mono text-[9.5px] uppercase tracking-[.18em] text-[#FBBF24]">
-            Columna firmada
-          </span>
-          <h3 class="text-[19px] font-bold leading-[1.12] tracking-[-.02em] text-text-primary">El país que no se cuenta</h3>
-          <p class="text-[12.5px] leading-[1.55] text-text-muted text-justify hyphens-auto hook-corto m-0">Esta mañana, desde la conferencia matutina, la presidenta presentó las cifras de seguridad del semestre.</p>
-          <span class="mono text-[10px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-2">Leer la columna</span>
-        </div>
-      </a>
-      <a href="https://45digitalnoticias.github.io/columnas/el-semestre-que-subio.html" target="_blank" rel="noopener"
-         class="relative flex flex-col h-full border border-[border-subtle] bg-surface-elevated overflow-hidden
-                hover:border-[#FBBF24] transition-colors group">
-        
-        <img src="columnas/portadas/el-semestre-que-subio.webp" alt="El semestre que subió" loading="lazy"
-             class="w-full aspect-[1344/620] object-cover">
-        <div class="flex flex-col gap-2 p-5 flex-grow">
-          <span class="mono text-[9.5px] uppercase tracking-[.18em] text-[#FBBF24]">
-            Columna firmada
-          </span>
-          <h3 class="text-[19px] font-bold leading-[1.12] tracking-[-.02em] text-text-primary">El semestre que subió</h3>
-          <p class="text-[12.5px] leading-[1.55] text-text-muted text-justify hyphens-auto hook-corto m-0">En la mañanera del 24 de julio, desde Cuernavaca, el gabinete de seguridad presentó el corte de Morelos.</p>
-          <span class="mono text-[10px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-2">Leer la columna</span>
-        </div>
-      </a>
-    </div>
-      </a>
-      <a href="https://45digitalnoticias.github.io/columnas/el-semestre-que-subio.html" target="_blank" rel="noopener"
-         class="relative flex flex-col h-full border border-border-subtle bg-surface-elevated overflow-hidden
-                hover:border-[#FBBF24] transition-colors group">
-        
-        <img src="columnas/portadas/el-semestre-que-subio.webp" alt="El semestre que subió" loading="lazy"
-             class="w-full aspect-[1344/620] object-cover">
-        <div class="flex flex-col gap-2 p-5 flex-grow">
-          <span class="mono text-[9.5px] uppercase tracking-[.18em] text-[#FBBF24]">
-            Columna firmada
-          </span>
-          <h3 class="text-[19px] font-bold leading-[1.12] tracking-[-.02em] text-text-primary">El semestre que subió</h3>
-          <p class="text-[12.5px] leading-[1.55] text-text-muted text-justify hyphens-auto hook-corto m-0">En la mañanera del 24 de julio, desde Cuernavaca, el gabinete de seguridad presentó una fila de delitos de Morelos a la baja. Fuimos a la misma fuente oficial que ellos citan, el SESNSP con corte a junio, y lo que dejaron fuera de cuadro cuenta otra historia: la delincuencia total del semestre no bajó, subió 7.3 por ciento; la extorsión se duplicó en un año, más 112.8 por ciento, y la narraron como más confianza para denunciar; el homicidio sí bajó, pero todo el 54 por ciento cuelga de dos meses recientes y aún preliminares, mayo y junio, en pleno Mundial, mientras abril, cuando arranca su Plan Morelos, fue un pico; y el feminicidio bajó como etiqueta, no como cuerpos, porque las mujeres asesinadas siguen planas y solo una de cada cuatro se clasifica como feminicidio. Con el concepto de Darrell Huff, How to Lie with Statistics: para engañar con una estadística no hace falta falsear un número, basta escoger cuál se muestra, contra qué base y en qué formato.</p>
-          <span class="mono text-[10px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-2">Leer la columna</span>
-        </div>
-      </a>
-      <a href="https://45digitalnoticias.github.io/columnas/el-arresto-y-la-marea.html" target="_blank" rel="noopener"
-         class="relative flex flex-col h-full border border-border-subtle bg-surface-elevated overflow-hidden
-                hover:border-[#FBBF24] transition-colors group">
-        
-        <img src="columnas/portadas/el-arresto-y-la-marea.webp" alt="El arresto y la marea" loading="lazy"
-             class="w-full aspect-[1344/620] object-cover">
-        <div class="flex flex-col gap-2 p-5 flex-grow">
-          <span class="mono text-[9.5px] uppercase tracking-[.18em] text-[#FBBF24]">
-            Columna firmada
-          </span>
-          <h3 class="text-[19px] font-bold leading-[1.12] tracking-[-.02em] text-text-primary">El arresto y la marea</h3>
-          <p class="text-[12.5px] leading-[1.55] text-text-muted text-justify hyphens-auto hook-corto m-0">La presidenta presume que, gracias a la detención del alcalde de Cuautla, los homicidios de Morelos bajaron de 3.7 a 1.9 al día. Pero la causa no cuadra: Cuautla aporta cerca del 10% de los homicidios del estado, al alcalde lo acusan de extorsión y delincuencia organizada, no de homicidios, la extorsión de Cuautla sigue subiendo, y el 1.9 es de junio, el mes del Mundial. Con el concepto de regresión a la media de Daniel Kahneman: tras un pico extraordinario, la cifra vuelve sola hacia el promedio, y el error clásico es atribuir ese regreso a la intervención que llegó en medio.</p>
-          <span class="mono text-[10px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-2">Leer la columna</span>
-        </div>
-      </a>
     </div>
   </section>
 </main>
@@ -810,7 +876,7 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
       <div class="flex flex-col gap-1">
         <span class="font-bold text-[13px] tracking-tight text-text-primary">INSEGURIDAD MÉXICO</span>
         <span class="mono text-[10.5px] text-[#8a8072]">
-          45 Digital Noticias · datos oficiales SESNSP, RNPDNO, INEGI, CONAPO · corte junio 2026
+          45 Digital Noticias · datos oficiales SESNSP, RNPDNO, INEGI, CONAPO · corte julio 2026
         </span>
       </div>
       <a href="https://45digitalnoticias.github.io/columnas/privacidad.html" target="_blank"
@@ -893,6 +959,23 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
     navigator.clipboard.writeText(location.href);
     c.textContent='\u2713'; setTimeout(function(){ c.textContent='\u2949'; },1200);
   });
+})();
+
+(function(){
+  var caja=document.getElementById('carcol'); if(!caja) return;
+  var tarjetas=[].slice.call(caja.children);
+  var puntos=[].slice.call(document.querySelectorAll('#carcolDots button'));
+  if(tarjetas.length<2) return;
+  var i=0;
+  function pinta(n){
+    tarjetas[i].classList.remove('act'); puntos[i].classList.remove('act');
+    i=(n+tarjetas.length)%tarjetas.length;
+    tarjetas[i].classList.add('act'); puntos[i].classList.add('act');
+  }
+  puntos.forEach(function(p,n){ p.addEventListener('click', function(){ pinta(n); }); });
+  var ant=document.getElementById('carcolPrev'), sig=document.getElementById('carcolNext');
+  if(ant) ant.addEventListener('click', function(){ pinta(i-1); });
+  if(sig) sig.addEventListener('click', function(){ pinta(i+1); });
 })();
 </script>
 <script src="mexico_estados.geojson.js"></script>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Encuentra tu municipio · atlas ciudadano de inseguridad · Inseguridad México</title>
-<meta name="description" content="Busca cualquiera de los 2,469 municipios del país y abre su radiografía completa: los 55 delitos, su lugar en el estado, cuándo ocurren y qué se reclasifica. Datos SESNSP con corte junio 2026.">
+<meta name="description" content="Busca cualquiera de los 2,469 municipios del país y abre su radiografía completa: los 55 delitos, su lugar en el estado, cuándo ocurren y qué se reclasifica. Datos SESNSP con corte julio 2026.">
 <link rel="canonical" href="https://45digitalnoticias.github.io/Inseguridad-Mexico/municipios.html">
 <meta name="theme-color" content="#0E0C0B">
 <meta property="og:type" content="website">
@@ -578,7 +578,7 @@ main,.wrap,.bgwrap{min-width:0;}
 <div class="sec">Explorar por estado · el color es su tasa de homicidio doloso 2025, del verde azulado (la más baja) al rojo oscuro (la más alta)</div>
 <div class="states" id="states"></div>
 <div id="detalle"></div>
-<footer>Fuente: SESNSP, incidencia delictiva municipal (corte jun-2026) · Población: INEGI Censo 2020 ajustada por año (CONAPO) · 45 Digital Noticias · Atlas ciudadano de inseguridad.</footer>
+<footer>Fuente: SESNSP, incidencia delictiva municipal (corte jul-2026) · Población: INEGI Censo 2020 ajustada por año (CONAPO) · 45 Digital Noticias · Atlas ciudadano de inseguridad.</footer>
 </div></div>
 </div>
 <footer class="border-t border-border-subtle mt-auto">
@@ -596,7 +596,7 @@ main,.wrap,.bgwrap{min-width:0;}
       <div class="flex flex-col gap-1">
         <span class="font-bold text-[13px] tracking-tight text-text-primary">INSEGURIDAD MÉXICO</span>
         <span class="mono text-[10.5px] text-[#8a8072]">
-          45 Digital Noticias · datos oficiales SESNSP, RNPDNO, INEGI, CONAPO · corte junio 2026
+          45 Digital Noticias · datos oficiales SESNSP, RNPDNO, INEGI, CONAPO · corte julio 2026
         </span>
       </div>
       <a href="https://45digitalnoticias.github.io/columnas/privacidad.html" target="_blank"
@@ -738,5 +738,6 @@ function abrirEstado(ent){
   fetch(`series_mun/sma_${id}.js`).then(r=>r.text()).then(t=>done((new Function(t+';return SERIE_MUN_ANUAL;'))())).catch(()=>{det.innerHTML='<div class="panel"><div class="cap">no se pudo cargar</div></div>';});
 }
 </script>
+<script defer src="corte_sitio.js"></script>
 </body>
 </html>
