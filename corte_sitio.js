@@ -47,7 +47,8 @@ const CORTE_SITIO = {
     var a = document.createElement("a");
     a.id = "chipCorte";
     a.href = base + "metodologia.html";
-    a.title = "Actualizado el " + CORTE_SITIO.actualizado + " · ver metodología";
+    a.title = "Actualizado el " + CORTE_SITIO.actualizado +
+      " · mapa municipal: 2,475 de los 2,478 oficiales (3 creados en 2024 aun sin poligono ni poblacion propios) · ver metodologia";
     a.innerHTML = '<span class="pto"></span>Corte SESNSP · <b>' + CORTE_SITIO.mes + "</b>";
     document.body.appendChild(a);
   }
