@@ -64,8 +64,13 @@ la meta description y el KPI "carpetas que caen a cero" (suma DESAPARECE del CSV
 `corredores-sureste.html`, `senales.html`, `columnas/index.html`, `metodologia.html`,
 `conteo.html`, `que-mide.html`, `radar.html`, `como_leer.html`, `glosario.html`, `expedientes.html`.
 (Mejora futura: centralizar en `constantes_sitio.js`.)
-⚠️ NO tocar: fechas RNPDNO ("3-jun-2026", "RNPDNO, junio 2026"), la firma editorial de
-`como_leer.html` ("Columna editorial · junio 2026") y `_difusion/flyer-junio-2026/` (histórico).
+⚠️ NO tocar: fechas RNPDNO ("3-jun-2026", "RNPDNO, junio 2026"), la firma de `como_leer.html`
+("Guía de lectura · junio de 2026, actualizada en agosto de 2026": la primera fecha es de
+publicación y no se mueve; la segunda se actualiza solo cuando la guía se reescriba) y
+`_difusion/flyer-junio-2026/` (histórico).
+⚠️ `como_leer.html` YA NO SE EDITA A MANO (21-ago-2026): se regenera con
+`python "_REDISENO/_construir_como_leer.py"` y sus cifras del corte viven adentro del builder
+(sello del aviso, 146,129/168,544/22,415, 38,879 y 138,133 del RNID, 8,994 de homicidio).
 Morelos (`morelos/`) es track SEPARADO: sus menciones de "junio" son texto editorial fechado.
 
 ## Cotejos obligatorios (deben cuadrar antes de publicar)
@@ -89,13 +94,64 @@ Morelos (`morelos/`) es track SEPARADO: sus menciones de "junio" son texto edito
 `python -m http.server 8899` → cargar `index.html`, `estado.html?estado=17`, `municipio.html?cve=17007`,
 `ranking-nacional.html`, `corredores-sureste.html`. Consola limpia + etiqueta del corte correcta + 2026 presente.
 
+## 6.bis Refrescar el AÑO CERRADO del panorama (21-ago-2026)
+
+`python _refrescar_panorama_cerrado.py --validar` y luego `--apply`.
+
+`_actualizar_corte.py` → `actualizar_panorama()` refresca **solo** las dos
+columnas del parcial 2026 ("Deja lo demas", dice su docstring). Nadie refrescaba
+las del año cerrado, así que cuando el SESNSP revisa un año ya cerrado el
+panorama se quedaba con el valor viejo para siempre. Costo medido: **Tabasco
+tenía 556 homicidios dolosos de 2025 cuando la serie viva ya decía 760**. El CSV
+de auditoría sumaba 19,987 nacionales en vez de 20,191 (el archivo que existe
+para cotejar no cuadraba con el sitio) y `municipios.html` pintaba la silueta de
+Tabasco con una tasa más baja de la real. La autoridad es `series_completo.js`,
+cotejada contra `_nac_estatal_data.js` y la suma municipal.
+
 ## ⚠️ Builders del rediseño (_REDISENO/, en 45 DIGITAL NOTICIAS/)
 Los `_construir_*.py` parten del ARCHIVO CONGELADO pre-rediseño y de textos propios:
 REGENERAR una página revive cifras/etiquetas del corte viejo. Tras cualquier regeneración,
 repetir el pase de corte de esta página sobre lo regenerado. `_piezas.py` (pie + marco,
 ya emite el include de corte_sitio.js) y `_construir_v3.py` (sello + etiquetas de portada)
-quedaron sincronizados a jul-2026 el 20-ago-2026; el resto de builders NO — el que se
-corra, se coteja.
+quedaron sincronizados a jul-2026 el 20-ago-2026; el resto de builders NO.
+
+**Desde el 21-ago-2026 esto ya no depende de acordarse.** `compuerta()` corre una
+compuerta de REGRESIÓN antes de escribir: compara el HTML nuevo contra la página
+publicada y se niega (exit 1) si la regeneración introduce menciones de un mes
+anterior al corte vigente, pierde menciones del corte vigente, o hace desaparecer
+una cifra con separador de miles que ya estaba publicada. Cuenta **ocurrencias**
+sobre el documento **completo**, scripts y `<meta>` incluidos: las tres primeras
+versiones de la compuerta dejaron pasar una regresión cada una por mirar solo el
+texto visible o por agrupar por presencia en vez de por número.
+
+Estado al 21-ago-2026: **los 12 builders reproducen lo publicado**. Correr
+cualquiera y confiar en la compuerta; ya no hay que acordarse de nada.
+
+Lo que se arregló para llegar ahí, por si vuelve a torcerse:
+- `marco_v3()` aplica `al_corte()` a la cabeza, al cuerpo y al JS. Tres de las
+  regresiones vivían fuera del texto visible: dentro de un `<script>`
+  (corredores), dentro de un `<meta>` (municipio) y en versalitas
+  (`SESNSP CORTE JUL-2026`, que salía en minúsculas hasta que `al_corte()`
+  aprendió a respetar la caja).
+- `periodos_al_corte()` para las etiquetas de rango ("2026 ene-jun",
+  "enero-junio 2026") y `celdas_de_corte()` para la celda pelona
+  `<td>junio 2026</td>` de la tabla de fuentes. Ninguna lleva la palabra
+  "corte", y por eso `al_corte()` no las ve. Las tres respetan `3-jun-2026`.
+- `CORTE_N_MESES` para lo que **no es texto**: `estado.html` declara
+  `{label:'2026 ene-jul', ini:132, len:7}` y calcula `ritmo26 = total*12/7`
+  con su rótulo `ritmo ×1.71`. Con el `len:6` del congelado, la página
+  publicaba un ritmo proyectado mal, no una etiqueta fea.
+- `conteo.html` y `estado.html` arman su propio esqueleto: se les había caído
+  el include de `corte_sitio.js`, o sea el sello del corte. La compuerta ahora
+  también vigila los archivos que la página deja de cargar.
+- `_construir_que_mide.py` encadena `_gen_quemide.py --apply` y mide la
+  regresión sobre el resultado FINAL, así que ya no hay dos comandos que
+  recordar en orden. Y `_gen_quemide.py` cierra los dos números que este
+  runbook mandaba revisar a mano: el KPI de las que caen a cero (la suma
+  DESAPARECE del CSV espejo) y la cifra de huérfanos de la meta description.
+- `columnas/index.html` salió de `_construir_consulta.py`: la mantiene el
+  pipeline editorial. ⚠️ `_piezas.py` la LEE viva para armar el carrusel de la
+  portada, así que reconstruirla desde el congelado envejece también el index.
 
 ## Publicar
 `git add` (solo los .js de datos + los .html tocados) + commit + **push SOLO con orden literal "publica"**.

@@ -179,6 +179,23 @@ canvas#mapa{width:100%;display:block;}
    altura y la pagina no se hace kilometrica. */
 .hook-corto{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;
   overflow:hidden;text-overflow:ellipsis;}
+/* Carrusel de columnas: tarjetas apiladas en la misma celda; solo la activa
+   se ve. La seccion mide una tarjeta y no crece con cada columna nueva.
+   Sin auto-avance: se navega con flechas y puntos. */
+.carcol{display:grid;}
+.carcol>a{grid-area:1/1;opacity:0;pointer-events:none;transition:opacity .55s ease;}
+.carcol>a.act{opacity:1;pointer-events:auto;}
+.hook-carrusel{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;
+  overflow:hidden;text-overflow:ellipsis;}
+.carcol-dots button{width:32px;height:5px;border-radius:3px;background:#3a352c;
+  border:0;padding:0;cursor:pointer;transition:background .3s;}
+.carcol-dots button.act{background:#FBBF24;}
+.carcol-flecha{width:36px;height:36px;border-radius:999px;border:1px solid #3a352c;
+  background:transparent;color:#FBBF24;font-size:20px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color .3s,background .3s;}
+.carcol-flecha:hover{border-color:#FBBF24;background:rgba(251,191,36,.08);}
+@media (prefers-reduced-motion:reduce){.carcol>a{transition:none;}}
 
 :root{--amber:var(--oro);--rose:var(--sello);--cyan:var(--cian);--green:var(--verde);--purple:var(--morado);--red:var(--rojo);}
 
@@ -486,6 +503,13 @@ main,main > section,main > header{min-width:0;}
    rediseno ya lleva esos destinos en el pie; si el bloque vuelve a
    aparecer, se queda invisible en vez de romper el diseno. */
 nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
+
+/* La barra de arriba es pegajosa, asi que un salto a #ancla dejaba el destino
+   DEBAJO de ella: metodologia.html#universo-municipal aterrizaba tapando justo
+   el renglon que explica la nota (medido el 21-ago-2026, con el ancla a top=0).
+   72px son la altura de la barra mas aire. Aplica a cualquier destino con id,
+   asi que arregla tambien #video-guia y las anclas que se agreguen despues. */
+[id]{scroll-margin-top:72px;}
 </style>
 <style>
 :root[data-theme="dark"]{--bg:#0e0c0b;--panel:#17130d;--panel2:#1b1712;--line:rgba(120,110,95,.18);--line2:rgba(120,110,95,.36);--txt:#f2ede3;--mut:#b8ad9a;--dim:#8a8072;--oro:#efb03a;--cian:#49c2d0;--rojo:#e8573f;--sello:#cf5440;--verde:#6fae5f;--morado:#a78bfa;--grain:.05;--gridop:.5;--glow:.5}
@@ -607,7 +631,7 @@ main,.wrap,.bgwrap{min-width:0;}
   <input id="q" placeholder="Buscar municipio o estado…" style="display:none;background:var(--bg);color:var(--txt);border:1px solid var(--line2);border-radius:9px;padding:9px 13px;font-family:'Hanken Grotesk';font-weight:600;font-size:14px;min-width:230px">
   <span style="font-family:'Spline Sans Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1px">TASAS POR 100 MIL HABITANTES · LA VENTANA 2026 ES PRELIMINAR</span>
 </div>
-<div id="avPrelim" style="display:none;color:#efb03a;font-size:13.5px;line-height:1.5;margin:8px 0 0;max-width:840px;border-left:3px solid #efb03a;padding-left:12px;text-align:justify"><b>Ventana preliminar.</b> Compara <b>enero-junio de 2019 contra enero-junio de 2026</b>, semestre real contra semestre real (sin anualizar). Los meses de 2026 aún no cierran y el SESNSP suele revisarlos al alza, así que la caída del homicidio que aquí se ve es la versión <b>más favorable</b> posible; el alza del control, la más conservadora.</div>
+<div id="avPrelim" style="display:none;color:#efb03a;font-size:13.5px;line-height:1.5;margin:8px 0 0;max-width:840px;border-left:3px solid #efb03a;padding-left:12px;text-align:justify"><b>Ventana preliminar.</b> Compara <b>enero-julio de 2019 contra enero-julio de 2026</b>, periodo real contra periodo real (sin anualizar). Los meses de 2026 aún no cierran y el SESNSP suele revisarlos al alza, así que la caída del homicidio que aquí se ve es la versión <b>más favorable</b> posible; el alza del control, la más conservadora.</div>
 <div id="notaMun" style="display:none;color:var(--dim);font-size:13px;line-height:1.55;margin:2px 0 0;max-width:820px;text-align:justify">
   Solo municipios con <b>50 mil habitantes o más</b> y un mínimo de eventos en ambos ejes: en poblaciones chicas un solo caso dispara los porcentajes y el indicador dejaría de significar algo. Quedan <b><span id="nMun2">315</span></b> de los 2,478 municipios y demarcaciones del país.
 </div>
@@ -652,7 +676,7 @@ main,.wrap,.bgwrap{min-width:0;}
     <p>Se compara la <b>tasa</b> del primer año contra la del último de cada ventana. Nunca los números crudos: eso castigaría a los estados grandes por ser grandes.</p>
     <p>A escala municipal solo entran municipios de <b>50 mil habitantes o más</b>, con al menos 12 eventos por eje y 5 en el año inicial. Sin ese piso, pasar de 1 a 40 casos daría +3,900% y no significaría nada.</p>
     <p>Quedan <b>315 municipios</b>: 12.7% de las unidades, pero <b>70% de la población</b>, 76.7% de los homicidios y 89.4% de la extorsión y el narcomenudeo del país.</p>
-    <p>La ventana de 2026 compara <b>enero-junio contra enero-junio</b>, semestre real contra semestre real.</p>
+    <p>La ventana de 2026 compara <b>enero-julio contra enero-julio</b>, periodo real contra periodo real.</p>
   </div>
   <div>
     <h4>Por qué tiene lógica</h4>
