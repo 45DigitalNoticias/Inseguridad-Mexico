@@ -486,6 +486,12 @@ main,main > section,main > header{min-width:0;}
    rediseno ya lleva esos destinos en el pie; si el bloque vuelve a
    aparecer, se queda invisible en vez de romper el diseno. */
 nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
+
+/* La barra de arriba es pegajosa: sin esto un salto a #ancla deja el destino
+   DEBAJO de ella. Parcheado a mano el 21-ago-2026 porque estas paginas no se
+   pueden regenerar todavia (el archivo congelado esta en jun-2026); la regla
+   ya vive en _REDISENO/_piezas.py, asi que la proxima construccion la reproduce. */
+[id]{scroll-margin-top:72px;}
 </style>
 <style>
   :root[data-theme="dark"]{--bg:#0e0c0b;--panel:#17130d;--panel2:#1b1712;--line:rgba(120,110,95,.18);--line2:rgba(120,110,95,.36);--txt:#f2ede3;--mut:#b8ad9a;--dim:#8a8072;--oro:#efb03a;--cian:#49c2d0;--rojo:#e8573f;--sello:#cf5440;--verde:#6fae5f;--morado:#a78bfa;--naranja:var(--naranja);--grain:.05;--gridop:.5;--glow:.5}
@@ -585,16 +591,28 @@ main,.wrap,.bgwrap{min-width:0;}
         <h3>Cómo leer Inseguridad México</h3>
         <p>El mapa municipal honesto (2,475 piezas, cada una un dato), las tasas por 100 mil, los 55 delitos de tu estado, y la pieza que nadie más publica: las bolsas espejo y el Monitor de Opacidad. La guía ilustrada del tablero.</p>
       </a>
-      <a class="card nueva" href="https://45digitalnoticias.github.io/columnas/las-que-no-bajaron.html" target="_blank" rel="noopener" style="--cc:#fb923c">
-        <img class="portada" src="portadas/las-que-no-bajaron.webp" alt="Las que no bajaron" loading="lazy">
+      <a class="card nueva" href="https://45digitalnoticias.github.io/columnas/el-sombrero-que-destapo-la-farsa.html" target="_blank" rel="noopener" style="--cc:#fb923c">
+        <img class="portada" src="portadas/el-sombrero-que-destapo-la-farsa.webp" alt="El sombrero que destapó la farsa" loading="lazy">
         <div class="tag">Columna firmada · Seguridad · SESNSP</div>
-        <h3>Las que no bajaron</h3>
-        <p>Entre enero y julio de 2026 fueron asesinadas 69 mujeres en Morelos, exactamente las mismas que en los mismos siete meses de 2025, mientras el país bajó 25.7 por ciento. El estado es primer lugar nacional en mujeres asesinadas por cada 100 mil mujeres, arriba de Sinaloa en guerra abierta. Aun así el feminicidio como categoría bajó, de 22 a 21, porque el homicidio doloso de mujeres subió de 47 a 48: se movió la etiqueta y la suma quedó intacta, con 7 de cada 10 víctimas fuera de la cifra con la que se mide esta violencia. Los hombres asesinados bajaron 14.6 por ciento; las mujeres, cero. La alerta de violencia de género cumplió 11 años y la mitad de los feminicidios ya ocurre fuera de sus 8 municipios, mientras la violencia familiar marca su máximo histórico. Con Marcela Lagarde: el feminicidio no es solo el crimen, es el crimen más la omisión del Estado.</p>
+        <h3>El sombrero que destapó la farsa</h3>
+        <p>A diez meses del Plan Michoacán la casa mide parejo: el homicidio baja 40% real, pero el delito total sube 13% y la extorsión 38%. Con James C. Scott (Seeing Like a State, 1998) la columna explica por qué un plan puede ir ganando en la tabla y perdiendo en la calle, y por qué Uruapan, la ciudad de Carlos Manzo, sigue sin mejorar. Cotejo público con el corte de agosto, cerca del 20 de septiembre.</p>
       </a>
     </div>
 
     <div class="sec" style="--sc:var(--naranja)"><em>Columnas</em> · la lectura del expediente</div>
     <div class="grid">
+      <a class="card" href="https://45digitalnoticias.github.io/columnas/el-efecto-mariposa-del-plan-cuautla.html" target="_blank" rel="noopener" style="--cc:#fb923c">
+        <img class="portada" src="portadas/el-efecto-mariposa-del-plan-cuautla.webp" alt="El Efecto Mariposa del Plan Cuautla" loading="lazy">
+        <div class="tag">Columna firmada · Seguridad · SESNSP</div>
+        <h3>El Efecto Mariposa del Plan Cuautla</h3>
+        <p>Antes de que exista el primer informe del Plan Cuautla, esta columna deja escritos los tres trucos de medición que los operativos federales de Sinaloa y Michoacán ya mostraron: comparar contra el peor mes, re-etiquetar dinero viejo y contar el delito en el canal propio en vez de la carpeta. Cotejo público con el corte de agosto del SESNSP, alrededor del 20 de septiembre.</p>
+      </a>
+      <a class="card" href="https://45digitalnoticias.github.io/columnas/las-que-no-bajaron.html" target="_blank" rel="noopener" style="--cc:#fb923c">
+        <img class="portada" src="portadas/las-que-no-bajaron.webp" alt="Las que no bajaron" loading="lazy">
+        <div class="tag">Columna firmada · Seguridad · SESNSP</div>
+        <h3>Las que no bajaron</h3>
+        <p>Entre enero y julio de 2026 fueron asesinadas 69 mujeres en Morelos, exactamente las mismas que en los mismos siete meses de 2025, mientras el país bajó 25.7 por ciento. El estado es primer lugar nacional en mujeres asesinadas por cada 100 mil mujeres, arriba de Sinaloa en guerra abierta. Aun así el feminicidio como categoría bajó, de 22 a 21, porque el homicidio doloso de mujeres subió de 47 a 48: se movió la etiqueta y la suma quedó intacta, con 7 de cada 10 víctimas fuera de la cifra con la que se mide esta violencia. Los hombres asesinados bajaron 14.6 por ciento; las mujeres, cero. La alerta de violencia de género cumplió 11 años y la mitad de los feminicidios ya ocurre fuera de sus 8 municipios, mientras la violencia familiar marca su máximo histórico. Con Marcela Lagarde: el feminicidio no es solo el crimen, es el crimen más la omisión del Estado.</p>
+      </a>
       <a class="card" href="https://45digitalnoticias.github.io/columnas/la-paz-que-se-cobra.html" target="_blank" rel="noopener" style="--cc:#fb923c">
         <img class="portada" src="portadas/la-paz-que-se-cobra.webp" alt="La paz que se cobra" loading="lazy">
         <div class="tag">Columna firmada · Seguridad · SESNSP</div>

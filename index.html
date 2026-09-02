@@ -13,11 +13,11 @@
 <meta property="og:title" content="El país completo, delito por delito, sin categorías que escondan">
 <meta property="og:description" content="En 2025 México registró 20,191 homicidios dolosos, 20.7% menos que en 2024. Pero en 22 series el delito específico cae mientras su categoría espejo Otros sube.">
 <meta property="og:url" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/">
-<meta property="og:image" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/assets/video/guia-poster.webp">
+<meta property="og:image" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/assets/og-inseguridad-mexico.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="El país completo, delito por delito, sin categorías que escondan">
 <meta name="twitter:description" content="En 2025 México registró 20,191 homicidios dolosos, 20.7% menos que en 2024. Pero en 22 series el delito específico cae mientras su categoría espejo Otros sube.">
-<meta name="twitter:image" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/assets/video/guia-poster.webp">
+<meta name="twitter:image" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/assets/og-inseguridad-mexico.jpg">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "El país completo, delito por delito, sin categorías que escondan", "description": "En 2025 México registró 20,191 homicidios dolosos, 20.7% menos que en 2024. Pero en 22 series el delito específico cae mientras su categoría espejo Otros sube.", "url": "https://45digitalnoticias.github.io/Inseguridad-Mexico/", "isAccessibleForFree": true, "creator": {"@type": "NewsMediaOrganization", "name": "45 Digital Noticias"}, "license": "https://creativecommons.org/licenses/by/4.0/", "spatialCoverage": {"@type": "Country", "name": "México"}, "temporalCoverage": "2015/2026", "isPartOf": {"@type": "Dataset", "name": "Inseguridad México", "url": "https://45digitalnoticias.github.io/Inseguridad-Mexico/"}}</script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
 <script>if(/github[.]io$/.test(location.hostname)){var _g=document.createElement('script');_g.async=1;_g.src='https://www.googletagmanager.com/gtag/js?id=G-R64XZVCF6F';document.head.appendChild(_g);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-R64XZVCF6F');}</script>
@@ -501,6 +501,13 @@ main,main > section,main > header{min-width:0;}
    rediseno ya lleva esos destinos en el pie; si el bloque vuelve a
    aparecer, se queda invisible en vez de romper el diseno. */
 nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
+
+/* La barra de arriba es pegajosa, asi que un salto a #ancla dejaba el destino
+   DEBAJO de ella: metodologia.html#universo-municipal aterrizaba tapando justo
+   el renglon que explica la nota (medido el 21-ago-2026, con el ancla a top=0).
+   72px son la altura de la barra mas aire. Aplica a cualquier destino con id,
+   asi que arregla tambien #video-guia y las anclas que se agreguen despues. */
+[id]{scroll-margin-top:72px;}
 </style>
 </head>
 <body class="antialiased min-h-screen flex flex-col">
@@ -723,17 +730,51 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
       <a href="columnas/" class="mono text-[10.5px] uppercase tracking-[.14em] text-[#FBBF24] hover:underline shrink-0">Ver todas</a>
     </div>
     <div class="carcol border border-[#FBBF24]/30 bg-surface-elevated overflow-hidden" id="carcol">
-      <a href="https://45digitalnoticias.github.io/columnas/las-que-no-bajaron.html" target="_blank" rel="noopener"
+      <a href="https://45digitalnoticias.github.io/columnas/el-sombrero-que-destapo-la-farsa.html" target="_blank" rel="noopener"
          class="act grid grid-cols-1 md:grid-cols-[minmax(0,48%)_1fr] group"
-         role="tabpanel" aria-label="Las que no bajaron">
+         role="tabpanel" aria-label="El sombrero que destapó la farsa">
         <div class="relative">
           <span class="absolute top-3 left-3 z-10 mono text-[9px] font-bold uppercase tracking-[.12em] bg-[#FBBF24] text-[#14110c] px-3 py-[5px] rounded-full">Nueva</span>
-          <img src="columnas/portadas/las-que-no-bajaron.webp" alt="Las que no bajaron" loading="lazy"
+          <img src="columnas/portadas/el-sombrero-que-destapo-la-farsa.webp" alt="El sombrero que destapó la farsa" loading="lazy"
                class="w-full h-full object-cover aspect-[1344/620]">
         </div>
         <div class="flex flex-col gap-3 p-6 md:p-8 min-w-0">
           <span class="mono text-[10.5px] uppercase tracking-[.2em] text-[#FBBF24]">
             Columna más reciente
+          </span>
+          <h3 class="text-[24px] md:text-[28px] font-bold leading-[1.1] tracking-[-.02em] text-text-primary group-hover:text-[#FBBF24] transition-colors">El sombrero que destapó la farsa</h3>
+          <p class="text-[13.5px] leading-[1.6] text-text-muted text-justify hyphens-auto hook-carrusel m-0">A diez meses del Plan Michoacán la casa mide parejo: el homicidio baja 40% real, pero el delito total sube 13% y la extorsión 38%. Con James C. Scott (Seeing Like a State, 1998) la columna explica por qué un plan puede ir ganando en la tabla y perdiendo en la calle, y por qué Uruapan, la ciudad de Carlos Manzo, sigue sin mejorar. Cotejo público con el corte de agosto, cerca del 20 de septiembre.</p>
+          <span class="mono text-[11px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-3">Leer la columna →</span>
+        </div>
+      </a>
+      <a href="https://45digitalnoticias.github.io/columnas/el-efecto-mariposa-del-plan-cuautla.html" target="_blank" rel="noopener"
+         class="grid grid-cols-1 md:grid-cols-[minmax(0,48%)_1fr] group"
+         role="tabpanel" aria-label="El Efecto Mariposa del Plan Cuautla">
+        <div class="relative">
+          
+          <img src="columnas/portadas/el-efecto-mariposa-del-plan-cuautla.webp" alt="El Efecto Mariposa del Plan Cuautla" loading="lazy"
+               class="w-full h-full object-cover aspect-[1344/620]">
+        </div>
+        <div class="flex flex-col gap-3 p-6 md:p-8 min-w-0">
+          <span class="mono text-[10.5px] uppercase tracking-[.2em] text-[#FBBF24]">
+            Columna firmada
+          </span>
+          <h3 class="text-[24px] md:text-[28px] font-bold leading-[1.1] tracking-[-.02em] text-text-primary group-hover:text-[#FBBF24] transition-colors">El Efecto Mariposa del Plan Cuautla</h3>
+          <p class="text-[13.5px] leading-[1.6] text-text-muted text-justify hyphens-auto hook-carrusel m-0">Antes de que exista el primer informe del Plan Cuautla, esta columna deja escritos los tres trucos de medición que los operativos federales de Sinaloa y Michoacán ya mostraron: comparar contra el peor mes, re-etiquetar dinero viejo y contar el delito en el canal propio en vez de la carpeta. Cotejo público con el corte de agosto del SESNSP, alrededor del 20 de septiembre.</p>
+          <span class="mono text-[11px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-3">Leer la columna →</span>
+        </div>
+      </a>
+      <a href="https://45digitalnoticias.github.io/columnas/las-que-no-bajaron.html" target="_blank" rel="noopener"
+         class="grid grid-cols-1 md:grid-cols-[minmax(0,48%)_1fr] group"
+         role="tabpanel" aria-label="Las que no bajaron">
+        <div class="relative">
+          
+          <img src="columnas/portadas/las-que-no-bajaron.webp" alt="Las que no bajaron" loading="lazy"
+               class="w-full h-full object-cover aspect-[1344/620]">
+        </div>
+        <div class="flex flex-col gap-3 p-6 md:p-8 min-w-0">
+          <span class="mono text-[10.5px] uppercase tracking-[.2em] text-[#FBBF24]">
+            Columna firmada
           </span>
           <h3 class="text-[24px] md:text-[28px] font-bold leading-[1.1] tracking-[-.02em] text-text-primary group-hover:text-[#FBBF24] transition-colors">Las que no bajaron</h3>
           <p class="text-[13.5px] leading-[1.6] text-text-muted text-justify hyphens-auto hook-carrusel m-0">Entre enero y julio de 2026 fueron asesinadas 69 mujeres en Morelos, exactamente las mismas que en los mismos siete meses de 2025, mientras el país bajó 25.7 por ciento. El estado es primer lugar nacional en mujeres asesinadas por cada 100 mil mujeres, arriba de Sinaloa en guerra abierta. Aun así el feminicidio como categoría bajó, de 22 a 21, porque el homicidio doloso de mujeres subió de 47 a 48: se movió la etiqueta y la suma quedó intacta, con 7 de cada 10 víctimas fuera de la cifra con la que se mide esta violencia. Los hombres asesinados bajaron 14.6 por ciento; las mujeres, cero. La alerta de violencia de género cumplió 11 años y la mitad de los feminicidios ya ocurre fuera de sus 8 municipios, mientras la violencia familiar marca su máximo histórico. Con Marcela Lagarde: el feminicidio no es solo el crimen, es el crimen más la omisión del Estado.</p>
@@ -791,50 +832,16 @@ nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
           <span class="mono text-[11px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-3">Leer la columna →</span>
         </div>
       </a>
-      <a href="https://45digitalnoticias.github.io/columnas/el-semestre-que-subio.html" target="_blank" rel="noopener"
-         class="grid grid-cols-1 md:grid-cols-[minmax(0,48%)_1fr] group"
-         role="tabpanel" aria-label="El semestre que subió">
-        <div class="relative">
-          
-          <img src="columnas/portadas/el-semestre-que-subio.webp" alt="El semestre que subió" loading="lazy"
-               class="w-full h-full object-cover aspect-[1344/620]">
-        </div>
-        <div class="flex flex-col gap-3 p-6 md:p-8 min-w-0">
-          <span class="mono text-[10.5px] uppercase tracking-[.2em] text-[#FBBF24]">
-            Columna firmada
-          </span>
-          <h3 class="text-[24px] md:text-[28px] font-bold leading-[1.1] tracking-[-.02em] text-text-primary group-hover:text-[#FBBF24] transition-colors">El semestre que subió</h3>
-          <p class="text-[13.5px] leading-[1.6] text-text-muted text-justify hyphens-auto hook-carrusel m-0">En la mañanera del 24 de julio, desde Cuernavaca, el gabinete de seguridad presentó una fila de delitos de Morelos a la baja. Fuimos a la misma fuente oficial que ellos citan, el SESNSP con corte a junio, y lo que dejaron fuera de cuadro cuenta otra historia: la delincuencia total del semestre no bajó, subió 7.3 por ciento; la extorsión se duplicó en un año, más 112.8 por ciento, y la narraron como más confianza para denunciar; el homicidio sí bajó, pero todo el 54 por ciento cuelga de dos meses recientes y aún preliminares, mayo y junio, en pleno Mundial, mientras abril, cuando arranca su Plan Morelos, fue un pico; y el feminicidio bajó como etiqueta, no como cuerpos, porque las mujeres asesinadas siguen planas y solo una de cada cuatro se clasifica como feminicidio. Con el concepto de Darrell Huff, How to Lie with Statistics: para engañar con una estadística no hace falta falsear un número, basta escoger cuál se muestra, contra qué base y en qué formato.</p>
-          <span class="mono text-[11px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-3">Leer la columna →</span>
-        </div>
-      </a>
-      <a href="https://45digitalnoticias.github.io/columnas/el-arresto-y-la-marea.html" target="_blank" rel="noopener"
-         class="grid grid-cols-1 md:grid-cols-[minmax(0,48%)_1fr] group"
-         role="tabpanel" aria-label="El arresto y la marea">
-        <div class="relative">
-          
-          <img src="columnas/portadas/el-arresto-y-la-marea.webp" alt="El arresto y la marea" loading="lazy"
-               class="w-full h-full object-cover aspect-[1344/620]">
-        </div>
-        <div class="flex flex-col gap-3 p-6 md:p-8 min-w-0">
-          <span class="mono text-[10.5px] uppercase tracking-[.2em] text-[#FBBF24]">
-            Columna firmada
-          </span>
-          <h3 class="text-[24px] md:text-[28px] font-bold leading-[1.1] tracking-[-.02em] text-text-primary group-hover:text-[#FBBF24] transition-colors">El arresto y la marea</h3>
-          <p class="text-[13.5px] leading-[1.6] text-text-muted text-justify hyphens-auto hook-carrusel m-0">La presidenta presume que, gracias a la detención del alcalde de Cuautla, los homicidios de Morelos bajaron de 3.7 a 1.9 al día. Pero la causa no cuadra: Cuautla aporta cerca del 10% de los homicidios del estado, al alcalde lo acusan de extorsión y delincuencia organizada, no de homicidios, la extorsión de Cuautla sigue subiendo, y el 1.9 es de junio, el mes del Mundial. Con el concepto de regresión a la media de Daniel Kahneman: tras un pico extraordinario, la cifra vuelve sola hacia el promedio, y el error clásico es atribuir ese regreso a la intervención que llegó en medio.</p>
-          <span class="mono text-[11px] uppercase tracking-[.14em] text-[#FBBF24] mt-auto pt-3">Leer la columna →</span>
-        </div>
-      </a>
     </div>
     <div class="flex items-center justify-center gap-5 mt-4">
       <button type="button" id="carcolPrev" class="carcol-flecha" aria-label="Columna anterior">&#8249;</button>
       <div class="carcol-dots flex gap-2" id="carcolDots" role="tablist" aria-label="Columnas recientes">
-      <button type="button" role="tab" class="act" aria-label="Ir a: Las que no bajaron"></button>
+      <button type="button" role="tab" class="act" aria-label="Ir a: El sombrero que destapó la farsa"></button>
+      <button type="button" role="tab" aria-label="Ir a: El Efecto Mariposa del Plan Cuautla"></button>
+      <button type="button" role="tab" aria-label="Ir a: Las que no bajaron"></button>
       <button type="button" role="tab" aria-label="Ir a: La paz que se cobra"></button>
       <button type="button" role="tab" aria-label="Ir a: El cobro no tiene partido"></button>
       <button type="button" role="tab" aria-label="Ir a: El país que no se cuenta"></button>
-      <button type="button" role="tab" aria-label="Ir a: El semestre que subió"></button>
-      <button type="button" role="tab" aria-label="Ir a: El arresto y la marea"></button>
       </div>
       <button type="button" id="carcolNext" class="carcol-flecha" aria-label="Columna siguiente">&#8250;</button>
     </div>

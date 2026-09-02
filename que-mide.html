@@ -179,6 +179,23 @@ canvas#mapa{width:100%;display:block;}
    altura y la pagina no se hace kilometrica. */
 .hook-corto{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;
   overflow:hidden;text-overflow:ellipsis;}
+/* Carrusel de columnas: tarjetas apiladas en la misma celda; solo la activa
+   se ve. La seccion mide una tarjeta y no crece con cada columna nueva.
+   Sin auto-avance: se navega con flechas y puntos. */
+.carcol{display:grid;}
+.carcol>a{grid-area:1/1;opacity:0;pointer-events:none;transition:opacity .55s ease;}
+.carcol>a.act{opacity:1;pointer-events:auto;}
+.hook-carrusel{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;
+  overflow:hidden;text-overflow:ellipsis;}
+.carcol-dots button{width:32px;height:5px;border-radius:3px;background:#3a352c;
+  border:0;padding:0;cursor:pointer;transition:background .3s;}
+.carcol-dots button.act{background:#FBBF24;}
+.carcol-flecha{width:36px;height:36px;border-radius:999px;border:1px solid #3a352c;
+  background:transparent;color:#FBBF24;font-size:20px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color .3s,background .3s;}
+.carcol-flecha:hover{border-color:#FBBF24;background:rgba(251,191,36,.08);}
+@media (prefers-reduced-motion:reduce){.carcol>a{transition:none;}}
 
 :root{--amber:var(--oro);--rose:var(--sello);--cyan:var(--cian);--green:var(--verde);--purple:var(--morado);--red:var(--rojo);}
 
@@ -486,6 +503,13 @@ main,main > section,main > header{min-width:0;}
    rediseno ya lleva esos destinos en el pie; si el bloque vuelve a
    aparecer, se queda invisible en vez de romper el diseno. */
 nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
+
+/* La barra de arriba es pegajosa, asi que un salto a #ancla dejaba el destino
+   DEBAJO de ella: metodologia.html#universo-municipal aterrizaba tapando justo
+   el renglon que explica la nota (medido el 21-ago-2026, con el ancla a top=0).
+   72px son la altura de la barra mas aire. Aplica a cualquier destino con id,
+   asi que arregla tambien #video-guia y las anclas que se agreguen despues. */
+[id]{scroll-margin-top:72px;}
 </style>
 <style>
   :root[data-theme="dark"]{--bg:#0e0c0b;--panel:#17130d;--panel2:#1b1712;--line:rgba(120,110,95,.18);--line2:rgba(120,110,95,.36);--txt:#f2ede3;--mut:#b8ad9a;--dim:#8a8072;--oro:#efb03a;--cian:#49c2d0;--rojo:#e8573f;--sello:#cf5440;--verde:#6fae5f;--morado:#a78bfa;--grain:.05;--gridop:.5;--glow:.5}

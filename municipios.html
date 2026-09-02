@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Encuentra tu municipio · atlas ciudadano de inseguridad · Inseguridad México</title>
-<meta name="description" content="Busca cualquiera de los 2,469 municipios del país y abre su radiografía completa: los 55 delitos, su lugar en el estado, cuándo ocurren y qué se reclasifica. Datos SESNSP con corte julio 2026.">
+<meta name="description" content="Busca cualquiera de los 2,475 municipios y demarcaciones del país y abre su radiografía completa: los 55 delitos, su lugar en el estado, cuándo ocurren y qué se reclasifica. Datos SESNSP con corte julio 2026.">
 <link rel="canonical" href="https://45digitalnoticias.github.io/Inseguridad-Mexico/municipios.html">
 <meta name="theme-color" content="#0E0C0B">
 <meta property="og:type" content="website">
@@ -179,6 +179,23 @@ canvas#mapa{width:100%;display:block;}
    altura y la pagina no se hace kilometrica. */
 .hook-corto{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;
   overflow:hidden;text-overflow:ellipsis;}
+/* Carrusel de columnas: tarjetas apiladas en la misma celda; solo la activa
+   se ve. La seccion mide una tarjeta y no crece con cada columna nueva.
+   Sin auto-avance: se navega con flechas y puntos. */
+.carcol{display:grid;}
+.carcol>a{grid-area:1/1;opacity:0;pointer-events:none;transition:opacity .55s ease;}
+.carcol>a.act{opacity:1;pointer-events:auto;}
+.hook-carrusel{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;
+  overflow:hidden;text-overflow:ellipsis;}
+.carcol-dots button{width:32px;height:5px;border-radius:3px;background:#3a352c;
+  border:0;padding:0;cursor:pointer;transition:background .3s;}
+.carcol-dots button.act{background:#FBBF24;}
+.carcol-flecha{width:36px;height:36px;border-radius:999px;border:1px solid #3a352c;
+  background:transparent;color:#FBBF24;font-size:20px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color .3s,background .3s;}
+.carcol-flecha:hover{border-color:#FBBF24;background:rgba(251,191,36,.08);}
+@media (prefers-reduced-motion:reduce){.carcol>a{transition:none;}}
 
 :root{--amber:var(--oro);--rose:var(--sello);--cyan:var(--cian);--green:var(--verde);--purple:var(--morado);--red:var(--rojo);}
 
@@ -486,6 +503,13 @@ main,main > section,main > header{min-width:0;}
    rediseno ya lleva esos destinos en el pie; si el bloque vuelve a
    aparecer, se queda invisible en vez de romper el diseno. */
 nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
+
+/* La barra de arriba es pegajosa, asi que un salto a #ancla dejaba el destino
+   DEBAJO de ella: metodologia.html#universo-municipal aterrizaba tapando justo
+   el renglon que explica la nota (medido el 21-ago-2026, con el ancla a top=0).
+   72px son la altura de la barra mas aire. Aplica a cualquier destino con id,
+   asi que arregla tambien #video-guia y las anclas que se agreguen despues. */
+[id]{scroll-margin-top:72px;}
 </style>
 <style>
 :root[data-theme="dark"]{--bg:#0e0c0b;--panel:#17130d;--panel2:#1b1712;--line:rgba(120,110,95,.18);--line2:rgba(120,110,95,.36);--txt:#f2ede3;--mut:#b8ad9a;--dim:#8a8072;--oro:#efb03a;--cian:#49c2d0;--rojo:#e8573f;--sello:#cf5440;--verde:#6fae5f;--morado:#a78bfa;--grain:.05;--gridop:.5;--glow:.5}
@@ -570,7 +594,7 @@ main,.wrap,.bgwrap{min-width:0;}
 <div class="nav-movil" id="navMovil"><a class="nm-mapa" href="index.html">Mapa</a><div class="nm-grupo"><div class="nm-tit">Dónde</div><a href="ranking-nacional.html"><span class="nav-t">El país</span><span class="nav-d">Los 32 estados y los municipios que encabezan, delito por delito</span></a><a href="estado.html"><span class="nav-t">Estados</span><span class="nav-d">Radiografía completa de un estado: 55 delitos, serie y panel RNPDNO</span></a><a href="municipios.html"><span class="nav-t">Municipios</span><span class="nav-d">Busca tu municipio entre los 2,475 y compáralo con su estado</span></a></div><div class="nm-grupo"><div class="nm-tit">Lo que esconden</div><a href="radar.html"><span class="nav-t">Radar de la paz narca<span class="nav-sello">Nuevo</span></span><span class="nav-d">Territorios donde bajan los muertos y sube el cobro. Indicador propio</span></a><a href="senales.html"><span class="nav-t">Señales del espejo</span><span class="nav-d">22 delitos que caen mientras su categoría Otros sube en el mismo periodo</span></a><a href="conteo.html"><span class="nav-t">El país que no se cuenta</span><span class="nav-d">Dos conteos oficiales del mismo hecho, y un catálogo con bolsas donde el registro deja de ser auditable</span></a></div><div class="nm-grupo"><div class="nm-tit">Expedientes</div><a href="corredores-sureste.html"><span class="nav-t">Corredores ferroviarios</span><span class="nav-d">Istmo y Tren Maya: qué pasa con el delito a lo largo de la vía</span></a><a href="morelos/index.html"><span class="nav-t">Morelos</span><span class="nav-d">Los cinco datos duros de la seguridad en el estado</span></a><a href="expedientes.html"><span class="nav-t">Todos los expedientes</span><span class="nav-d">Las investigaciones abiertas de 45 Digital Noticias</span></a></div><div class="nm-grupo"><div class="nm-tit">Cómo se hizo</div><a href="metodologia.html"><span class="nav-t">Metodología</span><span class="nav-d">De qué archivo sale cada cifra y cómo se calcula</span></a><a href="glosario.html"><span class="nav-t">Glosario</span><span class="nav-d">Qué significa cada término del catálogo oficial</span></a><a href="como_leer.html"><span class="nav-t">Cómo leer</span><span class="nav-d">Guía de lectura del sitio y por qué se construyó así</span></a></div><a class="nm-col" href="columnas/">Columnas y auditorías</a><div class="nm-redes"><a href="https://www.facebook.com/45DigitalMx" target="_blank" rel="noopener">Facebook</a><a href="https://www.youtube.com/@45digitalnoticias56" target="_blank" rel="noopener">YouTube</a></div></div>
 <div class="flex-grow">
 <div class="bgwrap"><div class="wrap">
-<div class="kick">2,469 municipios · 55 delitos · 2016-2025</div>
+<div class="kick">2,475 municipios · 55 delitos · 2016-2025</div>
 <h1>Encuentra tu municipio</h1>
 <div class="sub">Escribe el nombre de tu municipio y abre su radiografía completa: los 55 delitos, su lugar en el estado, cuándo ocurren y qué se reclasifica. O explóralos por estado.</div>
 <div class="searchbox"><input id="q" placeholder="🔍 Escribe tu municipio… (p. ej. Cuernavaca, León, Tijuana)" autocomplete="off"><div id="res" style="display:none"></div></div>
@@ -721,8 +745,8 @@ document.addEventListener('click',e=>{if(!e.target.closest('.searchbox'))res.sty
 // explorar por estado
 const states=document.getElementById('states');
 (PANORAMA_ESTATAL||[]).slice().sort((a,b)=>a.entidad.localeCompare(b.entidad,'es')).forEach(r=>{
-  const d=document.createElement('div');d.className='scard';d.style.setProperty('--c',r.color||'#34d399');
-  d.innerHTML=silSVG(r.clave_ent,r.color||'#34d399',30)+`<span>${ENT[r.clave_ent]}</span>`;
+  const d=document.createElement('div');d.className='scard';d.style.setProperty('--c',colorEstado(r));
+  d.innerHTML=silSVG(r.clave_ent,colorEstado(r),30)+`<span>${ENT[r.clave_ent]}</span>`;
   d.onclick=()=>abrirEstado(r.clave_ent);states.appendChild(d);});
 const cacheSMA={};
 function abrirEstado(ent){

@@ -13,11 +13,11 @@
 <meta property="og:title" content="Cómo leer Inseguridad México">
 <meta property="og:description" content="Del mapa del país hasta tu municipio: qué responde cada pieza y en qué orden.">
 <meta property="og:url" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/como_leer.html">
-<meta property="og:image" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/assets/video/guia-poster.webp">
+<meta property="og:image" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/assets/og-inseguridad-mexico.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Cómo leer Inseguridad México">
 <meta name="twitter:description" content="Del mapa del país hasta tu municipio: qué responde cada pieza y en qué orden.">
-<meta name="twitter:image" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/assets/video/guia-poster.webp">
+<meta name="twitter:image" content="https://45digitalnoticias.github.io/Inseguridad-Mexico/assets/og-inseguridad-mexico.jpg">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Dataset", "name": "Cómo leer Inseguridad México", "description": "Del mapa del país hasta tu municipio: qué responde cada pieza y en qué orden.", "url": "https://45digitalnoticias.github.io/Inseguridad-Mexico/como_leer.html", "isAccessibleForFree": true, "creator": {"@type": "NewsMediaOrganization", "name": "45 Digital Noticias"}, "license": "https://creativecommons.org/licenses/by/4.0/", "spatialCoverage": {"@type": "Country", "name": "México"}, "temporalCoverage": "2015/2026", "isPartOf": {"@type": "Dataset", "name": "Inseguridad México", "url": "https://45digitalnoticias.github.io/Inseguridad-Mexico/"}}</script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "a4de56a9a4564d0ea0f4e0259af8bc7a"}'></script>
 <script>if(/github[.]io$/.test(location.hostname)){var _g=document.createElement('script');_g.async=1;_g.src='https://www.googletagmanager.com/gtag/js?id=G-R64XZVCF6F';document.head.appendChild(_g);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-R64XZVCF6F');}</script>
@@ -503,6 +503,13 @@ main,main > section,main > header{min-width:0;}
    rediseno ya lleva esos destinos en el pie; si el bloque vuelve a
    aparecer, se queda invisible en vez de romper el diseno. */
 nav[aria-label="Red 45 Digital Noticias"]{display:none !important;}
+
+/* La barra de arriba es pegajosa, asi que un salto a #ancla dejaba el destino
+   DEBAJO de ella: metodologia.html#universo-municipal aterrizaba tapando justo
+   el renglon que explica la nota (medido el 21-ago-2026, con el ancla a top=0).
+   72px son la altura de la barra mas aire. Aplica a cualquier destino con id,
+   asi que arregla tambien #video-guia y las anclas que se agreguen despues. */
+[id]{scroll-margin-top:72px;}
 </style>
 <style>
 :root[data-theme="dark"]{--bg:#0e0c0b;--panel:#17130d;--panel2:#1b1712;--line:rgba(120,110,95,.18);--line2:rgba(120,110,95,.36);--txt:#f2ede3;--mut:#b8ad9a;--dim:#8a8072;--oro:#efb03a;--cian:#49c2d0;--rojo:#e8573f;--sello:#cf5440;--verde:#6fae5f;--morado:#a78bfa;--grain:.05;--gridop:.5;--glow:.5}
