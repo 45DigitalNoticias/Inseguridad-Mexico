@@ -27,6 +27,22 @@ const D_={
  "Delitos cometidos por servidores públicos":{w:"delitos de servidores públicos",a:"de los",a1:"Los",t:"ServidoresPublicos",e:"🏛️"},
  "Falsificación":{w:"falsificación",a:"de la",a1:"La",t:"Falsificacion",e:"📄"},
  "Hostigamiento sexual":{w:"hostigamiento sexual",a:"del",a1:"El",t:"HostigamientoSexual",e:"🟠"},
+ "Falsedad":{w:"falsedad",a:"de la",a1:"La",t:"Falsedad",e:"✍️"},
+ "Corrupción de menores":{w:"corrupción de menores",a:"de la",a1:"La",t:"CorrupcionDeMenores",e:"🚸"},
+ "Acoso sexual":{w:"acoso sexual",a:"del",a1:"El",t:"AcosoSexual",e:"🟠"},
+ "Robo en transporte individual":{w:"robo en transporte individual",a:"del",a1:"El",t:"RoboEnTransporte",e:"🚕"},
+ "Robo en transporte público colectivo":{w:"robo en transporte colectivo",a:"del",a1:"El",t:"RoboEnTransporteColectivo",e:"🚌"},
+ "Violación equiparada":{w:"violación equiparada",a:"de la",a1:"La",t:"ViolacionEquiparada",e:"🟣"},
+ "Robo a transeúnte en espacio abierto al público":{w:"robo a transeúnte en espacio abierto",a:"del",a1:"El",t:"RoboATranseunte",e:"🏞️"},
+ "Robo de ganado":{w:"robo de ganado",a:"del",a1:"El",t:"RoboDeGanado",e:"🐄"},
+ "Todos los delitos":{w:"delitos denunciados",a:"de los",a1:"Los",t:"Delitos",e:"📊"},
+ // agregados temáticos: la lámina declara en el pie qué suma cada uno
+ "Robo, todas sus modalidades":{w:"robo en todas sus formas",a:"del",a1:"El",t:"Robo",e:"🥷"},
+ "Delitos sexuales":{w:"delitos sexuales",a:"de los",a1:"Los",t:"DelitosSexuales",e:"🟣"},
+ "Delitos contra la familia":{w:"delitos contra la familia",a:"de los",a1:"Los",t:"ContraLaFamilia",e:"🏠"},
+ "Delitos patrimoniales sin robo":{w:"delitos contra el patrimonio",a:"de los",a1:"Los",t:"Patrimoniales",e:"💼"},
+ "Delitos contra la vida y la integridad":{w:"delitos contra la vida",a:"de los",a1:"Los",t:"ContraLaVida",e:"🔴"},
+ "Robo en transporte":{w:"robo en el transporte",a:"del",a1:"El",t:"RoboEnTransporte",e:"🚌"},
 };
 const ACC={cian:"#3987e5",oro:"#c98500",rojo:"#d03b3b",verde:"#3ec9a7",violeta:"#9085e9",naranja:"#ff8c42",magenta:"#e0559b",aqua:"#37b9c4"};
 
@@ -130,6 +146,37 @@ const SEMANAS={
   {es:"ESTATAL",  h:"14h30",delito:"Hostigamiento sexual",    acc:ACC.naranja,lam:["2025-vs-2026","curva-mensual"]},
   {es:"NACIONAL", h:"20h00",delito:"Robo a casa habitación",  acc:ACC.magenta,lam:["waffle","ranking-32"]}]},
  ]},
+
+ 4:{nombre:"SEMANA 4 (21 - 27 sep)", dias:[
+ {f:"2026-09-21",d:"lunes",posts:[
+  {es:"MUNICIPAL",h:"10h30",delito:"Falsificación",           acc:ACC.aqua,   lam:["tasa-vs-volumen","mapa-tasa"]},
+  {es:"ESTATAL",  h:"14h30",delito:"Homicidio culposo",       acc:ACC.cian,   lam:["morelos-vs-media","curva-mensual"]},
+  {es:"NACIONAL", h:"20h00",delito:"Despojo",                 acc:ACC.oro,    lam:["cambio-nacional","curva-nacional"]}]},
+ {f:"2026-09-22",d:"martes",posts:[
+  {es:"MUNICIPAL",h:"10h30",delito:"Hostigamiento sexual",    acc:ACC.rojo,   lam:["mapa-morelos","barras-municipios"]},
+  {es:"ESTATAL",  h:"14h30",delito:"Delitos cometidos por servidores públicos",acc:ACC.verde,lam:["curva-mensual","2025-vs-2026"]},
+  {es:"NACIONAL", h:"20h00",delito:"Extorsión",               acc:ACC.violeta,lam:["mapa-nacional","ranking-32"]}]},
+ {f:"2026-09-23",d:"miércoles",posts:[
+  {es:"MUNICIPAL",h:"10h30",delito:"Robo de autopartes",      acc:ACC.naranja,lam:["barras-municipios","mapa-morelos"]},
+  {es:"ESTATAL",  h:"14h30",delito:"Delitos contra la familia",acc:ACC.magenta,lam:["calendario","curva-mensual"]},
+  {es:"NACIONAL", h:"20h00",delito:"Acoso sexual",            acc:ACC.aqua,   lam:["ranking-32","top10-municipios"]}]},
+ {f:"2026-09-24",d:"jueves",posts:[
+  {es:"MUNICIPAL",h:"10h30",delito:"Delitos sexuales",        acc:ACC.cian,   lam:["duelo","barras-municipios"]},
+  {es:"ESTATAL",  h:"14h30",delito:"Corrupción de menores",   acc:ACC.oro,    lam:["anos-barras","curva-mensual"]},
+  {es:"NACIONAL", h:"20h00",delito:"Robo en transporte individual",acc:ACC.rojo,lam:["top10-municipios","ranking-32"]}]},
+ {f:"2026-09-25",d:"viernes",posts:[
+  {es:"MUNICIPAL",h:"10h30",delito:"Robo, todas sus modalidades",acc:ACC.verde,lam:["cambio-25-26","mapa-morelos"]},
+  {es:"ESTATAL",  h:"14h30",delito:"Falsedad",                acc:ACC.violeta,lam:["2025-vs-2026","curva-mensual"]},
+  {es:"NACIONAL", h:"20h00",delito:"Robo en transporte público colectivo",acc:ACC.naranja,lam:["waffle","ranking-32"]}]},
+ {f:"2026-09-26",d:"sábado",posts:[
+  {es:"MUNICIPAL",h:"10h30",delito:"Delitos patrimoniales sin robo",acc:ACC.magenta,lam:["mapa-tasa","barras-municipios-tasa"]},
+  {es:"ESTATAL",  h:"14h30",delito:"Delitos contra la vida y la integridad",acc:ACC.aqua,lam:["cifra-gigante","curva-mensual"]},
+  {es:"NACIONAL", h:"20h00",delito:"Violación equiparada",    acc:ACC.cian,   lam:["curva-nacional","mapa-nacional"]}]},
+ {f:"2026-09-27",d:"domingo",posts:[
+  {es:"MUNICIPAL",h:"10h30",delito:"Todos los delitos",       acc:ACC.oro,    lam:["concentracion","barras-municipios"]},
+  {es:"ESTATAL",  h:"14h30",delito:"Robo de ganado",          acc:ACC.rojo,   lam:["peso-nacional","morelos-vs-media"]},
+  {es:"NACIONAL", h:"20h00",delito:"Robo a transeúnte en espacio abierto al público",acc:ACC.verde,lam:["vecinos","ranking-32"]}]},
+ ]},
 };
 
 // ============================================================================
@@ -200,8 +247,18 @@ SEM.dias.forEach((dia,di)=>{
  dia.posts.forEach((p,pi)=>{
   const meta=D_[p.delito];
   if(!meta) throw new Error("Delito sin ficha: "+p.delito);
-  if(!SM[17].delitos[p.delito]) throw new Error("Llave inexistente en series: "+p.delito);
-  if(MU.delitos.indexOf(p.delito)<0) throw new Error("Llave inexistente en matriz municipal: "+p.delito);
+  const partes=COMPUESTOS[p.delito];
+  if(partes){
+   partes.forEach(k=>{
+    if(!SM[17].delitos[k]) throw new Error("Compuesto '"+p.delito+"': llave inexistente en series -> "+k);
+    if(MU.delitos.indexOf(k)<0) throw new Error("Compuesto '"+p.delito+"': llave inexistente en matriz municipal -> "+k);});
+  }else{
+   // "Todos los delitos" existe en la matriz municipal pero NO en las series
+   // mensuales por estado: sirve para municipal, no para estatal ni nacional
+   if(p.es!=="MUNICIPAL" && !SM[17].delitos[p.delito]) throw new Error("Llave inexistente en series (hace falta para "+p.es+"): "+p.delito);
+   if(MU.delitos.indexOf(p.delito)<0) throw new Error("Llave inexistente en matriz municipal: "+p.delito);
+  }
+  SUMA_TXT = partes ? partes.map(k=>k.charAt(0).toLowerCase()+k.slice(1)).join(", ") : null;
   const C={delito:p.delito,word:meta.w,art:meta.a,art1:meta.a1,tag:meta.t,acc:p.acc};
   // datos base de la escala SIEMPRE, aunque el formato del día no los use:
   // de aquí sale el gancho del caption y no puede depender del molde elegido

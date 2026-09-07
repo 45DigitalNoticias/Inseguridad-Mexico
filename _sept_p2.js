@@ -23,7 +23,7 @@ function shell({acc,kick,h1,sub,cuerpo,nota,fuente,extraCSS}){
  .nota h3{font-family:"JetBrains Mono","Segoe UI",monospace;font-size:14px;letter-spacing:3px;color:var(--mut);font-weight:700;margin-bottom:6px}
  .nota p{font-size:21px;color:var(--ink);line-height:1.36} .nota b{color:var(--acc);font-weight:800}
  .nota .e{color:var(--mut);font-size:17.5px;margin-top:6px;line-height:1.32}
- .foot{margin-top:14px;display:flex;justify-content:space-between;align-items:flex-end;font-size:17px;color:var(--mut);border-top:1px solid var(--line);padding-top:12px}
+ .foot{margin-top:14px;display:flex;gap:18px;justify-content:space-between;align-items:flex-end;font-size:${SUMA_TXT?15:17}px;line-height:1.32;color:var(--mut);border-top:1px solid var(--line);padding-top:12px}
  .foot b{color:var(--ink)}
  text{font-family:"Hanken Grotesk","Segoe UI",sans-serif}
  svg{align-self:center}
@@ -34,7 +34,7 @@ function shell({acc,kick,h1,sub,cuerpo,nota,fuente,extraCSS}){
  <div class="sub">${sub}</div>
  <div class="cuerpo">${cuerpo}</div>
  ${nota?`<div class="nota"><h3>LO QUE DICE</h3>${nota}</div>`:""}
- <div class="foot"><div>${fuente}</div><img src="logo.png" style="height:40px;opacity:.95;display:block"></div>
+ <div class="foot"><div style="max-width:830px">${fuente}${SUMA_TXT?` <b>Suma de</b>: ${SUMA_TXT}.`:""}</div><img src="logo.png" style="height:40px;opacity:.95;display:block"></div>
 </div></body></html>`;
 }
 
@@ -102,7 +102,7 @@ const CSS_BARRAS=acc=>`
 // DIVERGENTE (sube y baja): cian mejora, rojo deterioro
 function P_diverge({items,fmt}){
  const maxV=Math.max(...items.map(i=>Math.abs(i.v)))||1, MID=470, ANCHO=270;
- const H_=Math.max(30,Math.min(80,Math.floor(770/items.length)));
+ const H_=Math.max(28,Math.min(80,Math.floor(690/items.length)));  // 690 y no 770: la leyenda de abajo tambien ocupa
  return `<div style="--dvh:${H_}px;position:relative"><i style="position:absolute;left:${MID}px;top:0;bottom:34px;width:1px;background:#3a342e"></i>${items.map(it=>{
   const w=Math.max(4,Math.round(ANCHO*Math.abs(it.v)/maxV)), sube=it.v>=0;
   const col=sube?"#d03b3b":"#3987e5";

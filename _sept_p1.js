@@ -43,17 +43,49 @@ const STEPS=[5,10,20,30,40,50,60,80,100,120,150,170,200,250,300,400,500,600,800,
 const niceMax=m=>{for(const s of STEPS) if(m<=s) return s; return Math.ceil(m/10000)*10000;};
 const kfmt=v=>v>=1000?(v/1000).toFixed(v%1000===0?0:1)+" mil":nf(v);
 
+// ---------------- delitos COMPUESTOS ----------------
+// Cuando se acaban los delitos individuales con datos suficientes, la veta que
+// sigue son los cruces temáticos. La regla es que la lámina DECLARE qué suma:
+// si no se puede reconstruir la cifra, no es auditable. Por eso el pie de cada
+// lámina compuesta lista sus componentes.
+const COMPUESTOS={
+ "Robo, todas sus modalidades":["Robo de vehículo automotor","Robo a casa habitación","Robo a negocio",
+  "Robo a transeúnte en vía pública","Robo a transeúnte en espacio abierto al público","Robo de autopartes",
+  "Robo en transporte individual","Robo en transporte público colectivo","Robo en transporte público individual",
+  "Robo a transportista","Robo de ganado","Robo de maquinaria","Robo a institución bancaria","Otros robos"],
+ "Delitos sexuales":["Violación simple","Violación equiparada","Abuso sexual","Acoso sexual",
+  "Hostigamiento sexual","Otros delitos que atentan contra la libertad y la seguridad sexual"],
+ "Delitos contra la familia":["Violencia familiar","Incumplimiento de obligaciones de asistencia familiar",
+  "Otros delitos contra la familia"],
+ "Delitos patrimoniales sin robo":["Fraude","Abuso de confianza","Daño a la propiedad","Despojo","Extorsión",
+  "Otros delitos contra el patrimonio"],
+ "Delitos contra la vida y la integridad":["Homicidio doloso","Homicidio culposo","Feminicidio",
+  "Lesiones dolosas","Lesiones culposas","Otros delitos que atentan contra la vida y la integridad corporal"],
+ "Robo en transporte":["Robo en transporte público colectivo","Robo en transporte público individual",
+  "Robo en transporte individual"],
+};
+let SUMA_TXT=null;   // lo fija el main antes de cada lámina; el pie lo imprime
+
 // ---------------- datos ----------------
-const serieEdo =(d,c)=> (SM[c].delitos[d]||new Array(NL).fill(0));
-const serieNac = d =>{const a=new Array(NL).fill(0);for(let c=1;c<=32;c++){const s=SM[c].delitos[d];if(s)for(let i=0;i<NL;i++)a[i]+=s[i]||0;}return a;};
+const serieEdo=(d,c)=>{
+ const partes=COMPUESTOS[d];
+ if(!partes) return (SM[c].delitos[d]||new Array(NL).fill(0));
+ const a=new Array(NL).fill(0);
+ partes.forEach(k=>{const s=SM[c].delitos[k]; if(s) for(let i=0;i<NL;i++) a[i]+=s[i]||0;});
+ return a;};
+const serieNac = d =>{const a=new Array(NL).fill(0);for(let c=1;c<=32;c++){const s=serieEdo(d,c);for(let i=0;i<NL;i++)a[i]+=s[i];}return a;};
 const acum=(a,ini,n)=>{let t=0;for(let i=ini;i<ini+n;i++)t+=a[i]||0;return t;};
 const popEdo=c=>(P.p[String(c)]||[])[11]||1;
 const popEdo25=c=>(P.p[String(c)]||[])[10]||1;
 const popMuni=k=>{const a=PMp[String(+k)]||PMp[k]||[];return a[11]||a[a.length-1]||1;};
 const featsMor=GEO.features.filter(f=>String(f.properties.k).padStart(5,"0").startsWith("17"));
 const mname={}; featsMor.forEach(f=>mname[String(f.properties.k).padStart(5,"0")]=f.properties.n);
-function muniMor(delito,ai){const di=MU.delitos.indexOf(delito);const o={};featsMor.forEach(f=>{const k=String(f.properties.k).padStart(5,"0");o[k]=(MU.d[k]&&MU.d[k][di]?MU.d[k][di][ai]:0)||0;});return o;}
-function muniPais(delito,ai){const di=MU.delitos.indexOf(delito);const r=[];Object.keys(MU.d).forEach(k=>{const v=(MU.d[k][di]||[])[ai]||0;if(v>0){const kk=String(k).padStart(5,"0");const m=MNM[kk];if(m)r.push({k:kk,n:m.n,e:m.e,v});}});return r.sort((a,b)=>b.v-a.v);}
+const idxDe=delito=>(COMPUESTOS[delito]||[delito]).map(k=>MU.delitos.indexOf(k)).filter(i=>i>=0);
+function muniMor(delito,ai){const idx=idxDe(delito);const o={};featsMor.forEach(f=>{const k=String(f.properties.k).padStart(5,"0");
+ let t=0; idx.forEach(di=>{t+=(MU.d[k]&&MU.d[k][di]?MU.d[k][di][ai]:0)||0;}); o[k]=t;});return o;}
+function muniPais(delito,ai){const idx=idxDe(delito);const r=[];Object.keys(MU.d).forEach(k=>{
+ let v=0; idx.forEach(di=>{v+=(MU.d[k][di]||[])[ai]||0;});
+ if(v>0){const kk=String(k).padStart(5,"0");const m=MNM[kk];if(m)r.push({k:kk,n:m.n,e:m.e,v});}});return r.sort((a,b)=>b.v-a.v);}
 function tasasEdo(delito){const r=[];for(let c=1;c<=32;c++){const t=acum(serieEdo(delito,c),IDX26,M26);r.push({c,name:NAME[c],v:t,rate:t/popEdo(c)*1e5});}return r.sort((a,b)=>b.rate-a.rate);}
 
 // ---------------- proyecciones ----------------

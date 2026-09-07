@@ -1,10 +1,7 @@
-// Calendario de SEPTIEMBRE 2026 — 31 días (31 ago a 30 sep) x 3 publicaciones.
-// Reglas que respeta el planificador:
-//  1. ningún par delito+escala se repite en el mes
-//  2. ningún delito se repite dentro de la misma semana
-//  3. cada escala usa sus 7 formatos, uno por día, rotando el arranque cada semana
-//  4. los tres acentos del día son distintos y ninguna escala repite acento en días seguidos
-// La semana 1 va escrita a mano (es la que ya se produjo); de la 2 en adelante asigna solo.
+// Calendario de SEPTIEMBRE 2026 — se arma con lo REALMENTE producido.
+// Lee el _plan_semana.json de cada carpeta de semana y, con lo que queda del
+// catálogo, dice qué está disponible para los días que faltan. Antes planificaba
+// a ciegas; ahora el calendario y las carpetas no pueden discrepar.
 const fs=require("fs");
 const BASE="C:/Users/SRVal/Documents/Claude/Projects/45 DIGITAL NOTICIAS/INSEGURIDAD_MEXICO";
 const RAIZ="C:/Users/SRVal/Documents/Claude/Projects/45 DIGITAL NOTICIAS/PROGRAMACIÓN FACEBOOK/GRÁFICAS SEMANALES/2026-09 Inseguridad (3 al dia)";
@@ -15,75 +12,47 @@ const SM={}; for(let c=1;c<=32;c++) SM[c]=rd(BASE+"/series_mensuales/sm_"+String
 const L=SM[1].labels, M26=SM[1].meses_2026, IDX26=L.indexOf("2026-01"), AI26=MU.anios.length-1;
 const featsMor=GEO.features.filter(f=>String(f.properties.k).padStart(5,"0").startsWith("17"));
 
-// --------- inventario real, para no proponer delitos sin datos ---------
-const EXCLUIR=d=>d.startsWith("Otros")||d==="Todos los delitos"||d==="Feminicidio";
+// ---- lo producido ----
+const semanas=fs.readdirSync(RAIZ).filter(d=>d.startsWith("SEMANA")).sort();
+const filas=[]; const usados={MUNICIPAL:new Set(),ESTATAL:new Set(),NACIONAL:new Set()};
+semanas.forEach((s,i)=>{
+ const plan=JSON.parse(fs.readFileSync(RAIZ+"/"+s+"/_plan_semana.json","utf8"));
+ plan.forEach(p=>{usados[p.escala].add(p.delito); filas.push(Object.assign({semana:i+1,carpeta:s},p));});
+});
+const porDia={};
+filas.forEach(p=>{(porDia[p.fecha]=porDia[p.fecha]||{fecha:p.fecha,dia:p.dia,semana:p.semana})[p.escala]=p;});
+const dias=Object.values(porDia).sort((a,b)=>a.fecha<b.fecha?-1:1);
+
+// ---- lo que queda del catálogo ----
+const EXCLUIR=d=>d.startsWith("Otros")||d==="Feminicidio";
 const inv=MU.delitos.filter(d=>!EXCLUIR(d)).map(d=>{
  const di=MU.delitos.indexOf(d);
- let mor=0, muni=0;
+ let mor=0,muni=0;
  featsMor.forEach(f=>{const k=String(f.properties.k).padStart(5,"0");const v=(MU.d[k]&&MU.d[k][di]?MU.d[k][di][AI26]:0)||0;mor+=v;if(v>0)muni++;});
  let nac=0; for(let c=1;c<=32;c++){const s=SM[c].delitos[d];if(s)for(let i=IDX26;i<IDX26+M26;i++)nac+=s[i]||0;}
  return {d,mor,muni,nac};
 });
-const BOLSA={
- MUNICIPAL: inv.filter(o=>o.muni>=12&&o.mor>=40).sort((a,b)=>b.mor-a.mor).map(o=>o.d),
- ESTATAL:   inv.filter(o=>o.mor>=40).sort((a,b)=>b.mor-a.mor).map(o=>o.d),
- NACIONAL:  inv.filter(o=>o.nac>=800).sort((a,b)=>b.nac-a.nac).map(o=>o.d),
+const AGREGADOS=["Robo, todas sus modalidades","Delitos sexuales","Delitos contra la familia",
+ "Delitos patrimoniales sin robo","Delitos contra la vida y la integridad","Robo en transporte","Todos los delitos"];
+const libre=(es,d)=>!usados[es].has(d);
+const DISPONIBLE={
+ MUNICIPAL: inv.filter(o=>o.muni>=10&&o.mor>=25&&libre("MUNICIPAL",o.d)).map(o=>o.d)
+             .concat(AGREGADOS.filter(a=>libre("MUNICIPAL",a))),
+ ESTATAL:   inv.filter(o=>o.mor>=15&&o.d!=="Todos los delitos"&&libre("ESTATAL",o.d)).map(o=>o.d)
+             .concat(AGREGADOS.filter(a=>a!=="Todos los delitos"&&libre("ESTATAL",a))),
+ NACIONAL:  inv.filter(o=>o.nac>=800&&o.d!=="Todos los delitos"&&libre("NACIONAL",o.d)).map(o=>o.d)
+             .concat(AGREGADOS.filter(a=>a!=="Todos los delitos"&&libre("NACIONAL",a))),
 };
-const FMT={
- MUNICIPAL:["mapa-morelos","barras-municipios","duelo","cambio-25-26","mapa-tasa","concentracion","tasa-vs-volumen"],
- ESTATAL:  ["curva-mensual","calendario","anos-barras","2025-vs-2026","cifra-gigante","peso-nacional","morelos-vs-media"],
- NACIONAL: ["mapa-nacional","ranking-32","top10-municipios","waffle","curva-nacional","vecinos","cambio-nacional"],
-};
-const ACC=["cian","oro","rojo","verde","violeta","naranja","magenta","aqua"];
-const ESCALAS=["MUNICIPAL","ESTATAL","NACIONAL"];
+const FALTAN=["2026-09-28","2026-09-29","2026-09-30"].filter(f=>!porDia[f]);
 
-// --------- semana 1, tal como se produjo ---------
-const S1=[
- ["2026-08-31","Robo de vehículo automotor","Violencia familiar","Homicidio doloso"],
- ["2026-09-01","Narcomenudeo","Extorsión","Violación simple"],
- ["2026-09-02","Amenazas","Fraude","Abuso sexual"],
- ["2026-09-03","Robo a negocio","Despojo","Homicidio culposo"],
- ["2026-09-04","Daño a la propiedad","Abuso de confianza","Robo de autopartes"],
- ["2026-09-05","Lesiones culposas","Robo a transeúnte en vía pública","Incumplimiento de obligaciones de asistencia familiar"],
- ["2026-09-06","Robo a casa habitación","Lesiones dolosas","Allanamiento de morada"],
-];
-const usados={MUNICIPAL:new Set(),ESTATAL:new Set(),NACIONAL:new Set()};
-const dias=[];
-S1.forEach((r,i)=>{
- const posts=ESCALAS.map((es,j)=>{usados[es].add(r[j+1]);
-  return {es,delito:r[j+1],fmt:FMT[es][i],acc:ACC[(i*3+j)%8]};});
- dias.push({f:r[0],posts,semana:1});
-});
-
-// --------- de la semana 2 en adelante ---------
-const DIAS_MES=[]; for(let d=7;d<=30;d++) DIAS_MES.push("2026-09-"+String(d).padStart(2,"0"));
-const NOMBRE_DIA=f=>["domingo","lunes","martes","miércoles","jueves","viernes","sábado"][new Date(f+"T12:00:00").getDay()];
-let faltantes=[];
-DIAS_MES.forEach((f,idx)=>{
- const semana=2+Math.floor((idx+ (0))/7);           // 7-13 = semana 2, 14-20 = 3, 21-27 = 4, 28-30 = 5
- const diaSem=idx%7;
- const enEstaSemana=new Set();
- dias.filter(d=>d.semana===semana).forEach(d=>d.posts.forEach(p=>enEstaSemana.add(p.delito)));
- const posts=ESCALAS.map((es,j)=>{
-  const fmt=FMT[es][(diaSem+(semana-1)*2)%7];        // el arranque de formatos se corre cada semana
-  const cand=BOLSA[es].find(d=>!usados[es].has(d)&&!enEstaSemana.has(d));
-  if(cand){usados[es].add(cand);enEstaSemana.add(cand);}
-  else faltantes.push(f+" "+es);
-  return {es,delito:cand||"— AGREGADO TEMÁTICO POR PROGRAMAR —",fmt,acc:ACC[(idx*3+j)%8]};});
- dias.push({f,posts,semana});
-});
-
-// --------- salida ---------
-const HORA={MUNICIPAL:"09:00",ESTATAL:"14:00",NACIONAL:"20:00"};
 let md=`# Calendario de septiembre 2026 — inseguridad, 3 publicaciones al día
 
 **Regla vigente desde el 29 de agosto de 2026.** Cada día salen **tres** publicaciones,
-una por escala, cada una con **su propio delito** y **su propio formato gráfico**.
-Cada publicación son **2 láminas** (la gráfica protagonista y su apoyo) de 1080x1350,
-renderizadas al doble (2160x2700).
+una por escala, cada una con **su propio delito** y **su propio formato gráfico**, y cada
+una es un carrusel de **2 láminas** de 1080x1350 renderizadas al doble (2160x2700).
 
-- **09:00 MUNICIPAL** — los 36 municipios de Morelos (dato acumulado enero-julio 2026).
-- **14:00 ESTATAL** — Morelos en el tiempo (serie mensual 2015-2026).
+- **10:30 MUNICIPAL** — los 36 municipios de Morelos (acumulado enero-julio 2026).
+- **14:30 ESTATAL** — Morelos en el tiempo (serie mensual 2015-2026).
 - **20:00 NACIONAL** — los 32 estados y los municipios del país.
 
 Nada se repite: ningún par delito+escala vuelve en el mes, ningún delito se repite dentro
@@ -92,54 +61,55 @@ de la misma semana y cada escala recorre sus siete formatos antes de volver al p
 Fuente de todo: **SESNSP**, datos abiertos, **corte julio 2026** (cifra preliminar) +
 **CONAPO** para las tasas.
 
-| Fecha | Día | Sem | 09:00 MUNICIPAL | 14:00 ESTATAL | 20:00 NACIONAL |
+## Lo producido (${filas.length} publicaciones, ${filas.length*2} láminas)
+
+| Fecha | Día | Sem | 10:30 MUNICIPAL | 14:30 ESTATAL | 20:00 NACIONAL |
 |---|---|---|---|---|---|
 `;
 dias.forEach(d=>{
- const c=d.posts.map(p=>`${p.delito}<br><i>${p.fmt}</i>`);
- md+=`| ${d.f} | ${NOMBRE_DIA(d.f)} | ${d.semana} | ${c[0]} | ${c[1]} | ${c[2]} |\n`;
+ const c=["MUNICIPAL","ESTATAL","NACIONAL"].map(es=>d[es]?`${d[es].word}<br><i>${d[es].formatos[0]}</i>`:"—");
+ md+=`| ${d.fecha} | ${d.dia} | ${d.semana} | ${c[0]} | ${c[1]} | ${c[2]} |\n`;
 });
+
 md+=`
-## Los 21 formatos que rotan
+## Lo que falta: ${FALTAN.length} días (${FALTAN.join(", ")})
 
-| MUNICIPAL | ESTATAL | NACIONAL |
+Son ${FALTAN.length*3} publicaciones para cerrar el mes. Esto es lo que queda sin usar en
+cada escala, ya descontado todo lo producido:
+
+| Escala | Disponibles | Cuáles |
 |---|---|---|
-| mapa de Morelos | curva mes a mes | mapa del país |
-| barras por municipio | calendario de estacionalidad | ranking de los 32 |
-| duelo Cuautla-Cuernavaca | enero-julio año por año | los 10 municipios del país |
-| quién sube y quién baja | 2025 contra 2026, mes a mes | de cada 100 carpetas |
-| mapa por tasa | la cifra del año | curva nacional |
-| concentración | peso de Morelos en el país | Morelos y sus vecinos |
-| tasa contra volumen | Morelos contra el promedio | quién sube y quién baja en el país |
+| MUNICIPAL | ${DISPONIBLE.MUNICIPAL.length} | ${DISPONIBLE.MUNICIPAL.join(", ")||"—"} |
+| ESTATAL | ${DISPONIBLE.ESTATAL.length} | ${DISPONIBLE.ESTATAL.join(", ")||"—"} |
+| NACIONAL | ${DISPONIBLE.NACIONAL.length} | ${DISPONIBLE.NACIONAL.join(", ")||"—"} |
 
-## Qué falta por resolver
+## Los agregados temáticos
 
-${faltantes.length?`Hay **${faltantes.length} huecos** al final del mes: se acabaron los delitos
-con datos suficientes para esa escala sin repetir. Esos días piden **agregado temático**
-(un cruce declarado, no un delito suelto). Los candidatos, en orden:
+Cuando se acabaron los delitos individuales con datos suficientes, la veta que siguió
+fueron los cruces. **La lámina declara en el pie qué suma cada uno**, porque una cifra
+que no se puede reconstruir no es auditable:
 
-1. **Todos los delitos** (el agregado general del SESNSP).
-2. **Robo, todas sus modalidades** (vehículo, casa, negocio, transeúnte, transporte, autopartes, ganado, maquinaria, banco, transportista).
-3. **Delitos sexuales** (violación simple y equiparada, abuso, acoso y hostigamiento sexual).
-4. **Contra la familia** (violencia familiar, incumplimiento de pensión, otros contra la familia).
-5. **Patrimoniales sin violencia** (fraude, abuso de confianza, daño a la propiedad, despojo, extorsión).
-6. **Contra la vida y la integridad** (homicidio doloso y culposo, lesiones dolosas y culposas).
-
-Huecos: ${faltantes.join(" · ")}
-
-Cada agregado tiene que declarar en la lámina **qué suma**, o la cifra no es auditable.`
-:"Ninguno: el mes completo queda cubierto con delitos individuales."}
+- **Robo, todas sus modalidades** — las 14 modalidades del catálogo, incluida "otros robos".
+- **Delitos sexuales** — violación simple y equiparada, abuso, acoso y hostigamiento sexual, y otros contra la libertad sexual.
+- **Delitos contra la familia** — violencia familiar, incumplimiento de pensión y otros contra la familia.
+- **Delitos patrimoniales sin robo** — fraude, abuso de confianza, daño a la propiedad, despojo, extorsión y otros contra el patrimonio.
+- **Delitos contra la vida y la integridad** — homicidio doloso y culposo, feminicidio, lesiones dolosas y culposas, y otros contra la vida.
+- **Robo en transporte** — colectivo, público individual e individual.
+- **Todos los delitos** — el agregado del SESNSP. Solo sirve en escala **municipal**: la
+  serie mensual por estado no trae esa llave. Se rotula "delitos denunciados", que es lo
+  que de verdad mide.
 
 ## Lo que queda fuera a propósito
 
-- **Feminicidio**, que merece pieza propia con el estándar SCJN (solo una de cada cuatro
-  muertes violentas de mujeres se clasifica así), no este molde genérico.
-- Las **categorías bolsa** del SESNSP ("Otros robos", "Otros delitos del Fuero Común"…),
-  que no dicen nada al lector.
+- **Feminicidio** como pieza suelta: merece una propia con el estándar SCJN (solo una de
+  cada cuatro muertes violentas de mujeres se clasifica así), no este molde. Dentro del
+  agregado "contra la vida" sí entra, y ahí va declarado.
+- Las **categorías bolsa** del SESNSP ("Otros robos", "Otros delitos del Fuero Común"…)
+  como delito suelto; dentro de un agregado sí suman, para que la cifra cierre.
 - Los delitos con **una o dos carpetas** en Morelos, donde cualquier porcentaje engaña.
 `;
 fs.writeFileSync(RAIZ+"/_CALENDARIO SEPTIEMBRE.md",md,"utf8");
-console.log("bolsas disponibles -> MUNICIPAL "+BOLSA.MUNICIPAL.length+" | ESTATAL "+BOLSA.ESTATAL.length+" | NACIONAL "+BOLSA.NACIONAL.length);
-console.log("dias planeados: "+dias.length+"  publicaciones: "+dias.length*3);
-console.log("huecos por agotamiento: "+faltantes.length+(faltantes.length?"  -> "+faltantes.join(", "):""));
+console.log("semanas leidas: "+semanas.length+"  publicaciones: "+filas.length);
+console.log("faltan: "+(FALTAN.join(", ")||"nada"));
+["MUNICIPAL","ESTATAL","NACIONAL"].forEach(es=>console.log("  disponibles "+es+": "+DISPONIBLE[es].length));
 console.log("escrito: "+RAIZ+"/_CALENDARIO SEPTIEMBRE.md");

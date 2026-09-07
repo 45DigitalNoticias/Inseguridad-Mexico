@@ -43,17 +43,49 @@ const STEPS=[5,10,20,30,40,50,60,80,100,120,150,170,200,250,300,400,500,600,800,
 const niceMax=m=>{for(const s of STEPS) if(m<=s) return s; return Math.ceil(m/10000)*10000;};
 const kfmt=v=>v>=1000?(v/1000).toFixed(v%1000===0?0:1)+" mil":nf(v);
 
+// ---------------- delitos COMPUESTOS ----------------
+// Cuando se acaban los delitos individuales con datos suficientes, la veta que
+// sigue son los cruces temáticos. La regla es que la lámina DECLARE qué suma:
+// si no se puede reconstruir la cifra, no es auditable. Por eso el pie de cada
+// lámina compuesta lista sus componentes.
+const COMPUESTOS={
+ "Robo, todas sus modalidades":["Robo de vehículo automotor","Robo a casa habitación","Robo a negocio",
+  "Robo a transeúnte en vía pública","Robo a transeúnte en espacio abierto al público","Robo de autopartes",
+  "Robo en transporte individual","Robo en transporte público colectivo","Robo en transporte público individual",
+  "Robo a transportista","Robo de ganado","Robo de maquinaria","Robo a institución bancaria","Otros robos"],
+ "Delitos sexuales":["Violación simple","Violación equiparada","Abuso sexual","Acoso sexual",
+  "Hostigamiento sexual","Otros delitos que atentan contra la libertad y la seguridad sexual"],
+ "Delitos contra la familia":["Violencia familiar","Incumplimiento de obligaciones de asistencia familiar",
+  "Otros delitos contra la familia"],
+ "Delitos patrimoniales sin robo":["Fraude","Abuso de confianza","Daño a la propiedad","Despojo","Extorsión",
+  "Otros delitos contra el patrimonio"],
+ "Delitos contra la vida y la integridad":["Homicidio doloso","Homicidio culposo","Feminicidio",
+  "Lesiones dolosas","Lesiones culposas","Otros delitos que atentan contra la vida y la integridad corporal"],
+ "Robo en transporte":["Robo en transporte público colectivo","Robo en transporte público individual",
+  "Robo en transporte individual"],
+};
+let SUMA_TXT=null;   // lo fija el main antes de cada lámina; el pie lo imprime
+
 // ---------------- datos ----------------
-const serieEdo =(d,c)=> (SM[c].delitos[d]||new Array(NL).fill(0));
-const serieNac = d =>{const a=new Array(NL).fill(0);for(let c=1;c<=32;c++){const s=SM[c].delitos[d];if(s)for(let i=0;i<NL;i++)a[i]+=s[i]||0;}return a;};
+const serieEdo=(d,c)=>{
+ const partes=COMPUESTOS[d];
+ if(!partes) return (SM[c].delitos[d]||new Array(NL).fill(0));
+ const a=new Array(NL).fill(0);
+ partes.forEach(k=>{const s=SM[c].delitos[k]; if(s) for(let i=0;i<NL;i++) a[i]+=s[i]||0;});
+ return a;};
+const serieNac = d =>{const a=new Array(NL).fill(0);for(let c=1;c<=32;c++){const s=serieEdo(d,c);for(let i=0;i<NL;i++)a[i]+=s[i];}return a;};
 const acum=(a,ini,n)=>{let t=0;for(let i=ini;i<ini+n;i++)t+=a[i]||0;return t;};
 const popEdo=c=>(P.p[String(c)]||[])[11]||1;
 const popEdo25=c=>(P.p[String(c)]||[])[10]||1;
 const popMuni=k=>{const a=PMp[String(+k)]||PMp[k]||[];return a[11]||a[a.length-1]||1;};
 const featsMor=GEO.features.filter(f=>String(f.properties.k).padStart(5,"0").startsWith("17"));
 const mname={}; featsMor.forEach(f=>mname[String(f.properties.k).padStart(5,"0")]=f.properties.n);
-function muniMor(delito,ai){const di=MU.delitos.indexOf(delito);const o={};featsMor.forEach(f=>{const k=String(f.properties.k).padStart(5,"0");o[k]=(MU.d[k]&&MU.d[k][di]?MU.d[k][di][ai]:0)||0;});return o;}
-function muniPais(delito,ai){const di=MU.delitos.indexOf(delito);const r=[];Object.keys(MU.d).forEach(k=>{const v=(MU.d[k][di]||[])[ai]||0;if(v>0){const kk=String(k).padStart(5,"0");const m=MNM[kk];if(m)r.push({k:kk,n:m.n,e:m.e,v});}});return r.sort((a,b)=>b.v-a.v);}
+const idxDe=delito=>(COMPUESTOS[delito]||[delito]).map(k=>MU.delitos.indexOf(k)).filter(i=>i>=0);
+function muniMor(delito,ai){const idx=idxDe(delito);const o={};featsMor.forEach(f=>{const k=String(f.properties.k).padStart(5,"0");
+ let t=0; idx.forEach(di=>{t+=(MU.d[k]&&MU.d[k][di]?MU.d[k][di][ai]:0)||0;}); o[k]=t;});return o;}
+function muniPais(delito,ai){const idx=idxDe(delito);const r=[];Object.keys(MU.d).forEach(k=>{
+ let v=0; idx.forEach(di=>{v+=(MU.d[k][di]||[])[ai]||0;});
+ if(v>0){const kk=String(k).padStart(5,"0");const m=MNM[kk];if(m)r.push({k:kk,n:m.n,e:m.e,v});}});return r.sort((a,b)=>b.v-a.v);}
 function tasasEdo(delito){const r=[];for(let c=1;c<=32;c++){const t=acum(serieEdo(delito,c),IDX26,M26);r.push({c,name:NAME[c],v:t,rate:t/popEdo(c)*1e5});}return r.sort((a,b)=>b.rate-a.rate);}
 
 // ---------------- proyecciones ----------------
@@ -97,7 +129,7 @@ function shell({acc,kick,h1,sub,cuerpo,nota,fuente,extraCSS}){
  .nota h3{font-family:"JetBrains Mono","Segoe UI",monospace;font-size:14px;letter-spacing:3px;color:var(--mut);font-weight:700;margin-bottom:6px}
  .nota p{font-size:21px;color:var(--ink);line-height:1.36} .nota b{color:var(--acc);font-weight:800}
  .nota .e{color:var(--mut);font-size:17.5px;margin-top:6px;line-height:1.32}
- .foot{margin-top:14px;display:flex;justify-content:space-between;align-items:flex-end;font-size:17px;color:var(--mut);border-top:1px solid var(--line);padding-top:12px}
+ .foot{margin-top:14px;display:flex;gap:18px;justify-content:space-between;align-items:flex-end;font-size:${SUMA_TXT?15:17}px;line-height:1.32;color:var(--mut);border-top:1px solid var(--line);padding-top:12px}
  .foot b{color:var(--ink)}
  text{font-family:"Hanken Grotesk","Segoe UI",sans-serif}
  svg{align-self:center}
@@ -108,7 +140,7 @@ function shell({acc,kick,h1,sub,cuerpo,nota,fuente,extraCSS}){
  <div class="sub">${sub}</div>
  <div class="cuerpo">${cuerpo}</div>
  ${nota?`<div class="nota"><h3>LO QUE DICE</h3>${nota}</div>`:""}
- <div class="foot"><div>${fuente}</div><img src="logo.png" style="height:40px;opacity:.95;display:block"></div>
+ <div class="foot"><div style="max-width:830px">${fuente}${SUMA_TXT?` <b>Suma de</b>: ${SUMA_TXT}.`:""}</div><img src="logo.png" style="height:40px;opacity:.95;display:block"></div>
 </div></body></html>`;
 }
 
@@ -176,7 +208,7 @@ const CSS_BARRAS=acc=>`
 // DIVERGENTE (sube y baja): cian mejora, rojo deterioro
 function P_diverge({items,fmt}){
  const maxV=Math.max(...items.map(i=>Math.abs(i.v)))||1, MID=470, ANCHO=270;
- const H_=Math.max(30,Math.min(80,Math.floor(770/items.length)));
+ const H_=Math.max(28,Math.min(80,Math.floor(690/items.length)));  // 690 y no 770: la leyenda de abajo tambien ocupa
  return `<div style="--dvh:${H_}px;position:relative"><i style="position:absolute;left:${MID}px;top:0;bottom:34px;width:1px;background:#3a342e"></i>${items.map(it=>{
   const w=Math.max(4,Math.round(ANCHO*Math.abs(it.v)/maxV)), sube=it.v>=0;
   const col=sube?"#d03b3b":"#3987e5";
@@ -809,6 +841,22 @@ const D_={
  "Delitos cometidos por servidores públicos":{w:"delitos de servidores públicos",a:"de los",a1:"Los",t:"ServidoresPublicos",e:"🏛️"},
  "Falsificación":{w:"falsificación",a:"de la",a1:"La",t:"Falsificacion",e:"📄"},
  "Hostigamiento sexual":{w:"hostigamiento sexual",a:"del",a1:"El",t:"HostigamientoSexual",e:"🟠"},
+ "Falsedad":{w:"falsedad",a:"de la",a1:"La",t:"Falsedad",e:"✍️"},
+ "Corrupción de menores":{w:"corrupción de menores",a:"de la",a1:"La",t:"CorrupcionDeMenores",e:"🚸"},
+ "Acoso sexual":{w:"acoso sexual",a:"del",a1:"El",t:"AcosoSexual",e:"🟠"},
+ "Robo en transporte individual":{w:"robo en transporte individual",a:"del",a1:"El",t:"RoboEnTransporte",e:"🚕"},
+ "Robo en transporte público colectivo":{w:"robo en transporte colectivo",a:"del",a1:"El",t:"RoboEnTransporteColectivo",e:"🚌"},
+ "Violación equiparada":{w:"violación equiparada",a:"de la",a1:"La",t:"ViolacionEquiparada",e:"🟣"},
+ "Robo a transeúnte en espacio abierto al público":{w:"robo a transeúnte en espacio abierto",a:"del",a1:"El",t:"RoboATranseunte",e:"🏞️"},
+ "Robo de ganado":{w:"robo de ganado",a:"del",a1:"El",t:"RoboDeGanado",e:"🐄"},
+ "Todos los delitos":{w:"delitos denunciados",a:"de los",a1:"Los",t:"Delitos",e:"📊"},
+ // agregados temáticos: la lámina declara en el pie qué suma cada uno
+ "Robo, todas sus modalidades":{w:"robo en todas sus formas",a:"del",a1:"El",t:"Robo",e:"🥷"},
+ "Delitos sexuales":{w:"delitos sexuales",a:"de los",a1:"Los",t:"DelitosSexuales",e:"🟣"},
+ "Delitos contra la familia":{w:"delitos contra la familia",a:"de los",a1:"Los",t:"ContraLaFamilia",e:"🏠"},
+ "Delitos patrimoniales sin robo":{w:"delitos contra el patrimonio",a:"de los",a1:"Los",t:"Patrimoniales",e:"💼"},
+ "Delitos contra la vida y la integridad":{w:"delitos contra la vida",a:"de los",a1:"Los",t:"ContraLaVida",e:"🔴"},
+ "Robo en transporte":{w:"robo en el transporte",a:"del",a1:"El",t:"RoboEnTransporte",e:"🚌"},
 };
 const ACC={cian:"#3987e5",oro:"#c98500",rojo:"#d03b3b",verde:"#3ec9a7",violeta:"#9085e9",naranja:"#ff8c42",magenta:"#e0559b",aqua:"#37b9c4"};
 
@@ -912,6 +960,37 @@ const SEMANAS={
   {es:"ESTATAL",  h:"14h30",delito:"Hostigamiento sexual",    acc:ACC.naranja,lam:["2025-vs-2026","curva-mensual"]},
   {es:"NACIONAL", h:"20h00",delito:"Robo a casa habitación",  acc:ACC.magenta,lam:["waffle","ranking-32"]}]},
  ]},
+
+ 4:{nombre:"SEMANA 4 (21 - 27 sep)", dias:[
+ {f:"2026-09-21",d:"lunes",posts:[
+  {es:"MUNICIPAL",h:"10h30",delito:"Falsificación",           acc:ACC.aqua,   lam:["tasa-vs-volumen","mapa-tasa"]},
+  {es:"ESTATAL",  h:"14h30",delito:"Homicidio culposo",       acc:ACC.cian,   lam:["morelos-vs-media","curva-mensual"]},
+  {es:"NACIONAL", h:"20h00",delito:"Despojo",                 acc:ACC.oro,    lam:["cambio-nacional","curva-nacional"]}]},
+ {f:"2026-09-22",d:"martes",posts:[
+  {es:"MUNICIPAL",h:"10h30",delito:"Hostigamiento sexual",    acc:ACC.rojo,   lam:["mapa-morelos","barras-municipios"]},
+  {es:"ESTATAL",  h:"14h30",delito:"Delitos cometidos por servidores públicos",acc:ACC.verde,lam:["curva-mensual","2025-vs-2026"]},
+  {es:"NACIONAL", h:"20h00",delito:"Extorsión",               acc:ACC.violeta,lam:["mapa-nacional","ranking-32"]}]},
+ {f:"2026-09-23",d:"miércoles",posts:[
+  {es:"MUNICIPAL",h:"10h30",delito:"Robo de autopartes",      acc:ACC.naranja,lam:["barras-municipios","mapa-morelos"]},
+  {es:"ESTATAL",  h:"14h30",delito:"Delitos contra la familia",acc:ACC.magenta,lam:["calendario","curva-mensual"]},
+  {es:"NACIONAL", h:"20h00",delito:"Acoso sexual",            acc:ACC.aqua,   lam:["ranking-32","top10-municipios"]}]},
+ {f:"2026-09-24",d:"jueves",posts:[
+  {es:"MUNICIPAL",h:"10h30",delito:"Delitos sexuales",        acc:ACC.cian,   lam:["duelo","barras-municipios"]},
+  {es:"ESTATAL",  h:"14h30",delito:"Corrupción de menores",   acc:ACC.oro,    lam:["anos-barras","curva-mensual"]},
+  {es:"NACIONAL", h:"20h00",delito:"Robo en transporte individual",acc:ACC.rojo,lam:["top10-municipios","ranking-32"]}]},
+ {f:"2026-09-25",d:"viernes",posts:[
+  {es:"MUNICIPAL",h:"10h30",delito:"Robo, todas sus modalidades",acc:ACC.verde,lam:["cambio-25-26","mapa-morelos"]},
+  {es:"ESTATAL",  h:"14h30",delito:"Falsedad",                acc:ACC.violeta,lam:["2025-vs-2026","curva-mensual"]},
+  {es:"NACIONAL", h:"20h00",delito:"Robo en transporte público colectivo",acc:ACC.naranja,lam:["waffle","ranking-32"]}]},
+ {f:"2026-09-26",d:"sábado",posts:[
+  {es:"MUNICIPAL",h:"10h30",delito:"Delitos patrimoniales sin robo",acc:ACC.magenta,lam:["mapa-tasa","barras-municipios-tasa"]},
+  {es:"ESTATAL",  h:"14h30",delito:"Delitos contra la vida y la integridad",acc:ACC.aqua,lam:["cifra-gigante","curva-mensual"]},
+  {es:"NACIONAL", h:"20h00",delito:"Violación equiparada",    acc:ACC.cian,   lam:["curva-nacional","mapa-nacional"]}]},
+ {f:"2026-09-27",d:"domingo",posts:[
+  {es:"MUNICIPAL",h:"10h30",delito:"Todos los delitos",       acc:ACC.oro,    lam:["concentracion","barras-municipios"]},
+  {es:"ESTATAL",  h:"14h30",delito:"Robo de ganado",          acc:ACC.rojo,   lam:["peso-nacional","morelos-vs-media"]},
+  {es:"NACIONAL", h:"20h00",delito:"Robo a transeúnte en espacio abierto al público",acc:ACC.verde,lam:["vecinos","ranking-32"]}]},
+ ]},
 };
 
 // ============================================================================
@@ -982,8 +1061,18 @@ SEM.dias.forEach((dia,di)=>{
  dia.posts.forEach((p,pi)=>{
   const meta=D_[p.delito];
   if(!meta) throw new Error("Delito sin ficha: "+p.delito);
-  if(!SM[17].delitos[p.delito]) throw new Error("Llave inexistente en series: "+p.delito);
-  if(MU.delitos.indexOf(p.delito)<0) throw new Error("Llave inexistente en matriz municipal: "+p.delito);
+  const partes=COMPUESTOS[p.delito];
+  if(partes){
+   partes.forEach(k=>{
+    if(!SM[17].delitos[k]) throw new Error("Compuesto '"+p.delito+"': llave inexistente en series -> "+k);
+    if(MU.delitos.indexOf(k)<0) throw new Error("Compuesto '"+p.delito+"': llave inexistente en matriz municipal -> "+k);});
+  }else{
+   // "Todos los delitos" existe en la matriz municipal pero NO en las series
+   // mensuales por estado: sirve para municipal, no para estatal ni nacional
+   if(p.es!=="MUNICIPAL" && !SM[17].delitos[p.delito]) throw new Error("Llave inexistente en series (hace falta para "+p.es+"): "+p.delito);
+   if(MU.delitos.indexOf(p.delito)<0) throw new Error("Llave inexistente en matriz municipal: "+p.delito);
+  }
+  SUMA_TXT = partes ? partes.map(k=>k.charAt(0).toLowerCase()+k.slice(1)).join(", ") : null;
   const C={delito:p.delito,word:meta.w,art:meta.a,art1:meta.a1,tag:meta.t,acc:p.acc};
   // datos base de la escala SIEMPRE, aunque el formato del día no los use:
   // de aquí sale el gancho del caption y no puede depender del molde elegido
