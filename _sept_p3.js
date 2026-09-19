@@ -72,7 +72,7 @@ function P_waffle({partes,acc}){
 }
 
 // ============================================================================
-// LÁMINAS MUNICIPALES (Morelos, 36 municipios, acumulado enero-julio 2026)
+// LÁMINAS MUNICIPALES (Morelos, 36 municipios, acumulado enero-<MES_CORTE> 2026)
 // ============================================================================
 const CUAUTLA="17006", CUERNAVACA="17007";
 function datosMuni(C){

@@ -5,6 +5,12 @@
 > **solo tocan 2015-2025**; el punto 2026 municipal lo pone el paso 4 (nuevo).
 
 ## 0. Bajar el crudo
+**Desde aquí, sin navegador (probado 19-sep-2026):** `gob.mx` bloquea `curl` (HTTP 200 de
+1.9 KB = reto anti-bot disfrazado de éxito), pero WebFetch sí lee la página de datos abiertos
+(`https://www.gob.mx/sesnsp/acciones-y-programas/datos-abiertos-de-incidencia-delictiva`) y de
+ahí salen los cuatro enlaces de SharePoint del bloque "metodología 2026 a la fecha". Con
+`&download=1` e `Invoke-WebRequest` bajan los ZIP. Los enlaces cambian cada corte. El corte
+sale alrededor del **día 5** (ago-2026: sello interno 2026-09-05), no el 11 ni el 20.
 A `INSEGURIDAD MÉXICO/BASES_NACIONALES/`:
 - `delitos_municipales_RNID_2026/RNID-Delitos_Municipal-2026-<mes>2026.csv`
 - `delitos_estatales_RNID_2026/RNID-Delitos_Estatal-2026-<mes>2026.csv`
@@ -30,11 +36,16 @@ Cada uno tiene la ruta/mes/etiqueta HARDCODEADA adentro: **ajustar antes de corr
 > se desincronizaron. El paso 4 es quirúrgico: solo el punto 2026, conserva 2015-2025.
 
 ## 5. Radar (los DOS niveles, cada uno con su script)
-- Municipal: `python _gen_radar_2026.py` (ajustar RNID al mes). ⚠️ APPENDEA la frase a la
-  `nota` de `_radar_muni_data.js`: borrar la frase del corte anterior a mano o queda doble
-  (pasó en jul-2026).
-- Estatal: `python _gen_radar_estatal_s1.py --validar` (debe reproducir la ventana vigente
-  celda a celda) y luego `--apply`. Convención confirmada: crudos estatales, pop fin 2026.
+- Municipal: `python _gen_radar_2026.py` (ajustar `MES_ABR, N_MESES` arriba). Desde el
+  19-sep-2026 la frase de la ventana se REEMPLAZA en la `nota`; ya no se acumula.
+- Estatal: `python _gen_radar_estatal_s1.py --validar` (recalcula el corte ANTERIOR con el
+  archivo NUEVO y lo compara con la ventana publicada) y luego `--apply`. ⚠️ Si marca pocas
+  celdas distintas (ago-2026: 12 de 128), medir primero si el archivo nuevo REVISA los meses
+  previos (estatal, mismos N-1 meses, archivo viejo vs nuevo). En ago-2026 fue eso: HD ene-jul
+  8,994 → 9,002 en 8 estados. La revisión es dato, no error de método. Convención confirmada:
+  crudos estatales, pop fin 2026.
+- ⚠️ Nunca encadenar `python x.py | tail && python y.py --apply`: el `&&` mira el exit de
+  `tail`. Así corrió un `--apply` con el `--validar` en rojo el 19-sep-2026.
 
 ## 6. que-mide.html + espejo (números CONTADOS del crudo, no etiquetas)
 `python _gen_quemide.py --validar` (reproduce los números publicados) y luego `--apply`:
@@ -52,13 +63,22 @@ la meta description y el KPI "carpetas que caen a cero" (suma DESAPARECE del CSV
   y en PERIODOS_R el `{label:'2026 ene-XXX', len:N}`.
 - `radar.html`: texto del botón `w26` ("ene-XXX 2019 → 2026*"), y `_radar-mapa-municipal.html`
   el `<option>` equivalente.
-- `index.html`: el SELLO de portada (`sello-corte` + `sello-fecha`): mes del corte y
-  FECHA de actualización — se edita la fecha el día del push.
+- `index.html`: el SELLO de portada sale de `corte_sitio.js` (`mes` y `actualizado`) desde el
+  19-sep-2026: se edita ahí y `_construir_v3.py` lo pone. `actualizado` es la fecha del push.
 - `corte_sitio.js`: el CHIP flotante "Corte SESNSP · <mes>" de TODAS las páginas
   interiores (portada no: ahí va el sello). UNA edición: `mes`, `corto`, `actualizado`.
   morelos/ NO lo carga a propósito (track aparte con su propio corte).
 
-## Etiquetas del corte (hardcodeadas, sin constante central — editar a mano)
+## Etiquetas del corte
+Las páginas CON builder (index, estado, municipio, municipios, ranking, senales, corredores,
+radar, conteo, que-mide, como_leer) se regeneran y las etiquetas salen de `corte_sitio.js`.
+Las SIN builder (metodologia, glosario, expedientes, _radar-mapa-municipal y el pie de
+columnas/index) llevan el pase con las MISMAS funciones de `_piezas` (al_corte,
+periodos_al_corte, celdas_de_corte) más "Última actualización: <mes> 2026", y se REVISA EL
+DIFF: periodos_al_corte cambia " a <mes> " y puede tocar prosa editorial (ago-2026: "frente a
+junio de 2025" en un dek de columnas/index.html; se revirtió a mano).
+
+### Inventario viejo (referencia)
 `grep -rniE "jun-2026|ene-jun|CORTE JUN|corte de junio|junio 2026|enero a junio"` y actualizar en:
 `index.html`, `estado.html`, `municipio.html`, `municipios.html`, `ranking-nacional.html`,
 `corredores-sureste.html`, `senales.html`, `columnas/index.html`, `metodologia.html`,
@@ -69,11 +89,15 @@ la meta description y el KPI "carpetas que caen a cero" (suma DESAPARECE del CSV
 publicación y no se mueve; la segunda se actualiza solo cuando la guía se reescriba) y
 `_difusion/flyer-junio-2026/` (histórico).
 ⚠️ `como_leer.html` YA NO SE EDITA A MANO (21-ago-2026): se regenera con
-`python "_REDISENO/_construir_como_leer.py"` y sus cifras del corte viven adentro del builder
-(sello del aviso, 146,129/168,544/22,415, 38,879 y 138,133 del RNID, 8,994 de homicidio).
+`python "_REDISENO/_construir_como_leer.py"`. Desde el 19-sep-2026 sus cifras salen de los datos
+vivos (_piezas + que-mide.html); el cuerpo trae el andamio de julio y el builder lo sustituye con
+conteo exacto de coincidencias. Va AL FINAL, después de _construir_que_mide.py.
 Morelos (`morelos/`) es track SEPARADO: sus menciones de "junio" son texto editorial fechado.
 
 ## Cotejos obligatorios (deben cuadrar antes de publicar)
+- **`python _cotejo_3_fuentes.py "2026 ene-<mes>" <HD> <Todos>`** (desde el 19-sep-2026): matriz
+  = sm_17 = smun_17 = sma_17 en Morelos y Cuautla, control 2024, y estatal derivado == suma
+  municipal en los 32 estados. Exit 1 si algo no cuadra. Antes se hacía a mano en node.
 - ⚠️ El cotejo de casos_personas NO es opcional: en jul-2026 el paso 3 corrió con los CSV
   nuevos pero la rebanada de 6 meses (`r[cm:cm+6]`) y la etiqueta vieja → HD salía 7,845 en
   vez de 8,994 CON el `corte` diciendo "ene-jul". El corte declarado NO prueba nada: probar
@@ -126,6 +150,13 @@ texto visible o por agrupar por presencia en vez de por número.
 
 Estado al 21-ago-2026: **los 12 builders reproducen lo publicado**. Correr
 cualquiera y confiar en la compuerta; ya no hay que acordarse de nada.
+
+**Cambio de corte (19-sep-2026):** al pasar de un corte al siguiente las cifras del corte
+anterior desaparecen por diseño y la compuerta lo leía como regresión. Se corre cada builder
+con **`--corte-nuevo`**: las "cifra publicada que desaparece" se listan como AVISO (revisarlas:
+deben ser exactamente las del corte anterior) y todo lo demás sigue bloqueando. Orden: v3,
+estado, municipio, municipios, ranking, senales, corredores, radar, conteo, que_mide y AL FINAL
+como_leer. `_construir_consulta.py` NO se corre (columnas/index.html es del pipeline editorial).
 
 Lo que se arregló para llegar ahí, por si vuelve a torcerse:
 - `marco_v3()` aplica `al_corte()` a la cabeza, al cuerpo y al JS. Tres de las

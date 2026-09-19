@@ -2,7 +2,7 @@
 // ---------------- shell visual (ADN de casa) ----------------
 const W=1080, H=1350;
 const FUENTE_SESNSP=`Fuente: <b>SESNSP</b>, datos abiertos (${CORTE}). Cotejo propio.`;
-const FUENTE_TASA=`Fuente: <b>SESNSP</b> + <b>CONAPO</b> (población). Corte julio 2026, cifra preliminar.`;
+const FUENTE_TASA=`Fuente: <b>SESNSP</b> + <b>CONAPO</b> (población). Corte ${MES_CORTE} 2026, cifra preliminar.`;
 const FUENTE_MUNI=`Fuente: <b>SESNSP</b>, datos abiertos municipales (${CORTE}). Cotejo propio.`;
 
 function shell({acc,kick,h1,sub,cuerpo,nota,fuente,extraCSS}){

@@ -201,11 +201,11 @@ function caption(C,p){
    "tasa-vs-volumen":()=>"El municipio chico que sale caro 👇",
   },"El mapa completo 👇");
  } else if(p.es==="ESTATAL"){
-  cabeza=`${E} Morelos lleva ${nf(C._edo26)} carpetas por ${W_} de enero a julio: ${C._edoDelta>=0?"+":""}${fR(C._edoDelta)}% contra los mismos meses de 2025.`;
+  cabeza=`${E} Morelos lleva ${nf(C._edo26)} carpetas por ${W_} de enero a ${MES_CORTE}: ${C._edoDelta>=0?"+":""}${fR(C._edoDelta)}% contra los mismos meses de 2025.`;
   medio = pick(p.lam[0],{
    "curva-mensual":()=>`El peor mes de la serie fue ${C._picoLbl}, con ${nf(C._picoV)} 👇`,
    "calendario":()=>`El mes más cargado del año suele ser ${C._mesAlto} 👇`,
-   "anos-barras":()=>`El peor enero-julio fue el de ${C._anioAlto} 👇`,
+   "anos-barras":()=>`El peor enero-${MES_CORTE} fue el de ${C._anioAlto} 👇`,
    "2025-vs-2026":()=>"Mes contra mes, 2025 y 2026 👇",
    "cifra-gigante":()=>"La cifra del año, en una lámina 👇",
    "peso-nacional":()=>`Morelos pone el ${C._peso}% de las carpetas del país con el ${C._pesoPob}% de la población 👇`,

@@ -7,7 +7,8 @@
 // escala en la semana.
 // Cada publicación = 2 láminas (protagonista + apoyo) de 1080x1350, que se
 // renderizan al doble (2160x2700) para que la imagen aguante el zoom.
-// Moldes heredados de _gen_combo_par.js; corte actualizado a JULIO 2026.
+// Moldes heredados de _gen_combo_par.js. El MES DEL CORTE ya no va escrito: sale de
+// sm_01.meses_2026 (M26) y de ahi PERIODO y CORTE (19-sep-2026, al pasar a agosto).
 // ============================================================================
 const fs=require("fs"), path=require("path");
 const BASE="C:/Users/SRVal/Documents/Claude/Projects/45 DIGITAL NOTICIAS/INSEGURIDAD_MEXICO";
@@ -27,15 +28,16 @@ NAME[15]="Edo. de México";
 const MNM={}; GEO.features.forEach(f=>{const k=String(f.properties.k).padStart(5,"0"); MNM[k]={n:f.properties.n,e:f.properties.e};});
 const SM={}; for(let c=1;c<=32;c++) SM[c]=rd(BASE+"/series_mensuales/sm_"+String(c).padStart(2,"0")+".js");
 const O17=SM[17], L=SM[1].labels, NL=L.length;
-const M26=SM[1].meses_2026;                 // meses cerrados de 2026 (7 = ene-jul)
+const M26=SM[1].meses_2026;                 // meses cerrados de 2026 (8 = ene-ago); lo pone _actualizar_corte.py
 const IDX26=L.indexOf("2026-01");           // primer mes preliminar
 const IDX25=L.indexOf("2025-01");           // para comparar mismos meses
 const AI26=MU.anios.length-1;               // índice del acumulado 2026 en la matriz municipal
 const AI25=MU.anios.indexOf("2025");
 const MESN=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 const MESC=["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"];
-const PERIODO="enero a julio de 2026";
-const CORTE="corte julio 2026";
+const MES_CORTE=MESN[M26-1];                // "agosto" con M26=8: el texto sigue al dato, no al reves
+const PERIODO=`enero a ${MES_CORTE} de 2026`;
+const CORTE=`corte ${MES_CORTE} 2026`;
 const mlabel=l=>{const [y,m]=l.split("-");return MESN[+m-1]+" de "+y;};
 const nf=v=>Math.round(v).toLocaleString("es-MX");
 const fR=r=> r>=10?r.toFixed(1) : (r>=0.1||r===0 ? r.toFixed(1) : r.toFixed(2));

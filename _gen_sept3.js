@@ -7,7 +7,8 @@
 // escala en la semana.
 // Cada publicación = 2 láminas (protagonista + apoyo) de 1080x1350, que se
 // renderizan al doble (2160x2700) para que la imagen aguante el zoom.
-// Moldes heredados de _gen_combo_par.js; corte actualizado a JULIO 2026.
+// Moldes heredados de _gen_combo_par.js. El MES DEL CORTE ya no va escrito: sale de
+// sm_01.meses_2026 (M26) y de ahi PERIODO y CORTE (19-sep-2026, al pasar a agosto).
 // ============================================================================
 const fs=require("fs"), path=require("path");
 const BASE="C:/Users/SRVal/Documents/Claude/Projects/45 DIGITAL NOTICIAS/INSEGURIDAD_MEXICO";
@@ -27,15 +28,16 @@ NAME[15]="Edo. de México";
 const MNM={}; GEO.features.forEach(f=>{const k=String(f.properties.k).padStart(5,"0"); MNM[k]={n:f.properties.n,e:f.properties.e};});
 const SM={}; for(let c=1;c<=32;c++) SM[c]=rd(BASE+"/series_mensuales/sm_"+String(c).padStart(2,"0")+".js");
 const O17=SM[17], L=SM[1].labels, NL=L.length;
-const M26=SM[1].meses_2026;                 // meses cerrados de 2026 (7 = ene-jul)
+const M26=SM[1].meses_2026;                 // meses cerrados de 2026 (8 = ene-ago); lo pone _actualizar_corte.py
 const IDX26=L.indexOf("2026-01");           // primer mes preliminar
 const IDX25=L.indexOf("2025-01");           // para comparar mismos meses
 const AI26=MU.anios.length-1;               // índice del acumulado 2026 en la matriz municipal
 const AI25=MU.anios.indexOf("2025");
 const MESN=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 const MESC=["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"];
-const PERIODO="enero a julio de 2026";
-const CORTE="corte julio 2026";
+const MES_CORTE=MESN[M26-1];                // "agosto" con M26=8: el texto sigue al dato, no al reves
+const PERIODO=`enero a ${MES_CORTE} de 2026`;
+const CORTE=`corte ${MES_CORTE} 2026`;
 const mlabel=l=>{const [y,m]=l.split("-");return MESN[+m-1]+" de "+y;};
 const nf=v=>Math.round(v).toLocaleString("es-MX");
 const fR=r=> r>=10?r.toFixed(1) : (r>=0.1||r===0 ? r.toFixed(1) : r.toFixed(2));
@@ -108,7 +110,7 @@ const PR_NAC=proyeccion(G.features,968,700,6);
 // ---------------- shell visual (ADN de casa) ----------------
 const W=1080, H=1350;
 const FUENTE_SESNSP=`Fuente: <b>SESNSP</b>, datos abiertos (${CORTE}). Cotejo propio.`;
-const FUENTE_TASA=`Fuente: <b>SESNSP</b> + <b>CONAPO</b> (población). Corte julio 2026, cifra preliminar.`;
+const FUENTE_TASA=`Fuente: <b>SESNSP</b> + <b>CONAPO</b> (población). Corte ${MES_CORTE} 2026, cifra preliminar.`;
 const FUENTE_MUNI=`Fuente: <b>SESNSP</b>, datos abiertos municipales (${CORTE}). Cotejo propio.`;
 
 function shell({acc,kick,h1,sub,cuerpo,nota,fuente,extraCSS}){
@@ -365,7 +367,7 @@ function P_waffle({partes,acc}){
 }
 
 // ============================================================================
-// LÁMINAS MUNICIPALES (Morelos, 36 municipios, acumulado enero-julio 2026)
+// LÁMINAS MUNICIPALES (Morelos, 36 municipios, acumulado enero-<MES_CORTE> 2026)
 // ============================================================================
 const CUAUTLA="17006", CUERNAVACA="17007";
 function datosMuni(C){
@@ -525,7 +527,7 @@ function L_curvaEstatal(C){
   <p class="e">Ojo con la cola: <b>los meses de 2026 son preliminares y suelen ajustarse al alza</b>. La curva muestra cuándo, no por qué.</p>`;
  return shell({acc:C.acc,kick:"MORELOS · LÍNEA DEL TIEMPO",
   h1:`${C.art1} <span class="a">${C.word}</span> en Morelos, mes a mes`,
-  sub:`Carpetas de investigación al mes, de enero de 2015 a julio de 2026.`,
+  sub:`Carpetas de investigación al mes, de enero de 2015 a ${MES_CORTE} de 2026.`,
   cuerpo,nota,fuente:FUENTE_SESNSP});
 }
 
@@ -559,15 +561,15 @@ function L_aniosEstatal(C){
  for(let y=2015;y<=2026;y++){
   const i0=L.indexOf(y+"-01"); if(i0<0) continue;
   grupos.push({n:String(y).slice(2),v:[acum(D.s,i0,M26)],prelim:y===2026});}
- const cuerpo=P_columnas({grupos,series:[{n:"enero-julio",color:C.acc}],leyenda:false});
+ const cuerpo=P_columnas({grupos,series:[{n:"enero-"+MES_CORTE,color:C.acc}],leyenda:false});
  const v26=grupos[grupos.length-1].v[0], v15=grupos[0].v[0];
  const maxG=grupos.reduce((a,b)=>b.v[0]>a.v[0]?b:a);
  C._anioAlto="20"+maxG.n; C._anioAltoV=maxG.v[0];
  return shell({acc:C.acc,kick:"MORELOS · AÑO CONTRA AÑO",
   h1:`Once años de <span class="a">${C.word}</span>, mismos meses`,
-  sub:`Carpetas de enero a julio de cada año, para que la comparación sea pareja. 2026 marcado como preliminar.`,
+  sub:`Carpetas de enero a ${MES_CORTE} de cada año, para que la comparación sea pareja. 2026 marcado como preliminar.`,
   cuerpo,
-  nota:`<p>El peor enero-julio fue el de <b>${C._anioAlto}</b>, con <b>${nf(C._anioAltoV)}</b> carpetas. En 2026 van <b>${nf(v26)}</b>${v26>v15?", por encima":", por debajo"} de las ${nf(v15)} de 2015.</p>
+  nota:`<p>El peor enero-${MES_CORTE} fue el de <b>${C._anioAlto}</b>, con <b>${nf(C._anioAltoV)}</b> carpetas. En 2026 van <b>${nf(v26)}</b>${v26>v15?", por encima":", por debajo"} de las ${nf(v15)} de 2015.</p>
    <p class="e">Se comparan los mismos siete meses de cada año: si se pusiera 2026 completo contra años enteros, la caída sería del calendario, no del delito.</p>`,
   fuente:FUENTE_SESNSP});
 }
@@ -738,7 +740,7 @@ function L_curvaNacional(C){
  C._nacDelta=d; C._nac26=a26;
  return shell({acc:C.acc,kick:"MÉXICO · LÍNEA DEL TIEMPO",
   h1:`${C.art1} <span class="a">${C.word}</span> en el país, mes a mes`,
-  sub:`Carpetas en los 32 estados, de enero de 2015 a julio de 2026.`,
+  sub:`Carpetas en los 32 estados, de enero de 2015 a ${MES_CORTE} de 2026.`,
   cuerpo,
   nota:`<p>El pico fue <b>${mlabel(L[pico])}</b>, con <b>${nf(s[pico])}</b> carpetas en un solo mes. En 2026 van ${nf(a26)}: <b>${d>=0?"+":""}${fR(d)}%</b> contra los mismos meses de 2025.</p>
    <p class="e">Los meses de 2026 son preliminares y suelen ajustarse al alza cuando cada fiscalía completa su reporte.</p>`,
@@ -780,7 +782,7 @@ function L_cambioEstados(C){
  C._cambioNac={sube:items[0],baja:items[items.length-1],mor};
  return shell({acc:C.acc,kick:"MÉXICO · QUIÉN SUBE Y QUIÉN BAJA",
   h1:`<span class="a">${capitalizar(C.word)}</span>: 2026 contra 2025`,
-  sub:`Cambio porcentual entre enero-julio de 2025 y los mismos meses de 2026, por estado. Solo estados con volumen suficiente.`,
+  sub:`Cambio porcentual entre enero-${MES_CORTE} de 2025 y los mismos meses de 2026, por estado. Solo estados con volumen suficiente.`,
   cuerpo,
   nota:`<p>El que más sube es <b>${items[0].n}</b> (${fR(items[0].v)}%) y el que más baja, <b>${items[items.length-1].n}</b> (${fR(items[items.length-1].v)}%). ${mor?`Morelos: <b>${mor.v>=0?"+":""}${fR(mor.v)}%</b>.`:""}</p>
    <p class="e">Los porcentajes grandes suelen venir de bases chicas. 2026 es preliminar y tiende a ajustarse al alza, así que las bajas pueden achicarse.</p>`,
@@ -1015,11 +1017,11 @@ function caption(C,p){
    "tasa-vs-volumen":()=>"El municipio chico que sale caro 👇",
   },"El mapa completo 👇");
  } else if(p.es==="ESTATAL"){
-  cabeza=`${E} Morelos lleva ${nf(C._edo26)} carpetas por ${W_} de enero a julio: ${C._edoDelta>=0?"+":""}${fR(C._edoDelta)}% contra los mismos meses de 2025.`;
+  cabeza=`${E} Morelos lleva ${nf(C._edo26)} carpetas por ${W_} de enero a ${MES_CORTE}: ${C._edoDelta>=0?"+":""}${fR(C._edoDelta)}% contra los mismos meses de 2025.`;
   medio = pick(p.lam[0],{
    "curva-mensual":()=>`El peor mes de la serie fue ${C._picoLbl}, con ${nf(C._picoV)} 👇`,
    "calendario":()=>`El mes más cargado del año suele ser ${C._mesAlto} 👇`,
-   "anos-barras":()=>`El peor enero-julio fue el de ${C._anioAlto} 👇`,
+   "anos-barras":()=>`El peor enero-${MES_CORTE} fue el de ${C._anioAlto} 👇`,
    "2025-vs-2026":()=>"Mes contra mes, 2025 y 2026 👇",
    "cifra-gigante":()=>"La cifra del año, en una lámina 👇",
    "peso-nacional":()=>`Morelos pone el ${C._peso}% de las carpetas del país con el ${C._pesoPob}% de la población 👇`,

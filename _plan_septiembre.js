@@ -10,6 +10,8 @@ const MU=rd(BASE+"/_nac_muni_data.js");
 const GEO=rd(BASE+"/_nac_muni_geo.js");
 const SM={}; for(let c=1;c<=32;c++) SM[c]=rd(BASE+"/series_mensuales/sm_"+String(c).padStart(2,"0")+".js");
 const L=SM[1].labels, M26=SM[1].meses_2026, IDX26=L.indexOf("2026-01"), AI26=MU.anios.length-1;
+const MESN=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const MES_CORTE=MESN[M26-1];   // el mes del corte sale del dato (19-sep-2026), no va escrito
 const featsMor=GEO.features.filter(f=>String(f.properties.k).padStart(5,"0").startsWith("17"));
 
 // ---- lo producido ----
@@ -51,14 +53,14 @@ let md=`# Calendario de septiembre 2026 — inseguridad, 3 publicaciones al día
 una por escala, cada una con **su propio delito** y **su propio formato gráfico**, y cada
 una es un carrusel de **2 láminas** de 1080x1350 renderizadas al doble (2160x2700).
 
-- **10:30 MUNICIPAL** — los 36 municipios de Morelos (acumulado enero-julio 2026).
+- **10:30 MUNICIPAL** — los 36 municipios de Morelos (acumulado enero-${MES_CORTE} 2026).
 - **14:30 ESTATAL** — Morelos en el tiempo (serie mensual 2015-2026).
 - **20:00 NACIONAL** — los 32 estados y los municipios del país.
 
 Nada se repite: ningún par delito+escala vuelve en el mes, ningún delito se repite dentro
 de la misma semana y cada escala recorre sus siete formatos antes de volver al primero.
 
-Fuente de todo: **SESNSP**, datos abiertos, **corte julio 2026** (cifra preliminar) +
+Fuente de todo: **SESNSP**, datos abiertos, **corte ${MES_CORTE} 2026** (cifra preliminar) +
 **CONAPO** para las tasas.
 
 ## Lo producido (${filas.length} publicaciones, ${filas.length*2} láminas)

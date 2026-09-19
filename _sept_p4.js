@@ -22,7 +22,7 @@ function L_curvaEstatal(C){
   <p class="e">Ojo con la cola: <b>los meses de 2026 son preliminares y suelen ajustarse al alza</b>. La curva muestra cuándo, no por qué.</p>`;
  return shell({acc:C.acc,kick:"MORELOS · LÍNEA DEL TIEMPO",
   h1:`${C.art1} <span class="a">${C.word}</span> en Morelos, mes a mes`,
-  sub:`Carpetas de investigación al mes, de enero de 2015 a julio de 2026.`,
+  sub:`Carpetas de investigación al mes, de enero de 2015 a ${MES_CORTE} de 2026.`,
   cuerpo,nota,fuente:FUENTE_SESNSP});
 }
 
@@ -56,15 +56,15 @@ function L_aniosEstatal(C){
  for(let y=2015;y<=2026;y++){
   const i0=L.indexOf(y+"-01"); if(i0<0) continue;
   grupos.push({n:String(y).slice(2),v:[acum(D.s,i0,M26)],prelim:y===2026});}
- const cuerpo=P_columnas({grupos,series:[{n:"enero-julio",color:C.acc}],leyenda:false});
+ const cuerpo=P_columnas({grupos,series:[{n:"enero-"+MES_CORTE,color:C.acc}],leyenda:false});
  const v26=grupos[grupos.length-1].v[0], v15=grupos[0].v[0];
  const maxG=grupos.reduce((a,b)=>b.v[0]>a.v[0]?b:a);
  C._anioAlto="20"+maxG.n; C._anioAltoV=maxG.v[0];
  return shell({acc:C.acc,kick:"MORELOS · AÑO CONTRA AÑO",
   h1:`Once años de <span class="a">${C.word}</span>, mismos meses`,
-  sub:`Carpetas de enero a julio de cada año, para que la comparación sea pareja. 2026 marcado como preliminar.`,
+  sub:`Carpetas de enero a ${MES_CORTE} de cada año, para que la comparación sea pareja. 2026 marcado como preliminar.`,
   cuerpo,
-  nota:`<p>El peor enero-julio fue el de <b>${C._anioAlto}</b>, con <b>${nf(C._anioAltoV)}</b> carpetas. En 2026 van <b>${nf(v26)}</b>${v26>v15?", por encima":", por debajo"} de las ${nf(v15)} de 2015.</p>
+  nota:`<p>El peor enero-${MES_CORTE} fue el de <b>${C._anioAlto}</b>, con <b>${nf(C._anioAltoV)}</b> carpetas. En 2026 van <b>${nf(v26)}</b>${v26>v15?", por encima":", por debajo"} de las ${nf(v15)} de 2015.</p>
    <p class="e">Se comparan los mismos siete meses de cada año: si se pusiera 2026 completo contra años enteros, la caída sería del calendario, no del delito.</p>`,
   fuente:FUENTE_SESNSP});
 }
@@ -235,7 +235,7 @@ function L_curvaNacional(C){
  C._nacDelta=d; C._nac26=a26;
  return shell({acc:C.acc,kick:"MÉXICO · LÍNEA DEL TIEMPO",
   h1:`${C.art1} <span class="a">${C.word}</span> en el país, mes a mes`,
-  sub:`Carpetas en los 32 estados, de enero de 2015 a julio de 2026.`,
+  sub:`Carpetas en los 32 estados, de enero de 2015 a ${MES_CORTE} de 2026.`,
   cuerpo,
   nota:`<p>El pico fue <b>${mlabel(L[pico])}</b>, con <b>${nf(s[pico])}</b> carpetas en un solo mes. En 2026 van ${nf(a26)}: <b>${d>=0?"+":""}${fR(d)}%</b> contra los mismos meses de 2025.</p>
    <p class="e">Los meses de 2026 son preliminares y suelen ajustarse al alza cuando cada fiscalía completa su reporte.</p>`,
@@ -277,7 +277,7 @@ function L_cambioEstados(C){
  C._cambioNac={sube:items[0],baja:items[items.length-1],mor};
  return shell({acc:C.acc,kick:"MÉXICO · QUIÉN SUBE Y QUIÉN BAJA",
   h1:`<span class="a">${capitalizar(C.word)}</span>: 2026 contra 2025`,
-  sub:`Cambio porcentual entre enero-julio de 2025 y los mismos meses de 2026, por estado. Solo estados con volumen suficiente.`,
+  sub:`Cambio porcentual entre enero-${MES_CORTE} de 2025 y los mismos meses de 2026, por estado. Solo estados con volumen suficiente.`,
   cuerpo,
   nota:`<p>El que más sube es <b>${items[0].n}</b> (${fR(items[0].v)}%) y el que más baja, <b>${items[items.length-1].n}</b> (${fR(items[items.length-1].v)}%). ${mor?`Morelos: <b>${mor.v>=0?"+":""}${fR(mor.v)}%</b>.`:""}</p>
    <p class="e">Los porcentajes grandes suelen venir de bases chicas. 2026 es preliminar y tiende a ajustarse al alza, así que las bajas pueden achicarse.</p>`,
