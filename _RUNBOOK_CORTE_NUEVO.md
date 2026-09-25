@@ -190,6 +190,12 @@ Luego IndexNow/SEO si aplica.
 
 ## Fuera de este pipeline (no olvidar, tracks aparte)
 - **Corredores** (`corredores_data.js`, `corredor_ferro_data.js`): curados, la página no exhibe 2026; revisar solo si cambia la tesis.
-- **Morelos sub-sitio** (`morelos/`): track SEPARADO, NUNCA blanket-replace.
+- **Morelos sub-sitio** (`morelos/`): track SEPARADO, NUNCA blanket-replace a mano.
+  Desde la v4 (sep-2026) se rehace con UN comando, DESPUÉS de que corrió el corte nacional
+  (lee la matriz y `corte_sitio.js`):
+  `python "_REDISENO/MORELOS_V4/_actualizar_morelos.py"` → datos con cotejo (0 diferencias),
+  portada, 7 regiones, 36 municipios, 55 temas, imágenes para compartir y compuerta de celular a 375 px.
+  Luego `python "_REDISENO/MORELOS_V4/_aplicar_a_sitio.py"` (muestra) y `--aplicar` (copia a `morelos/`
+  conservando `columnas/`, `comunicados/`, `referencias/` y `versiones/`). Publicar, solo con orden literal.
 - **Excel / `cifras.csv`** (capa de corroboración): al corte junio, pendiente.
 - **Flyers / gráficos de difusión**: sus generadores buscan literal `'2026 ene-may'` → actualizar la etiqueta.
