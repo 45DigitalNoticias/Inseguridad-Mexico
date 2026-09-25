@@ -18,7 +18,7 @@
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/comunicados/figueroa-40-12may2026.html</loc><priority>0.6</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/comunicados/harfuch-62-27may2026.html</loc><priority>0.6</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/comunicados/sheinbaum-rnpdno-27mar2026.html</loc><priority>0.6</priority></url>
-  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/municipio.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/metodo.html</loc><priority>0.6</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/municipios/</loc><priority>0.6</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/municipios/amacuzac.html</loc><priority>0.6</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/municipios/atlatlahucan.html</loc><priority>0.6</priority></url>
@@ -58,18 +58,69 @@
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/municipios/zacualpan.html</loc><priority>0.6</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/referencias/fuentes.html</loc><priority>0.6</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/referencias/glosario.html</loc><priority>0.6</priority></url>
-  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/secciones/banderas-rojas.html</loc><priority>0.6</priority></url>
-  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/secciones/dashboard-maestro.html</loc><priority>0.6</priority></url>
-  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/secciones/decada-nacional.html</loc><priority>0.6</priority></url>
-  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/secciones/extorsion-tributo.html</loc><priority>0.6</priority></url>
-  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/secciones/homicidio-ritmo.html</loc><priority>0.6</priority></url>
-  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/secciones/mapa.html</loc><priority>0.6</priority></url>
-  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/secciones/opacidad-rnpdno.html</loc><priority>0.6</priority></url>
-  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/secciones/percepcion-nacional.html</loc><priority>0.6</priority></url>
-  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/secciones/ranking.html</loc><priority>0.6</priority></url>
-  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/secciones/resumen-7-regiones.html</loc><priority>0.6</priority></url>
-  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/secciones/t1-2026.html</loc><priority>0.6</priority></url>
-  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/secciones/violencia-en-dos-formas.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/regiones/centro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/regiones/noreste.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/regiones/noroeste.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/regiones/norte.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/regiones/oriente.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/regiones/poniente.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/regiones/sur.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/aborto.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/abuso-de-confianza.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/abuso-sexual.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/acoso-sexual.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/allanamiento-de-morada.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/amenazas.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/contra-el-medio-ambiente.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/corrupcion-de-menores.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/dano-a-la-propiedad.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/despojo.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/electorales.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/evasion-de-presos.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/extorsion.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/falsedad.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/falsificacion.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/feminicidio.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/fraude.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/homicidio-culposo.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/homicidio-doloso.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/hostigamiento-sexual.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/incesto.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/incumplimiento-de-asistencia-familiar.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/lesiones-culposas.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/lesiones-dolosas.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/narcomenudeo.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/otros-contra-el-patrimonio.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/otros-contra-la-familia.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/otros-contra-la-libertad-personal.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/otros-contra-la-libertad-sexual.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/otros-contra-la-sociedad.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/otros-contra-la-vida.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/otros-del-fuero-comun.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/otros-robos.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/rapto.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/robo-a-casa-habitacion.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/robo-a-institucion-bancaria.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/robo-a-negocio.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/robo-a-transeunte-espacio-abierto.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/robo-a-transeunte-via-publica.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/robo-a-transportista.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/robo-de-autopartes.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/robo-de-ganado.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/robo-de-maquinaria.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/robo-de-vehiculo.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/robo-en-transporte-individual.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/robo-en-transporte-publico-colectivo.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/robo-en-transporte-publico-individual.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/secuestro.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/servidores-publicos.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/trafico-de-menores.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/trata-de-personas.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/violacion-equiparada.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/violacion-simple.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/violencia-de-genero-no-familiar.html</loc><priority>0.6</priority></url>
+  <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/morelos/temas/violencia-familiar.html</loc><priority>0.6</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/municipio.html</loc><priority>0.8</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/municipios.html</loc><priority>0.8</priority></url>
   <url><loc>https://45digitalnoticias.github.io/Inseguridad-Mexico/que-mide.html</loc><priority>0.8</priority></url>

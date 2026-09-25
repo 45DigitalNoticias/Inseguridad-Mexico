@@ -1,0 +1,77 @@
+/* section-page.css · estilos compartidos para paginas individuales del panel estatal */
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:#06080c;
+  color:#e6edf3;
+  font-family:'Inter',sans-serif;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Topbar simple */
+.page-topbar{
+  padding:16px 36px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #1a1f26;
+  background:#0a0d12;
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+.page-brand{display:flex;align-items:center;gap:12px;}
+.page-brand-block{
+  width:34px;height:34px;
+  background:linear-gradient(140deg,#3b72d9,#1e40af 60%,#0f2a7a);
+  border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Arial Black',sans-serif;
+  font-size:17px;font-weight:900;color:#fff;letter-spacing:-1px;
+}
+.page-brand-text{display:flex;flex-direction:column;line-height:1.15;}
+.page-brand-text .n{font-size:12.5px;font-weight:800;color:#e6edf3;letter-spacing:1.2px;}
+.page-brand-text .s{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9.5px;letter-spacing:2px;color:#8b949e;
+  text-transform:uppercase;margin-top:3px;
+}
+.page-back-link{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#fbbf24;
+  text-decoration:none;font-weight:700;
+  display:flex;align-items:center;gap:8px;
+  padding:7px 14px;
+  border:1px solid rgba(251,191,36,0.35);
+  border-radius:6px;
+  transition:all 0.15s;
+}
+.page-back-link:hover{background:#fbbf24;color:#0a0d12;}
+.page-back-link svg{width:13px;height:13px;}
+
+main.section-main{
+  flex:1;
+  width:100%;
+}
+
+/* Footer */
+.page-footer{
+  margin-top:auto;
+  text-align:center;
+  padding:26px 24px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;letter-spacing:2px;
+  color:#6b7480;
+  text-transform:uppercase;
+  border-top:1px solid #1a1f26;
+}
+.page-footer a{color:#fbbf24;text-decoration:none;font-weight:700;}
+.page-footer a:hover{color:#fff;}
+
+@media (max-width:760px){
+  .page-topbar{padding:14px 18px;}
+}
