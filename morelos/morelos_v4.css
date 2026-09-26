@@ -510,3 +510,11 @@ a.bar{text-decoration:none;color:inherit}
 .lectura{padding-right:clamp(28px,22vw,300px)}
 .lec-logo{position:absolute;right:clamp(28px,4vw,60px);top:50%;transform:translateY(-50%);width:clamp(120px,14vw,200px);height:auto;opacity:.95}
 @media (max-width:760px){.lectura{padding-right:28px;padding-top:24px}.lec-logo{position:static;transform:none;width:84px;display:block;margin-bottom:12px}}
+
+/* puente a La otra cuenta (ENVIPE) */
+.otra-cuenta{display:grid;grid-template-columns:1fr auto;gap:4px 20px;align-items:center;margin-top:18px;padding:16px 20px;border:1px solid rgba(251,191,36,.28);background:linear-gradient(90deg,rgba(251,191,36,.07),transparent 70%);text-decoration:none;border-radius:4px}
+.otra-cuenta .oc-et{grid-column:1/-1;font:600 11.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--amb)}
+.otra-cuenta b{font:600 16px/1.45 var(--txt);color:var(--ink)}
+.otra-cuenta .oc-go{font:600 13px var(--mono);color:var(--amb);white-space:nowrap}
+.otra-cuenta:hover{border-color:var(--amb)}
+@media (max-width:700px){.otra-cuenta{grid-template-columns:1fr}}
