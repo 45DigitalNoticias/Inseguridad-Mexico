@@ -1,7 +1,7 @@
 # ============================================================
 # REGLA DE CASA: la cocina interna NUNCA viaja al repo público.
 # Este repo es público (GitHub Pages): todo lo pushado lo puede
-# navegar cualquiera. Aquí solo sube el sitio y sus builders.
+# navegar cualquiera. Aquí solo sube el SITIO: ni cocina ni recetas.
 # ============================================================
 
 # --- Cocina interna / material editorial en proceso ---
@@ -50,3 +50,19 @@ datos/panorama_estatal_README.md
 # temporales de builders
 __pycache__/
 _tmp_pop.json
+
+# --- RECETAS (27-sep-2026): ningún script del taller sube, en ningún lenguaje ---
+*.py
+*.ps1
+*.sh
+*.bat
+*.ipynb
+_gen_*.js
+_generar_*.js
+_sept_*.js
+_plan_*.js
+_registrar_*.js
+_render_*.js
+_manifest_*.txt
+_RUNBOOK*
+*Difusi*/
