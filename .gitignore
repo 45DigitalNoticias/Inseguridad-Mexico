@@ -69,3 +69,13 @@ _RUNBOOK*
 _preview*
 _prueba*
 _shotgun*
+
+# --- TALLER DE DATOS INTERNO (27-sep-2026): certificados INEGI, RNPDNO, mapeos. Nunca sube ---
+_datos_inegi/
+_MAPEO_FUENTES/
+_mapas/
+_cache_mapas/
+_metodologia/
+_inegi_*.json
+INVENTARIO*
+_TALLER*/
