@@ -10,9 +10,9 @@
 // morelos/ NO carga este archivo: es track aparte con su corte.
 // ============================================================
 const CORTE_SITIO = {
-  mes: "agosto 2026",
-  corto: "ago-2026",
-  actualizado: "19-sep-2026",
+  mes: "septiembre 2026",
+  corto: "sep-2026",
+  actualizado: "17-oct-2026",
 };
 
 (function () {
